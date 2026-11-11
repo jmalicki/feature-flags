@@ -1,0 +1,10 @@
+minimum_pre_commit_version: "4.7.0"
+repos:
+  - repo: local
+    hooks:
+      - id: markdownlint
+        name: Markdown lint (all documents)
+        entry: npm run --silent lint:markdown
+        language: system
+        pass_filenames: false
+        always_run: true

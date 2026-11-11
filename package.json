@@ -1,0 +1,21 @@
+{
+  "name": "feature-flags-history",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A source-backed history of feature flags, continuous delivery, and safer software change.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "lint": "npm run lint:markdown",
+    "lint:markdown": "markdownlint-cli2",
+    "lint:markdown:fix": "markdownlint-cli2 --fix"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "0.24.0"
+  },
+  "overrides": {
+    "re2js": "2.8.7",
+    "katex": "0.18.2"
+  }
+}

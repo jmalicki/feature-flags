@@ -1,0 +1,11 @@
+{
+  "config": {
+    "default": true,
+    // Keep prose paragraphs and evidence URLs intact; the reader wraps them.
+    "MD013": false,
+    // Repeated subsection labels are valid under different parent headings.
+    "MD024": { "siblings_only": true }
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules/**"]
+}
