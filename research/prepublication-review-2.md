@@ -1,5 +1,7 @@
 # Independent prepublication review 2
 
+**Superseded scope.** This review covers the first version of `essay.md` (commit `5facf36`). The essay has since been rewritten with a different thesis and audience; nothing below certifies the rewrite.
+
 Review date: 2026-11-10. Reviewed the actual working-tree documents and tooling before publication. This review did not push, change the essay, alter configuration, or install dependencies. The only authored file is this report.
 
 ## Decision

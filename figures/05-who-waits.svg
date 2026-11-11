@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="770" viewBox="0 0 1000 770" role="img" aria-labelledby="queue-title queue-desc">
+  <title id="queue-title">A long canary makes every change wait; a flag ramp makes one behaviour wait</title>
+  <desc id="queue-desc">Two schematic schedules over eleven days. In the first, each release holds the binary in a three-day soak; work finished meanwhile waits and is batched into the next release, so releases carry three changes each and go live on days three, six and nine. In the second, each change is deployed the day it is written after a short binary canary, and only one risky change ramps slowly behind a flag from dark to staff to one client, ten percent and one hundred percent without delaying the others.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="770" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Who waits for the slow change?</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">With a soak, every change waits and batches grow. With a flag, one risky behaviour waits alone.</text>
+    <text x="32" y="128" font-size="14" fill="#52514e" font-weight="700" text-anchor="start">A LONG SOAK OR CANARY HOLDS THE WHOLE BINARY</text>
+<text x="32" y="164" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Release 1</text>
+<text x="32" y="183" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">3 changes</text>
+<path d="M 250 150 H 436 Q 440 150 440 154 V 162 Q 440 166 436 166 H 250 Z" fill="#eb6834"/>
+<text x="450" y="164" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">live on day 3</text>
+<text x="32" y="220" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Release 2</text>
+<text x="32" y="239" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">3 changes, written days 0–3</text>
+<line x1="250" y1="214" x2="438" y2="214" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 5"/>
+<path d="M 442 206 H 628 Q 632 206 632 210 V 218 Q 632 222 628 222 H 442 Z" fill="#eb6834"/>
+<text x="642" y="220" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">live on day 6</text>
+<text x="32" y="276" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Release 3</text>
+<text x="32" y="295" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">3 changes, written days 3–6</text>
+<line x1="442" y1="270" x2="630" y2="270" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 5"/>
+<path d="M 634 262 H 820 Q 824 262 824 266 V 274 Q 824 278 820 278 H 634 Z" fill="#eb6834"/>
+<text x="834" y="276" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">live on day 9</text>
+<line x1="250" y1="316" x2="954" y2="316" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="250" y1="316" x2="250" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="250" y="338" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 0</text>
+<line x1="314" y1="316" x2="314" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="378" y1="316" x2="378" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="378" y="338" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 2</text>
+<line x1="442" y1="316" x2="442" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="506" y1="316" x2="506" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="506" y="338" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 4</text>
+<line x1="570" y1="316" x2="570" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="634" y1="316" x2="634" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="634" y="338" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 6</text>
+<line x1="698" y1="316" x2="698" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="762" y1="316" x2="762" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="762" y="338" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 8</text>
+<line x1="826" y1="316" x2="826" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="890" y1="316" x2="890" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="890" y="338" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 10</text>
+<line x1="954" y1="316" x2="954" y2="321" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<text x="32" y="410" font-size="14" fill="#52514e" font-weight="700" text-anchor="start">A FLAG PUTS THE WAIT ON THE ONE BEHAVIOUR THAT NEEDS IT</text>
+<text x="32" y="446" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Change 1</text>
+<rect x="250" y="432" width="6" height="16" rx="2" fill="#2a78d6"/>
+<text x="264" y="446" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed the day it is written</text>
+<text x="32" y="480" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Change 2</text>
+<rect x="314" y="466" width="6" height="16" rx="2" fill="#2a78d6"/>
+<text x="328" y="480" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed the day it is written</text>
+<text x="32" y="514" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Change 3 (risky)</text>
+<rect x="378" y="500" width="6" height="16" rx="2" fill="#2a78d6"/>
+<path d="M 387.6 500 H 820 Q 824 500 824 504 V 512 Q 824 516 820 516 H 387.6 Z" fill="#e6f0fb"/><rect x="387.6" y="500" width="436.4" height="16" rx="4" fill="none" stroke="#2a78d6" stroke-width="1.5"/><text x="397.2" y="513" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">dark</text><text x="480.4" y="513" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">staff</text><text x="563.6" y="513" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">1 client</text><text x="659.6" y="513" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">10%</text><text x="755.6" y="513" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">100%</text>
+<text x="32" y="548" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Change 4</text>
+<rect x="442" y="534" width="6" height="16" rx="2" fill="#2a78d6"/>
+<text x="456" y="548" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed the day it is written</text>
+<text x="32" y="582" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Change 5</text>
+<rect x="506" y="568" width="6" height="16" rx="2" fill="#2a78d6"/>
+<text x="520" y="582" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed the day it is written</text>
+<text x="32" y="616" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Change 6</text>
+<rect x="570" y="602" width="6" height="16" rx="2" fill="#2a78d6"/>
+<text x="584" y="616" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed the day it is written</text>
+<line x1="250" y1="644" x2="954" y2="644" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="250" y1="644" x2="250" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="250" y="666" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 0</text>
+<line x1="314" y1="644" x2="314" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="378" y1="644" x2="378" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="378" y="666" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 2</text>
+<line x1="442" y1="644" x2="442" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="506" y1="644" x2="506" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="506" y="666" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 4</text>
+<line x1="570" y1="644" x2="570" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="634" y1="644" x2="634" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="634" y="666" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 6</text>
+<line x1="698" y1="644" x2="698" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="762" y1="644" x2="762" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="762" y="666" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 8</text>
+<line x1="826" y1="644" x2="826" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="890" y1="644" x2="890" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/><text x="890" y="666" font-size="13" fill="#8a8983" font-weight="400" text-anchor="middle">day 10</text>
+<line x1="954" y1="644" x2="954" y2="649" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M 32 706 H 56 Q 60 706 60 710 V 714 Q 60 718 56 718 H 32 Z" fill="#eb6834"/>
+<text x="68" y="717" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">binary held in soak</text>
+<line x1="240" y1="712" x2="268" y2="712" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 5"/>
+<text x="276" y="717" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">finished work waiting for the next release</text>
+<rect x="590" y="704" width="6" height="16" rx="2" fill="#2a78d6"/>
+<text x="604" y="717" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">short binary canary</text>
+<rect x="770" y="705" width="28" height="14" rx="4" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="806" y="717" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">one behaviour's ramp</text>
+    <text x="32" y="748" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Illustrative schedule, not measured data.</text>
+  </g>
+</svg>
