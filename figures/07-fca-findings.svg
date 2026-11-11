@@ -4,7 +4,7 @@
   <desc id="fca-desc">Three panels of statistics from the Financial Conduct Authority's review of technology change. First: 1.6 percent of all changes failed, against 3.8 percent of major changes that had extra oversight. Second: change advisory boards approved over 90 percent of the major changes they reviewed. Third: change caused 17 percent of material incidents reported to the regulator and 24 percent of firms' own high-severity incidents.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="470" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
-    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">The regulator measured it</text>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">FCA review of technology change</text>
     <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">UK Financial Conduct Authority review of 23 firms and over a million changes made in 2019.</text>
     <rect x="32" y="108" width="320" height="300" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>
 <text x="50" y="138" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Changes that failed</text>
@@ -14,9 +14,8 @@
 <text x="50" y="272" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">“Major” changes, with extra oversight</text>
 <path d="M 50 282 H 220.79999999999998 Q 224.79999999999998 282 224.79999999999998 286 V 298 Q 224.79999999999998 302 220.79999999999998 302 H 50 Z" fill="#eb6834"/>
 <text x="234.79999999999998" y="298" font-size="18" fill="#0b0b0b" font-weight="700" text-anchor="start">3.8%</text>
-<text x="50" y="348" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Nearly 68,000 major changes. More</text>
-<text x="50" y="366.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">scrutiny, more than twice the failure</text>
-<text x="50" y="384.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">rate.</text>
+<text x="50" y="348" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Nearly 68,000 major changes, which</text>
+<text x="50" y="366.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">generally received more oversight.</text>
 <rect x="372" y="108" width="300" height="300" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>
 <text x="390" y="138" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Major changes approved by the</text>
 <text x="390" y="158.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">change board</text>
@@ -33,9 +32,8 @@
 <text x="710" y="272" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Firms' own high-severity incidents</text>
 <path d="M 710 282 H 850 Q 854 282 854 286 V 298 Q 854 302 850 302 H 710 Z" fill="#2a78d6"/>
 <text x="864" y="298" font-size="18" fill="#0b0b0b" font-weight="700" text-anchor="start">24%</text>
-<text x="710" y="348" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Different denominators; shown</text>
-<text x="710" y="366.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">side by side, not for</text>
-<text x="710" y="384.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">comparison.</text>
+<text x="710" y="348" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The two figures have different</text>
+<text x="710" y="366.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">denominators.</text>
     <text x="32" y="448" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">It also found smaller, more frequent releases had higher success rates. These are associations, not causes.</text>
   </g>
 </svg>
