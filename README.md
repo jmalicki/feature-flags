@@ -17,6 +17,8 @@ The argument is that small changes, independent activation, controlled exposure,
 - [research/claims-audit.md](research/claims-audit.md): dates, causal claims, terminology, and limits reviewed independently.
 - [research/prepublication-review-1.md](research/prepublication-review-1.md) and [research/prepublication-review-2.md](research/prepublication-review-2.md): two independent reviews across historical, editorial, financial, privacy, and tooling concerns before publication.
 - [research/research-state.md](research/research-state.md): scope, decisions, and leads for future work.
+- [reports/Testing gates to ramping culture.md](reports/Testing%20gates%20to%20ramping%20culture.md): synthesis of the second research pass on the move from testing periods to controlled exposure in production, written for the essay rewrite. It records corrections to commonly repeated claims, the verification status of quotations, and gaps.
+- [research_notes/Testing gates to ramping culture/](research_notes/Testing%20gates%20to%20ramping%20culture/): the fourteen raw note files behind that report (Microsoft, Google and Facebook, Amazon/Netflix/LinkedIn/Etsy, QA role transitions, management arguments, empirical and regulated-industry evidence, audit and compliance, payments and core-banking releases, experiments on financial clients, staging and soak, rollback authority, rollback technology, counter-evidence and failures, and chart data). Each source is tagged by how it was read; quotations tagged as tool extractions must be re-checked against the page before they are printed.
 
 Research date: November 10, 2026. Markdown only, as requested. The main history ends in the late 2010s; later evidence is identified explicitly.
 
