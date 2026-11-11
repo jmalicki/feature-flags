@@ -4,8 +4,8 @@
   <desc id="sixteen-desc">A single bar sixteen days long. The remaining two days or so are building, deploying and testing. Almost fourteen days are waiting for a person to start the next step.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="320" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
-    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Measure the three days before defending them</text>
-    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Amazon's own measurement before it automated its pipeline: 16 days from check-in to production.</text>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Amazon's pipeline before automation</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">16 days on average from check-in to production, almost 14 of them waiting.</text>
     <path d="M 32 176 H 141 Q 145 176 145 180 V 196 Q 145 200 141 200 H 32 Z" fill="#2a78d6"/>
 <path d="M 148 176 H 956 Q 960 176 960 180 V 196 Q 960 200 956 200 H 148 Z" fill="#eb6834"/>
 <line x1="32" y1="206" x2="32" y2="212" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
@@ -25,8 +25,8 @@
 <line x1="844" y1="206" x2="844" y2="212" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
 <line x1="902" y1="206" x2="902" y2="212" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
 <line x1="960" y1="206" x2="960" y2="212" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
-<text x="32" y="140" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">The other two days or so</text>
-<text x="32" y="162" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">building, deploying, testing</text>
+<text x="32" y="140" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">About 2 days of work</text>
+<text x="32" y="162" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">writing the code, then under an hour to build and deploy</text>
 <text x="148" y="238" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Almost 14 days of waiting</text>
 <text x="148" y="260" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">for someone to start the build, run the deployment, or run the tests</text>
     <text x="32" y="298" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Reported in 2019 as a measurement taken more than ten years earlier.</text>

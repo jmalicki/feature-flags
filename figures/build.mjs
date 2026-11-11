@@ -76,6 +76,51 @@ const stage = (x, y, w, h, label, sub, { accent = null, tint = C.surface } = {})
     sub ? para(x + 12, y + 26 + paraHeight(label, w - 24, 16) + 2, sub, w - 24, { size: 14 }) : "",
   ].join("\n");
 
+function releaseTrain() {
+  const x0 = 32;
+  const d = 168; // px per day
+  const cut = x0 + 1.75 * d;
+  const y = 196;
+  const h = 86;
+  const seg = (i, label, sub) => stage(cut + i * d + (i ? 6 : 0), y, d - (i ? 6 : 0), h, label, sub);
+  const changes = [0.1, 0.45, 0.8, 1.15, 1.5].map((p) => `<rect x="${(x0 + p * d).toFixed(0)}" y="${y + 26}" width="26" height="26" rx="5" fill="${C.blueTint}" stroke="${C.blue}" stroke-width="1.5"/>`).join("");
+  const ex = 430; // exposure baseline
+  const rel = cut + 3 * d + 6;
+  return frame(
+    "train",
+    560,
+    "A release train",
+    "A timeline of one release train. Finished changes wait about 1.75 days on average for the next cut. The train then spends one day in integration and regression testing, one day in a performance run and overnight batch, and one day in approval and waiting for a release window. It is then released to every user at once. User exposure is zero throughout and steps to one hundred percent at release. A typical change takes about five days from finished to live.",
+    "A release train",
+    "The running example: two trains a week, three days of promotion each.",
+    [
+      t(x0, y - 22, "WAITING FOR THE NEXT CUT", { size: 13, fill: C.ink2, weight: 700 }),
+      box(x0, y, 1.75 * d - 8, h, { fill: C.panel, stroke: C.ink2, dash: "5 4" }),
+      changes,
+      t(x0 + 12, y + 74, "about 1.75 days on average", { size: 14, fill: C.ink2 }),
+      t(cut, y - 22, "PROMOTION: THREE DAYS", { size: 13, fill: C.ink2, weight: 700 }),
+      seg(0, "Day 1", "Integration and regression pack"),
+      seg(1, "Day 2", "Performance run, overnight batch"),
+      seg(2, "Day 3", "Approval, wait for release window"),
+      ln(cut - 4, y - 8, cut - 4, y + h + 8, { stroke: C.ink, sw: 2 }),
+      t(cut - 10, y + h + 26, "cut", { size: 14, fill: C.ink2, anchor: "end" }),
+      box(rel, y, W - 32 - rel, h, { fill: C.orangeTint, stroke: C.orange }),
+      para(rel + 10, y + 26, "Release", W - 52 - rel, { size: 16, fill: C.ink, weight: 700 }),
+      para(rel + 10, y + 48, "every user at once", W - 52 - rel, { size: 14 }),
+      t(x0, ex - 86, "SHARE OF USERS EXPOSED TO THE NEW BEHAVIOR", { size: 13, fill: C.ink2, weight: 700 }),
+      ln(x0, ex, W - 32, ex, { stroke: C.line, sw: 1.5 }),
+      `<path d="M ${x0} ${ex} H ${rel} V ${ex - 60} H ${W - 32}" fill="none" stroke="${C.orange}" stroke-width="3" stroke-linejoin="round"/>`,
+      t(x0, ex + 22, "0%", { size: 14, fill: C.ink2 }),
+      t(W - 32, ex - 68, "100%", { size: 14, fill: C.ink2, anchor: "end" }),
+      ln(x0, ex + 52, rel, ex + 52, { stroke: C.muted, sw: 1.5 }),
+      ln(x0, ex + 46, x0, ex + 58, { stroke: C.muted, sw: 1.5 }),
+      ln(rel, ex + 46, rel, ex + 58, { stroke: C.muted, sw: 1.5 }),
+      t((x0 + rel) / 2, ex + 76, "about 5 days from finished to live for a typical change", { size: 15, fill: C.ink, anchor: "middle" }),
+    ].join("\n"),
+    "",
+  );
+}
+
 function whereTheWait() {
   const y1 = 150;
   const y2 = 380;
@@ -386,8 +431,8 @@ function ramps() {
     y0 + rows.length * rowH + 40,
     "Ramp stages that firms have published",
     "Seven published ramp schedules. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorisation in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
-    "What a ramp looks like in practice",
-    "Stages as each firm described them. These are examples of typical values, not a ranking.",
+    "Published rollout stages",
+    "Stages as each company described them. Examples, not a ranking.",
     body,
     "Sources are cited beside the figure in the essay.",
   );
@@ -429,7 +474,7 @@ function fca() {
     470,
     "What the UK regulator found in its own firms' change data",
     "Three panels of statistics from the Financial Conduct Authority's review of technology change. First: 1.6 percent of all changes failed, against 3.8 percent of major changes that had extra oversight. Second: change advisory boards approved over 90 percent of the major changes they reviewed. Third: change caused 17 percent of material incidents reported to the regulator and 24 percent of firms' own high-severity incidents.",
-    "The regulator measured it",
+    "FCA review of technology change",
     "UK Financial Conduct Authority review of 23 firms and over a million changes made in 2019.",
     [p1, p2, p3].join("\n"),
     "It also found smaller, more frequent releases had higher success rates. These are associations, not causes.",
@@ -445,14 +490,14 @@ function sixteenDays() {
     320,
     "Amazon measured sixteen days from check-in to production, almost fourteen of them waiting",
     "A single bar sixteen days long. The remaining two days or so are building, deploying and testing. Almost fourteen days are waiting for a person to start the next step.",
-    "Measure the three days before defending them",
-    "Amazon's own measurement before it automated its pipeline: 16 days from check-in to production.",
+    "Amazon's pipeline before automation",
+    "16 days on average from check-in to production, almost 14 of them waiting.",
     [
       hbar(x0, y, 2 * unit - 3, 24, C.blue),
       hbar(x0 + 2 * unit, y, 14 * unit, 24, C.orange),
       ...Array.from({ length: 17 }, (_, d) => ln(x0 + d * unit, y + 30, x0 + d * unit, y + 36, { stroke: C.line, sw: 1.5 })),
-      t(x0, y - 36, "The other two days or so", { size: 17, weight: 700 }),
-      t(x0, y - 14, "building, deploying, testing", { size: 15, fill: C.ink2 }),
+      t(x0, y - 36, "About 2 days of work", { size: 17, weight: 700 }),
+      t(x0, y - 14, "writing the code, then under an hour to build and deploy", { size: 15, fill: C.ink2 }),
       t(x0 + 2 * unit, y + 62, "Almost 14 days of waiting", { size: 17, weight: 700 }),
       t(x0 + 2 * unit, y + 84, "for someone to start the build, run the deployment, or run the tests", { size: 15, fill: C.ink2 }),
     ].join("\n"),
@@ -491,8 +536,8 @@ function rollbacks() {
     530,
     "Three things called rollback",
     "Three kinds of rollback. Switching traffic back to a still-running old version takes seconds to minutes but costs capacity. Redeploying the kept image takes one deployment and requires that the image was retained under an immutable hash. Rebuilding the old source takes a full build and is only trustworthy if the build is repeatable. None of them undo data written, schemas migrated, messages sent or money moved.",
-    "Three things called “rollback”",
-    "Only the first two return production to something that has already run.",
+    "Three kinds of rollback",
+    "The first two return production to a build that has already run there.",
     [body, none].join("\n"),
     "",
   );
@@ -522,8 +567,8 @@ function knight() {
     470,
     "Knight Capital deployed over five days and activated in one moment",
     "Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from 27 July 2012 while its path stayed dormant, then activated on every server at the market open on 1 August, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.",
-    "Knight Capital: deployed gradually, activated all at once",
-    "From the SEC's order. A reused flag meant one thing to seven servers and something else to the eighth.",
+    "Knight Capital, August 1, 2012",
+    "Staged deployment, single activation. Source: the SEC's order.",
     [
       t(sx, 132, "EIGHT ORDER-ROUTING SERVERS", { size: 13, fill: C.ink2, weight: 700 }),
       servers,
@@ -539,7 +584,7 @@ function knight() {
       box(690, 132, 278, 290, { fill: C.panel }),
       ...stats.map(([big, small], i) => [t(710, 182 + i * 86, big, { size: 26, weight: 700 }), t(710, 206 + i * 86, small, { size: 15, fill: C.ink2 })].join("\n")),
     ].join("\n"),
-    "Five days in production observed nothing, because nothing used the path. A soak would have seen the same nothing.",
+    "The new code was on production servers for five days before its first use.",
   );
 }
 
@@ -661,6 +706,7 @@ function start() {
 }
 
 const figures = {
+  "00-release-train.svg": releaseTrain(),
   "01-where-the-wait-happens.svg": whereTheWait(),
   "02-exposure-ladder.svg": ladder(),
   "03-timeline.svg": timeline(),

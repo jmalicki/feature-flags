@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="train-title train-desc">
+  <title id="train-title">A release train</title>
+  <desc id="train-desc">A timeline of one release train. Finished changes wait about 1.75 days on average for the next cut. The train then spends one day in integration and regression testing, one day in a performance run and overnight batch, and one day in approval and waiting for a release window. It is then released to every user at once. User exposure is zero throughout and steps to one hundred percent at release. A typical change takes about five days from finished to live.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="560" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">A release train</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">The running example: two trains a week, three days of promotion each.</text>
+    <text x="32" y="174" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">WAITING FOR THE NEXT CUT</text>
+<rect x="32" y="196" width="286" height="86" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+<rect x="49" y="222" width="26" height="26" rx="5" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/><rect x="108" y="222" width="26" height="26" rx="5" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/><rect x="166" y="222" width="26" height="26" rx="5" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/><rect x="225" y="222" width="26" height="26" rx="5" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/><rect x="284" y="222" width="26" height="26" rx="5" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="44" y="270" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">about 1.75 days on average</text>
+<text x="326" y="174" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">PROMOTION: THREE DAYS</text>
+<rect x="326" y="196" width="168" height="86" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="338" y="222" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 1</text>
+<text x="338" y="244.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Integration and</text>
+<text x="338" y="263" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">regression pack</text>
+<rect x="500" y="196" width="162" height="86" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="512" y="222" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 2</text>
+<text x="512" y="244.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Performance run,</text>
+<text x="512" y="263" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">overnight batch</text>
+<rect x="668" y="196" width="162" height="86" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="680" y="222" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 3</text>
+<text x="680" y="244.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Approval, wait for</text>
+<text x="680" y="263" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">release window</text>
+<line x1="322" y1="188" x2="322" y2="290" stroke="#0b0b0b" stroke-width="2" stroke-linecap="round"/>
+<text x="316" y="308" font-size="14" fill="#52514e" font-weight="400" text-anchor="end">cut</text>
+<rect x="836" y="196" width="132" height="86" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="846" y="222" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Release</text>
+<text x="846" y="244" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">every user at</text>
+<text x="846" y="262.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">once</text>
+<text x="32" y="344" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">SHARE OF USERS EXPOSED TO THE NEW BEHAVIOR</text>
+<line x1="32" y1="430" x2="968" y2="430" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M 32 430 H 836 V 370 H 968" fill="none" stroke="#eb6834" stroke-width="3" stroke-linejoin="round"/>
+<text x="32" y="452" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">0%</text>
+<text x="968" y="362" font-size="14" fill="#52514e" font-weight="400" text-anchor="end">100%</text>
+<line x1="32" y1="482" x2="836" y2="482" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="476" x2="32" y2="488" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="836" y1="476" x2="836" y2="488" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<text x="434" y="506" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="middle">about 5 days from finished to live for a typical change</text>
+    
+  </g>
+</svg>

@@ -4,7 +4,7 @@
   <desc id="fca-desc">Three panels of statistics from the Financial Conduct Authority's review of technology change. First: 1.6 percent of all changes failed, against 3.8 percent of major changes that had extra oversight. Second: change advisory boards approved over 90 percent of the major changes they reviewed. Third: change caused 17 percent of material incidents reported to the regulator and 24 percent of firms' own high-severity incidents.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="470" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
-    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">The regulator measured it</text>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">FCA review of technology change</text>
     <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">UK Financial Conduct Authority review of 23 firms and over a million changes made in 2019.</text>
     <rect x="32" y="108" width="320" height="300" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>
 <text x="50" y="138" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Changes that failed</text>
