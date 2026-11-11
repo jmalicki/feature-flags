@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-labelledby="shadow-title shadow-desc">
+  <title id="shadow-title">Shadowing a payment without charging anyone twice</title>
+  <desc id="shadow-desc">A flow diagram of Uber's payment shadowing. A live request goes to the legacy system, which calls the payment provider for real and answers the customer. The request it sent and the response it received are recorded. A delayed copy of the same request goes to the new service, whose would-be request to the provider is compared with the recorded one; the recorded response is replayed to it, so the provider is never called a second time. Mismatches are fixed before any user is moved to the new service.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="520" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">How to shadow a payment</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Uber's method, 2019: the new service sees real requests, but the provider is only called once.</text>
+    <text x="32" y="128" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">LIVE PATH: UNCHANGED</text>
+<rect x="32" y="142" width="170" height="76" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="44" y="168" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Customer request</text>
+
+<line x1="205" y1="180" x2="258" y2="180" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 250.8 176.5 L 258 180 L 250.8 183.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="262" y="142" width="200" height="76" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="274" y="168" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Legacy system</text>
+<text x="274" y="190.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">still decides</text>
+<line x1="465" y1="180" x2="518" y2="180" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 510.8 176.5 L 518 180 L 510.8 183.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="522" y="142" width="210" height="76" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="534" y="168" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Payment provider</text>
+<text x="534" y="190.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">called once, for real</text>
+<line x1="735" y1="180" x2="788" y2="180" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 780.8 176.5 L 788 180 L 780.8 183.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="792" y="142" width="176" height="76" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="804" y="168" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Customer answered</text>
+
+<line x1="492" y1="184" x2="492" y2="268" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/><path d="M 495.5 260.8 L 492 268 L 488.5 260.8" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="392" y="272" width="200" height="76" rx="8" fill="#f3f2ee" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="404" y="298" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Record</text>
+<text x="404" y="320.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">the request sent and</text>
+<text x="404" y="339" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">the response received</text>
+<text x="32" y="392" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">SHADOW PATH: NOBODY EXPOSED</text>
+<rect x="32" y="406" width="170" height="76" rx="8" fill="#fcfcfb" stroke="#52514e" stroke-width="1.5"/>
+<text x="44" y="432" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Delayed copy</text>
+<text x="44" y="454.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">of the same request</text>
+<line x1="205" y1="444" x2="258" y2="444" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 250.8 440.5 L 258 444 L 250.8 447.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="262" y="406" width="200" height="76" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="274" y="432" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">New service</text>
+<text x="274" y="454.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">builds its own request</text>
+<line x1="465" y1="444" x2="518" y2="444" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 510.8 440.5 L 518 444 L 510.8 447.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="522" y="406" width="210" height="76" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="534" y="432" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Compare</text>
+<text x="534" y="454.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">would-be request against</text>
+<text x="534" y="473" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">the recorded one</text>
+<line x1="735" y1="444" x2="788" y2="444" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 780.8 440.5 L 788 444 L 780.8 447.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="792" y="406" width="176" height="76" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="804" y="432" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Mismatches</text>
+<text x="804" y="454.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">fixed before any</text>
+<text x="804" y="473" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">user moves</text>
+<line x1="560" y1="352" x2="600" y2="402" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/><path d="M 598.2 394.2 L 600 402 L 592.8 398.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="430" y1="352" x2="380" y2="402" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/><path d="M 387.6 399.4 L 380 402 L 382.6 394.4" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="608" y="372" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">recorded request, for comparison</text>
+<text x="372" y="372" font-size="13" fill="#52514e" font-weight="400" text-anchor="end">recorded response, replayed</text>
+    
+  </g>
+</svg>

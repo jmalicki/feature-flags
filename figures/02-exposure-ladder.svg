@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="ladder-title ladder-desc">
+  <title id="ladder-title">The exposure ladder</title>
+  <desc id="ladder-desc">Five rungs of increasing exposure. Dormant: code is deployed behind a flag at zero percent and nobody sees it. Shadow: real traffic runs through the new code and results are compared and discarded; nobody sees it. Staff: employees use it. Small cohort: one percent, one merchant or one country. Everyone: all clients. The first two rungs are the dark launch.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="640" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Every risky change starts dark</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">The first two rungs replace the testing period: time to observe on real traffic, with no client exposed.</text>
+    <rect x="32" y="220" width="178" height="326" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="46" y="250" font-size="19" fill="#0b0b0b" font-weight="700" text-anchor="start">Dormant</text>
+<text x="46" y="276" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHO SEES IT</text>
+<text x="46" y="296" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Nobody</text>
+<text x="46" y="348" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT HAPPENS</text>
+<text x="46" y="368" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Deployed behind a</text>
+<text x="46" y="386.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">flag or experiment</text>
+<text x="46" y="404.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">set to 0%.</text>
+<text x="46" y="466" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT YOU LEARN</text>
+<text x="46" y="486" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">It builds, deploys</text>
+<text x="46" y="504.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">and disturbs nothing</text>
+<text x="46" y="522.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">that is live.</text>
+<rect x="222" y="194" width="178" height="352" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="236" y="224" font-size="19" fill="#0b0b0b" font-weight="700" text-anchor="start">Shadow</text>
+<text x="236" y="250" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHO SEES IT</text>
+<text x="236" y="270" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Nobody</text>
+<text x="236" y="322" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT HAPPENS</text>
+<text x="236" y="342" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Real traffic runs</text>
+<text x="236" y="360.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">through it; results</text>
+<text x="236" y="378.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">are compared, then</text>
+<text x="236" y="396.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">discarded.</text>
+<text x="236" y="440" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT YOU LEARN</text>
+<text x="236" y="460" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Load, latency, and</text>
+<text x="236" y="478.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">whether it gives the</text>
+<text x="236" y="496.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">same answers.</text>
+<rect x="412" y="168" width="178" height="378" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="426" y="198" font-size="19" fill="#0b0b0b" font-weight="700" text-anchor="start">Staff</text>
+<text x="426" y="224" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHO SEES IT</text>
+<text x="426" y="244" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Employees</text>
+<text x="426" y="296" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT HAPPENS</text>
+<text x="426" y="316" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">People who can</text>
+<text x="426" y="334.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">report what they</text>
+<text x="426" y="352.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">see.</text>
+<text x="426" y="414" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT YOU LEARN</text>
+<text x="426" y="434" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Whether it works in</text>
+<text x="426" y="452.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">real use.</text>
+<rect x="602" y="142" width="178" height="404" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="616" y="172" font-size="19" fill="#0b0b0b" font-weight="700" text-anchor="start">Small cohort</text>
+<text x="616" y="198" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHO SEES IT</text>
+<text x="616" y="218" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">1%, one merchant,</text>
+<text x="616" y="237.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">one country</text>
+<text x="616" y="270" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT HAPPENS</text>
+<text x="616" y="290" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">A named, stable</text>
+<text x="616" y="308.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">group.</text>
+<text x="616" y="388" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT YOU LEARN</text>
+<text x="616" y="408" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Whether it is safe</text>
+<text x="616" y="426.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">to widen.</text>
+<rect x="792" y="116" width="178" height="430" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="806" y="146" font-size="19" fill="#0b0b0b" font-weight="700" text-anchor="start">Everyone</text>
+<text x="806" y="172" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHO SEES IT</text>
+<text x="806" y="192" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">All clients</text>
+<text x="806" y="244" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT HAPPENS</text>
+<text x="806" y="264" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The old path is</text>
+<text x="806" y="282.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">removed afterwards.</text>
+<text x="806" y="362" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">WHAT YOU LEARN</text>
+<text x="806" y="382" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Nothing new, if the</text>
+<text x="806" y="400.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">earlier rungs did</text>
+<text x="806" y="418.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">their job.</text>
+<line x1="32" y1="574" x2="400" y2="574" stroke="#52514e" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 4"/>
+<text x="32" y="598" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Dark launch: in production, seen by nobody</text>
+<line x1="412" y1="574" x2="970" y2="574" stroke="#2a78d6" stroke-width="3" stroke-linecap="round"/>
+<text x="412" y="598" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Ramp: exposure widens on evidence</text>
+    
+  </g>
+</svg>

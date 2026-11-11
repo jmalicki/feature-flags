@@ -1,5 +1,7 @@
 # Prepublication review 1
 
+**Superseded scope.** This review covers the first version of `essay.md` (commit `5facf36`). The essay has since been rewritten with a different thesis and audience; nothing below certifies the rewrite.
+
 Reviewed November 10, 2026, before publication. Scope: `essay.md`, `README.md`, `reading-guide.md`, every research dossier, `package.json`, lockfile, Markdown configuration, pre-commit configuration, GitHub workflow, ignore rules, and Node version declaration. This review made no changes outside this file.
 
 ## Decision
