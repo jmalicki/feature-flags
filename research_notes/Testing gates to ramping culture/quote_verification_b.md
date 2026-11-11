@@ -279,4 +279,4 @@ Points to watch:
 ## Access notes
 
 - Uber's live blog returned HTTP 406 with a 14-byte body to `curl` with a browser user agent. The three Uber posts were read from Internet Archive captures dated 23 March 2025, 13 April 2026 and 19 October 2024 respectively.
-- Working files (raw HTML and stripped text) are in /private/tmp/claude-501/-Users-josephmalicki-src-feature-flags/395e8e7d-8d3e-42d7-a3a0-25e53d742f58/scratchpad/verify_b
+- Working files (raw HTML and stripped text) were kept in a temporary scratch folder and are not part of this repository.
