@@ -394,7 +394,7 @@ Flags are cheap to add, but each one carries a continuing cost. Every flag that 
 
 A study of Chrome found its flags growing [from 263 to 1,040](https://users.encs.concordia.ca/~pcr/paper/Rahman2016MSR.pdf) over the releases it examined. Uber eventually [built a tool to remove stale flags](https://manu.sridharan.net/files/ICSE20-SEIP-Piranha.pdf) and deleted 1,381.
 
-The remedy is a set of mechanical rules. A flag cannot be created without an owner and an expiry date, and the build warns as the date approaches and fails once it has passed. Kill switches that are meant to be permanent are registered as such. There is a cap on live release flags per service, and a flag is never reused.
+Flag debt is controlled by rules that tooling can enforce. Every flag is created with an owner and an expiry date. The build warns as that date approaches and fails once it has passed. Kill switches that are intended to be permanent are registered as permanent and are exempt from expiry. Each service has a limit on the number of live release flags, and a flag name is not reused for a different purpose.
 
 ### A reused flag and an incomplete deployment
 
