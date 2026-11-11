@@ -1,8 +1,8 @@
 # Feature flags, continuous delivery, and the history of safer change
 
-Start with [the essay](essay.md). It is about a general transition in how software is released, from proving a release safe in a testing period to deploying it to production switched off and proving each behaviour there. It is written for engineering leaders at firms that still release on a train, and uses a payments firm releasing twice a week, with three days of promotion, as its running case. It does not describe any particular firm.
+Start with [the essay](essay.md). It is written as an industry consultant's assessment of a common release model, twice-weekly release trains with three days of promotion and soak, followed by recommendations for replacing it. "The business" in the text is a generic firm that moves money; the document does not describe any particular company and draws on no firm's internal data.
 
-Its argument: the release train costs development velocity, and a firm can develop much faster while keeping the safety the three days buy by deploying daily with new behaviour switched off and releasing each behaviour separately on evidence. The change is cultural more than technical. It ends with six measurements of the current process and one bounded pilot.
+Its argument: the release train is sound on safety and expensive on development velocity, and a business can develop much faster while keeping that safety by deploying daily with new behaviour switched off and releasing each behaviour separately on evidence. The change is cultural more than technical. It makes ten recommendations, beginning with six baseline measurements and a bounded pilot.
 
 ## Files
 
