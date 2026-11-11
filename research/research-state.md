@@ -27,9 +27,10 @@ The first version of the essay was judged a failure: accurate but written to sur
 Third version (same day), after the user judged the second unconvincing and machine-sounding:
 
 - **The problem is development velocity.** The thesis is: we can vastly improve velocity while preserving safety if we change the culture to feature flags and related practices. Safety is the constraint the proposal must satisfy, not the pitch.
-- **Voice:** first person, from inside the firm, addressed to its engineering directors. Statements about "our" process are assumptions to be corrected by the people who run it.
+- **Voice:** a general account of the industry's transition, not one firm's story. The essay uses a payments firm on a twice-weekly train as its running case and speaks of "a firm", with a sparing authorial "I". (A first draft of this version spoke as an insider, "we"; the user asked for that to be removed.)
 - **Form:** an argued essay ending in a bounded ask (six measurements, one pilot beside the train), with footnoted sources. No bold lead-ins, no definitions of terms the reader uses daily, no self-reference.
 - **Review findings that shaped it** are in `reviews/essay-v2/`. The main ones: state what the soak does and concede it; the binary still needs a production bake because not everything can be flagged; walk one change through both processes; risk and audit co-design the change policy, since auditors test the firm's own policy and not the rule texts; put the gaps where the evidence is weighed.
+- **Scope is systems outside PCI DSS.** The essay's worked example is an account-to-account payment routing change, not card authorisation, and it makes no PCI claims. PCI material remains in the research notes for reference only.
 - **Figures were left unchanged** at the user's request. The third version embeds six of the thirteen; several of the others no longer match the argument.
 
 Open items after the rewrite: no published before-and-after incident data for a bank leaving release trains; no published auditor's verdict on a new process; almost nothing on validating period-boundary batch jobs. The essay says so.
