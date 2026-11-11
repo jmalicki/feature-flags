@@ -29,6 +29,6 @@
 <text x="32" y="162" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">writing the code, then under an hour to build and deploy</text>
 <text x="148" y="238" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Almost 14 days of waiting</text>
 <text x="148" y="260" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">for someone to start the build, run the deployment, or run the tests</text>
-    <text x="32" y="298" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Reported in 2019 as a measurement taken more than ten years earlier.</text>
+    <text x="32" y="298" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Source: Mark Mansour, Going faster with continuous delivery, Amazon Builders' Library, 2019. Measured more than ten years earlier.</text>
   </g>
 </svg>

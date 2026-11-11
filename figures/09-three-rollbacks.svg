@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="530" viewBox="0 0 1000 530" role="img" aria-labelledby="rollbacks-title rollbacks-desc">
-  <title id="rollbacks-title">Three things called rollback</title>
-  <desc id="rollbacks-desc">Three kinds of rollback. Switching traffic back to a still-running old version takes seconds to minutes but costs capacity. Redeploying the kept image takes one deployment and requires that the image was retained under an immutable hash. Rebuilding the old source takes a full build and is only trustworthy if the build is repeatable. None of them undo data written, schemas migrated, messages sent or money moved.</desc>
+  <title id="rollbacks-title">Rollback methods</title>
+  <desc id="rollbacks-desc">Three rollback methods. A traffic shift routes requests back to a previous version that is still running; it takes seconds to minutes and requires capacity for two versions. Redeploying the retained build takes one deployment cycle and requires the build to be kept under an immutable identifier. Rebuilding from source takes a build and a deployment and produces the same binary only if the build is reproducible. Rollback does not reverse data written, schema migrations, messages sent or payments made.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="530" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
-    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Three kinds of rollback</text>
-    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">The first two return production to a build that has already run there.</text>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Rollback methods</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">The first two restore a build that has already run in production.</text>
     <rect x="32" y="108" width="300" height="268" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="50" y="142" font-size="20" fill="#0b0b0b" font-weight="700" text-anchor="start">Switch traffic back</text>
-<text x="50" y="172" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">The old version is still running.</text>
-<text x="50" y="191.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Point traffic at it.</text>
-<text x="50" y="246" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">HOW FAST</text>
+<text x="50" y="142" font-size="20" fill="#0b0b0b" font-weight="700" text-anchor="start">Traffic shift</text>
+<text x="50" y="172" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">The previous version is still</text>
+<text x="50" y="191.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">running, and traffic is routed</text>
+<text x="50" y="211" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">back to it.</text>
+<text x="50" y="246" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">TIME TO RESTORE</text>
 <text x="50" y="268" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Seconds to minutes</text>
-<text x="50" y="300" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">THE CATCH</text>
-<text x="50" y="320" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Costs capacity: two versions run at</text>
-<text x="50" y="338.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">once.</text>
+<text x="50" y="300" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">CONSTRAINT</text>
+<text x="50" y="320" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Requires capacity to run two</text>
+<text x="50" y="338.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">versions concurrently.</text>
 <rect x="350" y="108" width="300" height="268" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="368" y="142" font-size="20" fill="#0b0b0b" font-weight="700" text-anchor="start">Redeploy the kept image</text>
-<text x="368" y="172" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Deploy the previous build again,</text>
-<text x="368" y="191.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">byte for byte, by its hash.</text>
-<text x="368" y="246" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">HOW FAST</text>
-<text x="368" y="268" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">One deployment</text>
-<text x="368" y="300" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">THE CATCH</text>
-<text x="368" y="320" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Only if the image was kept and the</text>
-<text x="368" y="338.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">tag cannot be overwritten.</text>
+<text x="368" y="142" font-size="20" fill="#0b0b0b" font-weight="700" text-anchor="start">Redeploy retained build</text>
+<text x="368" y="172" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">The previous build is deployed</text>
+<text x="368" y="191.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">again, identified by its hash.</text>
+<text x="368" y="246" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">TIME TO RESTORE</text>
+<text x="368" y="268" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">One deployment cycle</text>
+<text x="368" y="300" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">CONSTRAINT</text>
+<text x="368" y="320" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Requires the build to be retained</text>
+<text x="368" y="338.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">under an immutable identifier.</text>
 <rect x="668" y="108" width="300" height="268" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
-<text x="686" y="142" font-size="20" fill="#0b0b0b" font-weight="700" text-anchor="start">Rebuild the old source</text>
-<text x="686" y="172" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Check out the earlier revision</text>
-<text x="686" y="191.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">and build it again.</text>
-<text x="686" y="246" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">HOW FAST</text>
-<text x="686" y="268" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">A full build and deployment</text>
-<text x="686" y="300" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">THE CATCH</text>
-<text x="686" y="320" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The result is only the same if the</text>
-<text x="686" y="338.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">build is repeatable. Under</text>
-<text x="686" y="356.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">pressure, it often is not.</text>
+<text x="686" y="142" font-size="20" fill="#0b0b0b" font-weight="700" text-anchor="start">Rebuild from source</text>
+<text x="686" y="172" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">An earlier revision is checked</text>
+<text x="686" y="191.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">out and built again.</text>
+<text x="686" y="246" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">TIME TO RESTORE</text>
+<text x="686" y="268" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">One build and one deployment cycle</text>
+<text x="686" y="300" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">CONSTRAINT</text>
+<text x="686" y="320" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Produces the same binary only if</text>
+<text x="686" y="338.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">the build is reproducible.</text>
 <rect x="32" y="398" width="936" height="92" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>
-<text x="50" y="428" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">What none of them undo</text>
-<text x="50" y="454" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Data the new version wrote. A schema it migrated. Messages it sent. Money it moved. These need their own design:</text>
-<text x="50" y="473.5" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">compatible formats, compare-before-switch, and correcting entries.</text>
+<text x="50" y="428" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Not reversed by rollback</text>
+<text x="50" y="454" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Data written by the newer build, schema migrations, messages already sent, and payments already made. These</text>
+<text x="50" y="473.5" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">require compatible data formats, comparison before cutover, and correcting ledger entries.</text>
     
   </g>
 </svg>

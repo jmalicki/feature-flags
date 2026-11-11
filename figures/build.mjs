@@ -450,7 +450,7 @@ function fca() {
     t(50, 272, "“Major” changes, with extra oversight", { size: 15, fill: C.ink2 }),
     hbar(50, 282, 3.8 * scale, 20, C.orange),
     t(50 + 3.8 * scale + 10, 298, "3.8%", { size: 18, weight: 700 }),
-    para(50, 348, "Nearly 68,000 major changes. More scrutiny, more than twice the failure rate.", 284, { size: 14 }),
+    para(50, 348, "Nearly 68,000 major changes, which generally received more oversight.", 284, { size: 14 }),
   ].join("\n");
   const p2 = [
     panel(1, 300, "Major changes approved by the change board"),
@@ -467,7 +467,7 @@ function fca() {
     t(710, 272, "Firms' own high-severity incidents", { size: 14, fill: C.ink2 }),
     hbar(710, 282, 24 * 6, 20, C.blue),
     t(710 + 24 * 6 + 10, 298, "24%", { size: 18, weight: 700 }),
-    para(710, 348, "Different denominators; shown side by side, not for comparison.", 240, { size: 14 }),
+    para(710, 348, "The two figures have different denominators.", 240, { size: 14 }),
   ].join("\n");
   return frame(
     "fca",
@@ -501,15 +501,15 @@ function sixteenDays() {
       t(x0 + 2 * unit, y + 62, "Almost 14 days of waiting", { size: 17, weight: 700 }),
       t(x0 + 2 * unit, y + 84, "for someone to start the build, run the deployment, or run the tests", { size: 15, fill: C.ink2 }),
     ].join("\n"),
-    "Reported in 2019 as a measurement taken more than ten years earlier.",
+    "Source: Mark Mansour, Going faster with continuous delivery, Amazon Builders' Library, 2019. Measured more than ten years earlier.",
   );
 }
 
 function rollbacks() {
   const cards = [
-    ["Switch traffic back", "The old version is still running. Point traffic at it.", "Seconds to minutes", "Costs capacity: two versions run at once.", C.blue],
-    ["Redeploy the kept image", "Deploy the previous build again, byte for byte, by its hash.", "One deployment", "Only if the image was kept and the tag cannot be overwritten.", C.blue],
-    ["Rebuild the old source", "Check out the earlier revision and build it again.", "A full build and deployment", "The result is only the same if the build is repeatable. Under pressure, it often is not.", C.orange],
+    ["Traffic shift", "The previous version is still running, and traffic is routed back to it.", "Seconds to minutes", "Requires capacity to run two versions concurrently.", C.blue],
+    ["Redeploy retained build", "The previous build is deployed again, identified by its hash.", "One deployment cycle", "Requires the build to be retained under an immutable identifier.", C.blue],
+    ["Rebuild from source", "An earlier revision is checked out and built again.", "One build and one deployment cycle", "Produces the same binary only if the build is reproducible.", C.orange],
   ];
   const w = 300;
   const body = cards
@@ -519,25 +519,25 @@ function rollbacks() {
         box(x, 108, w, 268, { fill: col === C.blue ? C.blueTint : C.orangeTint, stroke: col }),
         t(x + 18, 142, name, { size: 20, weight: 700 }),
         para(x + 18, 172, how, w - 36, { size: 15, fill: C.ink }),
-        t(x + 18, 246, "HOW FAST", { size: 12, fill: C.muted, weight: 700 }),
+        t(x + 18, 246, "TIME TO RESTORE", { size: 12, fill: C.muted, weight: 700 }),
         t(x + 18, 268, speed, { size: 16, weight: 700 }),
-        t(x + 18, 300, "THE CATCH", { size: 12, fill: C.muted, weight: 700 }),
+        t(x + 18, 300, "CONSTRAINT", { size: 12, fill: C.muted, weight: 700 }),
         para(x + 18, 320, catchIt, w - 36, { size: 14 }),
       ].join("\n");
     })
     .join("\n");
   const none = [
     box(32, 398, 936, 92, { fill: C.panel }),
-    t(50, 428, "What none of them undo", { size: 17, weight: 700 }),
-    para(50, 454, "Data the new version wrote. A schema it migrated. Messages it sent. Money it moved. These need their own design: compatible formats, compare-before-switch, and correcting entries.", 900, { size: 15 }),
+    t(50, 428, "Not reversed by rollback", { size: 17, weight: 700 }),
+    para(50, 454, "Data written by the newer build, schema migrations, messages already sent, and payments already made. These require compatible data formats, comparison before cutover, and correcting ledger entries.", 900, { size: 15 }),
   ].join("\n");
   return frame(
     "rollbacks",
     530,
-    "Three things called rollback",
-    "Three kinds of rollback. Switching traffic back to a still-running old version takes seconds to minutes but costs capacity. Redeploying the kept image takes one deployment and requires that the image was retained under an immutable hash. Rebuilding the old source takes a full build and is only trustworthy if the build is repeatable. None of them undo data written, schemas migrated, messages sent or money moved.",
-    "Three kinds of rollback",
-    "The first two return production to a build that has already run there.",
+    "Rollback methods",
+    "Three rollback methods. A traffic shift routes requests back to a previous version that is still running; it takes seconds to minutes and requires capacity for two versions. Redeploying the retained build takes one deployment cycle and requires the build to be kept under an immutable identifier. Rebuilding from source takes a build and a deployment and produces the same binary only if the build is reproducible. Rollback does not reverse data written, schema migrations, messages sent or payments made.",
+    "Rollback methods",
+    "The first two restore a build that has already run in production.",
     [body, none].join("\n"),
     "",
   );
