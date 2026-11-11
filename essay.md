@@ -1,12 +1,16 @@
 # Moving off the release train
 
-*How software delivery moved from testing periods and scheduled releases to dark launches, feature flags, staged rollouts, and fast rollback.*
+*Why engineering teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts, and fast rollback.*
 
-Over the past two decades, the way software reaches production has changed more than the way it is written. The dominant model used to be the release train. Changes accumulate, the bundle is promoted through a series of test environments and held in pre-production for a soak period, it is approved, and it is released to every user at once. Most large internet companies have since replaced that model, and a growing number of banks and payments firms have followed them.
+Many engineering organizations still deliver software the way most of the industry did twenty years ago. Changes accumulate into a scheduled release. The release is promoted through a series of test environments, held in pre-production for a soak period, approved, and then released to every user at once. This is the release train, and this article argues that teams still using it should replace it.
 
-In the model that replaced it, small changes are deployed to production continuously with their new behavior disabled. Each behavior is then enabled separately: for no one at first, then for a small group, then for everyone, with a rehearsed way to reverse each step. Testing before production did not go away. What changed is that much of the evidence that a change is safe is now gathered in production, at limited exposure.
+The replacement is well established. Small changes are deployed to production continuously with their new behavior disabled. Each behavior is then enabled separately: for no one at first, then for a small group, then for everyone, with a rehearsed way to reverse each step. Most large internet companies work this way, and a growing number of banks and payments firms do as well. Testing before production remains. What changes is that most of the evidence that a change is safe is gathered in production, at limited exposure.
 
-This article describes that shift. It covers how the release train works and what it costs, how the industry arrived at the alternative, the techniques involved and the limits of each, what changes for the people involved, and how these efforts fail. The second half applies the model to systems that move money, where the constraints are tightest and the release train is still most common. Sources are linked throughout, and most are engineering posts and papers written by the teams that did the work.
+The case for changing rests on three points, each developed below. First, the release train imposes days of delay on every change regardless of its risk, and it forces changes into batches that are harder to test and harder to debug. Second, the safety it provides is narrower than it appears, because a soak in a test environment cannot observe real dependencies, code paths that nothing exercises, or faults whose trigger has not yet occurred. Third, separating deployment from release removes the trade-off between speed and safety that the train creates, provided the supporting practices are adopted in full.
+
+This is primarily a change in engineering practice and culture. Engineers have to write changes that can be turned off. Teams have to operate what they deploy. Approval has to move from scheduled meetings to recorded evidence, and rollback has to become a routine operation. Those changes are harder than the tooling, and they take up a large part of this article.
+
+The first half covers the release train and its costs, how the industry arrived at the alternative, the techniques involved and the limits of each, what changes for the people involved, and how these efforts fail. The second half applies the argument to systems that move money. They are the hardest case and the place where release trains are most entrenched, so they are a useful test: a model that can be applied safely to payments can be applied elsewhere. Sources are linked throughout, and most are engineering posts and papers written by the teams that did the work.
 
 Three terms are used precisely throughout: to **deploy** is to put code into production, to **release** is to expose new behavior to users, and a **train** is a scheduled bundle that does both at once.
 
@@ -650,6 +654,21 @@ Also well supported: heavy external approval does not buy stability. The State o
 Not available: a before-and-after incident record from a bank or payments firm that left a release train. The firms that describe releasing many times a day while moving money, Monzo and Starling among them, were built new. No firm with a mainframe core has published how it made the transition. Nobody has published how many faults a soak catches per day of waiting, or how many a canary catches.
 
 So the published record supports the claim that this works and is safe when done completely. Whether it improves a particular firm's numbers is something only that firm's own trial can show.
+
+## What should change
+
+The argument of this article reduces to eight changes in practice.
+
+1. Deploy small changes every day, with new behavior disabled by default.
+2. Release each behavior separately: to no one first, then in a shadow run, then to a small named group, then to everyone.
+3. Move the soak into production as a bake at limited exposure, and keep a pre-production hold only for changes that cannot be ramped.
+4. Make rollback routine. Restore a retained build, rehearse the procedure, and allow on-call engineers to execute it without prior approval.
+5. Make the author of a change responsible for its flag, its ramp plan and the removal of the flag afterward.
+6. Make the team that writes a service responsible for deploying and operating it.
+7. Move approval from scheduled meetings to peer review, pipeline evidence and pre-authorized change types, defined jointly with risk and audit.
+8. Treat flags, configuration and reference data as changes, and stage them as code is staged.
+
+None of these is sufficient alone. The failures described earlier came from adopting some of them without the others.
 
 ## Getting started
 
