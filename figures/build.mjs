@@ -92,7 +92,7 @@ function whereTheWait() {
     ["Build + tests + peer review", "one small change"],
     ["Dark", "deployed, 0% exposed"],
     ["Staff", ""],
-    ["1%", ""],
+    ["One client", ""],
     ["10%", ""],
     ["Everyone", ""],
   ];
@@ -111,7 +111,7 @@ function whereTheWait() {
     "wait",
     580,
     "Where the wait happens",
-    "Two pipelines. In the testing-period model, several days of changes are built together, promoted through DEV, UAT and pre-production where they soak, then released to every client at once. In the production-ramp model, one small change is built, tested and peer reviewed, deployed dark with nobody exposed, then exposed to staff, one percent, ten percent and everyone, with the wait spent in production at limited exposure.",
+    "Two pipelines. In the testing-period model, several days of changes are built together, promoted through DEV, UAT and pre-production where they soak, then released to every client at once. In the production-ramp model, one small change is built, tested and peer reviewed, deployed dark with nobody exposed, then exposed to staff, one client, ten percent and everyone, with the wait spent in production at limited exposure.",
     "The wait did not disappear. It moved.",
     "Both models wait. They differ in where the time is spent and who is exposed meanwhile.",
     [
@@ -318,8 +318,8 @@ function queue() {
         t(32, y + 14, n, { size: 16, weight: risky ? 700 : 400 }),
         tick(i, y, C.blue),
         risky
-          ? [bar(2.15, 9, y, C.blueTint), `<rect x="${x0 + 2.15 * day}" y="${y}" width="${6.85 * day - 2}" height="16" rx="4" fill="none" stroke="${C.blue}" stroke-width="1.5"/>`, ...[["dark", 2.3], ["staff", 3.7], ["1%", 5.1], ["10%", 6.4], ["100%", 7.9]].map(([l, d]) => t(x0 + d * day, y + 13, l, { size: 13, fill: C.ink }))].join("")
-          : t(x0 + i * day + 14, y + 14, "live the day it is written", { size: 14, fill: C.ink2 }),
+          ? [bar(2.15, 9, y, C.blueTint), `<rect x="${x0 + 2.15 * day}" y="${y}" width="${6.85 * day - 2}" height="16" rx="4" fill="none" stroke="${C.blue}" stroke-width="1.5"/>`, ...[["dark", 2.3], ["staff", 3.6], ["1 client", 4.9], ["10%", 6.4], ["100%", 7.9]].map(([l, d]) => t(x0 + d * day, y + 13, l, { size: 13, fill: C.ink }))].join("")
+          : t(x0 + i * day + 14, y + 14, "deployed the day it is written", { size: 14, fill: C.ink2 }),
       ].join("\n");
     }),
     axis(by + 6 * 34 + 8),
@@ -338,7 +338,7 @@ function queue() {
     "queue",
     770,
     "A long canary makes every change wait; a flag ramp makes one behaviour wait",
-    "Two schematic schedules over eleven days. In the first, each release holds the binary in a three-day soak; work finished meanwhile waits and is batched into the next release, so releases carry three changes each and go live on days three, six and nine. In the second, each change is deployed the day it is written after a short binary canary, and only one risky change ramps slowly behind a flag from dark to staff to one percent, ten percent and one hundred percent without delaying the others.",
+    "Two schematic schedules over eleven days. In the first, each release holds the binary in a three-day soak; work finished meanwhile waits and is batched into the next release, so releases carry three changes each and go live on days three, six and nine. In the second, each change is deployed the day it is written after a short binary canary, and only one risky change ramps slowly behind a flag from dark to staff to one client, ten percent and one hundred percent without delaying the others.",
     "Who waits for the slow change?",
     "With a soak, every change waits and batches grow. With a flag, one risky behaviour waits alone.",
     [a, b, legend].join("\n"),
@@ -351,13 +351,13 @@ function ramps() {
     ["Facebook website", "2017", ["employees", "2%", "100%"], "a few hours in total"],
     ["Facebook Android app", "2016", ["20%", "50%", "100%"], "three days in total"],
     ["Amazon services", "2020", ["one box", "first Region", "more Regions", "all Regions"], "bake ≥1 h, then ≥12 h, then 2–4 h a wave; 4–5 business days"],
-    ["Azure DevOps", "2016", ["ring 0", "ring 1", "ring 2", "ring 3", "ring 4"], "about 24 hours in each ring"],
-    ["Slack", "2020", ["2% canary", "10%", "25%", "50%", "75%", "100%"], "stage lengths not published"],
+    ["Azure DevOps", "as documented in 2022", ["tier 0", "tier 1", "tier 2", "tier 3", "tier 4"], "about 24 hours in each tier"],
+    ["Slack", "2020", ["dogfood", "2% canary", "10%", "25%", "50%", "75%", "100%"], "stage lengths not published"],
     ["Uber payment authorisation", "2019", ["shadow", "employees", "0.25%", "1%", "5%", "100%"], "per payment method; lengths not published"],
     ["Uber ledger", "2020", ["1%", "5%", "10%", "20%", "50%", "100%"], "a percentage in each country, starting with a country with few users"],
   ];
   const x0 = 250;
-  const chipW = 98;
+  const chipW = 88;
   const rowH = 62;
   const y0 = 112;
   const body = rows
@@ -368,13 +368,13 @@ function ramps() {
         t(32, y + 16, who, { size: 16, weight: 700 }),
         t(32, y + 36, year, { size: 14, fill: C.muted }),
         ...stages.map((s, i) => {
-          const x = x0 + i * (chipW + 22);
+          const x = x0 + i * (chipW + 16);
           const last = i === stages.length - 1;
           const dark = s === "shadow";
           return [
             box(x, y, chipW, 26, { fill: dark ? C.panel : last ? C.blue : C.blueTint, stroke: dark ? C.ink2 : C.blue, r: 13, dash: dark ? "4 3" : "" }),
-            t(x + chipW / 2, y + 18, s, { size: 13, fill: last ? "#ffffff" : C.ink, anchor: "middle", weight: last ? 700 : 400 }),
-            !last ? arrow(x + chipW + 3, y + 13, x + chipW + 19, y + 13, { stroke: C.muted, sw: 1.5 }) : "",
+            t(x + chipW / 2, y + 17, s, { size: 12, fill: last ? "#ffffff" : C.ink, anchor: "middle", weight: last ? 700 : 400 }),
+            !last ? arrow(x + chipW + 2, y + 13, x + chipW + 14, y + 13, { stroke: C.muted, sw: 1.5 }) : "",
           ].join("");
         }),
         t(x0, y + 44, note, { size: 13, fill: C.ink2 }),
@@ -385,7 +385,7 @@ function ramps() {
     "ramps",
     y0 + rows.length * rowH + 40,
     "Ramp stages that firms have published",
-    "Seven published ramp schedules. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five rings of about twenty-four hours. Slack in 2020: a two percent canary then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorisation in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
+    "Seven published ramp schedules. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorisation in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
     "What a ramp looks like in practice",
     "Stages as each firm described them. These are examples of typical values, not a ranking.",
     body,
@@ -444,14 +444,14 @@ function sixteenDays() {
     "sixteen",
     320,
     "Amazon measured sixteen days from check-in to production, almost fourteen of them waiting",
-    "A single bar sixteen days long. About two days are work: building, deploying and testing. Almost fourteen days are waiting for a person to start the next step.",
+    "A single bar sixteen days long. The remaining two days or so are building, deploying and testing. Almost fourteen days are waiting for a person to start the next step.",
     "Measure the three days before defending them",
     "Amazon's own measurement before it automated its pipeline: 16 days from check-in to production.",
     [
       hbar(x0, y, 2 * unit - 3, 24, C.blue),
       hbar(x0 + 2 * unit, y, 14 * unit, 24, C.orange),
       ...Array.from({ length: 17 }, (_, d) => ln(x0 + d * unit, y + 30, x0 + d * unit, y + 36, { stroke: C.line, sw: 1.5 })),
-      t(x0, y - 36, "About 2 days of work", { size: 17, weight: 700 }),
+      t(x0, y - 36, "The other two days or so", { size: 17, weight: 700 }),
       t(x0, y - 14, "building, deploying, testing", { size: 15, fill: C.ink2 }),
       t(x0 + 2 * unit, y + 62, "Almost 14 days of waiting", { size: 17, weight: 700 }),
       t(x0 + 2 * unit, y + 84, "for someone to start the build, run the deployment, or run the tests", { size: 15, fill: C.ink2 }),
@@ -513,9 +513,9 @@ function knight() {
   const tw = 610;
   const ty = 330;
   const stats = [
-    ["45 minutes", "before the orders stopped"],
+    ["About 45 minutes", "before the orders stopped"],
     ["4 million", "executions in 154 stocks"],
-    ["$460 million", "lost"],
+    ["Over $460 million", "lost"],
   ];
   return frame(
     "knight",
@@ -537,7 +537,7 @@ function knight() {
       t(tx + tw - 60, ty + 30, "1 August, market open", { size: 15, weight: 700, anchor: "middle" }),
       para(tx + tw - 190, ty + 50, "The path goes live on every server at once.", 260, { size: 14 }),
       box(690, 132, 278, 290, { fill: C.panel }),
-      ...stats.map(([big, small], i) => [t(710, 182 + i * 86, big, { size: 30, weight: 700 }), t(710, 206 + i * 86, small, { size: 15, fill: C.ink2 })].join("\n")),
+      ...stats.map(([big, small], i) => [t(710, 182 + i * 86, big, { size: 26, weight: 700 }), t(710, 206 + i * 86, small, { size: 15, fill: C.ink2 })].join("\n")),
     ].join("\n"),
     "Five days in production observed nothing, because nothing used the path. A soak would have seen the same nothing.",
   );
@@ -585,8 +585,8 @@ function controls() {
   const rows = [
     ["A record of every change", "The commit and the pipeline run, written automatically"],
     ["Testing in proportion to the risk", "Test results attached to that run"],
-    ["Approval by someone other than the author", "Peer review the pipeline enforces; extra approvers where the rule asks"],
-    ["Production kept separate from development", "No standing human access to production; the pipeline is the only way in"],
+    ["Approval by an authorised party", "Peer review the pipeline enforces; extra approvers where the rule asks"],
+    ["Production kept separate from development", "Deployment only through the pipeline, with no standing human access"],
     ["A way back", "The previous image, kept by hash, and a rollback that is rehearsed"],
     ["An audit trail", "An unalterable log tying commit, review, tests and deployment together"],
   ];
@@ -609,12 +609,12 @@ function controls() {
     "controls",
     yb + 118,
     "What the rules ask for, and what a pipeline produces",
-    "Six requirements common to the rule texts, each matched to pipeline evidence: a record of every change is the commit and pipeline run; proportionate testing is the attached test results; approval by someone other than the author is enforced peer review; separation of production is the absence of standing human access; a way back is the retained image and a rehearsed rollback; an audit trail is an unalterable log. No text read asks for a soak period, a release train or multi-day promotion.",
+    "Six requirements drawn from the rule texts, each matched to pipeline evidence: a record of every change is the commit and pipeline run; proportionate testing is the attached test results; approval by an authorised person is enforced peer review; separation of production is the absence of standing human access; a way back is the retained image and a rehearsed rollback; an audit trail is an unalterable log. No text read asks for a soak period, a release train or multi-day promotion.",
     "What the rules ask for",
-    "Common to PCI DSS v4.0, the US FFIEC handbook, the EBA guidelines, EU DORA and Singapore's MAS.",
+    "Drawn from PCI DSS v4.0, the US FFIEC handbook, the EBA guidelines, the EU's DORA regulation and Singapore's MAS.",
     [
       t(32, 132, "THE RULE TEXTS ASK FOR", { size: 13, fill: C.ink2, weight: 700 }),
-      t(490, 132, "A PIPELINE PRODUCES, ON EVERY CHANGE", { size: 13, fill: C.ink2, weight: 700 }),
+      t(490, 132, "A PIPELINE CAN PRODUCE, ON EVERY CHANGE", { size: 13, fill: C.ink2, weight: 700 }),
       body,
       box(32, yb, 936, 62, { fill: C.surface, stroke: C.ink2, dash: "5 4" }),
       t(50, yb + 26, "Not asked for in any text read", { size: 16, weight: 700 }),
