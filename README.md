@@ -1,14 +1,15 @@
 # Feature flags, continuous delivery, and the history of safer change
 
-Start with [the essay](essay.md). It is written as an industry consultant's assessment of a common release model, twice-weekly release trains with three days of promotion and soak, followed by recommendations for replacing it. "The business" in the text is a generic firm that moves money; the document does not describe any particular company and draws on no firm's internal data.
+Start with [the essay](essay.md). It is an opinion addressed to the engineering directors of a business that releases twice a week, with three days of promotion and soak for each release, and that moves money outside card scope. It names no firm and draws on no firm's internal data; it says so, and asks first for the reader's own records.
 
-Its argument: the release train is sound on safety and expensive on development velocity, and a business can develop much faster while keeping that safety by deploying daily with new behaviour switched off and releasing each behaviour separately on evidence. The change is cultural more than technical. It makes ten recommendations, beginning with six baseline measurements and a bounded pilot.
+Its argument: three days of soak find one class of fault and miss others, the release train costs about five days on every change, and a business can put most changes into production the next day while exposing clients to less unproven change, by deploying daily with new behaviour disabled and releasing each behaviour separately on evidence. Most of the work is cultural. It ends by asking for three decisions: a baseline, one pilot service that moves real money, and a change policy written with risk and audit.
 
 ## Files
 
 - [essay.md](essay.md): the main long read. Two earlier versions are in the Git history: a hedged history at commit `5facf36`, and a survey-style argument at commit `941fe30`.
+- [reviews/essay-v4/](reviews/essay-v4/): seven reviews of the fourth version (a consulting partner, a line editor, a benchmark against published professional writing, an engineering director, a forensic read for generated prose, a distinguished engineer, and a persuasion specialist). The current essay was rewritten against them.
 - [reviews/essay-v2/](reviews/essay-v2/): nine reviews of the second version from different vantage points (an engineering director, a head of technology risk, a principal engineer in payments, a prose editor, and others). Two of them, `exemplars.md` and `evidence.md`, were stopped early and may be incomplete.
-- [figures/](figures/): SVG figures (the current essay embeds six of the thirteen) and [figures/build.mjs](figures/build.mjs), which generates them. Run `node figures/build.mjs` to rebuild, or add `--check` to confirm the committed SVGs are current.
+- [figures/](figures/): SVG figures (the current essay embeds four of the thirteen; the others were made for earlier versions and some no longer match the argument) and [figures/build.mjs](figures/build.mjs), which generates them. Run `node figures/build.mjs` to rebuild, or add `--check` to confirm the committed SVGs are current.
 - [reading-guide.md](reading-guide.md): selected papers, engineering accounts, talks, and viewing leads.
 - [research/google.md](research/google.md): Google chronology and primary-source ledger.
 - [research/facebook.md](research/facebook.md): Facebook, Gatekeeper, dark launches, and release culture.
