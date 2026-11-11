@@ -2,7 +2,7 @@
 
 *Why engineering teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts, and fast rollback.*
 
-Many engineering organizations still deliver software the way most of the industry did twenty years ago. Changes accumulate into a scheduled release. The release is promoted through a series of test environments, held in pre-production for a soak period, approved, and then released to every user at once. This is the release train, and this article argues that teams still using it should replace it.
+Some engineering organizations still deliver software the way most of the industry did twenty years ago. Changes accumulate into a scheduled release. The release is promoted through a series of test environments, held in pre-production for a soak period, approved, and then released to every user at once. This is the release train, and this article argues that teams still using it should replace it.
 
 The replacement is well established. Small changes are deployed to production continuously with their new behavior disabled. Each behavior is then enabled separately: for no one at first, then for a small group, then for everyone, with a rehearsed way to reverse each step. Most large internet companies work this way, and a growing number of banks and payments firms do as well. Testing before production remains. What changes is that most of the evidence that a change is safe is gathered in production, at limited exposure.
 
@@ -10,7 +10,7 @@ The case for changing rests on three points, each developed below. First, the re
 
 This is primarily a change in engineering practice and culture. Engineers have to write changes that can be turned off. Teams have to operate what they deploy. Approval has to move from scheduled meetings to recorded evidence, and rollback has to become a routine operation. Those changes are harder than the tooling, and they take up a large part of this article.
 
-The first half covers the release train and its costs, how the industry arrived at the alternative, the techniques involved and the limits of each, what changes for the people involved, and how these efforts fail. The second half applies the argument to systems that move money. They are the hardest case and the place where release trains are most entrenched, so they are a useful test: a model that can be applied safely to payments can be applied elsewhere. Sources are linked throughout, and most are engineering posts and papers written by the teams that did the work.
+The first half covers the release train and its costs, how the industry arrived at the alternative, the techniques involved and the limits of each, what changes for the people involved, and how these efforts fail. The second half applies the argument to systems that move money. They are the hardest case, which makes them a useful test: a model that can be applied safely to payments can be applied elsewhere. Sources are linked throughout, and most are engineering posts and papers written by the teams that did the work.
 
 Three terms are used precisely throughout: to **deploy** is to put code into production, to **release** is to expose new behavior to users, and a **train** is a scheduled bundle that does both at once.
 
@@ -22,7 +22,7 @@ A release train runs on a schedule, which may be monthly, weekly, or several tim
 
 The cadence has varied widely. Microsoft's product teams in the 1990s [built daily and stabilized at milestones](https://www.cs.umd.edu/~atif/Teaching/Spring2003/cusumano.pdf) that were months apart. Facebook's website shipped [a weekly release](https://people.engr.tamu.edu/pcr/courses/csce431/fall19/reading/FacebookDevelopment.pdf), cut on Sunday and pushed on Tuesday, into the 2010s. Mobile applications ran on cycles of several weeks.
 
-This article uses a running example that is common in financial services: two trains a week, each taking three days from cut to release. In that example the three days divide roughly as follows.
+This article uses a running example: two trains a week, each taking three days from cut to release. In that example the three days divide roughly as follows.
 
 The first day is deployment to an integration environment and an automated regression pack run against simulators for external dependencies. That is a few hours of machine time, much of which could run in parallel.
 
@@ -73,7 +73,7 @@ Five days sounds tolerable until it is multiplied across the kinds of work a tea
 
 The last row is deliberate. A risky change takes longer under the new model, by design. The gain comes from the other three rows, where ordinary work no longer queues behind the risky change.
 
-The hotfix row also deserves attention. Most organizations on a train have an emergency path that skips most of the three days. Its existence shows that the three days are sometimes more than a change needs, and it means that the changes made under the most pressure receive the least verification.
+The hotfix row also deserves attention. A train usually comes with an emergency path that skips most of the three days. Its existence shows that the three days are sometimes more than a change needs, and it means that the changes made under the most pressure receive the least verification.
 
 ### Batching
 
@@ -456,7 +456,7 @@ In the last, speed becomes the goal. The 2017 State of DevOps survey found that 
 
 ## Applying the model to systems that move money
 
-The techniques above were developed on consumer websites, where a bad release shows a user the wrong page. The rest of this article applies them to payment and banking systems, where a bad release can send the wrong payment and where the release train remains the norm. The examples assume systems outside card processing: account-to-account payments, ledgers, settlement and batch.
+The techniques above were developed on consumer websites, where a bad release shows a user the wrong page. The rest of this article applies them to payment and banking systems, where a bad release can send the wrong payment. The examples assume systems outside card processing: account-to-account payments, ledgers, settlement and batch.
 
 Four things are different in these systems. A payment that has been sent cannot be recalled by switching a flag off. Clients are businesses with their own notice periods and sign-off. Batch and period-end processing cannot be sliced the way an online service can. Change control is audited, and the auditors test against a written policy.
 
