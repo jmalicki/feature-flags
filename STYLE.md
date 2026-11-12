@@ -26,6 +26,7 @@ Each was flagged by the commissioner verbatim.
 - Bold lead-in paragraphs or bold labels used as pseudo-headings.
 - Unsupported generalizations about what "most teams" or "most firms" do, or claims such as "common in financial services".
 - Also avoid: em dashes, "it is worth noting", "importantly", "notably", "in other words", "that said", "crucially", "at its core", "serves as", "plays a role", rhetorical questions.
+- Operational detail piled into prose: every hold, threshold, metric and edge case of a procedure spelled out in sentences or bold-numbered steps. The commissioner described the payments sections written this way as "overwrought" and "boring detail shoved down my throat". State what the procedure does and why, with one or two specifics that carry the point; put the full procedure in a figure, and leave the rest to the research notes.
 
 ## Opening
 

@@ -602,113 +602,37 @@ The European texts on model risk treat a parallel run that takes no decisions as
 
 ## Applying the model to systems that move money
 
-The techniques above were developed on consumer websites, where a bad release shows a user the wrong page. Payment and banking systems carry a different risk, because a bad release there can send the wrong payment. The following sections apply the techniques to those systems. The examples assume systems outside card processing, namely account-to-account payments, ledgers, settlement and batch.
-
-Several properties of these systems constrain how the techniques apply. A payment that has been sent cannot be recalled by switching a flag off, and the clients are businesses with their own notice periods and sign-off. Batch and period-end processing cannot be sliced the way an online service can. Change control is audited, and the auditors test against a written policy.
+The techniques above were developed on consumer websites, where a bad release shows a user the wrong page. On a payment system a bad release can send the wrong payment, and a payment that has been sent cannot be recalled by switching a flag off. The clients are businesses with their own notice periods and sign-off, batch processing cannot be sliced the way an online service can, and change control is audited against a written policy. The examples here concern account-to-account payments, ledgers, settlement and batch, and leave card processing aside.
 
 ## Worked example: moving payments to an instant rail
 
-The change in this example moves outbound credit transfers below a threshold from the batch clearing rail, A, to the instant rail, B. The sections below follow it through both models.
+The change in this example moves outbound credit transfers below a threshold from a batch clearing rail, A, to an instant rail, B. A payment on A can be pulled back until the submission cut-off and settles a day or more later, while a payment on B is final within seconds, at any hour.
 
-The two rails differ in ways that raise the risk of the change. A payment on A can be pulled until the submission cut-off and settles a day or more later. A payment on B is final within seconds, at any hour, and can only be recovered by asking the beneficiary's bank to send it back. B also reaches only the banks that have joined it, has a limit per payment, and settles against a position that has to be funded in advance, weekends included.
+On the train, the change passes the regression pack against simulators for both rails, the soak and the change board, and is then live for every client at once. If real banks on B respond differently from the simulators, the team learns it from all of its clients together, and the payments already sent stay sent.
 
-### On the train
-
-The change joins the next train, where the regression pack runs it against simulators for both rails. It passes a performance run, a batch cycle, the soak and the change board. Then, unless a per-client switch has been built specially, it is live for every client and every payment in scope.
-
-If something is wrong with how real banks on B respond, the team learns it from all its clients at once, and what has been sent cannot be recalled. If the release is backed out, the payments already sent over B still need their inquiries and reconciliation handled on B.
-
-### With deployment and release separated
-
-The work starts with the design decision to pin the choice of rail to the payment. The rail is chosen once, when the payment is accepted, and written to the payment record. Inquiries, recalls and postings follow the stored rail for the life of the payment. A payment that times out on B is resolved by status inquiry and is not sent again, on either rail, while its outcome is unknown.
-
-The change then goes through the stages below. The durations are a judgment about how long each stage's evidence takes to arrive, and a team with different rails or volumes would set them differently.
+With deployment and release separated, the rail is chosen once, when the payment is accepted, and stored on the payment, as described under [flag evaluation](#flag-evaluation). The rollout then runs through the five stages in the figure below: dark, shadow, a synthetic client operated by the firm itself, one consenting client with low caps, and wider release, first to more clients and then to higher caps. Each stage is held long enough for its evidence to arrive, which for payments means a weekend, a payroll peak and at least one reconciliation cycle, so the whole rollout takes four to eight weeks. Those durations are a judgment, and a team with different rails or volumes would set them differently.
 
 ![The five stages of the instant-rail rollout with their exposure, holds and stop conditions. Dark: the code ships disabled and bakes through a daily peak. Shadow: rail choices are recorded and nothing is sent, for at least seven days including a weekend and a payroll peak, stopping on any unexplained mismatch. Synthetic client: test accounts send small real payments over B for two business days and a weekend. One consenting client: one payment type with low caps for five business days and the weekend they span, stopping on any duplicate, reconciliation break or outcome unknown after an hour. Widen: more clients first, then a higher cap, each step held for a reconciliation cycle and one across a month-end. Four to eight weeks in total.](figures/18-payment-stages.svg)
 
-**1. Dark.** The code ships disabled. The build bakes on one node per site through a daily peak, and end-of-day runs the new code on its smallest partition first. The check at this stage is that the disabled path behaves identically to yesterday's build.
-
-**2. Shadow.** For all traffic, the new rule records the rail it would choose, the reachability and limit checks behind that choice, and the message it would build, and sends nothing. The recorded choices are compared with an independently written statement of the rule. This stage is held for at least seven days, timed to include a weekend and a payroll peak, and it stops on any mismatch nobody can explain.
-
-**3. Synthetic client.** Test accounts in production send small real payments over B to accounts the firm keeps at other banks. They go through acceptance, rejection, an injected timeout resolved by status inquiry, a recall request and reconciliation. The flag is switched off mid-stream as a rehearsal. This stage runs for two business days and a weekend.
-
-**4. One consenting client.** The rule is enabled for one payment type, with a low cap per payment and per day. The team watches rejection rates by reason code, time to confirmation, unknown outcomes, the prefunded position, and breaks in both its own reconciliation and the client's. This stage runs for five business days and the weekend they span, and it stops on any duplicate, any reconciliation break, or any outcome still unknown after an hour.
-
-**5. Widen.** The rollout adds more clients first and then raises the cap, and no single step does both. Each step is held for a full reconciliation cycle, and one of them is held across a month-end.
-
-Together the stages take four to eight weeks from first deployment to full release.
-
-### Effect of switching the flag off
-
-Switching the flag off sends new payments back to A from its next submission window and recalls none of the payments already sent on B. Those payments are final, so the exposure is bounded by the caps: the daily cap multiplied by the number of clients enabled and by the number of days a fault goes unnoticed. The shadow run shows only what would be sent, which leaves the cap as the control that limits the damage.
+Switching the flag off sends new payments back to A from its next submission window and recalls none of those already sent on B. The exposure from a fault is therefore bounded by the caps, at the daily cap multiplied by the number of clients enabled and the number of days the fault goes unnoticed, as the figure below shows.
 
 ![Rails B and A over time with the flag switched off partway. Payments already sent on B are final and none is recalled. New payments go to A from its next submission window, or the next business day after A's last cut-off. Exposure is bounded by the daily cap multiplied by the number of clients enabled and by the days a fault goes unnoticed.](figures/19-flag-off.svg)
 
-Switching off after A's last cut-off of the day also means those payments wait until the next business day, which the client will notice.
-
-### Likely failures at each stage
-
-Each stage has a characteristic failure that can be planned for. In shadow, nobody owns the mismatch report, and the stage passes because seven days have gone by. At the synthetic client, a Saturday payment posts to Monday's business date and breaks the settlement-account reconciliation. With the first real client, the fault may be on the client's side, such as a treasury system that expected next-day value. When widening, a second ramp starts on the same settlement account, and a reconciliation break can no longer be traced to either.
-
-### Comparing the two
-
-Separating deployment from release delivers the routing change to every client a month or more later than the train would. In exchange, the engineer has evidence from production the day after writing the code, no client meets an unproven rule, and every other change written in those weeks ships without waiting.
+The routing change reaches every client a month or more later than it would on the train. In exchange, the engineer has evidence from production the day after writing the code, no client meets an unproven rule, and every other change written in those weeks ships without waiting for it.
 
 ## Prerequisites
 
-None of this is safe on a payment path until the following are in place, in rough order:
+The model is safe on a payment path only once a few capabilities exist. Rejections, timeouts and time to confirmation have to be visible for one client on one build within minutes, which infrastructure dashboards do not provide and which often takes months to build. Each build has to be promoted unchanged and identified by its hash, and today's build has to read everything yesterday's wrote, because production runs both every day. Every payment instruction needs an idempotency key that survives retries and rollbacks ([Stripe](https://stripe.com/blog/idempotency)), checked before the rail is chosen so that a payment cannot go out on both. The flag service has to evaluate locally, keep its last known value if it fails, and roll out its own changes a site at a time. The firm also needs a synthetic client of its own in production, with real accounts and connectivity, to take every ramp first, and rehearsed procedures for switching a flag off, shifting traffic and rolling back a build.
 
-- Observability by client and by build. A ramp can be judged only if acceptance rate, rejections by reason code, timeouts and time to confirmation are visible for one client on one build, within minutes. Infrastructure dashboards and a daily operations report do not provide that view, and building it often takes months.
-- Build once. One artifact, identified by its hash, is promoted unchanged through every environment, and deployment is automated for code, configuration and reference data alike.
-
-- Compatibility between adjacent builds. With daily deployment and a bake, production runs two versions every day of the year, on the same queues and the same tables. Every message, record and file written by today's build has to be readable by yesterday's. The pipeline should prove that on every build with a mixed-version test, because without it rollback cannot be relied on.
-- Expand and contract for schema changes. Add the new structure, write both ways, backfill, compare, switch reads, and only then remove the old one. The expand steps can ship daily, while the final removal is irreversible and belongs on a fixed date with a rehearsal.
-
-- Idempotency end to end. Daily restarts, rollbacks and flag changes in mid-flight cause retries and redelivery, and every payment instruction needs a key that survives them. Stripe's post on [idempotency](https://stripe.com/blog/idempotency) introduces the reasoning. In the worked example the key has to be checked before the rail is chosen, because neither rail's own duplicate check can see a payment that went out on the other.
-- Decisions pinned to the transaction. Each decision is evaluated once at acceptance and stored, and every later step follows the stored value.
-
-- A flag service fit for the payment path. It evaluates locally, with no network call per payment, and falls back to the last known value on failure. Its state is consistent across sites, and changes are audited, made under dual control, and themselves rolled out a site at a time, because a flag change is an instant change to the whole fleet with no bake. It does not depend on anything it might be asked to switch off.
-- A client of your own in production. This is a fully onboarded synthetic client, with real accounts at other institutions and real connectivity to every rail, that takes every ramp first. Agreeing with finance how to keep its postings out of financial and regulatory reporting takes longer than building it.
-
-- Rehearsed ways back. Flag off, traffic shift and artifact rollback are each rehearsed, and each has a written rule for when not to use it.
-
-The effort of adoption goes into building these prerequisites. Monzo wrote that for automated rollback, ["migration and tooling work was >90% of the effort"](https://monzo.com/blog/2022/11/02/argo-rollouts-at-scale). The paper on Facebook and OANDA reports that Facebook had about 5% of its engineers working on tooling and OANDA 15%, and that OANDA spent two years perfecting continuous deployment for its mission-critical systems.
+Most of the effort of adoption goes into these capabilities. Monzo wrote that for automated rollback, ["migration and tooling work was >90% of the effort"](https://monzo.com/blog/2022/11/02/argo-rollouts-at-scale), and the study of Facebook and OANDA reports that OANDA spent two years perfecting continuous deployment for its mission-critical systems.
 
 ## Changes that should not be ramped
 
-Some changes do not fit this model, and a team should list them as part of the design so that they are not discovered one at a time.
+End-of-day and period-end batch runs once over the whole book. The closest equivalents to a ramp are to run new code on the smallest partition first, to run it in parallel against the same input with postings and files suppressed and compare the output, and to rehearse period-end jobs nightly in pre-production with the business date moved to the boundary. No firm that deploys continuously has published how it validates changes to interest, statement or settlement jobs, and a three-day soak rarely covers a month-end either.
 
-### Batch and period ends
+Some changes have to go out whole on an agreed date: anything a client or counterparty sees, such as message formats, file layouts and cut-off times; scheme rulebook changes; new settlement and regulatory files; the final, irreversible step of a schema change; and cut-overs that counterparties make together. The code for these can still ship dark weeks in advance. The Bank of England renewed its settlement system [in stages that could each stand alone](https://www.nao.org.uk/wp-content/uploads/2025/12/the-bank-of-englands-real-time-gross-settlement-system-renewal-programme.pdf), but the core switch took place over one weekend because the old and new systems could not run side by side.
 
-End-of-day runs once over the whole book and cannot be sliced by node the way an online service can. The same idea can be applied to batch in the following ways.
-
-- Partition the batch by legal entity, client or book, and run the new code on the smallest partition for a cycle before the rest.
-- Run the new code in parallel against the same input, with postings and outbound files suppressed, and compare its output with the batch of record, which amounts to a shadow run for batch.
-- For jobs that only run at a period end, run them every night in pre-production against a production-sized copy with the business date advanced to the boundary, so that month-end has been exercised thirty times before it occurs in production.
-
-Period-end behavior is the least well documented area in the published material on this subject. The research for this article found no published account, from a firm that deploys continuously, of how it validates changes to interest, statement or settlement jobs before the boundary arrives. The techniques listed here are the best available answer, and code that runs only at a period end remains unproven until its output has been compared across one. A three-day soak does not cover period-end behavior either, since most three-day windows contain no month-end.
-
-### Changes that stay on a date
-
-The following kinds of change should go out whole, on a date agreed in advance.
-
-- Anything a client or counterparty can see in an interface: message formats, file layouts, cut-off times. The worked example changes what a client sees, in debit time and value date, which is why it needs the client's consent and an agreed start.
-- Scheme and rulebook changes, which take effect on the scheme's date. The code can ship dark weeks ahead and be certified in the scheme's test environment, but activation is for everyone at once and has to be rehearsed that way.
-- The final, irreversible step of a schema change, which gets a rehearsal on a production-sized copy.
-- New settlement and regulatory files, since a file goes to a counterparty whole, at a cut-off, and cannot go to 1% of them. The method is to generate old and new in parallel through several cycles, including a period end, and compare.
-- Cut-overs that counterparties have to make together. The Bank of England's renewal of its settlement system was [delivered in stages that could each stand alone](https://www.nao.org.uk/wp-content/uploads/2025/12/the-bank-of-englands-real-time-gross-settlement-system-renewal-programme.pdf), but the core switch had to happen over one weekend because the old and new systems could not run side by side.
-
-### Shared components
-
-Per-client ramping only isolates what is partitioned per client. The scheme gateway, the message broker, the ledger posting engine and the batch scheduler serve everyone, so a change to one of them reaches every client as soon as it is live.
-
-For these, pick another axis: one payment type or amount band, one batch partition, or one node where nodes share no state. Where no axis exists, keep the change on a dated release with a rehearsal. The longer-term fix is an architectural one, partitioning the shared component so that later changes can be ramped.
-
-### One ramp at a time per signal
-
-The results of a ramp can be attributed to it only while nothing else has changed. If two ramps touch the same settlement account in the same day and the daily reconciliation breaks, the team has to work out which change was responsible, as it did with the train.
-
-A workable rule is one ramp in flight per reconciliation domain per cycle, a small limit on money-path ramps across the platform, and no ramp steps in the last few business days of a month.
+Shared components such as the scheme gateway, the message broker and the ledger posting engine serve every client, so ramping by client does not isolate a change to them. Such a change can be ramped by payment type, amount band or batch partition instead, or kept on a dated release where no such axis exists. Ramps on money paths also need to be kept apart, at one per reconciliation domain at a time, because when two ramps touch the same settlement account a reconciliation break cannot be attributed to either.
 
 ## Correctness controls
 
