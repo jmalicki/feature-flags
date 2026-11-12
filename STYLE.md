@@ -41,7 +41,10 @@ Accurate material that fails this test goes into an appendix or the research not
 ## Figures
 
 - Use figures wherever a process, sequence, structure or comparison is easier to see than to read. Prefer a diagram over a paragraph of mechanics.
-- Place each figure immediately after the paragraph that introduces what it shows, inside the section it belongs to. After any edit that moves, cuts or reorders text, check every figure: is it still in the right place, does the paragraph before it still describe it, and does its section still discuss it?
+- Refer to every figure in the text, either explicitly ("the figure below shows…") or with a sentence that plainly describes what it shows. A figure the text never points to drifts when the text is edited.
+- Place each figure immediately after the paragraph that contains its first reference. Never place it before that reference, and never in the middle of a paragraph. This follows the common rule in Chicago, APA and IEEE style: a figure goes as near as possible after its first mention.
+- An overview figure for a whole section may follow the section's opening paragraph, before the detail.
+- After any edit that moves, cuts or reorders text, check every figure: is it still immediately after its referring paragraph, does that paragraph still describe it, and does its section still discuss it?
 - The figure's title, labels and alt text must agree with the text around it: the same terms, the same numbers, the same stages. A figure must never show something the text has changed or removed.
 - Figure titles are plain descriptive labels, under the same rules as headings. Sources for data in a figure are stated in the figure or in the adjacent text.
 - Render each figure and look at it before committing: no overlapping or clipped text.
