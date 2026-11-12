@@ -2,7 +2,7 @@
 
 *Why engineering teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts, and fast rollback.*
 
-Some engineering organizations still deliver software through a release train: changes accumulate into a scheduled release, which is promoted through test environments, held in pre-production for a soak period, approved, and then released to every user at once. They should replace it with the model now used at most large internet companies, in which small changes reach production every day with their new behavior disabled, and each behavior is then released separately, in stages that can be reversed. The train delays every change by days regardless of its risk, and the safety it provides is narrower than it appears; separating deployment from release removes that trade-off, provided the supporting practices, most of which are cultural, are adopted in full.
+Some engineering organizations still deliver software through a release train: changes accumulate into a scheduled release, which is promoted through test environments, held in pre-production for a soak period, approved, and then released to every user at once. They should replace it with the model now used at most large internet companies, in which small changes reach production every day with their new behavior disabled, and each behavior is then released separately, in stages that can be reversed. The train delays every change by days regardless of its risk, and the safety it provides is narrower than it appears; separating deployment from release removes that trade-off, provided the supporting practices, both the tooling and the changes in who owns what, are adopted in full.
 
 To **deploy** is to put code into production, to **release** is to expose new behavior to users, and a **train** is a scheduled bundle that does both at once.
 
@@ -177,7 +177,7 @@ ledger.record(payment)
 gateway_for(payment.rail).submit(payment)
 ```
 
-Downstream services follow the stored decision and do not read the flag again. A release train never forces this design decision, because on a train the behavior changes for everyone at once and there is nothing to be consistent with.
+Downstream services follow the stored decision and do not read the flag again. A release train has the same hazard for payments in flight when a release goes out, but a ramp that moves back and forth makes it routine, so the decision has to be stored.
 
 ![One payment's life through acceptance, submission, confirmation, returns, recalls, status inquiries and postings, with the flag switched partway. When every step reads the flag, the steps after the switch get the other behavior and the payment is stranded between two behaviors. When the flag is read once at acceptance and the rail is stored on the payment record, every later step follows the stored rail.](figures/15-flag-evaluation.svg)
 
