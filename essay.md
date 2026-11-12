@@ -8,7 +8,7 @@ In this article, to **deploy** is to put code into production, to **release** is
 
 ## Summary
 
-In the model that has replaced the release train at most large internet companies, small changes are deployed to production continuously with their new behavior disabled. Each behavior is then enabled separately, first for no one, then for a small group, and then for everyone, with a rehearsed way to reverse each step. A growing number of banks and payments firms now work this way as well. Testing before production remains, but most of the evidence that a change is safe is gathered in production, at limited exposure.
+Each behavior is enabled first for no one, then for a small group, and then for everyone, with a rehearsed way to reverse each step. A growing number of banks and payments firms now work this way as well. Testing before production remains, but most of the evidence that a change is safe is gathered in production, at limited exposure.
 
 The release train imposes days of delay on every change regardless of its risk, and it forces changes into batches that are harder to test and harder to debug. The safety it provides is also narrower than it appears, because a soak in a test environment cannot observe real dependencies, code paths that nothing exercises, or faults whose trigger has not yet occurred. Separating deployment from release removes the trade-off between speed and safety that the train creates, provided the supporting practices are adopted in full.
 
