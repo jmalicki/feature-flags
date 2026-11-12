@@ -27,6 +27,12 @@ Each was flagged by the commissioner verbatim.
 - Unsupported generalizations about what "most teams" or "most firms" do, or claims such as "common in financial services".
 - Also avoid: em dashes, "it is worth noting", "importantly", "notably", "in other words", "that said", "crucially", "at its core", "serves as", "plays a role", rhetorical questions.
 
+## Opening
+
+- The introduction is at most two short paragraphs: the situation and the claim, plus any definitions the reader needs immediately.
+- The overview of the argument goes in a separate Summary section after the introduction.
+- The introduction and the Summary do not restate each other.
+
 ## Relevance test
 
 Every section, example, incident and regulatory citation in the body has to serve the thesis: that teams can deliver much faster while keeping safety by separating deployment from release and changing how they work. Material earns a place in the body only if it does one of the following.
