@@ -1318,8 +1318,6 @@ const figures = {
   "15-flag-evaluation.svg": flagEvaluation(),
   "16-dormant-and-shadow.svg": dormantAndShadow(),
   "17-flag-lifecycle.svg": flagLifecycle(),
-  "18-payment-stages.svg": paymentStages(),
-  "19-flag-off.svg": flagOff(),
   "20-flag-change-classes.svg": flagChangeClasses(),
   "21-data-rollback.svg": dataRollbackReach(),
   "22-two-copies.svg": twoCopies(),
