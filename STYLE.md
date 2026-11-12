@@ -1,6 +1,6 @@
 # Style guide for "Moving off the release train"
 
-The essay is [essay.md](essay.md). Read at least its introduction and two full sections before writing, to match its register.
+The essay has two chapters: [essay.md](essay.md), the general argument, and [data-and-models.md](data-and-models.md), its application to data and models. These rules apply to both. Read at least one chapter's introduction and two full sections before writing, to match the register. Each chapter's structure section names both chapters and links to the other.
 
 ## Register
 

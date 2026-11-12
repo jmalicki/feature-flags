@@ -1,16 +1,19 @@
 # Feature flags, continuous delivery, and the history of safer change
 
-Start with [the essay](essay.md), "Moving off the release train". It is a long-form piece, about 12,000 words, written in the manner of an engineering blog post: how teams that move money replaced a multi-day soak and a release train with dark launches, feature flags, staged rollouts and fast rollback, and what it took. It names no firm and draws on no firm's internal data. The examples assume systems outside card processing.
+The essay "Moving off the release train" is in two chapters:
 
-It covers what a three-day promotion does and costs, the history of the practice, each technique and its limits, a worked example on a payment path, prerequisites, what does not ramp, change control and audit, what changes for people, how these programmes fail, what the evidence does and does not show, and how to start.
+- [Chapter 1: Moving off the release train](essay.md), about 15,000 words: why teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts and fast rollback, the techniques and their limits, what changes for people, how these transitions fail, change control and audit, the evidence, and how to start.
+- [Chapter 2: Releasing data and model changes](data-and-models.md), about 10,000 words: how the same model applies to tables, event streams, feature stores and machine-learning models, where state persists after a rollback.
+
+Both are written in the manner of an engineering blog post and draw on published first-person accounts.
 
 ## Files
 
 - [STYLE.md](STYLE.md): the style guide for the essay, including the sentence patterns that have been rejected, with the rejected sentences quoted.
-- [essay.md](essay.md): the main long read. Two earlier versions are in the Git history: a hedged history at commit `5facf36`, and a survey-style argument at commit `941fe30`.
+- [essay.md](essay.md) and [data-and-models.md](data-and-models.md): the two chapters. Earlier versions are in the Git history: a hedged history at commit `5facf36`, and a survey-style argument at commit `941fe30`.
 - [reviews/essay-v4/](reviews/essay-v4/): seven reviews of the fourth version (a consulting partner, a line editor, a benchmark against published professional writing, an engineering director, a forensic read for generated prose, a distinguished engineer, and a persuasion specialist). The current essay was rewritten against them.
 - [reviews/essay-v2/](reviews/essay-v2/): nine reviews of the second version from different vantage points (an engineering director, a head of technology risk, a principal engineer in payments, a prose editor, and others). Two of them, `exemplars.md` and `evidence.md`, were stopped early and may be incomplete.
-- [figures/](figures/): SVG figures (the current essay embeds five of the thirteen; the others were made for earlier versions and some no longer match the argument) and [figures/build.mjs](figures/build.mjs), which generates them. Run `node figures/build.mjs` to rebuild, or add `--check` to confirm the committed SVGs are current.
+- [figures/](figures/): SVG figures used by both chapters and [figures/build.mjs](figures/build.mjs), which generates them. Run `node figures/build.mjs` to rebuild, or add `--check` to confirm the committed SVGs are current.
 - [reading-guide.md](reading-guide.md): selected papers, engineering accounts, talks, and viewing leads.
 - [research/google.md](research/google.md): Google chronology and primary-source ledger.
 - [research/facebook.md](research/facebook.md): Facebook, Gatekeeper, dark launches, and release culture.
