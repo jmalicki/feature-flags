@@ -26,7 +26,7 @@ Each was flagged by the commissioner verbatim.
 - Bold lead-in paragraphs or bold labels used as pseudo-headings.
 - Unsupported generalizations about what "most teams" or "most firms" do, or claims such as "common in financial services".
 - Also avoid: em dashes, "it is worth noting", "importantly", "notably", "in other words", "that said", "crucially", "at its core", "serves as", "plays a role", rhetorical questions.
-- Stacked provenance disclaimers: "No organization has published this chain run end to end as one progressive release. Each step in the list is documented by the organizations named with it, and running the steps in this order as one release is an inference assembled from those documented steps. Holds marked as judgment are the author's and come from no source." Say once, in one plain sentence, what is documented and what is the author's judgment.
+- Prose that narrates method and provenance instead of the subject, and lists of steps stuffed with a citation per clause and parenthetical tags such as "(judgment)". The commissioner called this "pure AI slop": "Each step in the list is documented by the organizations named with it, and running the steps in this order as one release is an inference assembled from those documented steps. Holds marked as judgment are the author's and come from no source." Write the example as a story of what happens, cite the few sources a reader would want, and say what is undocumented once, in an ordinary sentence.
 - Operational detail piled into prose: every hold, threshold, metric and edge case of a procedure spelled out in sentences or bold-numbered steps. The commissioner described the payments sections written this way as "overwrought" and "boring detail shoved down my throat". State what the procedure does and why, with one or two specifics that carry the point; put the full procedure in a figure, and leave the rest to the research notes.
 
 ## Opening
@@ -48,7 +48,7 @@ Accurate material that fails this test goes into an appendix or the research not
 ## Figures
 
 - Use figures wherever a process, sequence, structure or comparison is easier to see than to read. Prefer a diagram over a paragraph of mechanics.
-- Every figure follows a paragraph that plainly describes what it shows. Prefer describing the content to pointing at the figure, and never bolt a clause such as "and the figure after the list shows…" onto a sentence to satisfy this rule; that produces sentences the commissioner rejected as slop.
+- Refer to every figure in the text, either explicitly or with a sentence that plainly describes what it shows.
 - Place each figure immediately after the paragraph that contains its first reference. Never place it before that reference, and never in the middle of a paragraph. This follows the common rule in Chicago, APA and IEEE style: a figure goes as near as possible after its first mention.
 - An overview figure for a whole section may follow the section's opening paragraph, before the detail.
 - After any edit that moves, cuts or reorders text, check every figure: is it still immediately after its referring paragraph, does that paragraph still describe it, and does its section still discuss it?
