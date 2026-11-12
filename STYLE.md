@@ -6,7 +6,7 @@ The essay is [essay.md](essay.md). Read at least its introduction and two full s
 
 - Meta or Uber engineering blog: formal, plain, technical, specific, confident. American spelling. No contractions outside quotations.
 - It argues how software engineering should change, and explains the mechanics. It is not a sales pitch and not a literature review.
-- Sources are inline Markdown links on the phrase they support. No footnotes.
+- Sources are inline Markdown links on the phrase they support, wherever they sit naturally in the sentence. No footnotes. Only where inline links would break the flow, such as a worked example where every step has several sources, collect them in a collapsible "Sources" block (`<details>`) immediately after the passage, keyed to the steps or claims they support.
 - Mention a tool only where it supports a step of the workflow, in a clause or a sentence. Never compare tools against each other in the body. Version numbers, limits, retention defaults and preview/GA status go in an appendix.
 
 ## Patterns the commissioner has rejected as "AI slop" (never use)
