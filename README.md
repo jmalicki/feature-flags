@@ -6,6 +6,7 @@ It covers what a three-day promotion does and costs, the history of the practice
 
 ## Files
 
+- [STYLE.md](STYLE.md): the style guide for the essay, including the sentence patterns that have been rejected, with the rejected sentences quoted.
 - [essay.md](essay.md): the main long read. Two earlier versions are in the Git history: a hedged history at commit `5facf36`, and a survey-style argument at commit `941fe30`.
 - [reviews/essay-v4/](reviews/essay-v4/): seven reviews of the fourth version (a consulting partner, a line editor, a benchmark against published professional writing, an engineering director, a forensic read for generated prose, a distinguished engineer, and a persuasion specialist). The current essay was rewritten against them.
 - [reviews/essay-v2/](reviews/essay-v2/): nine reviews of the second version from different vantage points (an engineering director, a head of technology risk, a principal engineer in payments, a prose editor, and others). Two of them, `exemplars.md` and `evidence.md`, were stopped early and may be incomplete.
