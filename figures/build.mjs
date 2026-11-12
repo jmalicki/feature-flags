@@ -1248,17 +1248,17 @@ function workedLanes() {
   const lanes = ["transactions table", "Ten derived tables", "Feature store", "Model A", "Model B"];
   // [name, detail, first lane, last lane, basis]; basis: "doc", "vendor" or "judgment".
   const steps = [
-    ["Make the source change additive", "merchant_id and merchant_category_v2 beside the old column", 0, 0, "doc"],
-    ["Find every consumer of the ten tables", "lineage and usage logs; each owner a reviewer", 1, 1, "doc"],
-    ["Build v2 of each affected derived table", "beside v1, versioned names, deprecation date for v1", 1, 1, "doc"],
-    ["Backfill the v2 history", "dependency order, monthly batches", 1, 1, "doc"],
-    ["Audit each v2 table before publishing it", "one commit point for all ten: vendor documentation", 1, 1, "vendor"],
-    ["Define merchant_risk_30d_v2 as a new feature", "materialized online, unread; month-end hold is judgment", 2, 2, "judgment"],
-    ["Train model B on v2, retrain model A on v1", "same date range; each bound to its own features", 3, 4, "doc"],
-    ["Shadow model B on live traffic", "two weeks with a weekend and payroll peak: judgment", 4, 4, "judgment"],
-    ["Run the experiment", "model A in control; treatment cap is judgment", 3, 4, "judgment"],
-    ["Ramp model B with model A as the fallback", "promotion on matured labels is judgment", 3, 4, "judgment"],
-    ["Retire the v1 chain", "old feature, v1 tables, then the old column", 0, 2, "doc"],
+    ["Add the new columns", "merchant_id and merchant_category_v2, beside the old column", 0, 0, "doc"],
+    ["Find who reads the ten tables", "lineage and usage logs; the owners review the change", 1, 1, "doc"],
+    ["Build a v2 of each derived table", "alongside v1, under a versioned name", 1, 1, "doc"],
+    ["Backfill the v2 tables", "month by month, in dependency order", 1, 1, "doc"],
+    ["Check each v2 table, then publish", "compared with v1 on the columns that should not change", 1, 1, "vendor"],
+    ["Add merchant_risk_30d_v2", "served online with no model reading it yet", 2, 2, "judgment"],
+    ["Train B, and retrain A on the same dates", "each model pinned to its own features", 3, 4, "doc"],
+    ["Shadow model B", "scores live payments and acts on none, for about two weeks", 4, 4, "judgment"],
+    ["Run the three-arm experiment", "model A alone in control; size capped", 3, 4, "judgment"],
+    ["Ramp up model B", "model A as the fallback; promote once fraud labels mature", 3, 4, "judgment"],
+    ["Remove the old chain", "v1 feature, v1 tables, then the old column", 0, 2, "doc"],
   ];
   const lx = 488;
   const lw = 96;
@@ -1271,17 +1271,17 @@ function workedLanes() {
   };
   const ly = y0 + steps.length * rh + 26;
   const legend = [
-    ["doc", "Documented by the organizations the text names"],
-    ["vendor", "Part rests on vendor documentation alone"],
-    ["judgment", "Includes a hold or limit that is the author's judgment"],
+    ["doc", "Published practice"],
+    ["vendor", "Rests partly on vendor documentation"],
+    ["judgment", "Includes a hold or limit set by the author"],
   ];
   return frame(
     "worked-lanes",
     ly + 116,
     "Worked example from a source table to two models",
-    "A swimlane of the eleven steps in the worked example, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. Step 1, make the source change additive, is in the transactions table lane. Steps 2 to 5, find every consumer of the ten tables, build v2 of each affected derived table, backfill the v2 history, and audit each v2 table before publishing it, are in the derived tables lane; publishing all ten at one commit point in step 5 rests on vendor documentation alone. Step 6, define merchant_risk_30d_v2 as a new feature, is in the feature store lane, and its month-end hold is judgment. Step 7, train model B on v2 and retrain model A on v1, spans both model lanes. Step 8, shadow model B, is in the model B lane, and its two-week length is judgment. Step 9, run the experiment, and step 10, ramp model B with model A as the fallback, span both model lanes, and each includes a judgment. Step 11, retire the v1 chain, spans the transactions table, derived tables and feature store lanes.",
+    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. The new columns are added to the transactions table. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B is trained and model A retrained on the same dates, model B is shadowed, the three-arm experiment runs, and model B is ramped up with model A as the fallback. Finally the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.",
     "Worked example: from a source table to two models",
-    "The eleven steps by the part of the chain they change.",
+    "Each step sits under the part of the system it changes.",
     [
       ...lanes.map((l, i) => [box(lx + i * lw + 2, y0 - 46, lw - 4, steps.length * rh + 52, { fill: i % 2 ? C.surface : C.panel, r: 6 }), para(lx + i * lw + lw / 2, y0 - 26, l, lw - 12, { size: 12, fill: C.ink2, weight: 700, anchor: "middle", gap: 1.2 })].join("\n")),
       ...steps.map(([name, detail, a, b, basis], i) => {
