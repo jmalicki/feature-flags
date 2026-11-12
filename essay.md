@@ -406,7 +406,7 @@ Flags are cheap to add, but each one carries a continuing cost. Every flag that 
 
 A study of Chrome found its flags growing [from 263 to 1,040](https://users.encs.concordia.ca/~pcr/paper/Rahman2016MSR.pdf) over the releases it examined. Uber eventually [built a tool to remove stale flags](https://manu.sridharan.net/files/ICSE20-SEIP-Piranha.pdf) and deleted 1,381.
 
-A release flag is created, ramped to 100% and then removed together with its old path, as the figure below shows, and flag debt accumulates when the last step is skipped. It is controlled by rules that tooling can enforce. Every flag is created with an owner and an expiry date. The build warns as that date approaches and fails once it has passed. Kill switches that are intended to be permanent are registered as permanent and are exempt from expiry. Each service has a limit on the number of live release flags, and a flag name is not reused for a different purpose.
+A release flag is meant to be removed, along with the old code path, once it reaches 100%, and flag debt builds up when that last step is skipped. It is controlled by rules that tooling can enforce. Every flag is created with an owner and an expiry date. The build warns as that date approaches and fails once it has passed. Kill switches that are intended to be permanent are registered as permanent and are exempt from expiry. Each service has a limit on the number of live release flags, and a flag name is not reused for a different purpose.
 
 ![The life of a release flag: created with an owner and an expiry date, ramped so that it is on for some clients and off for others, at 100%, then removed with its old path. The build passes, warns as the expiry date approaches, and fails once it has passed. While the flag is ramped, production runs both paths; after it reaches 100%, the off path is no longer exercised and switching it off is an untested change.](figures/17-flag-lifecycle.svg)
 
@@ -476,7 +476,7 @@ Two versions of one column in an operational database is the best-documented cas
 
 Whether to refactor the database first depends on whether the obstacle is physical or logical. Rewriting a large table without locking it is a physical problem, handled by online schema-change tools such as GitHub's gh-ost ([GitHub](https://github.blog/news-insights/company-news/gh-ost-github-s-online-migration-tool-for-mysql/)). Making old and new code both correct against the same data is a logical problem, which requires every read and write to pass through one place where a flag can choose the target. Figma created Postgres views for each future shard on its still unsharded database, routed reads and writes through them with flags and percentage rollouts, and could roll back "within seconds by just rerouting traffic back to the main table" before any data had moved ([Figma](https://www.figma.com/blog/how-figmas-databases-team-lived-to-tell-the-scale/)).
 
-In the published accounts the steps run in this order, and the figure after the list shows which copy is written, read and authoritative at each step.
+In the published accounts the steps run in this order.
 
 1. Expand. Add the new column or table beside the old one, so that existing code ignores it ([GitLab](https://docs.gitlab.com/development/database/avoiding_downtime_in_migrations/)).
 2. Keep both populated, with a database trigger, with application writes to both copies gated by a flag or percentage, or by replaying a change log. Stripe gradually raised the share of objects written to both stores while watching operational metrics ([Stripe](https://stripe.com/blog/online-migrations)), and Notion replayed changes from an audit-log table ([Notion](https://www.notion.com/blog/sharding-postgres-at-notion)).
@@ -560,7 +560,7 @@ Booking.com, Stripe and Adyen describe hazards in model releases that have no cl
 
 In this example a payments firm's `transactions` table records a merchant as one free-text category, and the change replaces it with a merchant identifier and a category from a new code set. Ten lakehouse tables are derived from `transactions` through change data capture, and a feature, `merchant_risk_30d`, is computed from the last of them. Model A, a fraud model in production, was trained on the old category, model B is trained on features computed from the new one, and the two are to be served as an experiment.
 
-The figure after the list draws the steps by the part of the chain they change and marks those that rest on vendor documentation or judgment. No organization has published this chain run end to end as one progressive release. Each step in the list is documented by the organizations named with it, and running the steps in this order as one release is an inference assembled from those documented steps. Holds marked as judgment are the author's and come from no source.
+Each step below is documented by the organizations cited with it, but nobody has published the whole chain run as one release, so the sequence is assembled from their accounts. The hold lengths are the author's judgment, and the figure after the list marks them.
 
 1. Make the source change additive by adding `merchant_id` and `merchant_category_v2` beside the old column, following the seven-step recipe ([Stripe](https://stripe.com/blog/online-migrations), [GitLab](https://docs.gitlab.com/development/database/avoiding_downtime_in_migrations/)). If the table is published through an outbox, the event gains the new fields under a compatible schema version ([Morling](https://www.morling.dev/blog/change-data-capture-breaks-encapsulation-does-it-though)); if the event change is breaking, it goes to a new topic, as at [Yelp](https://engineeringblog.yelp.com/2016/08/more-than-just-a-schema-store.html).
 2. Find every consumer of the ten tables through lineage and usage logs ([LinkedIn](https://engineering.linkedin.com/blog/2021/evolving-linkedin-s-analytics-tech-stack)), and make each owner a reviewer of the change ([Uber](https://www.uber.com/blog/ubers-journey-toward-better-data-culture-from-first-principles/)). Tables that feed models go in the stricter review class that [Nubank](https://building.nubank.com/scaling-data-analytics-with-software-engineering-best-practices/) uses for model inputs.
@@ -691,7 +691,7 @@ Starling Bank kept its human gates and still releases daily. In 2025 it [require
 
 ### Flag changes are changes
 
-A workable classification for flags is as follows, and the figure after the list shows it along one ramp, from the code change to the off switch.
+A workable classification for flags is as follows.
 
 - The code that introduces a flag goes through normal review and deployment.
 - The ramp plan, with its stages, holds, population, caps and stop conditions, is approved once.
