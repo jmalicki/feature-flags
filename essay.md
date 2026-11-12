@@ -2,19 +2,21 @@
 
 *Why engineering teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts, and fast rollback.*
 
-Some engineering organizations still deliver software through a release train: changes accumulate into a scheduled release, which is promoted through test environments, held in pre-production for a soak period, approved, and then released to every user at once. This article argues that they should replace it with the model now used at most large internet companies, in which small changes reach production every day with their new behavior disabled, and each behavior is then released separately, in stages that can be reversed.
+Some engineering organizations still deliver software through a release train: changes accumulate into a scheduled release, which is promoted through test environments, held in pre-production for a soak period, approved, and then released to every user at once. This article argues that they should replace it with the model now used at most large internet companies, in which small changes reach production every day with their new behavior disabled, and each behavior is then released separately, in stages that can be reversed. The train delays every change by days regardless of its risk, and the safety it provides is narrower than it appears; separating deployment from release removes that trade-off, provided the supporting practices, most of which are cultural, are adopted in full.
 
 In this article, to **deploy** is to put code into production, to **release** is to expose new behavior to users, and a **train** is a scheduled bundle that does both at once.
 
-## Summary
+## Structure of the article
 
-Each behavior is enabled first for no one, then for a small group, and then for everyone, with a rehearsed way to reverse each step. A growing number of banks and payments firms now work this way as well. Testing before production remains, but most of the evidence that a change is safe is gathered in production, at limited exposure.
+The article is in six parts, followed by two appendices. Most of the linked sources are engineering posts and papers written by the teams that did the work.
 
-The release train imposes days of delay on every change regardless of its risk, and it forces changes into batches that are harder to test and harder to debug. The safety it provides is also narrower than it appears, because a soak in a test environment cannot observe real dependencies, code paths that nothing exercises, or faults whose trigger has not yet occurred. Separating deployment from release removes the trade-off between speed and safety that the train creates, provided the supporting practices are adopted in full.
-
-Adopting the model is primarily a change in engineering practice and culture, and that change is harder than the tooling. Engineers have to write changes that can be turned off, teams have to operate what they deploy, approval has to move from scheduled meetings to recorded evidence, and rollback has to become a routine operation.
-
-The first half of the article covers the release train and its costs, how the industry arrived at the alternative, the techniques involved and the limits of each, what changes for the people involved, and how these efforts fail. A separate part covers changes to data and machine-learning models, where state persists after a rollback and changes propagate to downstream tables and models, so the techniques take different forms. The second half applies the argument to systems that move money, which are the hardest case, on the reasoning that a model that can be applied safely to payments can be applied elsewhere. Most of the linked sources are engineering posts and papers written by the teams that did the work.
+- [The release train](#the-release-train), [How the industry got here](#how-the-industry-got-here) and [Separating deployment from release](#separating-deployment-from-release) describe the train and its costs, and the model that replaced it.
+- [The techniques](#the-techniques) covers dark launches, feature flags, canaries, rings and ramps, experiments and rollback, with the limits of each.
+- [Ownership and culture](#ownership-and-culture) and [Failure modes](#failure-modes) cover what changes for engineers, teams and approvers, and how adoption fails.
+- [Data and models](#data-and-models) covers changes to tables, event streams, feature stores and machine-learning models, where state persists after a rollback and a change propagates to everything downstream.
+- [Applying the model to systems that move money](#applying-the-model-to-systems-that-move-money), through [Risk trade-offs](#risk-trade-offs), treats payments as the hardest case, with a worked example, prerequisites, the changes that should not be ramped, correctness controls, and change control and audit.
+- [Evidence](#evidence), [What should change](#what-should-change) and [Getting started](#getting-started) weigh the evidence, list the changes in practice, and describe the first steps.
+- The appendices give [regulatory notes by jurisdiction](#appendix-regulatory-notes-by-jurisdiction) and [tool support for data changes](#appendix-tool-support-for-data-changes).
 
 ## The release train
 

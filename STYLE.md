@@ -30,8 +30,7 @@ Each was flagged by the commissioner verbatim.
 ## Opening
 
 - The introduction is at most two short paragraphs: the situation and the claim, plus any definitions the reader needs immediately.
-- The overview of the argument goes in a separate Summary section after the introduction.
-- The introduction and the Summary do not restate each other.
+- No summary section. After the introduction, a short "Structure of the article" section lists the parts, linked, with one line on what each covers. It describes the structure; it does not restate the argument. This is the one permitted exception to the rule against signposting.
 
 ## Relevance test
 
