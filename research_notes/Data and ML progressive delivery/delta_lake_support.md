@@ -485,3 +485,14 @@ All were fetched as FULL-TEXT except [I-WAP], which is reused from the existing 
 
 - I did not verify which Iceberg catalogs and engines implement the REST multi-table commit for user-level multi-table transactions, so that cell is spec-level only.
 - Snowflake, BigQuery and Hudi equivalents are out of scope.
+
+## Additions checked November 12, 2026 (book review round)
+
+A reviewer read these pages live on November 12, 2026 while reviewing chapter 2 and Appendix B. They are recorded here so that chapter 2 and the appendix can cite them; they were read in full on the live pages, not through a summarizing tool.
+
+- Databricks, "Serve multiple models to a model serving endpoint". <https://docs.databricks.com/aws/en/machine-learning/model-serving/serve-multiple-models-to-serving-endpoint> A `traffic_config` routes a percentage of requests to each served model, for example 90% to `current` and 10% to `challenger`. This corrects the earlier note that a traffic split was undocumented.
+- MLflow Model Registry. <https://mlflow.org/docs/latest/ml/model-registry/> Registered model versions can carry aliases such as `@champion` and `@challenger`, and serving code can load a model by alias, so promoting a model moves an alias.
+- Snowflake, "Understanding and using Time Travel". <https://docs.snowflake.com/en/user-guide/data-time-travel> Time Travel retention is 1 day by default and can be set up to 90 days on Enterprise Edition and above.
+- BigQuery, "Data retention with time travel". <https://cloud.google.com/bigquery/docs/time-travel> The time-travel window is configurable from 2 to 7 days, 7 by default.
+- Apache Kafka, KIP-405 Tiered Storage. <https://cwiki.apache.org/confluence/display/KAFKA/KIP-405%3A+Kafka+Tiered+Storage> Tiered storage moves older log segments to remote storage so that retention can be much longer than local disk allows; the KIP records it as production-ready from Kafka 3.9, and it does not support compacted topics.
+- Google Cloud, Vertex AI Feature Store overview. <https://cloud.google.com/vertex-ai/docs/featurestore/latest/overview> The product is now documented under the name Agent Platform Feature Store.

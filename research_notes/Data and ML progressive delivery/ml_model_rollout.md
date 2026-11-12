@@ -358,3 +358,7 @@ No first-party post-mortem of a staged model rollout going wrong was found. The 
 
 - No first-party or filing-based account of a staged model rollout that failed or caused an incident was found within the time budget. Zillow Offers (Q3 2021 wind-down) is a model-driven business failure, but its press release could not be parsed in this run, and it is not a rollout failure.
 - No quantified cost of holdouts (dollars or lost conversions) apart from Adyen's "9-54 million transactions" OPE claim and Booking's latency-conversion curve.
+
+## Addition checked November 12, 2026
+
+- Stripe, "A primer on machine learning for fraud protection" (the guide cited in chapter 2), read live by a reviewer on November 12, 2026: after noting that blocked payments hide their outcomes, the guide says production precision and recall have to be estimated with counterfactual analysis, which Stripe describes having methods for. Bottou and colleagues (JMLR 2013) describe randomized exploration as the general remedy.
