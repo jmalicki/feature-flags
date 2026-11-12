@@ -412,9 +412,7 @@ A kill switch is a control only if the people on call can find and operate it. I
 
 ### Responding to failure
 
-The response to the first serious incident can decide whether the program continues.
-
-OANDA had deployed continuously for several years when a major failure, in the words of [the paper that describes it](https://www.eecg.toronto.edu/~stumm/Papers/Savor-ICSE16.pdf), "cost the company a significant amount of money within seconds". Senior management's first reaction was to ask for more approvals and a separate, traditional testing team. The post-mortem found that the unit tests had caught the bug and that their failures had been ignored among false alarms. Additional approvers would have been approving a change whose own tests had already failed. The engineers argued instead for a renewed focus on automated testing, and prevailed.
+Once an organization has started moving off the release train, its response to the first serious incident can decide whether it keeps going or returns to the old process. OANDA had deployed continuously for several years when a major failure, in the words of [the paper that describes it](https://www.eecg.toronto.edu/~stumm/Papers/Savor-ICSE16.pdf), "cost the company a significant amount of money within seconds". Senior management's first reaction was to ask for more approvals and a separate, traditional testing team. The post-mortem found that the unit tests had caught the bug and that their failures had been ignored among false alarms. Additional approvers would have been approving a change whose own tests had already failed. The engineers argued instead for a renewed focus on automated testing, and prevailed.
 
 The same paper records the effect of a change in leadership. In mid-2012, executives more inclined to traditional process took over, and although the engineering team was much the same, deployments fell by 23%.
 
@@ -464,9 +462,9 @@ Configuration, flags, reference data and operator scripts are changes too, and a
 
 The opposite failure is a single large migration with no way back. TSB moved 5.2 million customers to a new platform over a single weekend in 2018, with testing cut short and no ability to roll back. It received 225,492 complaints and was fined £48.65 million by the FCA and the PRA together. The [FCA's final notice](https://www.fca.org.uk/publication/final-notices/tsb-bank-plc-2022.pdf) found that fuller testing of the bank's two-data-center configuration would likely have found the fault, so TSB's failure was one of testing as well as of batch size. New Zealand's schools payroll, Novopay, followed the same path outside banking. The ministry had judged a big bang "unacceptably hazardous" and planned a staggered rollout with parallel runs, then removed the pilot and phased rollout under deadline pressure and went live for every school at once in 2012, after its contingency option had lapsed. The [ministerial inquiry](https://d2xgqyuql1olth.cloudfront.net/assets/images/MIN130501-Inquiry-Report-web%20%281%29_0.pdf) called the decisions to remove them "ill-advised and counter to good practice".
 
-### Program-level failures
+### A stalled transition
 
-The overall effort can also stall without any single incident.
+The move off the train can also stall without any single incident.
 
 A pilot on an internal reporting service can be declared a success after two quarters without teaching anything about stored decisions, irreversible actions or reconciliation. A change board can approve each ramp step as if it were a release, so that the ramp takes longer than the train did. Deployment frequency, once it becomes a target, is inflated with trivial deployments, and the 2017 State of DevOps survey found that its lowest-performing group had [sped up and reported more failures](https://dora.dev/research/2017/2017-state-of-devops-report.pdf).
 
