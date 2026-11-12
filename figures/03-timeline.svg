@@ -50,7 +50,7 @@
 <text x="172" y="652" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook's website moves to pushing continuously from the main branch.</text>
 <text x="128" y="686" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2019</text>
 <circle cx="150" cy="681" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="686" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Uber shadows payment authorisation without charging anyone twice.</text>
+<text x="172" y="686" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Uber shadows payment authorization without charging anyone twice.</text>
 <text x="128" y="720" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2020</text>
 <circle cx="150" cy="715" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
 <text x="172" y="720" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Amazon documents its pipeline: one box, then waves, with bake times and automatic rollback.</text>

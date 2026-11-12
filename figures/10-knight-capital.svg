@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-labelledby="knight-title knight-desc">
   <title id="knight-title">Knight Capital deployed over five days and activated in one moment</title>
-  <desc id="knight-desc">Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from 27 July 2012 while its path stayed dormant, then activated on every server at the market open on 1 August, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.</desc>
+  <desc id="knight-desc">Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from July 27, 2012 while its path stayed dormant, then activated on every server at the market open on 1 August, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="470" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Knight Capital, August 1, 2012</text>
@@ -36,12 +36,12 @@
 <line x1="32" y1="330" x2="642" y2="330" stroke="#d9d8d2" stroke-width="3" stroke-linecap="round"/>
 <line x1="32" y1="330" x2="582" y2="330" stroke="#2a78d6" stroke-width="5" stroke-linecap="round"/>
 <circle cx="32" cy="330" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="32" y="360" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">27 July</text>
-<text x="32" y="380" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Deployment begins, a few servers</text>
-<text x="32" y="398.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">a day. Nothing uses the new path</text>
-<text x="32" y="416.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">yet.</text>
+<text x="32" y="360" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">July 27</text>
+<text x="32" y="380" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Deployment begins, in stages over</text>
+<text x="32" y="398.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">several days. Nothing uses the</text>
+<text x="32" y="416.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">new path yet.</text>
 <circle cx="582" cy="330" r="8" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
-<text x="582" y="360" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="middle">1 August, market open</text>
+<text x="582" y="360" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="middle">August 1, market open</text>
 <text x="452" y="380" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The path goes live on every server</text>
 <text x="452" y="398.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">at once.</text>
 <rect x="690" y="132" width="278" height="290" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>

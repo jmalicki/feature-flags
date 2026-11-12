@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="flag-eval-title flag-eval-desc">
+  <title id="flag-eval-title">Reading the flag once at acceptance</title>
+  <desc id="flag-eval-desc">A payment's life runs through acceptance, submission, confirmation, returns, recalls, status inquiries and postings. In the first row each step reads the flag again, so when the flag is switched after confirmation the later steps follow the other behavior and the payment is stranded between two behaviors. In the second row the flag is read once, at acceptance, and the decision is stored with the payment as payment.rail; every later step follows the stored decision, so switching the flag does not change this payment.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="640" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Reading the flag once at acceptance</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">One payment's life, with the flag switched partway through.</text>
+    <text x="32" y="116" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">THE FLAG IS READ AT EVERY STEP</text>
+<line x1="431" y1="124" x2="431" y2="258" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<text x="437" y="136" font-size="13" fill="#eb6834" font-weight="700" text-anchor="start">flag switched</text>
+<rect x="32" y="146" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="44" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Acceptance</text>
+<text x="44" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">reads the flag</text>
+<rect x="166" y="146" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="178" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Submission</text>
+<text x="178" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">reads the flag</text>
+<rect x="300" y="146" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="312" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Confirmation</text>
+<text x="312" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">reads the flag</text>
+<rect x="434" y="146" width="128" height="100" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="446" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Returns</text>
+<text x="446" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">now gets the</text>
+<text x="446" y="213" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">other behavior</text>
+<rect x="568" y="146" width="128" height="100" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="580" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Recalls</text>
+<text x="580" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">now gets the</text>
+<text x="580" y="213" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">other behavior</text>
+<rect x="702" y="146" width="128" height="100" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="714" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Status</text>
+<text x="714" y="192.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">inquiries</text>
+<text x="714" y="215.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">now gets the</text>
+<text x="714" y="233.79999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">other behavior</text>
+<rect x="836" y="146" width="128" height="100" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="848" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Postings</text>
+<text x="848" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">now gets the</text>
+<text x="848" y="213" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">other behavior</text>
+<text x="32" y="282" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">The payment is stranded between two behaviors.</text>
+<text x="32" y="330" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">THE DECISION IS MADE ONCE, AT ACCEPTANCE, AND STORED</text>
+<line x1="431" y1="338" x2="431" y2="472" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<text x="437" y="350" font-size="13" fill="#eb6834" font-weight="700" text-anchor="start">flag switched</text>
+<rect x="32" y="360" width="128" height="100" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="44" y="386" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Acceptance</text>
+<text x="44" y="408.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">reads the</text>
+<text x="44" y="427" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">flag, stores</text>
+<text x="44" y="445.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">the rail</text>
+<rect x="166" y="360" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="178" y="386" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Submission</text>
+<text x="178" y="408.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">follows the</text>
+<text x="178" y="427" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stored rail</text>
+<rect x="300" y="360" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="312" y="386" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Confirmation</text>
+<text x="312" y="408.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">follows the</text>
+<text x="312" y="427" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stored rail</text>
+<rect x="434" y="360" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="446" y="386" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Returns</text>
+<text x="446" y="408.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">follows the</text>
+<text x="446" y="427" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stored rail</text>
+<rect x="568" y="360" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="580" y="386" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Recalls</text>
+<text x="580" y="408.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">follows the</text>
+<text x="580" y="427" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stored rail</text>
+<rect x="702" y="360" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="714" y="386" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Status</text>
+<text x="714" y="406.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">inquiries</text>
+<text x="714" y="429.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">follows the</text>
+<text x="714" y="447.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stored rail</text>
+<rect x="836" y="360" width="128" height="100" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="848" y="386" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Postings</text>
+<text x="848" y="408.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">follows the</text>
+<text x="848" y="427" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stored rail</text>
+<rect x="32" y="496" width="936" height="34" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="48" y="518" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Payment record: payment.rail, written at acceptance</text>
+<line x1="230" y1="494" x2="230" y2="466" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/><path d="M 226.5 473.2 L 230 466 L 233.5 473.2" fill="none" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="364" y1="494" x2="364" y2="466" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/><path d="M 360.5 473.2 L 364 466 L 367.5 473.2" fill="none" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="498" y1="494" x2="498" y2="466" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/><path d="M 494.5 473.2 L 498 466 L 501.5 473.2" fill="none" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="632" y1="494" x2="632" y2="466" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/><path d="M 628.5 473.2 L 632 466 L 635.5 473.2" fill="none" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="766" y1="494" x2="766" y2="466" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/><path d="M 762.5 473.2 L 766 466 L 769.5 473.2" fill="none" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="900" y1="494" x2="900" y2="466" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/><path d="M 896.5 473.2 L 900 466 L 903.5 473.2" fill="none" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="96" y1="464" x2="96" y2="492" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/><path d="M 99.5 484.8 L 96 492 L 92.5 484.8" fill="none" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="32" y="566" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Switching the flag changes which rail later payments get. This payment follows its stored rail for the rest of its</text>
+<text x="32" y="585.5" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">life.</text>
+    
+  </g>
+</svg>

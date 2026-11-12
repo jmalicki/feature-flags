@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="lifecycle-title lifecycle-desc">
+  <title id="lifecycle-title">The life of a release flag</title>
+  <desc id="lifecycle-desc">A release flag is created with an owner and an expiry date, ramped so that it is on for some clients and off for others, reaches 100 percent, and is removed together with the old path. The build passes until the expiry date approaches, warns as it approaches, and fails once it has passed. While the flag is ramped, production runs both paths. From the day the flag reaches everyone, the off path is no longer exercised, and switching it off is an untested change.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="560" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">The life of a release flag</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Rules the build can enforce, and what happens to the off path after 100%.</text>
+    <rect x="32" y="140" width="216" height="84" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="44" y="166" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Created</text>
+<text x="44" y="188.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">with an owner and an</text>
+<text x="44" y="207" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">expiry date</text>
+<line x1="252" y1="182" x2="268" y2="182" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 260.8 178.5 L 268 182 L 260.8 185.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="272" y="140" width="216" height="84" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="284" y="166" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Ramped</text>
+<text x="284" y="188.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">on for some clients, off</text>
+<text x="284" y="207" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">for others</text>
+<line x1="492" y1="182" x2="508" y2="182" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 500.8 178.5 L 508 182 L 500.8 185.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="512" y="140" width="216" height="84" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="524" y="166" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">At 100%</text>
+<text x="524" y="188.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">on for every client</text>
+<line x1="732" y1="182" x2="748" y2="182" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 740.8 178.5 L 748 182 L 740.8 185.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="752" y="140" width="216" height="84" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5"/>
+<text x="764" y="166" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Removed</text>
+<text x="764" y="188.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">flag and old path deleted</text>
+
+<text x="32" y="282" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">THE BUILD, AGAINST THE FLAG'S EXPIRY DATE</text>
+<path d="M 32 300 H 496 Q 500 300 500 304 V 314 Q 500 318 496 318 H 32 Z" fill="#e6f0fb"/>
+<text x="40" y="340" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">passes</text>
+<path d="M 504 300 H 756 Q 760 300 760 304 V 314 Q 760 318 756 318 H 504 Z" fill="#fdece5"/>
+<text x="510" y="340" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">warns as the date approaches</text>
+<path d="M 768 300 H 964 Q 968 300 968 304 V 314 Q 968 318 964 318 H 768 Z" fill="#eb6834"/>
+<line x1="764" y1="292" x2="764" y2="326" stroke="#0b0b0b" stroke-width="2" stroke-linecap="round"/>
+<text x="774" y="340" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">fails once it has passed</text>
+<text x="764" y="286" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="middle">expiry date</text>
+<text x="32" y="402" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">THE OFF PATH</text>
+<line x1="272" y1="429" x2="504" y2="429" stroke="#2a78d6" stroke-width="5" stroke-linecap="round"/>
+<text x="272" y="460" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Production runs both paths;</text>
+<text x="272" y="478.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">every nearby change must work</text>
+<text x="272" y="496.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">in both states.</text>
+<line x1="512" y1="429" x2="968" y2="429" stroke="#eb6834" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text x="512" y="460" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">No longer exercised. Switching the flag off is now an</text>
+<text x="512" y="478.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">untested change.</text>
+    <text x="32" y="538" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Kill switches intended to be permanent are registered as permanent and are exempt from expiry.</text>
+  </g>
+</svg>

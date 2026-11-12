@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="703.4" viewBox="0 0 1000 703.4" role="img" aria-labelledby="pay-stages-title pay-stages-desc">
+  <title id="pay-stages-title">Stages of the instant-rail rollout</title>
+  <desc id="pay-stages-desc">Five stages. Dark: no exposure; the code ships disabled, the build bakes on one node per site through a daily peak, and end-of-day runs the new code on its smallest partition first; the check is that the disabled path behaves identically to yesterday's build. Shadow: no exposure; for all traffic the rule records the rail it would choose and sends nothing; held at least seven days including a weekend and a payroll peak; stops on any mismatch nobody can explain. Synthetic client: test accounts send small real payments over B, with a timeout, a recall and reconciliation exercised and the flag switched off mid-stream; two business days and a weekend. One consenting client: one payment type with low caps; five business days and the weekend they span; stops on any duplicate, reconciliation break or outcome unknown after an hour. Widen: more clients first, then a higher cap, never both in one step; each step held for a full reconciliation cycle, one across a month-end. Four to eight weeks in total.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="703.4" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Stages of the instant-rail rollout</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Moving payments below a threshold from rail A to rail B. Durations are the author's judgment.</text>
+    <rect x="32" y="108" width="180" height="495.4" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="44" y="136" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">1. Dark</text>
+
+<text x="44" y="180" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">EXPOSURE</text>
+<text x="44" y="200" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">None. The code ships</text>
+<text x="44" y="218.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">disabled; the build</text>
+<text x="44" y="236.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">bakes on one node per</text>
+<text x="44" y="254.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">site, and end-of-day</text>
+<text x="44" y="272.8" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">runs it on its</text>
+<text x="44" y="291" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">smallest partition</text>
+<text x="44" y="309.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">first.</text>
+<line x1="44" y1="327.4" x2="200" y2="327.4" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="44" y="347.4" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">HOLD</text>
+<text x="44" y="367.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Through a daily peak</text>
+<line x1="44" y1="440.2" x2="200" y2="440.2" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="44" y="460.2" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">STOPS ON OR CHECKS</text>
+<text x="44" y="480.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Checks that the</text>
+<text x="44" y="498.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">disabled path behaves</text>
+<text x="44" y="516.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">identically to</text>
+<text x="44" y="534.8" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">yesterday's build.</text>
+<rect x="221" y="108" width="180" height="495.4" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="233" y="136" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">2. Shadow</text>
+
+<text x="233" y="180" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">EXPOSURE</text>
+<text x="233" y="200" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">None. For all</text>
+<text x="233" y="218.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">traffic, the rule</text>
+<text x="233" y="236.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">records the rail it</text>
+<text x="233" y="254.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">would choose and the</text>
+<text x="233" y="272.8" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">message it would</text>
+<text x="233" y="291" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">build, and sends</text>
+<text x="233" y="309.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">nothing.</text>
+<line x1="233" y1="327.4" x2="389" y2="327.4" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="233" y="347.4" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">HOLD</text>
+<text x="233" y="367.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">At least seven days,</text>
+<text x="233" y="385.59999999999997" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">including a weekend</text>
+<text x="233" y="403.79999999999995" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">and a payroll peak</text>
+<line x1="233" y1="440.2" x2="389" y2="440.2" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="233" y="460.2" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">STOPS ON OR CHECKS</text>
+<text x="233" y="480.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Stops on any mismatch</text>
+<text x="233" y="498.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">nobody can explain.</text>
+<rect x="410" y="108" width="180" height="495.4" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="422" y="136" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">3. Synthetic</text>
+<text x="422" y="156.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">client</text>
+
+<text x="422" y="180" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">EXPOSURE</text>
+<text x="422" y="200" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Test accounts in</text>
+<text x="422" y="218.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">production send small</text>
+<text x="422" y="236.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">real payments over B</text>
+<text x="422" y="254.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">to the firm's</text>
+<text x="422" y="272.8" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">accounts at other</text>
+<text x="422" y="291" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">banks.</text>
+<line x1="422" y1="327.4" x2="578" y2="327.4" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="422" y="347.4" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">HOLD</text>
+<text x="422" y="367.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Two business days and</text>
+<text x="422" y="385.59999999999997" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">a weekend</text>
+<line x1="422" y1="440.2" x2="578" y2="440.2" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="422" y="460.2" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">STOPS ON OR CHECKS</text>
+<text x="422" y="480.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Exercises acceptance,</text>
+<text x="422" y="498.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">rejection, a timeout,</text>
+<text x="422" y="516.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">a recall and</text>
+<text x="422" y="534.8" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">reconciliation; the</text>
+<text x="422" y="553" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">flag is switched off</text>
+<text x="422" y="571.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">mid-stream.</text>
+<rect x="599" y="108" width="180" height="495.4" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="611" y="136" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">4. One consenting</text>
+<text x="611" y="156.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">client</text>
+
+<text x="611" y="180" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">EXPOSURE</text>
+<text x="611" y="200" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">One client, one</text>
+<text x="611" y="218.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">payment type, a low</text>
+<text x="611" y="236.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">cap per payment and</text>
+<text x="611" y="254.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">per day.</text>
+<line x1="611" y1="327.4" x2="767" y2="327.4" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="611" y="347.4" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">HOLD</text>
+<text x="611" y="367.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Five business days</text>
+<text x="611" y="385.59999999999997" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">and the weekend they</text>
+<text x="611" y="403.79999999999995" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">span</text>
+<line x1="611" y1="440.2" x2="767" y2="440.2" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="611" y="460.2" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">STOPS ON OR CHECKS</text>
+<text x="611" y="480.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Stops on any</text>
+<text x="611" y="498.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">duplicate, any</text>
+<text x="611" y="516.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">reconciliation break,</text>
+<text x="611" y="534.8" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">or any outcome still</text>
+<text x="611" y="553" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">unknown after an</text>
+<text x="611" y="571.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">hour.</text>
+<rect x="788" y="108" width="180" height="495.4" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="800" y="136" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">5. Widen</text>
+
+<text x="800" y="180" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">EXPOSURE</text>
+<text x="800" y="200" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">More clients first,</text>
+<text x="800" y="218.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">then a higher cap. No</text>
+<text x="800" y="236.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">single step does</text>
+<text x="800" y="254.6" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">both.</text>
+<line x1="800" y1="327.4" x2="956" y2="327.4" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="800" y="347.4" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">HOLD</text>
+<text x="800" y="367.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">A full reconciliation</text>
+<text x="800" y="385.59999999999997" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">cycle for each step,</text>
+<text x="800" y="403.79999999999995" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">one of them across a</text>
+<text x="800" y="422" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">month-end</text>
+<line x1="800" y1="440.2" x2="956" y2="440.2" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="800" y="460.2" font-size="11" fill="#8a8983" font-weight="700" text-anchor="start">STOPS ON OR CHECKS</text>
+<text x="800" y="480.2" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">None stated</text>
+<line x1="32" y1="633.4" x2="968" y2="633.4" stroke="#d9d8d2" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="627.4" x2="32" y2="639.4" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="968" y1="627.4" x2="968" y2="639.4" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<text x="500" y="659.4" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="middle">Four to eight weeks from first deployment to full release</text>
+    
+  </g>
+</svg>
