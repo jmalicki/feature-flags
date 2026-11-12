@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1076" viewBox="0 0 1000 1076" role="img" aria-labelledby="timeline-title timeline-desc">
   <title id="timeline-title">Twenty-five years of published practice</title>
-  <desc id="timeline-desc">A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and regulated industries from 2017 to 2025.</desc>
+  <desc id="timeline-desc">A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and wider adoption, including regulated industries, from 2017 to 2025.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="1076" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Published accounts, 2000 to 2025</text>
@@ -47,7 +47,7 @@
 <text x="128" y="645" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2016</text>
 <circle cx="150" cy="640" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
 <text x="172" y="645" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook and OANDA study continuous deployment, including at an FX trading platform.</text>
-<text x="172" y="688" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">REGULATED INDUSTRIES</text>
+<text x="172" y="688" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">WIDER ADOPTION AND REGULATED INDUSTRIES</text>
 <text x="128" y="715" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2017</text>
 <circle cx="150" cy="710" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
 <text x="172" y="715" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook's website moves to deploying continuously from the main branch.</text>
