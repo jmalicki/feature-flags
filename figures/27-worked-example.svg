@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="842" viewBox="0 0 1000 842" role="img" aria-labelledby="worked-lanes-title worked-lanes-desc">
   <title id="worked-lanes-title">Worked example from a source table to two models</title>
-  <desc id="worked-lanes-desc">A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. The new columns are added to the transactions table. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B is trained and model A retrained on the same dates, model B is shadowed, the three-arm experiment runs, and model B is ramped up with model A as the fallback. Finally model A is retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.</desc>
+  <desc id="worked-lanes-desc">A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. The new columns are added to the transactions table. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B is trained and model A retrained on the same dates, model B and the retrained model A are shadowed, the three-arm experiment runs, and model B is ramped up with model A as the fallback. Finally model A is retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="842" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Worked example: from a source table to two models</text>
@@ -62,10 +62,10 @@
 <text x="872" y="480" font-size="14" fill="#0b0b0b" font-weight="700" text-anchor="middle">7</text>
 <line x1="32" y1="500" x2="480" y2="500" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
 <text x="32" y="522" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">8.</text>
-<text x="58" y="522" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Shadow model B</text>
-<text x="58" y="540" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">scores live payments and acts on none, for about two weeks</text>
-<rect x="880" y="510" width="80" height="30" rx="6" fill="#fdece5" stroke="#eb6834" stroke-width="1.5" stroke-dasharray="6 3"/>
-<text x="920" y="530" font-size="14" fill="#0b0b0b" font-weight="700" text-anchor="middle">8</text>
+<text x="58" y="522" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Shadow model B and retrained A</text>
+<text x="58" y="540" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">both score live payments and act on none, for about two weeks</text>
+<rect x="784" y="510" width="176" height="30" rx="6" fill="#fdece5" stroke="#eb6834" stroke-width="1.5" stroke-dasharray="6 3"/>
+<text x="872" y="530" font-size="14" fill="#0b0b0b" font-weight="700" text-anchor="middle">8</text>
 <line x1="32" y1="550" x2="480" y2="550" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
 <text x="32" y="572" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">9.</text>
 <text x="58" y="572" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Run the three-arm experiment</text>

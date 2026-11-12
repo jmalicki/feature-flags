@@ -32,7 +32,7 @@ The material below is for contributors and reviewers. Readers of the book need o
 - [research_notes/Data and ML progressive delivery/](research_notes/Data%20and%20ML%20progressive%20delivery/): the nine note files behind that report and the second chapter (operational schema changes, analytical pipeline changes, streaming and events, feature stores and versions, ML model rollout, Delta Lake support, data contracts and ownership, European regulators on data and models, and end-to-end cases and failures).
 - [research_notes/Testing gates to ramping culture/](research_notes/Testing%20gates%20to%20ramping%20culture/): the sixteen raw note files behind that report and the first chapter (Microsoft, Google and Facebook, Amazon/Netflix/LinkedIn/Etsy, QA role transitions, management arguments, empirical and regulated-industry evidence, audit and compliance, EU regulators on change management, Dutch regulators, payments and core-banking releases, experiments on financial clients, staging and soak, rollback authority, rollback technology, counter-evidence and failures, and chart data), and three verification files. Each source is tagged by how it was read; quotations tagged as tool extractions must be re-checked against the page before they are printed. The two `quote_verification` files and `verification_round_2026_11.md` record that re-check for the quotations the book uses.
 
-Research date: November 10, 2026. Markdown with SVG figures.
+Research dates: November 10 to 12, 2026. Markdown with SVG figures.
 
 ## Checks and local setup
 

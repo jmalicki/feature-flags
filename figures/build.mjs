@@ -1255,7 +1255,7 @@ function workedLanes() {
     ["Check each v2 table, then publish", "compared with v1 on the columns that should not change", 1, 1, "vendor"],
     ["Add merchant_risk_30d_v2", "served online, unread until online and offline values agree", 2, 2, "judgment"],
     ["Train B, and retrain A on the same dates", "each model pinned to its own features", 3, 4, "doc"],
-    ["Shadow model B", "scores live payments and acts on none, for about two weeks", 4, 4, "judgment"],
+    ["Shadow model B and retrained A", "both score live payments and act on none, for about two weeks", 3, 4, "judgment"],
     ["Run the three-arm experiment", "model A alone in control; size capped", 3, 4, "judgment"],
     ["Ramp up model B", "model A as the fallback; promote once fraud labels mature", 3, 4, "judgment"],
     ["Retire model A, remove the old chain", "model A, v1 feature, v1 tables, then the old column", 0, 3, "doc"],
@@ -1279,7 +1279,7 @@ function workedLanes() {
     "worked-lanes",
     ly + 116,
     "Worked example from a source table to two models",
-    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. The new columns are added to the transactions table. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B is trained and model A retrained on the same dates, model B is shadowed, the three-arm experiment runs, and model B is ramped up with model A as the fallback. Finally model A is retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.",
+    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. The new columns are added to the transactions table. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B is trained and model A retrained on the same dates, model B and the retrained model A are shadowed, the three-arm experiment runs, and model B is ramped up with model A as the fallback. Finally model A is retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.",
     "Worked example: from a source table to two models",
     "Each step sits under the part of the system it changes.",
     [

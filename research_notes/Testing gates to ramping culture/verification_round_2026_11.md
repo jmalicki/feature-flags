@@ -107,3 +107,78 @@ None of these requires a soak period, a release train or fixed release windows.
 - Shopify, Tom Newton, "How Shopify Manages API Versioning and Breaking Changes", December 17, 2019. RAW. <https://shopify.engineering/shopify-manages-api-versioning-breaking-changes>
   - "Shopify releases a new API version every three months at the beginning of the quarter."; changes enter the unstable version and "can optionally have a beta flag associated with the change", checked at runtime with `ApiChange.in_effect?`.
 - Not found: a first-person account of deploying a partner integration dark and enabling it per partner; EDI, carrier, healthcare-exchange (NHS pages refused) and Twilio searches returned marketing or nothing.
+
+## Held-back payments facts, checked November 12, 2026
+
+Read in raw text (HTML, or pdftotext from the official PDF).
+
+Method: I fetched EUR-Lex and the EBA Q&A pages with curl, stripped the HTML to text and read the result raw. EUR-Lex did not refuse curl. I downloaded the PDFs (EBA opinion, EPC rulebook, FCA PS25/12) from the official URLs and read them with pdftotext -layout. All quotes below are verbatim from those texts.
+
+### 1. Transaction-risk-analysis (TRA) exemption from SCA
+
+Commission Delegated Regulation (EU) 2018/389, <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32018R0389>
+
+- Art. 18(1): "Payment service providers shall be allowed not to apply strong customer authentication where the payer initiates a remote electronic payment transaction identified by the payment service provider as posing a low level of risk". The Article does not say whether this means the payer's or the payee's provider.
+- Art. 18(2)(a): the fraud rate is the one "reported by the payment service provider and calculated in accordance with Article 19".
+- Art. 19(1): "the overall fraud rates covering both payment transactions authenticated through strong customer authentication and those executed under any of the exemptions referred to in Articles 13 to 18". The rate is "calculated as the total value of unauthorised or fraudulent remote transactions, whether the funds have been recovered or not, divided by the total value of all remote transactions for the same type of transactions ... on a rolling quarterly basis (90 days)."
+- Art. 20(1): a provider must "immediately report to the competent authorities" when a monitored fraud rate exceeds the reference rate.
+- Art. 20(2): "Payment service providers shall immediately cease to make use of the exemption referred to in Article 18 for any type of payment transactions indicated in the table set out in the Annex in the specific exemption threshold range where their monitored fraud rate exceeds for two consecutive quarters the reference fraud rate". Cessation therefore applies per type and per amount band.
+- Art. 20(3): the exemption cannot be used again until the rate has been at or below the reference "for one quarter". Art. 20(4) requires notifying the authority before resuming.
+- Annex reference rates (card / credit transfer): EUR 500: 0,01 / 0,005; EUR 250: 0,06 / 0,01; EUR 100: 0,13 / 0,015. These match appendices.md.
+
+EBA Opinion EBA-Op-2018-04, 13 June 2018, <https://eba.europa.eu/sites/default/documents/files/documents/10180/2137845/0f525dc7-0f97-4be7-9ad7-800723365b8e/Opinion%20on%20the%20implementation%20of%20the%20RTS%20on%20SCA%20and%20CSC%20%28EBA-2018-Op-04%29.pdf>
+
+- Para 40: "payees can never decide whether or not to use an exemption".
+- Table 2, "Summary table on who may apply an exemption", row "Article 18 Transaction risk analysis": the payer's PSP "Yes"; the payee's PSP "No" for credit transfers and "Yes*" for cards. The footnote reads: "*The payer's PSP always makes the ultimate decision on whether or not to accept or apply an exemption; the payer's PSP may wish to revert to applying SCA to execute the transaction if technically feasible or decline the initiation of the transaction."
+- Para 46: for card transactions the fraud counted for a given PSP is "(i) the unauthorised transactions for which the given PSP has borne liability, as determined in accordance with Article 74 of PSD2, and (ii) other fraudulent transactions which have not been prevented by that PSP." The fraud rate also includes "fraudulent transactions resulting from the manipulation of the payer".
+- Para 47: the fraud rate "is calculated for all credit transfer transactions and all card payment transactions and cannot be defined per individual payee (e.g. merchant) or per channel (whether app or web interface)". An acquirer may let "certain predefined merchants" benefit from its exemption, but the rate is "calculated on the basis of the payee PSP's executed or acquired transactions, rather than on the merchant's transactions."
+
+EBA Q&A 2018_4034 (published 11/10/2019), <https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2018_4034>
+
+- "Yes, only the payment service provider (PSP) wishing to apply the transaction risk analysis (TRA) exemption should have fraud level below the reference fraud rates".
+- "In the case where the fraud level of the acquirer is below the reference fraud rate but the issuer's fraud rate is above, the acquirer can decide whether to apply the TRA exemption or not."
+
+EBA Q&A 2018_4035 (published 26/10/2018), <https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2018_4035>
+
+- "Only the payer's and payee's PSP may make a decision of whether or not to apply the exemption and the payer's and payee's PSPs apply this exemption based on their own fraud rate."
+- Where those PSPs contract with other entities (for example gateways), "the reference fraud rate remains the fraud rate of the payer's or payee's PSP respectively."
+
+What this means for the book: the payer's provider holds the exemption for credit transfers, and for cards either the issuer or the acquirer holds it, each on its own rate, with the issuer deciding in the end. A company running a fraud challenger affects the exemption only if it is that provider. A gateway or merchant does not hold the exemption.
+
+### 2. Business payers' refund and claim periods
+
+PSD2, Directive (EU) 2015/2366, <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32015L2366>
+
+- Art. 61(1): "Where the payment service user is not a consumer, the payment service user and the payment service provider may agree that Article 62(1), Article 64(3), and Articles 72, 74, 76, 77, 80 and 89 do not apply in whole or in part. The payment service user and the payment service provider may also agree on time limits that are different from those laid down in Article 71." Article 71 itself cannot be disapplied; only its time limits can be changed.
+- Art. 61(3): "Member States may provide that provisions in this Title are applied to microenterprises in the same way as to consumers."
+- Art. 71(1): notification "no later than 13 months after the debit date".
+- Art. 76(1), fourth subparagraph: "for direct debits as referred to in Article 1 of Regulation (EU) No 260/2012, the payer has an unconditional right to a refund within the time limits laid down in Article 77".
+- Art. 77(1): a refund request "for a period of 8 weeks from the date on which the funds were debited".
+
+EPC, SEPA Direct Debit Business-to-Business Scheme Rulebook, EPC222-07, 2025 version 1.0 (issued 28 November 2024, effective 05 October 2025), <https://www.europeanpaymentscouncil.eu/sites/default/files/kb/file/2024-11/EPC222-07%202025%20SDD%20B2B%20Rulebook%20version%201.0.pdf>. The EPC site did not refuse automated access.
+
+- Section 2.2: "A Debtor PSP cannot offer the Scheme to a Debtor who is a 'consumer'". "A Payment Service User may only use the Scheme as a Debtor, when he is authorised by national law to opt-out from the refund right in respect of authorised transactions contained in Articles 61(1) and 76(1) of the Payment Services Directive".
+- Section 4.2: "The Debtor has no right to obtain a refund for an authorised transaction under the Scheme by request to the Debtor PSP." The section adds that the Debtor PSP "may return a Collection after Settlement up to three Inter-PSP Business Days after the Settlement Date ... or because the Debtor wishes to refuse the debit."
+- Section 4.3.4: "Refunds are not provided for under the B2B Scheme."
+- Section 4.4: "The concept of a refund is defined as a claim initiated by the Debtor after Settlement for reimbursement of a direct debit, but it is not part of the B2B Scheme."
+- An annex lists the B2B scheme as "excluding the Debtor's right of refund for authorised direct debit transactions and stating that refunds for unauthorised transactions fall outside the scope of the B2B Scheme".
+
+### 3. Safeguarding
+
+PSD2 Art. 10(1), same URL as above: a payment institution must "safeguard all funds which have been received from the payment service users or through another payment service provider for the execution of payment transactions" in one of two ways. The first is (a): funds "shall not be commingled at any time with the funds of any natural or legal person other than payment service users". Funds still held "by the end of the business day following the day when the funds have been received" must be deposited in a separate account or invested in secure, liquid, low-risk assets, and insulated from other creditors. The second is (b): insurance or a comparable guarantee. Article 10 says nothing about reconciliation.
+
+FCA PS25/12, "Changes to the safeguarding regime for payments and e-money firms", August 2025, instrument FCA 2025/38, <https://www.fca.org.uk/publication/policy/ps25-12.pdf>
+
+- Commencement: "This instrument comes into force on 7 May 2026."
+- 15.1.2R scope: "authorised payment institutions", "small payment institutions that voluntarily safeguard", "electronic money institutions", and "credit unions that issue electronic money".
+- Glossary: "reconciliation day" means a UK business day, excluding weekends and bank holidays.
+- 15.8.10R: an internal safeguarding reconciliation checks whether the "safeguarding resource was equal to its safeguarding requirement" and must "promptly identify and resolve any discrepancies".
+- 15.8.19R: "must perform an internal safeguarding reconciliation as frequently as necessary and no less than once each reconciliation day."
+- 15.8.42R: an external safeguarding reconciliation is due "as frequently as necessary and no less than once each reconciliation day".
+- 15.8.50R: the institution "must determine the reason for the discrepancy" and ensure that "any shortfall is paid into a relevant funds bank account or invested in relevant assets as soon as possible and, in any case, by the end of the day on which the reconciliation is performed".
+- 15.8.56R: discrepancies from an external reconciliation must be resolved "without undue delay", unless they arise "solely as a result of timing differences".
+- 15.8.57R: an unresolved external discrepancy requires the institution to assume the record showing the greater requirement is accurate and to "pay its own funds" in.
+- 15.8.8R(1): records must allow the institution "to determine the total amount of relevant funds it should be holding for each of its clients promptly and at any time".
+- 15.8.60R: the institution "must inform the FCA in writing without delay if" any of the following applies: (1) its records are "materially out of date, inaccurate or invalid"; (2) it fails to do an internal reconciliation; (3) it "will be unable to, or materially fails to, pay any shortfall"; (4) and (5) external reconciliation failures; (6) "at any time in the preceding 12 months, the amount of relevant funds safeguarded was materially different from the total aggregate amount of relevant funds the safeguarding institution was required to safeguard".
+
+What this means for the book: a fault on a new money path that misstates customer balances would make the safeguarding requirement wrong. CASS 15 gives the institution until the end of the same day to cover a shortfall, and requires notice to the FCA in the listed cases. This is the author's inference; the text does not mention software changes. The trial's stop condition, which allows a break one reconciliation cycle to be explained, therefore suffices for stopping the trial. It does not change the safeguarding deadline. I read the CASS 15 text in the PS25/12 instrument, not on the Handbook website, which is rendered client-side and returned an empty shell to curl.
