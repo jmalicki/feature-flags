@@ -649,7 +649,7 @@ Model-risk rules in the United States, the United Kingdom and the EU expect a mo
 
 ## Change control and audit
 
-A common objection is that auditors and regulators require the existing process. The rules on change and an organization's own change policy are different documents.
+Where the release train is written into the change policy as well as practiced, the change board's approval and the sign-off after the soak are the controls that the policy describes and the auditors test, and a team cannot stop running the train without changing those documents. If the policy stays as it is, each ramp step is raised as a release, and the new model ends up slower than the train it replaced, as described under [A stalled transition](#a-stalled-transition). The usual objection is that auditors and regulators require the existing process, but the rules on change and an organization's own change policy are different documents, and only the policy describes a train.
 
 ### What the rules require
 
@@ -676,7 +676,7 @@ Human gates can stay in such a pipeline. In 2025 Starling Bank [required three a
 
 ### Classifying flag changes
 
-A flag change in production is a change under these rules, since DORA's standards, for example, set no threshold of materiality, and the rules that ask for a way back are met by a kill switch, abort criteria fixed in the ramp plan and a rehearsed rollback ([Constraints in the EU standards](#constraints-in-the-eu-standards)).
+A flag change in production is a change under these rules, since DORA's standards, for example, set no threshold of materiality ([Constraints in the EU standards](#constraints-in-the-eu-standards)). How flag changes are classified therefore decides whether a ramp runs faster than the train. The rules that ask for a way back are met by a kill switch, abort criteria fixed in the ramp plan and a rehearsed rollback.
 
 The figure below gives one classification that fits these provisions. The code that introduces a flag is an ordinary change, the ramp plan is approved once, and each step within the plan is a standard change under dual control, while a step outside the plan is a normal change. Switching a flag off or rolling back is pre-authorized, so the on-call engineer can do either without asking, and the action is reviewed afterwards. The state of every flag on any date can be produced as evidence.
 
