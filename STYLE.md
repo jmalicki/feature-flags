@@ -38,12 +38,15 @@ Each was flagged by the commissioner verbatim.
 
 Every section, example, incident and regulatory citation in the body has to serve the thesis: that teams can deliver much faster while keeping safety by separating deployment from release and changing how they work. Material earns a place in the body only if it does one of the following.
 
-The essay is general: it argues how software engineering should change. Payments material is there only so that a payments engineer cannot dismiss the argument as not applying to them. It gives evidence that payments firms already work this way and answers each objection briefly. It is not a tutorial: no stage-by-stage procedures, holds or checklists. Evidence that applies to every industry, such as what regulators accept, goes in the general sections.
+The essay is general: it argues how software engineering should change. Payments is its favorite running example and is preferred whenever an example is needed, but nothing may signal that the essay is written for payments or finance. Introduce a payments case as an example ("in payments, for instance"), never with "for a financial firm" or similar; no heading is named for an industry; general text says "user" or "customer" and "organization" or "company", keeping "client" for business clients in a specific example and "firm" for named financial firms or entities a regulation covers. Payments material gives evidence and brief answers so that a payments engineer cannot dismiss the argument; it is never a tutorial. Examples from other industries are valuable: never remove one to make room for payments.
+
+The essay is not about regulation. Regulation appears in the body only to remove the objection that the rules forbid this model; what regulators and audit frameworks accept or require, and per-jurisdiction detail, belong in the regulation appendix. The essay does not cover PCI DSS.
 
 - It answers an objection the reader will raise (for example, "the regulators will not allow this").
 - It changes how the model has to be built (for example, independent approval, flag changes counting as changes, rollback provisions).
 - It is evidence for or against the thesis that the argument relies on.
-- It teaches a distinct lesson. One example per lesson; a second example that adds weight but no new lesson is cut.
+- It teaches a distinct lesson, or shows that a lesson holds in a different industry. Within one industry a lesson is illustrated once; a second example from the same industry that repeats the same fact is cut. An example from another industry stays, kept to one or two sentences and one specific fact. When two examples make the same point, merge them into one sentence and keep both organizations; cut repeated numbers, quotations and mechanics, not organizations. Never cut the only example from an industry. Where two candidate examples are otherwise equal, prefer the payments one.
+- Each fact appears once in the essay. Do not restate the same evidence in the history, the body, Evidence and an appendix.
 
 Accurate material that fails this test goes into an appendix or the research notes, not the body. Research findings are not added to the body merely because they are true and new. Per-jurisdiction regulatory detail and per-tool detail belong in appendices.
 
