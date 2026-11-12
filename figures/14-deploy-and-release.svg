@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="deploy-release-title deploy-release-desc">
   <title id="deploy-release-title">Separating deployment from release</title>
-  <desc id="deploy-release-desc">Two arrangements. On a release train, half a week of changes is batched, held for three days of promotion and soak, and then deployed and released to every client at once, so every change waits for the most cautious one. With deployment and release separated, code is deployed every day with its new behavior off. One behavior is then released on its own, first to no one, then to a small group, then to everyone, while the other changes proceed without waiting for it.</desc>
+  <desc id="deploy-release-desc">Two arrangements. On a release train, half a week of changes is batched, held for three days of promotion and soak, and then deployed and released to every user at once, so every change waits for the most cautious one. With deployment and release separated, code is deployed every day with its new behavior off. One behavior is then released on its own, first to no one, then to a small group, then to everyone, while the other changes proceed without waiting for it.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="620" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Separating deployment from release</text>
@@ -18,7 +18,7 @@
 <line x1="592" y1="188" x2="620" y2="188" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 612.8 184.5 L 620 188 L 612.8 191.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="624" y="146" width="344" height="84" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
 <text x="636" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Deploy and release</text>
-<text x="636" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">every client at once</text>
+<text x="636" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">every user at once</text>
 <text x="32" y="262" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">The caution a risky change deserves is applied to the whole train, and everything on the train waits for it.</text>
 <text x="32" y="324" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">DEPLOYED DAILY, RELEASED SEPARATELY</text>
 <text x="32" y="374" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Deploy</text>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="586" viewBox="0 0 1000 586" role="img" aria-labelledby="ramps-title ramps-desc">
-  <title id="ramps-title">Ramp stages that firms have published</title>
+  <title id="ramps-title">Ramp stages that companies have published</title>
   <desc id="ramps-desc">Seven published ramp schedules. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorization in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="586" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>

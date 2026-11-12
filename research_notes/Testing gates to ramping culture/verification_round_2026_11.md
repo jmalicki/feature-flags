@@ -77,3 +77,33 @@ None of these requires a soak period, a release train or fixed release windows.
 ## Direct-debit refunds
 
 - PSD2 (Directive (EU) 2015/2366). RAW. Unconditional refund of an authorized SEPA direct debit within 8 weeks (Arts 76(1), 77(1)); notice of an unauthorized transaction up to 13 months after the debit date (Art. 71(1)); business payers may contract out (Art. 61(1)).
+
+## Gaps outside finance
+
+### Deciding once for long-lived work
+
+- Uber, Seva Kaloshin, "Safe deployments of Versioned workflows", Cadence blog, July 2025. RAW. <https://cadenceworkflow.io/blog/2025/07/01/2025-07-01-safe-deployment-of-versioned-workflows/safe-deployment-of-versioned-workflows>
+  - "At Uber, we manage billions of workflows with lifetimes ranging from seconds to years."
+  - "By using workflow.GetVersion, you can mark points in your code where changes occur, ensuring that future calls will return a specific version number."
+  - "If a new workflow is rescheduled to an old worker, it will be blocked or even fail" (during rollouts and especially rollbacks); a customer "needed to identify all problematic workflows, terminate them if they did not fail automatically, and restart them. These steps resulted in a significant on-call burden, leading to possible SLO violations and incidents."
+  - The fix separated "code changes from the activation of the new version".
+- Temporal, Go SDK versioning documentation, read November 11, 2026. RAW. <https://docs.temporal.io/develop/go/versioning>
+  - "A Patch defines a logical branch in a Workflow for a specific change, similar to a feature flag. It applies a code change to new Workflow Executions while avoiding disruptive changes to in-progress Workflow Executions."
+
+### Big-bang cut-over outside banking
+
+- Report of the Ministerial Inquiry into the Novopay Project (New Zealand schools payroll), June 2013. RAW. <https://d2xgqyuql1olth.cloudfront.net/assets/images/MIN130501-Inquiry-Report-web%20%281%29_0.pdf>
+  - In 2005 the Ministry judged "a 'Big Bang' model, whereby the new payroll service would be rolled out to all users at the same time, was unacceptably hazardous" and planned "An eight-month staggered implementation" and "Parallel runs of the new and existing systems".
+  - Later "the intended pilot and phased rollout of the service were removed from the project plan"; "The project became locked into a 'big bang' Go Live on 20 August 2012."
+  - "The Business Owner made it clear to us that once Confidence Point Two was accepted there was no turning back"; a contingency option "by 30 June 2012 had lapsed."
+  - "The decisions to remove the pilot and staged rollout, due to timeline pressures, were ill-advised and counter to good practice. Both were feasible and, had they been conducted, would have exposed issues before a much larger number of schools were affected at Go Live."
+- Canada's Phoenix pay system, Auditor General's opening statement, House of Commons Standing Committee on Public Accounts, meeting 105, June 14, 2018. RAW. <https://ourcommons.ca/Content/Committee/421/PACP/Evidence/EV9984635/PACPEV105-E.PDF>
+  - "In order to meet budgets and timelines, Public Services and Procurement Canada decided to remove critical pay functions, curtail system tests, and forgo a pilot implementation of the system." The "no system to go back to" wording is an MP's, not an audit finding; Phoenix went live in two waves.
+
+### Partner integrations (adjacent sources only)
+
+- Duffel, "How to build a flight API: exploring our tech stack", July 2022. RAW. <https://duffel.com/blog/how-to-build-a-flights-api-exploring-our-tech-stack>
+  - "Working with capricious airline APIs and developing new features regularly means we need to deploy new versions of our code multiple times a day."; feature toggles via Unleash "for both gradual release and emergency control"; end-to-end tests that check "booking flows with airline sandboxes". The toggles are not described as per airline.
+- Shopify, Tom Newton, "How Shopify Manages API Versioning and Breaking Changes", December 17, 2019. RAW. <https://shopify.engineering/shopify-manages-api-versioning-breaking-changes>
+  - "Shopify releases a new API version every three months at the beginning of the quarter."; changes enter the unstable version and "can optionally have a beta flag associated with the change", checked at runtime with `ApiChange.in_effect?`.
+- Not found: a first-person account of deploying a partner integration dark and enabling it per partner; EDI, carrier, healthcare-exchange (NHS pages refused) and Twilio searches returned marketing or nothing.
