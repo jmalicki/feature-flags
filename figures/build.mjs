@@ -1191,7 +1191,7 @@ function featureHistory() {
     "feature-history",
     540,
     "Two routes to history for a v2 feature",
-    "Two routes to the history a v2 feature needs before a model can be trained on it. Backfill: history from an archive is recomputed in a batch backfill under the v2 logic with point-in-time joins, and an online-offline consistency check then measures the mismatch rate against values served online; the backfill is a second code path. Logging: the v2 feature is materialized online with no model reading it, its values are logged at serving time, and history accumulates; training data then matches what was served, but no model can be trained until the history exists, and a 90-day aggregate needs 90 days of it.",
+    "Two routes to the history a v2 feature needs before a model can be trained on it. Backfill: history from an archive is recomputed in a batch backfill under the v2 logic with point-in-time joins, and an online-offline consistency check then measures the mismatch rate against values served online; the backfill is a second code path. Logging: the v2 feature is computed at serving time, its values are logged, and history accumulates; training data then matches what was served, but no model can be trained until the history exists, and a 90-day aggregate needs 90 days of it.",
     "Two routes to history for a v2 feature",
     "A model cannot be trained on a v2 feature until the feature has history.",
     [
@@ -1199,7 +1199,7 @@ function featureHistory() {
       row(140, [["Archive", "history the stream no longer holds"], ["Batch backfill", "under the v2 logic, with point-in-time joins"], ["Consistency check", "offline values compared with those served online; mismatch rate reported"], ["Training data", "for a model on v2"]], C.blue, C.blueTint),
       para(32, 272, "The backfill is a second code path, so its values can differ from those served online, and the gap is measured.", 936, { size: 14, fill: C.ink }),
       label(32, 332, "LOGGING AT SERVING TIME"),
-      row(344, [["Online serving", "v2 materialized online; no model reads it yet"], ["Feature logging", "values logged at serving time"], ["Accumulated history", "a 90-day aggregate needs 90 days of logs"], ["Training data", "for a model on v2"]], C.blue, C.blueTint),
+      row(344, [["Online serving", "v2 computed at serving time"], ["Feature logging", "values logged at serving time"], ["Accumulated history", "a 90-day aggregate needs 90 days of logs"], ["Training data", "for a model on v2"]], C.blue, C.blueTint),
       para(32, 476, "Training uses the values that were served, so there is no skew, but no model can be trained until the history has accumulated.", 936, { size: 14, fill: C.ink }),
     ].join("\n"),
     "",

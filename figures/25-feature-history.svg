@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="540" viewBox="0 0 1000 540" role="img" aria-labelledby="feature-history-title feature-history-desc">
   <title id="feature-history-title">Two routes to history for a v2 feature</title>
-  <desc id="feature-history-desc">Two routes to the history a v2 feature needs before a model can be trained on it. Backfill: history from an archive is recomputed in a batch backfill under the v2 logic with point-in-time joins, and an online-offline consistency check then measures the mismatch rate against values served online; the backfill is a second code path. Logging: the v2 feature is materialized online with no model reading it, its values are logged at serving time, and history accumulates; training data then matches what was served, but no model can be trained until the history exists, and a 90-day aggregate needs 90 days of it.</desc>
+  <desc id="feature-history-desc">Two routes to the history a v2 feature needs before a model can be trained on it. Backfill: history from an archive is recomputed in a batch backfill under the v2 logic with point-in-time joins, and an online-offline consistency check then measures the mismatch rate against values served online; the backfill is a second code path. Logging: the v2 feature is computed at serving time, its values are logged, and history accumulates; training data then matches what was served, but no model can be trained until the history exists, and a 90-day aggregate needs 90 days of it.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="540" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Two routes to history for a v2 feature</text>
@@ -31,8 +31,8 @@
 <text x="32" y="332" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">LOGGING AT SERVING TIME</text>
 <rect x="32" y="344" width="210" height="104" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="44" y="370" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Online serving</text>
-<text x="44" y="392.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">v2 materialized online;</text>
-<text x="44" y="411" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">no model reads it yet</text>
+<text x="44" y="392.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">v2 computed at serving</text>
+<text x="44" y="411" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">time</text>
 <line x1="246" y1="396" x2="270" y2="396" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 262.8 392.5 L 270 396 L 262.8 399.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="274" y="344" width="210" height="104" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="286" y="370" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Feature logging</text>
