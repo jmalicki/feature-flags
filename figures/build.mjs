@@ -235,19 +235,20 @@ function timeline() {
       ["2011", "Etsy says its flags were taken almost exactly from Flickr."],
     ]],
     ["Scale, failures and the first studies", [
-      ["2012", "Knight Capital: a reused flag and one stale server lose $460 million in 45 minutes."],
-      ["2013", "Netflix scores canaries automatically. Azure DevOps flips flags on launch day and goes down."],
-      ["2014", "Azure DevOps adds “ring 0”: its own staff take every release first."],
+      ["2012", "Knight Capital: a reused flag and one stale server lose more than $460 million in about 45 minutes."],
+      ["2013", "Netflix scores canaries automatically. Visual Studio Online goes down on a launch morning because of flags."],
+      ["2014", "Visual Studio Online builds a first ring of volunteer accounts that takes every deployment first."],
       ["2015", "Facebook paper: ship code disabled, ramp it with Gatekeeper, canary the configuration too."],
       ["2016", "Facebook and OANDA study continuous deployment, including at an FX trading platform."],
     ]],
-    ["Codified, and regulators take notice", [
-      ["2017", "Facebook's website moves to pushing continuously from the main branch."],
-      ["2019", "Uber shadows payment authorisation without charging anyone twice."],
+    ["Wider adoption and regulated industries", [
+      ["2017", "Facebook's website moves to deploying continuously from the main branch."],
+      ["2018", "Starling Bank releases to production up to five times a day. France's ACPR describes batched releases outside service hours."],
       ["2020", "Amazon documents its pipeline: one box, then waves, with bake times and automatic rollback."],
-      ["2021", "UK regulator's review of 23 firms: smaller, more frequent releases succeed more often."],
-      ["2022", "Monzo, a bank, rolls automated rollback out across 2,100 services."],
-      ["2024", "The US bank examiners' handbook describes canary and blue/green releases."],
+      ["2021", "The ACPR accepts automated change processes. The UK FCA's review of 23 firms: smaller, more frequent releases succeed more often."],
+      ["2022", "Monzo, a bank, deploys more than 100 times a day and rolls automated rollback out across more than 2,100 services."],
+      ["2024", "The US bank examiners' handbook mentions canary releases."],
+      ["2025", "DORA's change rules apply in the EU; its standards permit testing in production as an approved exception."],
     ]],
   ];
   let y = 118;
@@ -270,10 +271,10 @@ function timeline() {
   return frame(
     "timeline",
     h,
-    "Twenty-four years of published practice",
-    "A timeline from 2000 to 2024 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and codification with regulatory attention from 2017 to 2024.",
-    "What a fast follower inherits",
-    "Dates are when a practice was documented, not when it was invented.",
+    "Twenty-five years of published practice",
+    "A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and wider adoption, including regulated industries, from 2017 to 2025.",
+    "Published accounts, 2000 to 2025",
+    "Dates are when an event happened or a practice was first documented.",
     [ln(spine, top + 22, spine, y - 30, { stroke: C.line, sw: 2 }), ...parts].join("\n"),
     "",
   );
@@ -397,8 +398,8 @@ function ramps() {
     ["Facebook Android app", "2016", ["20%", "50%", "100%"], "three days in total"],
     ["Amazon services", "2020", ["one box", "first Region", "more Regions", "all Regions"], "bake ≥1 h, then ≥12 h, then 2–4 h a wave; 4–5 business days"],
     ["Azure DevOps", "as documented in 2022", ["tier 0", "tier 1", "tier 2", "tier 3", "tier 4"], "about 24 hours in each tier"],
-    ["Slack", "2020", ["dogfood", "2% canary", "10%", "25%", "50%", "75%", "100%"], "stage lengths not published"],
-    ["Uber payment authorisation", "2019", ["shadow", "employees", "0.25%", "1%", "5%", "100%"], "per payment method; lengths not published"],
+    ["Slack", "2020", ["own staff", "2% canary", "10%", "25%", "50%", "75%", "100%"], "stage lengths not published"],
+    ["Uber payment authorization", "2019", ["shadow", "employees", "0.25%", "1%", "5%", "100%"], "per payment method; lengths not published"],
     ["Uber ledger", "2020", ["1%", "5%", "10%", "20%", "50%", "100%"], "a percentage in each country, starting with a country with few users"],
   ];
   const x0 = 250;
@@ -429,8 +430,8 @@ function ramps() {
   return frame(
     "ramps",
     y0 + rows.length * rowH + 40,
-    "Ramp stages that firms have published",
-    "Seven published ramp schedules. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorisation in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
+    "Ramp stages that companies have published",
+    "Seven published ramp schedules. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorization in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
     "Published rollout stages",
     "Stages as each company described them. Examples, not a ranking.",
     body,
@@ -566,7 +567,7 @@ function knight() {
     "knight",
     470,
     "Knight Capital deployed over five days and activated in one moment",
-    "Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from 27 July 2012 while its path stayed dormant, then activated on every server at the market open on 1 August, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.",
+    "Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from July 27, 2012 while its path stayed dormant, then activated on every server at the market open on August 1, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.",
     "Knight Capital, August 1, 2012",
     "Staged deployment, single activation. Source: the SEC's order.",
     [
@@ -576,10 +577,10 @@ function knight() {
       ln(tx, ty, tx + tw, ty, { stroke: C.line, sw: 3 }),
       ln(tx, ty, tx + tw - 60, ty, { stroke: C.blue, sw: 5 }),
       dot(tx, ty, 6, C.blue),
-      t(tx, ty + 30, "27 July", { size: 15, weight: 700 }),
-      para(tx, ty + 50, "Deployment begins, a few servers a day. Nothing uses the new path yet.", 250, { size: 14 }),
+      t(tx, ty + 30, "July 27", { size: 15, weight: 700 }),
+      para(tx, ty + 50, "Deployment begins, in stages over several days. Nothing uses the new path yet.", 250, { size: 14 }),
       dot(tx + tw - 60, ty, 8, C.orange),
-      t(tx + tw - 60, ty + 30, "1 August, market open", { size: 15, weight: 700, anchor: "middle" }),
+      t(tx + tw - 60, ty + 30, "August 1, market open", { size: 15, weight: 700, anchor: "middle" }),
       para(tx + tw - 190, ty + 50, "The path goes live on every server at once.", 260, { size: 14 }),
       box(690, 132, 278, 290, { fill: C.panel }),
       ...stats.map(([big, small], i) => [t(710, 182 + i * 86, big, { size: 26, weight: 700 }), t(710, 206 + i * 86, small, { size: 15, fill: C.ink2 })].join("\n")),
@@ -705,21 +706,626 @@ function start() {
   );
 }
 
+// Small caps-style section label used above rows and panels.
+const label = (x, y, s, opt = {}) => t(x, y, s, { size: 13, fill: C.ink2, weight: 700, ...opt });
+// A rounded chip with centred text.
+const chip = (x, y, w, s, { fill = C.blueTint, stroke = C.blue, ink = C.ink, dash = "", h = 24, size = 12 } = {}) =>
+  [box(x, y, w, h, { fill, stroke, r: h / 2, dash, sw: 1.2 }), t(x + w / 2, y + h / 2 + size * 0.36, s, { size, fill: ink, anchor: "middle" })].join("");
+
+function deployAndRelease() {
+  const y1 = 146;
+  const y2 = 340;
+  const days = [0, 1, 2, 3, 4].map((i) => 172 + i * 160);
+  const rx = days[1];
+  const rw = (968 - rx - 2 * 32) / 3;
+  return frame(
+    "deploy-release",
+    620,
+    "Separating deployment from release",
+    "Two arrangements. On a release train, half a week of changes is batched, held for three days of promotion and soak, and then deployed and released to every user at once, so every change waits for the most cautious one. With deployment and release separated, code is deployed every day with its new behavior off. One behavior is then released on its own, first to no one, then to a small group, then to everyone, while the other changes proceed without waiting for it.",
+    "Separating deployment from release",
+    "On a train one act deploys and releases. Separated, each behavior is released on its own schedule.",
+    [
+      label(32, y1 - 16, "RELEASE TRAIN: DEPLOY AND RELEASE IN ONE ACT"),
+      stage(32, y1, 220, 84, "Changes batched", "half a week of changes"),
+      arrow(256, y1 + 42, 284, y1 + 42),
+      stage(288, y1, 300, 84, "Promotion and soak", "three days, for every change on the train", { accent: C.orange, tint: C.orangeTint }),
+      arrow(592, y1 + 42, 620, y1 + 42),
+      stage(624, y1, 344, 84, "Deploy and release", "every user at once", { accent: C.orange, tint: C.orangeTint }),
+      para(32, y1 + 116, "The caution a risky change deserves is applied to the whole train, and everything on the train waits for it.", 936, { size: 15 }),
+      label(32, y2 - 16, "DEPLOYED DAILY, RELEASED SEPARATELY"),
+      t(32, y2 + 34, "Deploy", { size: 16, weight: 700 }),
+      t(32, y2 + 54, "every day", { size: 14, fill: C.ink2 }),
+      ...days.map((x, i) => stage(x, y2, 148, 76, `Day ${i + 1}`, "deployed, new behavior off", { accent: C.blue, tint: C.surface })),
+      t(32, y2 + 166, "Release", { size: 16, weight: 700 }),
+      t(32, y2 + 186, "one behavior", { size: 14, fill: C.ink2 }),
+      arrow(rx + 74, y2 + 80, rx + 74, y2 + 128, { stroke: C.blue, dash: "4 4" }),
+      ...["No one", "Small group", "Everyone"].map((s, i) => {
+        const x = rx + i * (rw + 32);
+        return [
+          stage(x, y2 + 132, rw, 60, s, "", { accent: C.blue, tint: C.blueTint }),
+          i < 2 ? arrow(x + rw + 4, y2 + 162, x + rw + 28, y2 + 162, { stroke: C.blue }) : "",
+        ].join("\n");
+      }),
+      para(rx, y2 + 226, "The wait applies to the one behavior that needs watching. The changes deployed on the other days proceed without waiting for it.", 968 - rx, { size: 15 }),
+    ].join("\n"),
+    "",
+  );
+}
+
+function flagEvaluation() {
+  const steps = ["Acceptance", "Submission", "Confirmation", "Returns", "Recalls", "Status inquiries", "Postings"];
+  const w = 128;
+  const gap = 6;
+  const xs = steps.map((_, i) => 32 + i * (w + gap));
+  const sw = xs[3] - gap / 2;
+  const row = (y, subFor, styleFor) =>
+    steps.map((s, i) => stage(xs[i], y, w, 100, s, subFor(i), styleFor(i))).join("\n");
+  const ya = 146;
+  const yb = 360;
+  const switchLine = (y) =>
+    [ln(sw, y - 22, sw, y + 112, { stroke: C.orange, sw: 2, dash: "5 4" }), t(sw + 6, y - 10, "flag switched", { size: 13, fill: C.orange, weight: 700 })].join("\n");
+  return frame(
+    "flag-eval",
+    640,
+    "Reading the flag once at acceptance",
+    "A payment's life runs through acceptance, submission, confirmation, returns, recalls, status inquiries and postings. In the first row each step reads the flag again, so when the flag is switched after confirmation the later steps follow the other behavior and the payment is stranded between two behaviors. In the second row the flag is read once, at acceptance, and the decision is stored with the payment as payment.rail; every later step follows the stored decision, so switching the flag does not change this payment.",
+    "Reading the flag once at acceptance",
+    "One payment's life, with the flag switched partway through.",
+    [
+      label(32, ya - 30, "THE FLAG IS READ AT EVERY STEP"),
+      switchLine(ya),
+      row(ya, (i) => (i < 3 ? "reads the flag" : "now gets the other behavior"), (i) => (i < 3 ? { accent: C.line } : { accent: C.orange, tint: C.orangeTint })),
+      para(32, ya + 136, "The payment is stranded between two behaviors.", 900, { size: 15, fill: C.ink }),
+      label(32, yb - 30, "THE DECISION IS MADE ONCE, AT ACCEPTANCE, AND STORED"),
+      switchLine(yb),
+      row(yb, (i) => (i === 0 ? "reads the flag, stores the rail" : "follows the stored rail"), (i) => ({ accent: C.blue, tint: i === 0 ? C.blueTint : C.surface })),
+      box(32, yb + 136, 936, 34, { fill: C.blueTint, stroke: C.blue }),
+      t(48, yb + 158, "Payment record: payment.rail, written at acceptance", { size: 14, fill: C.ink }),
+      ...xs.slice(1).map((x) => arrow(x + w / 2, yb + 134, x + w / 2, yb + 106, { stroke: C.blue, sw: 1.5 })),
+      arrow(xs[0] + w / 2, yb + 104, xs[0] + w / 2, yb + 132, { stroke: C.blue, sw: 1.5 }),
+      para(32, yb + 206, "Switching the flag changes which rail later payments get. This payment follows its stored rail for the rest of its life.", 936, { size: 15, fill: C.ink }),
+    ].join("\n"),
+    "",
+  );
+}
+
+function dormantAndShadow() {
+  const c = [
+    [32, 190],
+    [262, 200],
+    [502, 210],
+    [752, 216],
+  ];
+  const bx = (i, y, h, l, s, o) => stage(c[i][0], y, c[i][1], h, l, s, o);
+  const ra = (i, y, o) => arrow(c[i][0] + c[i][1] + 4, y, c[i + 1][0] - 4, y, o);
+  const ya = 140;
+  const yb = 400;
+  return frame(
+    "dark",
+    680,
+    "Dormant code and a shadow run",
+    "Two kinds of dark launch. Dormant: a live request goes to the current code and the user sees the current result; the new code is deployed behind a flag that is off, and nothing calls it. Shadow: a live request goes to the current code and the user sees the current result; a copy of the traffic also goes to the new code, its result is compared with the current code's result, and its output is then discarded without any user seeing it.",
+    "Dormant code and a shadow run",
+    "Both are dark launches: deployed to production, with no user seeing the new behavior.",
+    [
+      label(32, ya - 14, "DORMANT: DEPLOYED BEHIND A FLAG THAT IS OFF"),
+      bx(0, ya, 70, "Live request", ""),
+      ra(0, ya + 35),
+      bx(1, ya, 70, "Current code", ""),
+      ra(1, ya + 35),
+      bx(2, ya, 70, "User", "sees the current result"),
+      bx(1, ya + 110, 70, "New code", "merged, built, deployed", { accent: C.ink2, tint: C.panel }),
+      chip(c[2][0], ya + 133, 150, "flag off", { fill: C.panel, stroke: C.ink2, dash: "4 3" }),
+      t(c[2][0] + 164, ya + 150, "nothing calls it", { size: 14, fill: C.ink2 }),
+      label(32, yb - 14, "SHADOW: REAL TRAFFIC THROUGH THE NEW CODE, OUTPUT DISCARDED"),
+      bx(0, yb, 70, "Live request", ""),
+      ra(0, yb + 35),
+      bx(1, yb, 70, "Current code", ""),
+      ra(1, yb + 35),
+      bx(2, yb, 70, "User", "sees the current result"),
+      `<path d="M ${c[0][0] + 95} ${yb + 74} V ${yb + 165} H ${c[1][0] - 4}" fill="none" stroke="${C.blue}" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>`,
+      arrow(c[1][0] - 12, yb + 165, c[1][0] - 4, yb + 165, { stroke: C.blue }),
+      t(c[0][0] + 104, yb + 154, "copy of the traffic", { size: 13, fill: C.ink2 }),
+      bx(1, yb + 130, 70, "New code", "runs on the copy", { accent: C.blue, tint: C.blueTint }),
+      ra(1, yb + 165, { stroke: C.blue }),
+      bx(2, yb + 130, 70, "Compare", "with the current result", { accent: C.blue, tint: C.blueTint }),
+      ra(2, yb + 165, { stroke: C.blue }),
+      bx(3, yb + 130, 70, "Discard", "no user sees the output", { accent: C.ink2, tint: C.panel }),
+      arrow(c[1][0] + 170, yb + 74, c[2][0] + 30, yb + 126, { stroke: C.muted, dash: "4 4" }),
+      t(c[1][0] + 196, yb + 96, "current result", { size: 13, fill: C.ink2 }),
+    ].join("\n"),
+    "",
+  );
+}
+
+function flagLifecycle() {
+  const xs = [32, 272, 512, 752];
+  const w = 216;
+  const y = 140;
+  const names = [
+    ["Created", "with an owner and an expiry date"],
+    ["Ramped", "on for some users, off for others"],
+    ["At 100%", "on for every user"],
+    ["Removed", "flag and old path deleted"],
+  ];
+  const by = 300;
+  const oy = 420;
+  return frame(
+    "lifecycle",
+    560,
+    "The life of a release flag",
+    "A release flag is created with an owner and an expiry date, ramped so that it is on for some users and off for others, reaches 100 percent, and is removed together with the old path. The build passes until the expiry date approaches, warns as it approaches, and fails once it has passed. While the flag is ramped, production runs both paths. From the day the flag reaches everyone, the off path is no longer exercised, and switching it off is an untested change.",
+    "The life of a release flag",
+    "Rules the build can enforce, and what happens to the off path after 100%.",
+    [
+      ...names.map(([a, b], i) =>
+        [stage(xs[i], y, w, 84, a, b, { accent: i === 3 ? C.ink2 : C.blue, tint: i === 3 ? C.panel : C.blueTint }), i < 3 ? arrow(xs[i] + w + 4, y + 42, xs[i + 1] - 4, y + 42, { stroke: C.blue }) : ""].join("\n"),
+      ),
+      label(32, by - 18, "THE BUILD, AGAINST THE FLAG'S EXPIRY DATE"),
+      hbar(32, by, 468, 18, C.blueTint),
+      t(40, by + 40, "passes", { size: 14, fill: C.ink2 }),
+      hbar(504, by, 256, 18, C.orangeTint),
+      t(510, by + 40, "warns as the date approaches", { size: 14, fill: C.ink2 }),
+      hbar(768, by, 200, 18, C.orange),
+      ln(764, by - 8, 764, by + 26, { stroke: C.ink, sw: 2 }),
+      t(774, by + 40, "fails once it has passed", { size: 14, fill: C.ink2 }),
+      t(764, by - 14, "expiry date", { size: 13, fill: C.ink, anchor: "middle" }),
+      label(32, oy - 18, "THE OFF PATH"),
+      ln(xs[1], oy + 9, xs[2] - 8, oy + 9, { stroke: C.blue, sw: 5 }),
+      para(xs[1], oy + 40, "Production runs both paths; every nearby change must work in both states.", 228, { size: 14 }),
+      ln(xs[2], oy + 9, 968, oy + 9, { stroke: C.orange, sw: 5, dash: "8 6" }),
+      para(xs[2], oy + 40, "No longer exercised. Switching the flag off is now an untested change.", 450, { size: 14 }),
+    ].join("\n"),
+    "Kill switches intended to be permanent are registered as permanent and are exempt from expiry.",
+  );
+}
+
+function paymentStages() {
+  const stages = [
+    ["1. Dark", "None. The code ships disabled; the build bakes on one node per site, and end-of-day runs it on its smallest partition first.", "Through a daily peak", "Checks that the disabled path behaves identically to yesterday's build."],
+    ["2. Shadow", "None. For all traffic, the rule records the rail it would choose and the message it would build, and sends nothing.", "At least seven days, including a weekend and a payroll peak", "Stops on any mismatch nobody can explain."],
+    ["3. Synthetic client", "Test accounts in production send small real payments over B to the firm's accounts at other banks.", "Two business days and a weekend", "Exercises acceptance, rejection, a timeout, a recall and reconciliation; the flag is switched off mid-stream."],
+    ["4. One consenting client", "One client, one payment type, a low cap per payment and per day.", "Five business days and the weekend they span", "Stops on any duplicate, any reconciliation break, or any outcome still unknown after an hour."],
+    ["5. Widen", "More clients first, then a higher cap. No single step does both.", "A full reconciliation cycle for each step, one of them across a month-end", ""],
+  ];
+  const w = 180;
+  const gap = 9;
+  const iw = w - 24;
+  const rows = [
+    ["EXPOSURE", 1],
+    ["HOLD", 2],
+    ["STOPS ON OR CHECKS", 3],
+  ];
+  const y0 = 108;
+  const headH = 58;
+  const rowH = rows.map(([, k]) => Math.max(...stages.map((s) => paraHeight(s[k] || "-", iw, 14))) + 40);
+  const colH = headH + rowH.reduce((a, b) => a + b, 0) + 8;
+  const body = stages
+    .map((s, i) => {
+      const x = 32 + i * (w + gap);
+      const dark = i < 2;
+      let y = y0 + headH;
+      const cells = rows.map(([name, k], r) => {
+        const out = [
+          r > 0 ? ln(x + 12, y - 6, x + w - 12, y - 6, { stroke: C.line, sw: 1 }) : "",
+          t(x + 12, y + 14, name, { size: 11, fill: C.muted, weight: 700 }),
+          s[k] ? para(x + 12, y + 34, s[k], iw, { size: 14, fill: C.ink }) : t(x + 12, y + 34, "None stated", { size: 14, fill: C.muted }),
+        ].join("\n");
+        y += rowH[r];
+        return out;
+      });
+      return [
+        box(x, y0, w, colH, { fill: dark ? C.panel : C.blueTint, stroke: dark ? C.ink2 : C.blue, dash: dark ? "5 4" : "" }),
+        para(x + 12, y0 + 28, s[0], iw, { size: 16, fill: C.ink, weight: 700 }),
+        ...cells,
+      ].join("\n");
+    })
+    .join("\n");
+  const by = y0 + colH + 30;
+  return frame(
+    "pay-stages",
+    by + 70,
+    "Stages of the instant-rail rollout",
+    "Five stages. Dark: no exposure; the code ships disabled, the build bakes on one node per site through a daily peak, and end-of-day runs the new code on its smallest partition first; the check is that the disabled path behaves identically to yesterday's build. Shadow: no exposure; for all traffic the rule records the rail it would choose and sends nothing; held at least seven days including a weekend and a payroll peak; stops on any mismatch nobody can explain. Synthetic client: test accounts send small real payments over B, with a timeout, a recall and reconciliation exercised and the flag switched off mid-stream; two business days and a weekend. One consenting client: one payment type with low caps; five business days and the weekend they span; stops on any duplicate, reconciliation break or outcome unknown after an hour. Widen: more clients first, then a higher cap, never both in one step; each step held for a full reconciliation cycle, one across a month-end. Four to eight weeks in total.",
+    "Stages of the instant-rail rollout",
+    "Moving payments below a threshold from rail A to rail B. Durations are the author's judgment.",
+    [
+      body,
+      ln(32, by, 968, by, { stroke: C.line, sw: 1.5 }),
+      ln(32, by - 6, 32, by + 6, { stroke: C.muted, sw: 1.5 }),
+      ln(968, by - 6, 968, by + 6, { stroke: C.muted, sw: 1.5 }),
+      t(500, by + 26, "Four to eight weeks from first deployment to full release", { size: 15, fill: C.ink, anchor: "middle" }),
+    ].join("\n"),
+    "",
+  );
+}
+
+function flagOff() {
+  const sx = 520;
+  const yb = 180;
+  const ya = 320;
+  const x0 = 210;
+  const sent = [236, 276, 316, 356, 396, 436, 476];
+  const windows = [370, 660, 900];
+  return frame(
+    "flag-off",
+    600,
+    "Switching the instant-rail flag off",
+    "Two rails over time, with the flag switched off partway. Payments already sent on rail B before the switch are final and none is recalled. After the switch, new payments go to rail A from its next submission window. The exposure is bounded by the caps: the daily cap, multiplied by the number of clients enabled, multiplied by the number of days a fault goes unnoticed. A switch after A's last cut-off of the day leaves those payments waiting until the next business day.",
+    "Switching the instant-rail flag off",
+    "What changes for payments sent before the switch and for new payments after it.",
+    [
+      ln(sx, 118, sx, ya + 70, { stroke: C.orange, sw: 2, dash: "5 4" }),
+      t(sx, 112, "flag switched off", { size: 14, fill: C.orange, weight: 700, anchor: "middle" }),
+      t(32, yb + 6, "Rail B", { size: 17, weight: 700 }),
+      t(32, yb + 28, "instant, final within seconds", { size: 13, fill: C.ink2 }),
+      ln(x0, yb, 968, yb, { stroke: C.line, sw: 2 }),
+      ...sent.map((x) => dot(x, yb, 8, C.blue)),
+      para(x0 + 20, yb + 36, "Sent on B before the switch: final, and none is recalled", 290, { size: 14, fill: C.ink }),
+      t(sx + 24, yb + 6, "no new payments on B", { size: 14, fill: C.ink2 }),
+      t(32, ya + 6, "Rail A", { size: 17, weight: 700 }),
+      t(32, ya + 28, "batch clearing", { size: 13, fill: C.ink2 }),
+      ln(x0, ya, 968, ya, { stroke: C.line, sw: 2 }),
+      ...windows.map((x) => box(x - 5, ya - 18, 10, 36, { fill: C.ink2, r: 2 })),
+      t(windows[0], ya - 26, "submission window", { size: 12, fill: C.muted, anchor: "middle" }),
+      t(windows[1], ya - 26, "next submission window", { size: 12, fill: C.muted, anchor: "middle" }),
+      ...[548, 580, 612].map((x) => `<circle cx="${x}" cy="${ya}" r="7" fill="${C.surface}" stroke="${C.ink2}" stroke-width="2"/>`),
+      arrow(624, ya, windows[1] - 10, ya, { stroke: C.ink2 }),
+      para(sx + 24, ya + 40, "New payments go to A from its next submission window. After A's last cut-off of the day, they wait until the next business day.", 420, { size: 14, fill: C.ink }),
+      box(32, 448, 936, 100, { fill: C.panel }),
+      t(52, 478, "Exposure while a fault goes unnoticed is bounded by the caps", { size: 16, weight: 700 }),
+      t(52, 516, "daily cap  ×  number of clients enabled  ×  days the fault goes unnoticed", { size: 17, fill: C.ink }),
+    ].join("\n"),
+    "",
+  );
+}
+
+function flagChangeClasses() {
+  const y = 150;
+  const h = 118;
+  const steps = [432, 560, 688];
+  const sw = 116;
+  return frame(
+    "flag-changes",
+    560,
+    "Change classes for a flag",
+    "How flag changes are classified. The code that introduces a flag goes through normal review and deployment. The ramp plan, with its stages, holds, population, caps and stop conditions, is approved once. Each step within the plan is a standard change, executed under dual control and logged; a step outside the plan is a normal change. Switching the flag off and rolling back to the previous build are pre-authorized at any point: the on-call engineer acts without asking and the action is reviewed afterwards. The state of every flag on any given date can be produced as evidence.",
+    "Change classes for a flag",
+    "Each kind of flag change, and the change class it is handled under.",
+    [
+      stage(32, y, 180, h, "Code that introduces the flag", "normal review and deployment"),
+      arrow(216, y + h / 2, 228, y + h / 2),
+      stage(232, y, 180, h, "Ramp plan", "stages, holds, population, caps and stop conditions: approved once", { accent: C.blue, tint: C.blueTint }),
+      arrow(416, y + h / 2, 428, y + h / 2),
+      ...steps.map((x, i) => [stage(x, y, sw, h, `Step ${i + 1}`, "standard change, dual control, logged", { accent: C.blue, tint: C.surface }), arrow(x + sw + 2, y + h / 2, x + 128 - 4, y + h / 2, { stroke: C.blue })].join("\n")),
+      stage(816, y, 152, h, "Step outside the plan", "normal change", { accent: C.orange, tint: C.orangeTint }),
+      `<path d="M ${steps[0]} ${y - 12} V ${y - 20} H ${steps[2] + sw} V ${y - 12}" fill="none" stroke="${C.blue}" stroke-width="1.5"/>`,
+      t((steps[0] + steps[2] + sw) / 2, y - 28, "within the approved plan", { size: 13, fill: C.ink2, anchor: "middle" }),
+      box(232, 310, 736, 80, { fill: C.blueTint, stroke: C.blue }),
+      t(250, 340, "Switching the flag off, or rolling back to the previous build", { size: 16, weight: 700 }),
+      t(250, 366, "Pre-authorized at any point. The on-call engineer acts without asking, and the action is reviewed afterwards.", { size: 14, fill: C.ink2 }),
+      box(32, 414, 936, 64, { fill: C.panel }),
+      t(50, 442, "Evidence", { size: 16, weight: 700 }),
+      t(50, 464, "The state of every flag on any given date can be produced.", { size: 14, fill: C.ink2 }),
+    ].join("\n"),
+    "Raising every step as a normal change with three days' notice makes the ramp slower than the train.",
+  );
+}
+
+function dataRollbackReach() {
+  const y = 190;
+  const h = 80;
+  const tx = (i) => 186 + i * 52;
+  const fx = 720;
+  const mx = 862;
+  return frame(
+    "data-rollback",
+    470,
+    "What a table rollback restores",
+    "A source table feeds a chain of ten derived tables, a feature computed from the last of them, and two models trained on that feature. Rolling back the source table, by moving an Iceberg snapshot pointer back or by a Delta Lake restore, returns only that table to its earlier version. The ten derived tables, the feature and the two models still hold data built from the bad version until each is recomputed.",
+    "What a table rollback restores",
+    "Restoring the source table leaves everything built from the bad version unchanged.",
+    [
+      t(186, y - 18, "TEN DERIVED TABLES", { size: 13, fill: C.ink2, weight: 700 }),
+      stage(32, y, 128, h, "Source table", "rolled back", { accent: C.blue, tint: C.blueTint }),
+      arrow(162, y + h / 2, 182, y + h / 2),
+      ...Array.from({ length: 10 }, (_, i) =>
+        [
+          box(tx(i), y, 44, h, { fill: C.orangeTint, stroke: C.orange }),
+          t(tx(i) + 22, y + h / 2 + 6, String(i + 1), { size: 16, weight: 700, anchor: "middle" }),
+          i < 9 ? arrow(tx(i) + 45, y + h / 2, tx(i) + 51, y + h / 2, { sw: 1.5 }) : "",
+        ].join(""),
+      ),
+      arrow(tx(9) + 46, y + h / 2, fx - 4, y + h / 2),
+      t(fx, y - 18, "FEATURE", { size: 13, fill: C.ink2, weight: 700 }),
+      stage(fx, y, 116, h, "Feature", "", { accent: C.orange, tint: C.orangeTint }),
+      t(mx, y - 18, "MODELS", { size: 13, fill: C.ink2, weight: 700 }),
+      arrow(fx + 118, y + 20, mx - 4, y + 20),
+      arrow(fx + 118, y + 60, mx - 4, y + 60),
+      box(mx, y, 106, 36, { fill: C.orangeTint, stroke: C.orange }),
+      t(mx + 53, y + 24, "Model", { size: 15, weight: 700, anchor: "middle" }),
+      box(mx, y + 44, 106, 36, { fill: C.orangeTint, stroke: C.orange }),
+      t(mx + 53, y + 68, "Model", { size: 15, weight: 700, anchor: "middle" }),
+      `<path d="M ${tx(0)} ${y + h + 14} V ${y + h + 22} H ${mx + 106} V ${y + h + 14}" fill="none" stroke="${C.orange}" stroke-width="2"/>`,
+      t(tx(0), y + h + 46, "Each still holds data built from the bad version until it is recomputed", { size: 15, fill: C.ink }),
+      box(32, 360, 330, 76, { fill: C.panel }),
+      para(48, 386, "Rollback: Iceberg moves a snapshot pointer back, or Delta Lake restores an earlier version", 300, { size: 14, fill: C.ink }),
+      arrow(96, 356, 96, y + h + 4, { stroke: C.blue, sw: 2.5 }),
+    ].join("\n"),
+    "",
+  );
+}
+
+function twoCopies() {
+  const steps = [
+    ["1. Expand", "add the new column or table", [["written", "read", "authoritative"], "added, unused"], ""],
+    ["2. Keep both populated", "trigger, dual writes or log replay", [["written", "read", "authoritative"], ["written"]], "may gate writes to the new copy"],
+    ["3. Backfill", "copy historical rows, throttled", [["written", "read", "authoritative"], ["written"]], ""],
+    ["4. Compare reads", "the old result is still returned", [["written", "read", "authoritative"], ["written", "compared"]], ""],
+    ["5. Switch reads", "by flag or percentage", [["written", "", "authoritative"], ["written", "read"]], "moves reads to the new copy"],
+    ["6. Make new copy authoritative", "a reverse sync keeps rollback possible", [["copied back"], ["written", "read", "authoritative"]], "chooses the authoritative store"],
+    ["7. Contract", "delete the old copy after enough releases", ["writes stop, then deleted", ["written", "read", "authoritative"]], ""],
+  ];
+  const cols = { step: 32, old: 286, new: 552, flag: 818 };
+  const slots = [
+    [0, 80],
+    [86, 76],
+    [168, 92],
+  ];
+  const y0 = 140;
+  const rh = 64;
+  const cell = (x, y, v, isNew) =>
+    typeof v === "string"
+      ? t(x, y + 30, v, { size: 14, fill: C.muted })
+      : v
+          .map((s, k) => {
+            if (!s) return "";
+            const [dx, w] = slots[k];
+            const auth = s === "authoritative";
+            const cmp = s === "compared" || s === "copied back";
+            const col = isNew ? C.blue : C.ink2;
+            return chip(x + dx, y + 14, w, s, { fill: auth ? col : isNew ? C.blueTint : C.panel, stroke: col, ink: auth ? "#ffffff" : C.ink, dash: cmp ? "4 3" : "" });
+          })
+          .join("");
+  return frame(
+    "two-copies",
+    y0 + steps.length * rh + 60,
+    "Two copies of a column or table",
+    "Seven steps for running two copies of a column or table, showing for each step which copy is written, read and authoritative. Expand: the old copy is written, read and authoritative; the new copy is added and unused. Keep both populated: both copies are written, and a flag may gate writes to the new copy. Backfill: historical rows are written to the new copy. Compare reads: the new copy is read for comparison while the old result is still returned. Switch reads: a flag or percentage moves reads to the new copy, while the old copy remains authoritative. Make the new copy authoritative: the new copy is written, read and authoritative, a flag chooses the authoritative store, and changes are copied back to the old copy so rollback remains possible. Contract: writes to the old copy stop, and it is deleted after enough releases.",
+    "Two copies of a column or table",
+    "At each step, which copy is written, read and authoritative, and what the flag controls.",
+    [
+      label(cols.step, y0 - 14, "STEP"),
+      label(cols.old, y0 - 14, "OLD COPY"),
+      label(cols.new, y0 - 14, "NEW COPY"),
+      label(cols.flag, y0 - 14, "WHAT THE FLAG DOES"),
+      ...steps.map(([name, sub, [o, n], flag], i) => {
+        const y = y0 + i * rh;
+        return [
+          ln(32, y, 968, y, { stroke: C.line, sw: 1 }),
+          t(cols.step, y + 26, name, { size: 16, weight: 700 }),
+          t(cols.step, y + 46, sub, { size: 13, fill: C.ink2 }),
+          cell(cols.old, y, o, false),
+          cell(cols.new, y, n, true),
+          flag ? para(cols.flag, y + 24, flag, 150, { size: 13, fill: C.ink }) : "",
+        ].join("\n");
+      }),
+      ln(32, y0 + steps.length * rh, 968, y0 + steps.length * rh, { stroke: C.line, sw: 1 }),
+    ].join("\n"),
+    "A dashed outline marks a copy read only for comparison (step 4) or kept in sync from the new copy (step 6).",
+  );
+}
+
+function writeAuditPublish() {
+  const tx = [56, 238, 420];
+  return frame(
+    "wap",
+    530,
+    "Write, audit, publish for a chain of tables",
+    "Write, audit, publish for a chain of three tables. The v2 tables are written in a staging area that consumers cannot see, and each is checked there. One commit then publishes all the v2 tables together, and aborts if a final check fails. The v1 tables stay readable throughout, and consumers cut over from v1 to v2 one at a time, before the v1 deprecation date. Publishing several tables in one commit follows Databricks documentation.",
+    "Write, audit, publish for a chain of tables",
+    "Each v2 table is written and checked in staging, then all are published in one commit.",
+    [
+      label(32, 128, "STAGING: NOT VISIBLE TO CONSUMERS"),
+      box(32, 140, 570, 180, { fill: C.panel, stroke: C.ink2, dash: "5 4" }),
+      ...tx.map((x, i) =>
+        [
+          stage(x, 160, 160, 60, `Table ${i + 1} v2`, "", { accent: C.blue, tint: C.blueTint }),
+          i < 2 ? arrow(x + 163, 190, tx[i + 1] - 4, 190, { stroke: C.blue }) : "",
+          ln(x + 80, 222, x + 80, 252, { stroke: C.muted, sw: 1.5 }),
+          chip(x + 10, 254, 140, "checks on table " + (i + 1), { fill: C.surface, stroke: C.blue }),
+        ].join("\n"),
+      ),
+      t(52, 306, "Audit: each v2 table is checked before anything is published", { size: 13, fill: C.ink2 }),
+      arrow(606, 230, 630, 230, { stroke: C.blue }),
+      stage(634, 140, 150, 180, "Publish together", "one commit for all v2 tables; aborts if a final check fails", { accent: C.blue, tint: C.blueTint }),
+      arrow(788, 230, 812, 230, { stroke: C.blue }),
+      stage(816, 140, 152, 180, "Consumers", "cut over to v2 one at a time, before the v1 deprecation date", {}),
+      label(32, 378, "V1 TABLES: READABLE THROUGHOUT"),
+      ...tx.map((x, i) => stage(x - 24, 392, 160, 52, `Table ${i + 1} v1`, "", { accent: C.ink2, tint: C.panel })),
+      `<path d="M 548 418 H 892 V 324" fill="none" stroke="${C.muted}" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>`,
+      arrow(892, 334, 892, 324, { stroke: C.muted }),
+      t(560, 410, "consumers read v1 until they cut over", { size: 13, fill: C.ink2 }),
+    ].join("\n"),
+    "Publishing several tables in one commit follows Databricks documentation for multi-table transactions.",
+  );
+}
+
+function streamRebuild() {
+  return frame(
+    "kreps",
+    500,
+    "Rebuilding a stream job's output",
+    "Jay Kreps's 2014 procedure for changing the logic of a stream job. The log holds the retained data. Job v1, with the current logic, writes table v1. A second instance, job v2, runs the new logic from the beginning of the retained data and writes table v2. The application reads table v1 until job v2 has caught up, then switches to reading table v2. While both tables exist, pointing the application back at table v1 reverts the change. The old job is then stopped and the old table deleted.",
+    "Rebuilding a stream job's output",
+    "In Jay Kreps's 2014 procedure, a second job rebuilds the output from the log into a new table.",
+    [
+      stage(32, 130, 160, 286, "Log", "retained data; a job can rebuild only from what the log still holds", { accent: C.ink2, tint: C.panel }),
+      arrow(196, 180, 246, 180),
+      stage(250, 140, 190, 80, "Job v1", "current logic"),
+      arrow(444, 180, 490, 180),
+      stage(494, 140, 170, 80, "Table v1", "", { accent: C.ink2, tint: C.panel }),
+      arrow(196, 360, 246, 360, { stroke: C.blue }),
+      stage(250, 320, 190, 96, "Job v2", "new logic, run from the beginning of the retained data", { accent: C.blue, tint: C.blueTint }),
+      arrow(444, 360, 490, 360, { stroke: C.blue }),
+      stage(494, 320, 170, 80, "Table v2", "", { accent: C.blue, tint: C.blueTint }),
+      stage(798, 230, 170, 80, "Application", "reads one table at a time"),
+      arrow(668, 186, 794, 250, { stroke: C.muted, dash: "5 4" }),
+      t(690, 172, "read until the switch;", { size: 13, fill: C.ink2 }),
+      t(690, 188, "pointing back here reverts the change", { size: 13, fill: C.ink2 }),
+      arrow(668, 354, 794, 292, { stroke: C.blue, sw: 2.5 }),
+      t(690, 370, "read once job v2", { size: 13, fill: C.ink2 }),
+      t(690, 386, "has caught up", { size: 13, fill: C.ink2 }),
+    ].join("\n"),
+    "After the switch, the old job is stopped and the old table deleted.",
+  );
+}
+
+function featureHistory() {
+  const xs = [32, 274, 516, 758];
+  const w = 210;
+  const row = (y, items, accent, tint) =>
+    items.map(([a, b], i) => [stage(xs[i], y, w, 104, a, b, i === 3 ? {} : { accent, tint }), i < 3 ? arrow(xs[i] + w + 4, y + 52, xs[i + 1] - 4, y + 52, { stroke: accent }) : ""].join("\n")).join("\n");
+  return frame(
+    "feature-history",
+    540,
+    "Two routes to history for a v2 feature",
+    "Two routes to the history a v2 feature needs before a model can be trained on it. Backfill: history from an archive is recomputed in a batch backfill under the v2 logic with point-in-time joins, and an online-offline consistency check then measures the mismatch rate against values served online; the backfill is a second code path. Logging: the v2 feature is computed at serving time, its values are logged, and history accumulates; training data then matches what was served, but no model can be trained until the history exists, and a 90-day aggregate needs 90 days of it.",
+    "Two routes to history for a v2 feature",
+    "A model cannot be trained on a v2 feature until the feature has history.",
+    [
+      label(32, 128, "BACKFILL"),
+      row(140, [["Archive", "history the stream no longer holds"], ["Batch backfill", "under the v2 logic, with point-in-time joins"], ["Consistency check", "offline values compared with those served online; mismatch rate reported"], ["Training data", "for a model on v2"]], C.blue, C.blueTint),
+      para(32, 272, "The backfill is a second code path, so its values can differ from those served online, and the gap is measured.", 936, { size: 14, fill: C.ink }),
+      label(32, 332, "LOGGING AT SERVING TIME"),
+      row(344, [["Online serving", "v2 computed at serving time"], ["Feature logging", "values logged at serving time"], ["Accumulated history", "a 90-day aggregate needs 90 days of logs"], ["Training data", "for a model on v2"]], C.blue, C.blueTint),
+      para(32, 476, "Training uses the values that were served, so there is no skew, but no model can be trained until the history has accumulated.", 936, { size: 14, fill: C.ink }),
+    ].join("\n"),
+    "",
+  );
+}
+
+function threeArm() {
+  const arms = [
+    ["Control", "model 1 only; baseline and safety net", [true, false], "Uses model 1"],
+    ["Treatment 1", "computes both models", [true, true], "Uses model 1"],
+    ["Treatment 2", "computes both models", [true, true], "Uses model 2"],
+  ];
+  const y0 = 140;
+  const rh = 100;
+  return frame(
+    "three-arm",
+    y0 + 3 * rh + 140,
+    "Booking.com's three-arm test of two models",
+    "Booking.com's design for comparing two models. The control arm computes only model 1, the current baseline, and uses its output; it is also the safety net. Treatment 1 and treatment 2 both compute model 1 and model 2, so they carry the same computational load and latency drops out as a confounder; treatment 1 uses the output of model 1 and treatment 2 the output of model 2. The analysis covers only the subjects for whom the two models disagree. Computing both models doubles inference and feature-fetching cost in the treatment arms.",
+    "Booking.com's three-arm test of two models",
+    "The control arm runs the current model; each treatment arm computes both models and uses one.",
+    [
+      ...arms.map(([name, sub, [m1, m2], act], i) => {
+        const y = y0 + i * rh;
+        const acts2 = act.endsWith("2");
+        return [
+          stage(32, y, 210, 76, name, sub, { accent: i ? C.blue : C.ink2, tint: i ? C.blueTint : C.panel }),
+          arrow(246, y + 38, 272, y + 38),
+          m1 ? stage(276, y, 150, 76, "Model 1", "computed", { accent: acts2 ? C.line : C.ink2 }) : "",
+          m2 ? stage(440, y, 150, 76, "Model 2", "computed", { accent: acts2 ? C.blue : C.line }) : "",
+          arrow(m2 ? 594 : 430, y + 38, 646, y + 38, { stroke: acts2 ? C.blue : C.ink2 }),
+          stage(650, y, 180, 76, act, "", { accent: acts2 ? C.blue : C.ink2, tint: acts2 ? C.blueTint : C.surface }),
+        ].join("\n");
+      }),
+      `<path d="M 848 ${y0 + rh} H 860 V ${y0 + 3 * rh - 24} H 848" fill="none" stroke="${C.blue}" stroke-width="2"/>`,
+      para(872, y0 + rh + 24, "Same computational load in both arms", 96, { size: 13, fill: C.ink }),
+      box(32, y0 + 3 * rh + 4, 936, 76, { fill: C.blueTint, stroke: C.blue }),
+      t(52, y0 + 3 * rh + 34, "Analysis", { size: 16, weight: 700 }),
+      t(52, y0 + 3 * rh + 58, "Only the subjects for whom model 1 and model 2 disagree are compared.", { size: 15, fill: C.ink }),
+    ].join("\n"),
+    "Computing both models doubles inference and feature-fetching cost in the treatment arms.",
+  );
+}
+
+function workedLanes() {
+  const lanes = ["transactions table", "Ten derived tables", "Feature store", "Model A", "Model B"];
+  // [name, detail, first lane, last lane, basis]; basis: "doc", "vendor" or "judgment".
+  const steps = [
+    ["Add the new columns", "merchant_id and merchant_category_v2, beside the old column", 0, 0, "doc"],
+    ["Find who reads the ten tables", "lineage and usage logs; the owners review the change", 1, 1, "doc"],
+    ["Build a v2 of each derived table", "alongside v1, under a versioned name", 1, 1, "doc"],
+    ["Backfill the v2 tables", "month by month, in dependency order", 1, 1, "doc"],
+    ["Check each v2 table, then publish", "compared with v1 on the columns that should not change", 1, 1, "vendor"],
+    ["Add merchant_risk_30d_v2", "served online, unread until online and offline values agree", 2, 2, "judgment"],
+    ["Train B, and retrain A on the same dates", "each model pinned to its own features", 3, 4, "doc"],
+    ["Shadow model B and retrained A", "both score live payments and act on none, for about two weeks", 3, 4, "judgment"],
+    ["Run the three-arm experiment", "model A alone in control; size capped", 3, 4, "judgment"],
+    ["Ramp up model B", "model A as the fallback; promote once fraud labels mature", 3, 4, "judgment"],
+    ["Retire model A, remove the old chain", "model A, v1 feature, v1 tables, then the old column", 0, 3, "doc"],
+  ];
+  const lx = 488;
+  const lw = 96;
+  const y0 = 150;
+  const rh = 50;
+  const style = {
+    doc: { fill: C.blueTint, stroke: C.blue, dash: "" },
+    vendor: { fill: C.panel, stroke: C.ink2, dash: "3 3" },
+    judgment: { fill: C.orangeTint, stroke: C.orange, dash: "6 3" },
+  };
+  const ly = y0 + steps.length * rh + 26;
+  const legend = [
+    ["doc", "Published practice"],
+    ["vendor", "Rests partly on vendor documentation"],
+    ["judgment", "Includes a hold or limit set by the author"],
+  ];
+  return frame(
+    "worked-lanes",
+    ly + 116,
+    "Worked example from a source table to two models",
+    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. The new columns are added to the transactions table. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B is trained and model A retrained on the same dates, model B and the retrained model A are shadowed, the three-arm experiment runs, and model B is ramped up with model A as the fallback. Finally model A is retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.",
+    "Worked example: from a source table to two models",
+    "Each step sits under the part of the system it changes.",
+    [
+      ...lanes.map((l, i) => [box(lx + i * lw + 2, y0 - 46, lw - 4, steps.length * rh + 52, { fill: i % 2 ? C.surface : C.panel, r: 6 }), para(lx + i * lw + lw / 2, y0 - 26, l, lw - 12, { size: 12, fill: C.ink2, weight: 700, anchor: "middle", gap: 1.2 })].join("\n")),
+      ...steps.map(([name, detail, a, b, basis], i) => {
+        const y = y0 + i * rh;
+        const s = style[basis];
+        return [
+          i ? ln(32, y, lx - 8, y, { stroke: C.line, sw: 1 }) : "",
+          t(32, y + 22, `${i + 1}.`, { size: 15, weight: 700 }),
+          t(58, y + 22, name, { size: 15, weight: 700 }),
+          t(58, y + 40, detail, { size: 13, fill: C.ink2 }),
+          box(lx + a * lw + 8, y + 10, (b - a + 1) * lw - 16, 30, { fill: s.fill, stroke: s.stroke, r: 6, dash: s.dash }),
+          t(lx + ((a + b + 1) * lw) / 2, y + 30, String(i + 1), { size: 14, weight: 700, anchor: "middle" }),
+        ].join("\n");
+      }),
+      ...legend.map(([k, s], i) => {
+        const y = ly + i * 28;
+        const st = style[k];
+        return [box(32, y, 40, 20, { fill: st.fill, stroke: st.stroke, r: 5, dash: st.dash }), t(84, y + 15, s, { size: 14, fill: C.ink2 })].join("\n");
+      }),
+    ].join("\n"),
+    "",
+  );
+}
+
 const figures = {
-  "00-release-train.svg": releaseTrain(),
-  "01-where-the-wait-happens.svg": whereTheWait(),
-  "02-exposure-ladder.svg": ladder(),
   "03-timeline.svg": timeline(),
-  "04-one-mechanism.svg": oneMechanism(),
-  "05-who-waits.svg": queue(),
+  "00-release-train.svg": releaseTrain(),
   "06-published-ramps.svg": ramps(),
   "07-fca-findings.svg": fca(),
   "08-sixteen-days.svg": sixteenDays(),
   "09-three-rollbacks.svg": rollbacks(),
   "10-knight-capital.svg": knight(),
-  "11-payment-shadowing.svg": shadow(),
-  "12-what-the-rules-ask.svg": controls(),
-  "13-where-to-start.svg": start(),
+  "14-deploy-and-release.svg": deployAndRelease(),
+  "15-flag-evaluation.svg": flagEvaluation(),
+  "16-dormant-and-shadow.svg": dormantAndShadow(),
+  "17-flag-lifecycle.svg": flagLifecycle(),
+  "20-flag-change-classes.svg": flagChangeClasses(),
+  "21-data-rollback.svg": dataRollbackReach(),
+  "22-two-copies.svg": twoCopies(),
+  "23-write-audit-publish.svg": writeAuditPublish(),
+  "24-stream-rebuild.svg": streamRebuild(),
+  "25-feature-history.svg": featureHistory(),
+  "26-three-arm-test.svg": threeArm(),
+  "27-worked-example.svg": workedLanes(),
 };
 
 const check = process.argv.includes("--check");

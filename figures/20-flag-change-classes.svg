@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="flag-changes-title flag-changes-desc">
+  <title id="flag-changes-title">Change classes for a flag</title>
+  <desc id="flag-changes-desc">How flag changes are classified. The code that introduces a flag goes through normal review and deployment. The ramp plan, with its stages, holds, population, caps and stop conditions, is approved once. Each step within the plan is a standard change, executed under dual control and logged; a step outside the plan is a normal change. Switching the flag off and rolling back to the previous build are pre-authorized at any point: the on-call engineer acts without asking and the action is reviewed afterwards. The state of every flag on any given date can be produced as evidence.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="560" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Change classes for a flag</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Each kind of flag change, and the change class it is handled under.</text>
+    <rect x="32" y="150" width="180" height="118" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="44" y="176" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Code that</text>
+<text x="44" y="196.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">introduces the</text>
+<text x="44" y="217.6" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">flag</text>
+<text x="44" y="240.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">normal review and</text>
+<text x="44" y="258.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployment</text>
+<line x1="216" y1="209" x2="228" y2="209" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 220.8 205.5 L 228 209 L 220.8 212.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="232" y="150" width="180" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="244" y="176" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Ramp plan</text>
+<text x="244" y="198.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stages, holds,</text>
+<text x="244" y="217" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">population, caps and</text>
+<text x="244" y="235.20000000000002" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">stop conditions:</text>
+<text x="244" y="253.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">approved once</text>
+<line x1="416" y1="209" x2="428" y2="209" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 420.8 205.5 L 428 209 L 420.8 212.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="432" y="150" width="116" height="118" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="444" y="176" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Step 1</text>
+<text x="444" y="198.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">standard</text>
+<text x="444" y="217" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">change, dual</text>
+<text x="444" y="235.20000000000002" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">control,</text>
+<text x="444" y="253.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">logged</text>
+<line x1="550" y1="209" x2="556" y2="209" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 548.8 205.5 L 556 209 L 548.8 212.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="560" y="150" width="116" height="118" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="572" y="176" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Step 2</text>
+<text x="572" y="198.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">standard</text>
+<text x="572" y="217" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">change, dual</text>
+<text x="572" y="235.20000000000002" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">control,</text>
+<text x="572" y="253.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">logged</text>
+<line x1="678" y1="209" x2="684" y2="209" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 676.8 205.5 L 684 209 L 676.8 212.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="688" y="150" width="116" height="118" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="700" y="176" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Step 3</text>
+<text x="700" y="198.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">standard</text>
+<text x="700" y="217" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">change, dual</text>
+<text x="700" y="235.20000000000002" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">control,</text>
+<text x="700" y="253.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">logged</text>
+<line x1="806" y1="209" x2="812" y2="209" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 804.8 205.5 L 812 209 L 804.8 212.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="816" y="150" width="152" height="118" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="828" y="176" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Step outside</text>
+<text x="828" y="196.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">the plan</text>
+<text x="828" y="219.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">normal change</text>
+<path d="M 432 138 V 130 H 804 V 138" fill="none" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="618" y="122" font-size="13" fill="#52514e" font-weight="400" text-anchor="middle">within the approved plan</text>
+<rect x="232" y="310" width="736" height="80" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="250" y="340" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Switching the flag off, or rolling back to the previous build</text>
+<text x="250" y="366" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Pre-authorized at any point. The on-call engineer acts without asking, and the action is reviewed afterwards.</text>
+<rect x="32" y="414" width="936" height="64" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>
+<text x="50" y="442" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Evidence</text>
+<text x="50" y="464" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The state of every flag on any given date can be produced.</text>
+    <text x="32" y="538" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Raising every step as a normal change with three days' notice makes the ramp slower than the train.</text>
+  </g>
+</svg>

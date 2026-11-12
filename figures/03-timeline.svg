@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="895" viewBox="0 0 1000 895" role="img" aria-labelledby="timeline-title timeline-desc">
-  <title id="timeline-title">Twenty-four years of published practice</title>
-  <desc id="timeline-desc">A timeline from 2000 to 2024 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and codification with regulatory attention from 2017 to 2024.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1076" viewBox="0 0 1000 1076" role="img" aria-labelledby="timeline-title timeline-desc">
+  <title id="timeline-title">Twenty-five years of published practice</title>
+  <desc id="timeline-desc">A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and wider adoption, including regulated industries, from 2017 to 2025.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
-    <rect x="0" y="0" width="1000" height="895" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
-    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">What a fast follower inherits</text>
-    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Dates are when a practice was documented, not when it was invented.</text>
-    <line x1="150" y1="140" x2="150" y2="831" stroke="#d9d8d2" stroke-width="2" stroke-linecap="round"/>
+    <rect x="0" y="0" width="1000" height="1076" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Published accounts, 2000 to 2025</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Dates are when an event happened or a practice was first documented.</text>
+    <line x1="150" y1="140" x2="150" y2="1012" stroke="#d9d8d2" stroke-width="2" stroke-linecap="round"/>
 <text x="172" y="122" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">FOUNDATIONS</text>
 <text x="128" y="149" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2000</text>
 <circle cx="150" cy="144" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
@@ -31,38 +31,48 @@
 <text x="172" y="419" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">SCALE, FAILURES AND THE FIRST STUDIES</text>
 <text x="128" y="446" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2012</text>
 <circle cx="150" cy="441" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="446" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Knight Capital: a reused flag and one stale server lose $460 million in 45 minutes.</text>
-<text x="128" y="480" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2013</text>
-<circle cx="150" cy="475" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="480" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Netflix scores canaries automatically. Azure DevOps flips flags on launch day and goes down.</text>
-<text x="128" y="514" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2014</text>
-<circle cx="150" cy="509" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="514" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Azure DevOps adds “ring 0”: its own staff take every release first.</text>
-<text x="128" y="548" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2015</text>
-<circle cx="150" cy="543" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="548" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook paper: ship code disabled, ramp it with Gatekeeper, canary the configuration too.</text>
-<text x="128" y="582" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2016</text>
-<circle cx="150" cy="577" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="582" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook and OANDA study continuous deployment, including at an FX trading platform.</text>
-<text x="172" y="625" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">CODIFIED, AND REGULATORS TAKE NOTICE</text>
-<text x="128" y="652" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2017</text>
-<circle cx="150" cy="647" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="652" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook's website moves to pushing continuously from the main branch.</text>
-<text x="128" y="686" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2019</text>
-<circle cx="150" cy="681" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="686" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Uber shadows payment authorisation without charging anyone twice.</text>
-<text x="128" y="720" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2020</text>
-<circle cx="150" cy="715" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="720" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Amazon documents its pipeline: one box, then waves, with bake times and automatic rollback.</text>
-<text x="128" y="754" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2021</text>
-<circle cx="150" cy="749" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="754" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">UK regulator's review of 23 firms: smaller, more frequent releases succeed more often.</text>
-<text x="128" y="788" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2022</text>
-<circle cx="150" cy="783" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="788" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Monzo, a bank, rolls automated rollback out across 2,100 services.</text>
-<text x="128" y="822" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2024</text>
-<circle cx="150" cy="817" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="172" y="822" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">The US bank examiners' handbook describes canary and blue/green releases.</text>
+<text x="172" y="446" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Knight Capital: a reused flag and one stale server lose more than $460 million in about 45</text>
+<text x="172" y="467" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">minutes.</text>
+<text x="128" y="501" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2013</text>
+<circle cx="150" cy="496" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="501" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Netflix scores canaries automatically. Visual Studio Online goes down on a launch morning</text>
+<text x="172" y="522" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">because of flags.</text>
+<text x="128" y="556" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2014</text>
+<circle cx="150" cy="551" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="556" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Visual Studio Online builds a first ring of volunteer accounts that takes every deployment</text>
+<text x="172" y="577" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">first.</text>
+<text x="128" y="611" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2015</text>
+<circle cx="150" cy="606" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="611" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook paper: ship code disabled, ramp it with Gatekeeper, canary the configuration too.</text>
+<text x="128" y="645" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2016</text>
+<circle cx="150" cy="640" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="645" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook and OANDA study continuous deployment, including at an FX trading platform.</text>
+<text x="172" y="688" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">WIDER ADOPTION AND REGULATED INDUSTRIES</text>
+<text x="128" y="715" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2017</text>
+<circle cx="150" cy="710" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="715" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Facebook's website moves to deploying continuously from the main branch.</text>
+<text x="128" y="749" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2018</text>
+<circle cx="150" cy="744" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="749" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Starling Bank releases to production up to five times a day. France's ACPR describes batched</text>
+<text x="172" y="770" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">releases outside service hours.</text>
+<text x="128" y="804" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2020</text>
+<circle cx="150" cy="799" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="804" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Amazon documents its pipeline: one box, then waves, with bake times and automatic rollback.</text>
+<text x="128" y="838" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2021</text>
+<circle cx="150" cy="833" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="838" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">The ACPR accepts automated change processes. The UK FCA's review of 23 firms: smaller, more</text>
+<text x="172" y="859" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">frequent releases succeed more often.</text>
+<text x="128" y="893" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2022</text>
+<circle cx="150" cy="888" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="893" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">Monzo, a bank, deploys more than 100 times a day and rolls automated rollback out across more</text>
+<text x="172" y="914" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">than 2,100 services.</text>
+<text x="128" y="948" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2024</text>
+<circle cx="150" cy="943" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="948" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">The US bank examiners' handbook mentions canary releases.</text>
+<text x="128" y="982" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="end">2025</text>
+<circle cx="150" cy="977" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="172" y="982" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">DORA's change rules apply in the EU; its standards permit testing in production as an</text>
+<text x="172" y="1003" font-size="16" fill="#0b0b0b" font-weight="400" text-anchor="start">approved exception.</text>
     
   </g>
 </svg>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="648" viewBox="0 0 1000 648" role="img" aria-labelledby="two-copies-title two-copies-desc">
+  <title id="two-copies-title">Two copies of a column or table</title>
+  <desc id="two-copies-desc">Seven steps for running two copies of a column or table, showing for each step which copy is written, read and authoritative. Expand: the old copy is written, read and authoritative; the new copy is added and unused. Keep both populated: both copies are written, and a flag may gate writes to the new copy. Backfill: historical rows are written to the new copy. Compare reads: the new copy is read for comparison while the old result is still returned. Switch reads: a flag or percentage moves reads to the new copy, while the old copy remains authoritative. Make the new copy authoritative: the new copy is written, read and authoritative, a flag chooses the authoritative store, and changes are copied back to the old copy so rollback remains possible. Contract: writes to the old copy stop, and it is deleted after enough releases.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="648" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Two copies of a column or table</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">At each step, which copy is written, read and authoritative, and what the flag controls.</text>
+    <text x="32" y="126" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">STEP</text>
+<text x="286" y="126" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">OLD COPY</text>
+<text x="552" y="126" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">NEW COPY</text>
+<text x="818" y="126" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">WHAT THE FLAG DOES</text>
+<line x1="32" y1="140" x2="968" y2="140" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="32" y="166" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">1. Expand</text>
+<text x="32" y="186" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">add the new column or table</text>
+<rect x="286" y="154" width="80" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="326" y="170.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="372" y="154" width="76" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="410" y="170.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">read</text><rect x="454" y="154" width="92" height="24" rx="12" fill="#52514e" stroke="#52514e" stroke-width="1.2"/><text x="500" y="170.32" font-size="12" fill="#ffffff" font-weight="400" text-anchor="middle">authoritative</text>
+<text x="552" y="170" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">added, unused</text>
+
+<line x1="32" y1="204" x2="968" y2="204" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="32" y="230" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">2. Keep both populated</text>
+<text x="32" y="250" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">trigger, dual writes or log replay</text>
+<rect x="286" y="218" width="80" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="326" y="234.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="372" y="218" width="76" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="410" y="234.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">read</text><rect x="454" y="218" width="92" height="24" rx="12" fill="#52514e" stroke="#52514e" stroke-width="1.2"/><text x="500" y="234.32" font-size="12" fill="#ffffff" font-weight="400" text-anchor="middle">authoritative</text>
+<rect x="552" y="218" width="80" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="592" y="234.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text>
+<text x="818" y="228" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">may gate writes to</text>
+<text x="818" y="244.9" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">the new copy</text>
+<line x1="32" y1="268" x2="968" y2="268" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="32" y="294" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">3. Backfill</text>
+<text x="32" y="314" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">copy historical rows, throttled</text>
+<rect x="286" y="282" width="80" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="326" y="298.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="372" y="282" width="76" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="410" y="298.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">read</text><rect x="454" y="282" width="92" height="24" rx="12" fill="#52514e" stroke="#52514e" stroke-width="1.2"/><text x="500" y="298.32" font-size="12" fill="#ffffff" font-weight="400" text-anchor="middle">authoritative</text>
+<rect x="552" y="282" width="80" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="592" y="298.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text>
+
+<line x1="32" y1="332" x2="968" y2="332" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="32" y="358" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">4. Compare reads</text>
+<text x="32" y="378" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">the old result is still returned</text>
+<rect x="286" y="346" width="80" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="326" y="362.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="372" y="346" width="76" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="410" y="362.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">read</text><rect x="454" y="346" width="92" height="24" rx="12" fill="#52514e" stroke="#52514e" stroke-width="1.2"/><text x="500" y="362.32" font-size="12" fill="#ffffff" font-weight="400" text-anchor="middle">authoritative</text>
+<rect x="552" y="346" width="80" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="592" y="362.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="638" y="346" width="76" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2" stroke-dasharray="4 3"/><text x="676" y="362.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">compared</text>
+
+<line x1="32" y1="396" x2="968" y2="396" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="32" y="422" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">5. Switch reads</text>
+<text x="32" y="442" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">by flag or percentage</text>
+<rect x="286" y="410" width="80" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2"/><text x="326" y="426.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="454" y="410" width="92" height="24" rx="12" fill="#52514e" stroke="#52514e" stroke-width="1.2"/><text x="500" y="426.32" font-size="12" fill="#ffffff" font-weight="400" text-anchor="middle">authoritative</text>
+<rect x="552" y="410" width="80" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="592" y="426.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="638" y="410" width="76" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="676" y="426.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">read</text>
+<text x="818" y="420" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">moves reads to the</text>
+<text x="818" y="436.9" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">new copy</text>
+<line x1="32" y1="460" x2="968" y2="460" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="32" y="486" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">6. Make new copy authoritative</text>
+<text x="32" y="506" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">a reverse sync keeps rollback possible</text>
+<rect x="286" y="474" width="80" height="24" rx="12" fill="#f3f2ee" stroke="#52514e" stroke-width="1.2" stroke-dasharray="4 3"/><text x="326" y="490.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">copied back</text>
+<rect x="552" y="474" width="80" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="592" y="490.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="638" y="474" width="76" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="676" y="490.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">read</text><rect x="720" y="474" width="92" height="24" rx="12" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.2"/><text x="766" y="490.32" font-size="12" fill="#ffffff" font-weight="400" text-anchor="middle">authoritative</text>
+<text x="818" y="484" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">chooses the</text>
+<text x="818" y="500.9" font-size="13" fill="#0b0b0b" font-weight="400" text-anchor="start">authoritative store</text>
+<line x1="32" y1="524" x2="968" y2="524" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+<text x="32" y="550" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">7. Contract</text>
+<text x="32" y="570" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">delete the old copy after enough releases</text>
+<text x="286" y="554" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">writes stop, then deleted</text>
+<rect x="552" y="538" width="80" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="592" y="554.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">written</text><rect x="638" y="538" width="76" height="24" rx="12" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.2"/><text x="676" y="554.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">read</text><rect x="720" y="538" width="92" height="24" rx="12" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.2"/><text x="766" y="554.32" font-size="12" fill="#ffffff" font-weight="400" text-anchor="middle">authoritative</text>
+
+<line x1="32" y1="588" x2="968" y2="588" stroke="#d9d8d2" stroke-width="1" stroke-linecap="round"/>
+    <text x="32" y="626" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">A dashed outline marks a copy read only for comparison (step 4) or kept in sync from the new copy (step 6).</text>
+  </g>
+</svg>

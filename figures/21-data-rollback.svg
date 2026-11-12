@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-labelledby="data-rollback-title data-rollback-desc">
+  <title id="data-rollback-title">What a table rollback restores</title>
+  <desc id="data-rollback-desc">A source table feeds a chain of ten derived tables, a feature computed from the last of them, and two models trained on that feature. Rolling back the source table, by moving an Iceberg snapshot pointer back or by a Delta Lake restore, returns only that table to its earlier version. The ten derived tables, the feature and the two models still hold data built from the bad version until each is recomputed.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="470" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">What a table rollback restores</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Restoring the source table leaves everything built from the bad version unchanged.</text>
+    <text x="186" y="172" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">TEN DERIVED TABLES</text>
+<rect x="32" y="190" width="128" height="80" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="44" y="216" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Source table</text>
+<text x="44" y="238.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">rolled back</text>
+<line x1="162" y1="230" x2="182" y2="230" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 174.8 226.5 L 182 230 L 174.8 233.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="186" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="208" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">1</text><line x1="231" y1="230" x2="237" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 229.8 226.5 L 237 230 L 229.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="238" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="260" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">2</text><line x1="283" y1="230" x2="289" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 281.8 226.5 L 289 230 L 281.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="290" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="312" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">3</text><line x1="335" y1="230" x2="341" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 333.8 226.5 L 341 230 L 333.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="342" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="364" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">4</text><line x1="387" y1="230" x2="393" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 385.8 226.5 L 393 230 L 385.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="394" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="416" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">5</text><line x1="439" y1="230" x2="445" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 437.8 226.5 L 445 230 L 437.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="446" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="468" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">6</text><line x1="491" y1="230" x2="497" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 489.8 226.5 L 497 230 L 489.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="498" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="520" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">7</text><line x1="543" y1="230" x2="549" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 541.8 226.5 L 549 230 L 541.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="550" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="572" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">8</text><line x1="595" y1="230" x2="601" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 593.8 226.5 L 601 230 L 593.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="602" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="624" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">9</text><line x1="647" y1="230" x2="653" y2="230" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/><path d="M 645.8 226.5 L 653 230 L 645.8 233.5" fill="none" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="654" y="190" width="44" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/><text x="676" y="236" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="middle">10</text>
+<line x1="700" y1="230" x2="716" y2="230" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 708.8 226.5 L 716 230 L 708.8 233.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="720" y="172" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">FEATURE</text>
+<rect x="720" y="190" width="116" height="80" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="732" y="216" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Feature</text>
+
+<text x="862" y="172" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">MODELS</text>
+<line x1="838" y1="210" x2="858" y2="210" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 850.8 206.5 L 858 210 L 850.8 213.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="838" y1="250" x2="858" y2="250" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 850.8 246.5 L 858 250 L 850.8 253.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="862" y="190" width="106" height="36" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="915" y="214" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="middle">Model</text>
+<rect x="862" y="234" width="106" height="36" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="915" y="258" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="middle">Model</text>
+<path d="M 186 284 V 292 H 968 V 284" fill="none" stroke="#eb6834" stroke-width="2"/>
+<text x="186" y="316" font-size="15" fill="#0b0b0b" font-weight="400" text-anchor="start">Each still holds data built from the bad version until it is recomputed</text>
+<rect x="32" y="360" width="330" height="76" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>
+<text x="48" y="386" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">Rollback: Iceberg moves a snapshot</text>
+<text x="48" y="404.2" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">pointer back, or Delta Lake restores an</text>
+<text x="48" y="422.4" font-size="14" fill="#0b0b0b" font-weight="400" text-anchor="start">earlier version</text>
+<line x1="96" y1="356" x2="96" y2="274" stroke="#2a78d6" stroke-width="2.5" stroke-linecap="round"/><path d="M 92.5 281.2 L 96 274 L 99.5 281.2" fill="none" stroke="#2a78d6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+  </g>
+</svg>

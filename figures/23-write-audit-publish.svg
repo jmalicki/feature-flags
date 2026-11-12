@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="530" viewBox="0 0 1000 530" role="img" aria-labelledby="wap-title wap-desc">
+  <title id="wap-title">Write, audit, publish for a chain of tables</title>
+  <desc id="wap-desc">Write, audit, publish for a chain of three tables. The v2 tables are written in a staging area that consumers cannot see, and each is checked there. One commit then publishes all the v2 tables together, and aborts if a final check fails. The v1 tables stay readable throughout, and consumers cut over from v1 to v2 one at a time, before the v1 deprecation date. Publishing several tables in one commit follows Databricks documentation.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="530" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Write, audit, publish for a chain of tables</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Each v2 table is written and checked in staging, then all are published in one commit.</text>
+    <text x="32" y="128" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">STAGING: NOT VISIBLE TO CONSUMERS</text>
+<rect x="32" y="140" width="570" height="180" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+<rect x="56" y="160" width="160" height="60" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="68" y="186" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Table 1 v2</text>
+
+<line x1="219" y1="190" x2="234" y2="190" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 226.8 186.5 L 234 190 L 226.8 193.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="136" y1="222" x2="136" y2="252" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="66" y="254" width="140" height="24" rx="12" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.2"/><text x="136" y="270.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">checks on table 1</text>
+<rect x="238" y="160" width="160" height="60" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="250" y="186" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Table 2 v2</text>
+
+<line x1="401" y1="190" x2="416" y2="190" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 408.8 186.5 L 416 190 L 408.8 193.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="318" y1="222" x2="318" y2="252" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="248" y="254" width="140" height="24" rx="12" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.2"/><text x="318" y="270.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">checks on table 2</text>
+<rect x="420" y="160" width="160" height="60" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="432" y="186" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Table 3 v2</text>
+
+
+<line x1="500" y1="222" x2="500" y2="252" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="430" y="254" width="140" height="24" rx="12" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.2"/><text x="500" y="270.32" font-size="12" fill="#0b0b0b" font-weight="400" text-anchor="middle">checks on table 3</text>
+<text x="52" y="306" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Audit: each v2 table is checked before anything is published</text>
+<line x1="606" y1="230" x2="630" y2="230" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 622.8 226.5 L 630 230 L 622.8 233.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="634" y="140" width="150" height="180" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="646" y="166" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Publish</text>
+<text x="646" y="186.8" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">together</text>
+<text x="646" y="209.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">one commit for</text>
+<text x="646" y="227.79999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">all v2 tables;</text>
+<text x="646" y="246" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">aborts if a</text>
+<text x="646" y="264.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">final check</text>
+<text x="646" y="282.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">fails</text>
+<line x1="788" y1="230" x2="812" y2="230" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 804.8 226.5 L 812 230 L 804.8 233.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="816" y="140" width="152" height="180" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="828" y="166" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Consumers</text>
+<text x="828" y="188.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">cut over to v2</text>
+<text x="828" y="207" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">one at a time,</text>
+<text x="828" y="225.20000000000002" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">before the v1</text>
+<text x="828" y="243.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deprecation date</text>
+<text x="32" y="378" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">V1 TABLES: READABLE THROUGHOUT</text>
+<rect x="32" y="392" width="160" height="52" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5"/>
+<text x="44" y="418" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Table 1 v1</text>
+
+<rect x="214" y="392" width="160" height="52" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5"/>
+<text x="226" y="418" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Table 2 v1</text>
+
+<rect x="396" y="392" width="160" height="52" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5"/>
+<text x="408" y="418" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Table 3 v1</text>
+
+<path d="M 548 418 H 892 V 324" fill="none" stroke="#8a8983" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+<line x1="892" y1="334" x2="892" y2="324" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 888.5 331.2 L 892 324 L 895.5 331.2" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="560" y="410" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">consumers read v1 until they cut over</text>
+    <text x="32" y="508" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Publishing several tables in one commit follows Databricks documentation for multi-table transactions.</text>
+  </g>
+</svg>
