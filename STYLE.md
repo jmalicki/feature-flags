@@ -27,7 +27,7 @@ Each was flagged by the commissioner verbatim.
 - Unsupported generalizations about what "most teams" or "most firms" do, or claims such as "common in financial services".
 - Also avoid: em dashes, "it is worth noting", "importantly", "notably", "in other words", "that said", "crucially", "at its core", "serves as", "plays a role", rhetorical questions.
 - Prose that narrates method and provenance instead of the subject, and lists of steps stuffed with a citation per clause and parenthetical tags such as "(judgment)". The commissioner called this "pure AI slop": "Each step in the list is documented by the organizations named with it, and running the steps in this order as one release is an inference assembled from those documented steps. Holds marked as judgment are the author's and come from no source." Write the example as a story of what happens, cite the few sources a reader would want, and say what is undocumented once, in an ordinary sentence.
-- A catalog of cases written as paragraphs: one case after another, each a rule plus citations. The commissioner called two such sections "dry droning" and found the same content "waaay better" as a table. When a passage answers several parallel cases (objections, parties, kinds, conditions), state the one idea in prose and put the cases in a table with the sources in its cells; keep prose for the reasoning and the stories.
+- A catalog of cases written as paragraphs: one case after another, each a rule plus citations. The commissioner called two such sections "dry droning" and found the same content "waaay better" as a table. When a passage answers several parallel cases (objections, parties, kinds, modes, texts), state the one idea in prose and put the cases in a table with the sources in its cells. Use judgment: tables suit reference material and parallel cases that a reader scans; arguments, stories and sequences stay prose, because a table flattens them. The commissioner wants judgment here: "i don't want tables everywhere".
 - Operational detail piled into prose: every hold, threshold, metric and edge case of a procedure spelled out in sentences or bold-numbered steps. The commissioner described the payments sections written this way as "overwrought" and "boring detail shoved down my throat". State what the procedure does and why, with one or two specifics that carry the point; put the full procedure in a figure, and leave the rest to the research notes.
 
 ## Opening
@@ -35,13 +35,15 @@ Each was flagged by the commissioner verbatim.
 - The introduction is at most two short paragraphs: the situation and the claim, plus any definitions the reader needs immediately.
 - No summary section. After the introduction, a short "Structure of the article" section lists the parts, linked, with one line on what each covers. It describes the structure; it does not restate the argument. This is the one permitted exception to the rule against signposting.
 
-## Relevance test
-
-Every section, example, incident and regulatory citation in the body has to serve the thesis: that teams can deliver much faster while keeping safety by separating deployment from release and changing how they work. Material earns a place in the body only if it does one of the following.
+## Audience and scope
 
 The essay is general: it argues how software engineering should change. Payments is its favorite running example and is preferred whenever an example is needed, but nothing may signal that the essay is written for payments or finance. Introduce a payments case as an example ("in payments, for instance"), never with "for a financial firm" or similar; no heading is named for an industry; general text says "user" or "customer" and "organization" or "company", keeping "client" for business clients in a specific example and "firm" for named financial firms or entities a regulation covers. Payments material gives evidence and brief answers so that a payments engineer cannot dismiss the argument; it is never a tutorial. Examples from other industries are valuable: never remove one to make room for payments.
 
 The essay is not about regulation. Regulation appears in the body only to remove the objection that the rules forbid this model; what regulators and audit frameworks accept or require, and per-jurisdiction detail, belong in the regulation appendix. The essay does not cover PCI DSS.
+
+## Relevance test
+
+Every section, example, incident and regulatory citation in the body has to serve the thesis: that teams can deliver much faster while keeping safety by separating deployment from release and changing how they work. Material earns a place in the body only if it does one of the following.
 
 - It answers an objection the reader will raise (for example, "the regulators will not allow this").
 - It changes how the model has to be built (for example, independent approval, flag changes counting as changes, rollback provisions).
@@ -63,9 +65,24 @@ Accurate material that fails this test goes into an appendix or the research not
 - Figure titles are plain descriptive labels, under the same rules as headings. Sources for data in a figure are stated in the figure or in the adjacent text.
 - Render each figure and look at it before committing: no overlapping or clipped text.
 
+## Sections and sentences
+
+- Build each section around one idea, stated in its first paragraph, and make every later paragraph serve it. A section that loses the reader is usually a catalog of cases or a retelling of what a figure or another section already shows.
+- Where a figure already shows something, cut the text that repeats it; keep only what the figure cannot show, such as the reason, the setup and the conclusion.
+- Split sentences over about 45 words. Do not weld a signpost or a second claim onto a sentence with ", and".
+- Define a term before its first use, and use defined terms exactly as defined (a soak is in pre-production and a bake in production; never swap them).
+- Headings describe what the section contains. Rename a heading when the content under it changes.
+- Match each claim to the scope of its source: planned is not done, a bot's request is not a requirement, a consumer's right is not a business's, one company's practice is not "most companies'", and a settlement service is not a scheme.
+
+## Review process
+
+- After any rewrite, fact-check the changed text again. Rewrites for style have dropped qualifications and turned inferences into stated facts.
+- Read the essay cold from two positions before calling it ready: a general engineering leader outside finance, and a skeptical payments engineer. The first tests whether the essay reads as general; the second tests whether a payments reader can still dismiss it.
+- Check every internal anchor and render every changed figure before committing.
+
 ## Evidence rules
 
 - Every factual statement about a named organization, regulator, document, number or date must come from the research report or notes and carry an inline link to the primary source given there.
 - Quote only text listed as safe to print (read in raw text). Anything tool-extracted or snippet-only is paraphrased, or omitted if the notes say it must be re-checked.
-- Where a step is the author's inference rather than documented practice, say so plainly in the sentence ("No published account describes…", "This step is an inference from…").
+- Where a step is the author's inference or proposal rather than documented practice, mark it in ordinary words, once: modal wording ("would", "should") or a short clause ("a control proposed here"). Do not repeat provenance refrains such as "in the published accounts" or "no published account describes" paragraph after paragraph, and do not drop the marking when removing hedges.
 - Where the evidence is thin, say so once, where it is weighed, and move on.
