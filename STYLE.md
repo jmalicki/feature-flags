@@ -27,6 +27,17 @@ Each was flagged by the commissioner verbatim.
 - Unsupported generalizations about what "most teams" or "most firms" do, or claims such as "common in financial services".
 - Also avoid: em dashes, "it is worth noting", "importantly", "notably", "in other words", "that said", "crucially", "at its core", "serves as", "plays a role", rhetorical questions.
 
+## Relevance test
+
+Every section, example, incident and regulatory citation in the body has to serve the thesis: that teams can deliver much faster while keeping safety by separating deployment from release and changing how they work. Material earns a place in the body only if it does one of the following.
+
+- It answers an objection the reader will raise (for example, "the regulators will not allow this").
+- It changes how the model has to be built (for example, independent approval, flag changes counting as changes, rollback provisions).
+- It is evidence for or against the thesis that the argument relies on.
+- It teaches a distinct lesson. One example per lesson; a second example that adds weight but no new lesson is cut.
+
+Accurate material that fails this test goes into an appendix or the research notes, not the body. Research findings are not added to the body merely because they are true and new. Per-jurisdiction regulatory detail and per-tool detail belong in appendices.
+
 ## Evidence rules
 
 - Every factual statement about a named organization, regulator, document, number or date must come from the research report or notes and carry an inline link to the primary source given there.
