@@ -2,13 +2,13 @@
 
 *Why engineering teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts, and fast rollback.*
 
-Some engineering organizations still deliver software through a release train: changes accumulate into a scheduled release, which is promoted through test environments, held in pre-production for a soak period, approved, and then released to every user at once. This article argues that they should replace it with the model now used at most large internet companies, in which small changes reach production every day with their new behavior disabled, and each behavior is then released separately, in stages that can be reversed. The train delays every change by days regardless of its risk, and the safety it provides is narrower than it appears; separating deployment from release removes that trade-off, provided the supporting practices, most of which are cultural, are adopted in full.
+Some engineering organizations still deliver software through a release train: changes accumulate into a scheduled release, which is promoted through test environments, held in pre-production for a soak period, approved, and then released to every user at once. They should replace it with the model now used at most large internet companies, in which small changes reach production every day with their new behavior disabled, and each behavior is then released separately, in stages that can be reversed. The train delays every change by days regardless of its risk, and the safety it provides is narrower than it appears; separating deployment from release removes that trade-off, provided the supporting practices, most of which are cultural, are adopted in full.
 
-In this article, to **deploy** is to put code into production, to **release** is to expose new behavior to users, and a **train** is a scheduled bundle that does both at once.
+To **deploy** is to put code into production, to **release** is to expose new behavior to users, and a **train** is a scheduled bundle that does both at once.
 
 ## Structure of the article
 
-The article is in six parts, followed by two appendices. Most of the linked sources are engineering posts and papers written by the teams that did the work.
+The article is in six parts, followed by two appendices.
 
 - [The release train](#the-release-train), [How the industry got here](#how-the-industry-got-here) and [Separating deployment from release](#separating-deployment-from-release) describe the train and its costs, how the alternative developed, and how feature flags separate deployment from release.
 - [The techniques](#the-techniques) covers dark launches and shadow runs, canaries, rings and ramps, experiments and rollback, with the limits of each.
@@ -24,19 +24,11 @@ The article is in six parts, followed by two appendices. Most of the linked sour
 
 A release train runs on a schedule, which may be monthly, weekly, or several times a week. Everything merged since the previous cut is bundled into a release candidate. The candidate is promoted through a series of environments, typically integration, performance and pre-production, with automated and manual tests at each stage. It is then held in pre-production for a fixed soak period, approved by a change board, and released in a scheduled window.
 
-![A timeline of one release train: finished changes wait about 1.75 days on average for the next cut, the train spends three days in promotion, and it is then released to every user at once. User exposure stays at zero and steps to 100% at release; a typical change takes about five days from finished to live.](figures/00-release-train.svg)
+Microsoft's product teams in the 1990s [built daily and stabilized at milestones](https://www.cs.umd.edu/~atif/Teaching/Spring2003/cusumano.pdf) that were months apart, whereas Facebook's website shipped [a weekly release](https://people.engr.tamu.edu/pcr/courses/csce431/fall19/reading/FacebookDevelopment.pdf), cut on Sunday and pushed on Tuesday, into the 2010s.
 
-Microsoft's product teams in the 1990s [built daily and stabilized at milestones](https://www.cs.umd.edu/~atif/Teaching/Spring2003/cusumano.pdf) that were months apart, whereas Facebook's website shipped [a weekly release](https://people.engr.tamu.edu/pcr/courses/csce431/fall19/reading/FacebookDevelopment.pdf), cut on Sunday and pushed on Tuesday, into the 2010s. Mobile applications ran on cycles of several weeks.
+The running example is a schedule of two trains a week, each taking three days from cut to release. On the first day the candidate is deployed to an integration environment and an automated regression pack runs against simulators for external dependencies, a few hours of machine time, much of which could run in parallel. The second day is a performance run, usually preceded by an environment reset and a data refresh that take longer than the test itself, followed by an overnight batch cycle. The third day goes to evidence assembly, change approval and the wait for a release window.
 
-The running example in this article is a schedule of two trains a week, each taking three days from cut to release, and the three days are divided roughly as follows.
-
-The first day consists of deployment to an integration environment, followed by an automated regression pack run against simulators for external dependencies. This work amounts to a few hours of machine time, much of which could run in parallel.
-
-The second day is a performance run, usually preceded by an environment reset and a data refresh that take longer than the test itself, followed by an overnight batch cycle.
-
-The third day is evidence assembly, change approval, and the wait for a release window.
-
-Only part of that time is work; the remainder is spent waiting for an environment, an approver, or a release window. When Amazon measured its own pipeline, before automating it, code took an average of 16 days to get from check-in to production, and for almost 14 of those days it was [waiting for someone to start a build, perform a deployment or run a test](https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/). A twice-weekly train will have a far better ratio, but it would be surprising if the work came to more than one day of the three.
+Only part of that time is work; the remainder is spent waiting for an environment, an approver, or a release window. When Amazon measured its own pipeline, before automating it, code took an average of 16 days to get from check-in to production, and for almost 14 of those days it was [waiting for someone to start a build, perform a deployment or run a test](https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/). A twice-weekly train has a far better ratio, but on the breakdown above the work is unlikely to come to more than one day of the three.
 
 ![A sixteen-day bar: about two days of work and almost fourteen days of waiting for someone to start the next step.](figures/08-sixteen-days.svg)
 
@@ -49,9 +41,7 @@ A soak finds faults that appear only with elapsed time or at a boundary, which s
 - queues that slowly deepen
 - date rollovers and other time-triggered work
 - batch jobs running to completion on new code while online traffic continues
-- whether the release still holds peak throughput
-
-The model described here keeps those checks and changes where the waiting happens and how much work has to wait for it.
+- a release that no longer holds peak throughput
 
 Some of what happens in the three days has to be preserved in any replacement:
 
@@ -60,30 +50,30 @@ Some of what happens in the three days has to be preserved in any replacement:
 - test windows with external partners, which run on the partner's calendar
 - a second person's judgment on any high-risk change
 
-The rest of the three days is largely queueing, which can be reduced.
-
 ### Lead time
 
 With two evenly spaced trains a week, a finished change waits about 1.75 days on average for the next one and then spends three days in promotion. The total is about five days from finished to live, or six and a half for a change that has just missed a train, and the wait is the same for a one-line fix as for a change to core business logic.
+
+![A timeline of one release train: finished changes wait about 1.75 days on average for the next cut, the train spends three days in promotion, and it is then released to every user at once. User exposure stays at zero and steps to 100% at release; a typical change takes about five days from finished to live.](figures/00-release-train.svg)
 
 The table below applies the five-day figure to the kinds of work a team does. The right-hand column is an estimate of the same work once deployment and release are separated.
 
 | Kind of work | On the train | Deployed daily, released separately |
 | --- | --- | --- |
-| An ordinary change, which is most of them | About 5 days from finished to live | In production the next business day, on every node the day after |
+| An ordinary change | About 5 days from finished to live | In production the next business day, on every node the day after |
 | A fault found in production | 5 days, or a hotfix that skips most of the three days | The same as an ordinary change, through the normal path |
-| A feature that needs three rounds of feedback from production | About 15 days of waiting | About 3 |
+| A feature that needs three rounds of feedback from production | About 15 days of waiting | About 3 days |
 | A high-risk change | 5 days, then every client at once | Evidence from production the next day; full release in four to eight weeks |
 
-The last row shows a high-risk change taking longer under the new model, which is intended. The gain comes from the other three rows, where ordinary work no longer queues behind the risky change.
+The last row shows a high-risk change deliberately taking longer under the new model. The gain comes from the other three rows, where ordinary work no longer queues behind the risky change.
 
-The hotfix row reflects the emergency path that usually accompanies a train and that skips most of the three days. The existence of that path shows that the three days are sometimes more than a change needs. It also means that changes made under the most pressure receive less verification than any others.
+The hotfix path shows that the three days are sometimes more than a change needs, and it means that the changes made under the most pressure receive the least verification.
 
 ### Batching
 
 The second cost of the train is that each release carries half a week of other people's changes, so when a release misbehaves, the first job is to work out which change caused it.
 
-A schedule with a cut-off also changes how people behave near it. LinkedIn's mobile team, releasing monthly behind a four-day manual regression pass, [described engineers rushing code in before the deadline](https://engineering.linkedin.com/blog/2016/02/3x3--speeding-up-mobile-releases) because missing it cost a month. Facebook measured the result on its own mobile releases and found that code pushed on the day of the cut was [of lower quality than code pushed on other days](https://www.eecg.toronto.edu/~stumm/Papers/Rossi-FSE-16.pdf). The same mechanism applies, with a weaker effect, when missing the train costs half a week instead of a month.
+A schedule with a cut-off also changes how people behave near it. LinkedIn's mobile team, releasing monthly behind a four-day manual regression pass, [described engineers rushing code in before the deadline](https://engineering.linkedin.com/blog/2016/02/3x3--speeding-up-mobile-releases) because missing it cost a month. Facebook measured the result on its own mobile releases and found that code pushed on the day of the cut was [of lower quality than code pushed on other days](https://www.eecg.toronto.edu/~stumm/Papers/Rossi-FSE-16.pdf). A train that leaves twice a week creates the same incentive, presumably weaker, since missing it costs half a week instead of a month.
 
 Batching also keeps unfinished work out of the main branch. A change that takes three weeks cannot board a train until it is complete, so it lives on a branch and drifts from everyone else's work until it is merged.
 
@@ -95,29 +85,29 @@ One obvious remedy is to shorten the three days, but that means cutting the soak
 
 The other is to run the train daily with the same three days, which does not work either, because three trains are then in promotion at once. That arrangement needs three sets of environments and three times the partner test windows. A fault found on the third day of one train is already in the two behind it. Every change still waits three days, and every release still reaches every client in the same instant.
 
-Within the train model, speed and safety trade against each other, and a responsible team chooses safety. The trade-off exists only because the train deploys and releases in one act, so the caution that a risky change deserves is applied to the whole train and everything on the train waits for it.
+Within the train model speed and safety trade against each other because the train deploys and releases in one act, so the caution that a risky change deserves is applied to every change on the train.
 
-Google's Site Reliability Workbook states the constraint as follows: ["If you release daily, you can't let your canary last for a week while running only one canary deployment at a time."](https://sre.google/workbook/canarying-releases/)
+Google's Site Reliability Workbook states the constraint directly: ["If you release daily, you can't let your canary last for a week while running only one canary deployment at a time."](https://sre.google/workbook/canarying-releases/)
 
 ### Limits of pre-production testing
 
-A soak is effective against faults that depend on elapsed time. It does not detect faults that depend on the behavior of real dependencies, on code paths that are not yet in use, or on conditions that have not yet occurred.
+A soak does not detect faults that depend on the behavior of real dependencies, on code paths that are not yet in use, or on conditions that have not yet occurred.
 
 A soak cannot show how real dependencies behave, because pre-production talks to simulators and stubs. A simulator can confirm that a request is well formed and that scripted error and timeout cases are handled, but it cannot show how a real third party responds to real traffic.
 
-A soak also cannot find a fault on a code path that nothing exercises, because time in an environment proves nothing about code that is not being called. Knight Capital's new order-routing code went onto its production servers in stages from July 27, 2012, five days before it was first used. The [SEC's order against the firm](https://www.sec.gov/litigation/admin/2013/34-70694.pdf) records no incident in that time, because nothing was yet using the code, and a three-day soak would have observed no more than those five days in production did. On the morning it was activated, the firm took on unwanted positions in about 45 minutes that cost it more than $460 million.
+A soak also cannot find a fault on a code path that nothing exercises, because time in an environment proves nothing about code that is not being called. Knight Capital's new order-routing code went onto its production servers in stages from July 27, 2012, five days before it was first used. The [SEC's order against the firm](https://www.sec.gov/litigation/admin/2013/34-70694.pdf) records no incident in that time, because nothing was yet using the code, and a three-day soak would have observed no more than those five days in production did.
 
 Elapsed time in any environment also does not find a fault whose trigger has not yet occurred. Stripe's outage of July 2019 came from a database version that had [passed testing, a phased rollout and about three months in production](https://stripe.com/rcas/2019-07-10) before a rare combination of conditions exposed it.
 
-Staging environments also differ from production in the data they hold. In April 2022 Atlassian ran a maintenance script that had been tested in staging under its normal change process and peer reviewed. It deleted the sites of 775 customers, some of whom were locked out for up to 14 days. [Atlassian's review](https://www.atlassian.com/engineering/post-incident-review-april-2022-outage) explains that staging could not have caught it, because the identifiers that triggered the fault did not exist there.
+Staging environments differ from production in the data they hold. In April 2022 Atlassian ran a maintenance script that had been tested in staging under its normal change process and peer reviewed. It deleted the sites of 775 customers, some of whom were locked out for up to 14 days. [Atlassian's review](https://www.atlassian.com/engineering/post-incident-review-april-2022-outage) explains that staging could not have caught it, because the identifiers that triggered the fault did not exist there.
 
-A long wait can also lose its purpose, as Netflix's engineers reported when, looking back at 2012, they [wrote that their week-long canaries](https://netflixtechblog.com/full-cycle-developers-at-netflix-a08c31f83249) were "devolving into verifying endurance (“nothing broke after one week of canarying, let’s push it”) rather than correct functionality".
+A long wait can also lose its purpose. Looking back at 2012, Netflix's engineers [wrote that their week-long canaries](https://netflixtechblog.com/full-cycle-developers-at-netflix-a08c31f83249) were "devolving into verifying endurance (“nothing broke after one week of canarying, let’s push it”) rather than correct functionality".
 
-The size of a change also matters more than the scrutiny it receives. In 2021 the UK's Financial Conduct Authority published [a review of how 23 financial firms had made more than a million production changes](https://www.fca.org.uk/publications/multi-firm-reviews/implementing-technology-change) during 2019. Changes the firms classed as major, which generally received more oversight, failed at 3.8%, against 1.6% for changes as a whole. Change advisory boards approved more than 90% of the major changes they reviewed, and at some firms did not reject a single one all year. The FCA's own summary was that "firms that deployed smaller, more frequent releases had higher change success rates than those with longer release cycles".
+The FCA's evidence suggests that the size of a change matters more than the scrutiny it receives. In 2021 the UK's Financial Conduct Authority published [a review of how 23 financial firms had made more than a million production changes](https://www.fca.org.uk/publications/multi-firm-reviews/implementing-technology-change) during 2019. Changes the firms classed as major, which generally received more oversight, failed at 3.8%, against 1.6% for changes as a whole. Change advisory boards approved more than 90% of the major changes they reviewed, and at some firms did not reject a single one all year. The FCA's own summary was that "firms that deployed smaller, more frequent releases had higher change success rates than those with longer release cycles".
 
 ![Three panels of FCA statistics: 1.6% of all changes failed against 3.8% of major changes; change boards approved over 90% of major changes; change caused 17% of material incidents reported to the FCA and 24% of firms' high-severity incidents.](figures/07-fca-findings.svg)
 
-The findings come from a regulator examining regulated firms, and they show failure concentrated in large changes, which heavy approval did not offset. They are associations and not controlled comparisons. Major changes are riskier by nature, and the review also found a slightly higher failure rate at firms that described more of their work as DevOps, on a sample too small to support a conclusion.
+The figures are associations from a regulator's review of regulated firms and do not control for the fact that major changes are riskier by nature, and the review also found a slightly higher failure rate at firms that described more of their work as DevOps, on a sample too small to support a conclusion.
 
 ## How the industry got here
 
@@ -127,7 +117,7 @@ The practice grew out of two separate lines of work that met around 2008, and th
 
 ### Integration and experiments
 
-The first of these lines dealt with the merging of changes, which Martin Fowler and Matthew Foemmel addressed in 2000 when they wrote up [continuous integration](https://martinfowler.com/articles/originalContinuousIntegration.html). Under that practice everyone merges to one branch about once a day, and an automated build and test run tells them quickly whether their work fits together. It solved the problem of changes that had diverged for too long, but it did not address putting each change into production.
+The first line concerned merging, and in 2000 Martin Fowler and Matthew Foemmel wrote up [continuous integration](https://martinfowler.com/articles/originalContinuousIntegration.html). Under that practice everyone merges to one branch about once a day, and an automated build and test run tells them quickly whether their work fits together. It solved the problem of changes that had diverged for too long, but it did not address putting each change into production.
 
 The second line concerned exposure, and it came from web companies that had learned to show a change to some users and not to others, and to measure the difference. By 2007 Ron Kohavi and colleagues at Microsoft were recommending, in [a guide to running experiments](https://exp-platform.com/Documents/GuideControlledExperiments.pdf), that a new treatment start with a small share of users, ramp up gradually, and be shut off automatically if it did harm, a safety mechanism set out in a paper about measurement.
 
@@ -135,15 +125,15 @@ Google's search team built the connection between measurement and safety into it
 
 ### Dark launches and flags
 
-In 2008 Facebook used the same separation for load. Two months before anyone could use Facebook Chat, the site's pages began [connecting to the new chat servers](https://engineering.fb.com/2008/05/13/web/facebook-chat/) and sending simulated messages, so that the backend carried production load while no interface was visible, which Facebook called a dark launch. Visible rollout began on April 6 and reached everyone on April 23, according to [the engineer's later slides](https://www.erlang-factory.com/upload/presentations/31/EugeneLetuchy-ErlangatFacebook.pdf).
+In 2008 Facebook used the same separation for load. Two months before anyone could use Facebook Chat, the site's pages began [connecting to the new chat servers](https://engineering.fb.com/2008/05/13/web/facebook-chat/) and sending simulated messages, so that the backend carried production load while no interface was visible, which Facebook called a dark launch. Visible rollout began on April 6 and reached everyone on April 23, according to [Eugene Letuchy's later slides](https://www.erlang-factory.com/upload/presentations/31/EugeneLetuchy-ErlangatFacebook.pdf).
 
-The technique became public vocabulary in 2009, when John Allspaw and Paul Hammond gave a talk at the Velocity conference called [10+ Deploys Per Day](https://paulhammond.org/2009/06/velocity/10deploys.pdf) about Flickr. Later that year Ross Harmes described [how Flickr used feature flags](https://code.flickr.net/2009/12/02/flipping-out/), with everyone working on the main branch, the site deploying several times a day, and unfinished features sitting in production switched off. Timothy Fitz described [IMVU deploying about fifty times a day](https://timothyfitz.com/2009/02/10/continuous-deployment-at-imvu-doing-the-impossible-fifty-times-a-day/) behind an automated test suite, with deployment to a subset of machines first and automatic rollback. In 2011 Etsy's Chad Dickerson wrote that [Etsy's flags were taken almost directly from Flickr's](https://www.etsy.com/codeascraft/how-does-etsy-manage-development-and-operations), brought over by engineers who had worked at both.
+Frequent deployment with flags became public vocabulary in 2009, when John Allspaw and Paul Hammond gave a talk at the Velocity conference called [10+ Deploys Per Day](https://paulhammond.org/2009/06/velocity/10deploys.pdf) about Flickr. Later that year Ross Harmes described [how Flickr used feature flags](https://code.flickr.net/2009/12/02/flipping-out/), with everyone working on the main branch, the site deploying several times a day, and unfinished features sitting in production switched off. Timothy Fitz described [IMVU deploying about fifty times a day](https://timothyfitz.com/2009/02/10/continuous-deployment-at-imvu-doing-the-impossible-fifty-times-a-day/) behind an automated test suite, with deployment to a subset of machines first and automatic rollback.
 
 Wealthfront is an early example from regulated finance. In 2010 the firm, which is regulated by the SEC, described [a deployment system](https://eng.wealthfront.com/?p=1273) in which the engineer who committed a change released it, the rollout went to one instance first and then outward, and an instance that failed its start-up self-test triggered a rollback that took about five seconds across a cluster of ten machines.
 
 ### Scale, and the first hard lessons
 
-From 2012 the published accounts describe larger systems and are more open about failures. Netflix described [an automated canary score](https://netflixtechblog.com/deploying-the-netflix-api-79b6176cc3f0) for its API in 2013. Microsoft's Visual Studio Online team had a public outage on the morning of a launch, caused by flags, and responded by building [a first ring of volunteer accounts](https://devblogs.microsoft.com/bharry/visual-studio-online-update-feb-10/) that took every deployment before anyone else. Facebook published a paper in 2015 on [how it managed configuration](https://sigops.org/s/conferences/sosp/2015/current/2015-Monterey/008-tang-online.pdf), which describes engineers who "release the new code into production early but in a disabled mode, and then use Gatekeeper" to widen exposure, and which acknowledges that configuration changes were causing a real share of incidents and needed canaries of their own.
+From 2012 the published accounts describe larger systems and are more open about failures. Facebook published a paper in 2015 on [how it managed configuration](https://sigops.org/s/conferences/sosp/2015/current/2015-Monterey/008-tang-online.pdf), which describes engineers who "release the new code into production early but in a disabled mode, and then use Gatekeeper" to widen exposure, and which acknowledges that configuration changes were causing a significant share of incidents and needed canaries of their own.
 
 By 2017 Facebook's website had moved from scheduled pushes to [deploying continuously from the main branch](https://engineering.fb.com/2017/08/31/web/rapid-release-at-massive-scale/), with each build going to employees, then 2% of production, then everyone. In 2020 Amazon published [a detailed description of its deployment pipelines](https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/), with a single machine first, then one region, then waves, bake times at each stage and automatic rollback.
 
@@ -151,9 +141,7 @@ By 2017 Facebook's website had moved from scheduled pushes to [deploying continu
 
 Firms that move money came later, and the first to write about it were the ones built new. Starling Bank [told a conference in 2018](https://archive.qconlondon.com/system/files/presentation-slides/qcon_2018.pptx.pdf) that it released to production up to five times a day. Monzo described [more than a hundred deployments a day](https://monzo.com/blog/2022/05/16/how-we-deploy-to-production-over-100-times-a-day) in 2022 and, later that year, [automated rollback across more than 2,100 services](https://monzo.com/blog/2022/11/02/argo-rollouts-at-scale).
 
-Regulators have since published on the subject. France's banking supervisor, the ACPR, described in a [2018 discussion paper](https://acpr.banque-france.fr/system/files/import/acpr/medias/documents/818013_acpr_risque-informatique_web_fr_v3.pdf) change policies under which releases are grouped into batches and scheduled outside normal service hours, at weekends for example. Its [2021 notice](https://acpr.banque-france.fr/system/files/import/acpr/media/2021/07/08/20210707_notice_risque_it.pdf) accepted agile project methods and automated change processes, provided that automation does not reduce control over the changes made. The FCA's review appeared in 2021. The 2024 edition of the [handbook that US bank examiners work from](https://business.cch.com/BFLD/FFIEC-IT-DevelopmentAcquisitionMaintenance-Hankbook-08292024.pdf) mentions canary releases and observes that "in a DevOps environment, the same number and type of changes can be made daily or even hourly". In the EU, the [Digital Operational Resilience Act](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32022R2554) has made change management a binding requirement for banks, payment institutions and investment firms since January 2025, and its [technical standards](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1774) permit testing in production as an approved exception, a concession they attribute to "current ICT system development practices".
-
-A team adopting the practice now can draw on about fifteen years of published accounts, which include the failures.
+France's banking supervisor, the ACPR, described in a [2018 discussion paper](https://acpr.banque-france.fr/system/files/import/acpr/medias/documents/818013_acpr_risque-informatique_web_fr_v3.pdf) change policies under which releases are grouped into batches and scheduled outside normal service hours, at weekends for example. Its [2021 notice](https://acpr.banque-france.fr/system/files/import/acpr/media/2021/07/08/20210707_notice_risque_it.pdf) accepted agile project methods and automated change processes, provided that automation does not reduce control over the changes made. The 2024 edition of the [handbook that US bank examiners work from](https://business.cch.com/BFLD/FFIEC-IT-DevelopmentAcquisitionMaintenance-Hankbook-08292024.pdf) mentions canary releases and observes that "in a DevOps environment, the same number and type of changes can be made daily or even hourly". In the EU, the [Digital Operational Resilience Act](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32022R2554) has made change management a binding requirement for banks, payment institutions and investment firms since January 2025, and its [technical standards](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1774) permit testing in production as an approved exception, a concession they attribute to "current ICT system development practices".
 
 ## Separating deployment from release
 
@@ -161,7 +149,7 @@ A team adopting the practice now can draw on about fifteen years of published ac
 
 A change is written so that its new behavior sits behind a feature flag, and the flag is off when the code ships. The code is built, deployed and running in production alongside everything else, and no client sees anything different. Turning the behavior on is a separate decision, taken later, for whichever clients are chosen.
 
-With that arrangement, deployment and release no longer have to happen together. Deployment can be frequent and uneventful, because deploying disabled code is meant to change nothing a client can see. Release stays deliberate, and can be more careful than it is on a train, because it applies to one behavior at a time and to as few users as required. The long wait then applies to the one behavior that needs watching, and every other change proceeds without waiting for it.
+Deployment can then be frequent and uneventful, because deploying disabled code is meant to change nothing a client can see. Release stays deliberate, and can be more careful than it is on a train, because it applies to one behavior at a time and to as few users as required. The long wait then applies to the one behavior that needs watching, and every other change proceeds without waiting for it.
 
 ![Two arrangements. On a release train, half a week of changes is batched, held for three days of promotion and soak, and then deployed and released to every client at once. With deployment and release separated, code is deployed every day with its new behavior off, and one behavior is released on its own to no one, then a small group, then everyone, while the other changes proceed without waiting for it.](figures/14-deploy-and-release.svg)
 
@@ -178,7 +166,7 @@ else:
 
 In a transactional system, the point at which the flag is read and the behavior when the flag service is unavailable both need more care than they do on a website.
 
-A payment has a life, shown in the figure after the code below, that can run for days or months, through acceptance, submission, confirmation, returns, recalls, status inquiries and postings. If each of those steps reads the flag again, switching the flag mid-life strands the payment between two behaviors. The decision therefore has to be made once, at acceptance, and stored with the payment:
+A payment has a life that can run for days or months, through acceptance, submission, confirmation, returns, recalls, status inquiries and postings. If each of those steps reads the flag again, switching the flag mid-life strands the payment between two behaviors. The decision therefore has to be made once, at acceptance, and stored with the payment:
 
 ```python
 # At acceptance: decide once and record the decision.
@@ -199,12 +187,12 @@ When the flag service is unavailable, a web feature can default to "off" without
 
 Pete Hodgson's article on [feature toggles](https://martinfowler.com/articles/feature-toggles.html) separates four kinds of flag, which differ in how long they should live.
 
-- **Release flags** hide unfinished or unproven behavior. Hodgson's guidance is that they should not stay much longer than a week or two.
-- **Experiment flags** split users between variants to measure a difference. They live as long as the experiment.
-- **Operational flags**, including kill switches, let operators turn something off under load or during an incident. Some of these are permanent.
-- **Permission flags** give a behavior to particular clients as a matter of product, and are long-lived by design.
+- Release flags hide unfinished or unproven behavior. Hodgson's guidance is that they should not stay much longer than a week or two.
+- Experiment flags split users between variants to measure a difference. They live as long as the experiment.
+- Operational flags, including kill switches, let operators turn something off under load or during an incident. Some of these are permanent.
+- Permission flags give a behavior to particular clients as a matter of product, and are long-lived by design.
 
-This article is mostly concerned with release flags. The other kinds use the same machinery, which is part of why flags accumulate.
+The model rests mainly on release flags. The other kinds use the same machinery, which is part of why flags accumulate.
 
 ### Canaries, ramps, and experiments
 
@@ -224,17 +212,17 @@ For a financial firm, the important difference is the question in the last row o
 
 Some changes in a build cannot sit behind a flag. A library upgrade, a new database driver, a change to the runtime or a container base image belongs to the binary as a whole. Changes of this kind are the ones that leak memory and exhaust connection pools, which are the faults a soak exists to find.
 
-The binary therefore still needs time under load, and under the new model it gets that time in production. The build goes to a small part of production first and stays there through a daily peak before it goes wider. This wait is usually called a **bake**. This article uses "soak" for the wait in pre-production and "bake" for the wait in production.
+The binary therefore still needs time under load, and under the new model it gets that time in production. The build goes to a small part of production first and stays there through a daily peak before it goes wider. This wait in production is usually called a **bake**, to distinguish it from a soak in pre-production.
 
 In Amazon's pipeline, which is the best-documented example, each build goes to a single machine, then to one region, then outward in waves. Each stage has a minimum wait of between one and twelve hours and a minimum amount of real traffic that must be served before the build moves on. An alarm rolls the build back automatically. A change typically takes [four or five business days to reach every region](https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/).
 
 Amazon's elapsed time is therefore no shorter than a three-day soak. The differences are that builds enter the pipeline one after another, each carries only the changes made since the last, and the waiting is done on real traffic at limited exposure.
 
-Daily deployment also restarts every process every day, so a slow leak may not show until a change freeze leaves a build running for two weeks. For runtime and library upgrades a deliberate multi-day soak should be retained.
+Daily deployment also restarts every process every day, so a slow leak may not show until a change freeze leaves a build running for two weeks. For runtime and library upgrades a deliberate multi-day bake should be retained.
 
 ## The techniques
 
-A testing period looks for regressions, exercises load and elapsed-time behavior, gives people a chance to accept the change, bundles approval, and provides a back-out point. Each technique in this section replaces part of what the three days do, and each has a limit that its own authors describe.
+A testing period looks for regressions, exercises load and elapsed-time behavior, gives people a chance to accept the change, bundles approval, and provides a back-out point. Dark launches, canaries, ramps, experiments and rollback each take over part of that work, and each has limits that its own practitioners describe.
 
 ### Dark launches and shadow traffic
 
@@ -242,9 +230,9 @@ A testing period looks for regressions, exercises load and elapsed-time behavior
 
 ![Dormant code and a shadow run. Dormant: live requests go to the current code, and the new code is deployed behind a flag that is off, so nothing calls it. Shadow: live requests go to the current code and the client sees its result, while a copy of the traffic goes to the new code, whose result is compared with the current result and then discarded without any client seeing it.](figures/16-dormant-and-shadow.svg)
 
-**Dormant** code is deployed behind a flag that is off. It has been merged, built and deployed, and has been shown not to disturb what is live, but nothing calls it. Dormancy allows unfinished work to merge to the main branch every day. Netflix used it to stop acceptance testing from blocking deployment, and the feature [stayed disabled in production](https://netflixtechblog.com/preparing-the-netflix-api-for-deployment-786d8f58090d) while testing continued.
+Dormant code is deployed behind a flag that is off. It has been merged, built and deployed, and has been shown not to disturb what is live, but nothing calls it. Dormancy allows unfinished work to merge to the main branch every day. Netflix used it to stop acceptance testing from blocking deployment, and the feature [stayed disabled in production](https://netflixtechblog.com/preparing-the-netflix-api-for-deployment-786d8f58090d) while testing continued.
 
-In a **shadow** run, real traffic passes through the new code, the result is compared with what the old code produced, and the result is then discarded without any client seeing it. Because a shadow run uses production's own traffic and data, it replaces most of what a soak is expected to reveal.
+In a shadow run, real traffic passes through the new code, the result is compared with what the old code produced, and the result is then discarded without any client seeing it. Because a shadow run uses production's own traffic and data, it replaces most of what a soak is expected to reveal.
 
 GitHub used a shadow run when it rewrote the code that merges pull requests. The team [ran the old and new implementations side by side](https://github.blog/2015-12-15-move-fast/) in production using a small library called Scientist, compared the results on tens of millions of merges, fixed mismatches for four days, and switched over after 24 hours with none. Square took a similar approach when it moved payment data to a new service, and reports that comparing the two paths ["actually caught a lot of subtle bugs"](https://developer.squareup.com/blog/breaking-up-with-your-monorail/).
 
@@ -264,7 +252,7 @@ A canary puts a new build on a small part of production and compares it with the
 
 Early canaries were evaluated by hand. Netflix's account of its API in 2013 describes [a canary that ran for hours and was scored automatically](https://netflixtechblog.com/deploying-the-netflix-api-79b6176cc3f0) against a baseline on a set of metrics. By 2018 its [Kayenta system](https://netflixtechblog.com/automated-canary-analysis-at-netflix-with-kayenta-3260bc7acc69) compared a new cluster with a freshly launched copy of the old version under the same live traffic, and judged the difference statistically. Comparing against a fresh baseline matters, because a server that has been running for a week behaves differently from one that started ten minutes ago, for reasons that have nothing to do with the change.
 
-Amazon's version is the one-box stage, in which one machine takes the new build and a small share of a region's traffic. The build stays there for at least an hour and until a minimum number of requests has been served, and it moves on only if the alarms are quiet.
+Amazon's version is the one-box stage, in which one machine takes the new build and a small share of a region's traffic.
 
 Google's SRE Workbook has [the most careful account of what canaries cannot do](https://sre.google/workbook/canarying-releases/). Canaries need representative traffic, so they are weak on paths that few requests take. For batch and other non-interactive work, a canary has to span at least "a single work unit", and the longer a canary runs, the fewer releases fit in a week. A Google engineer writing about the company's canary analysis service [states](https://queue.acm.org/detail.cfm?id=3194655) that canarying is no substitute for unit testing, integration testing or monitoring.
 
@@ -276,7 +264,7 @@ Shared state weakens a canary because two nodes of a ledger posting engine write
 
 A ring is a canary assigned to a defined population of users. Microsoft's guidance describes a major team that [deploys through five tiers](https://learn.microsoft.com/en-us/devops/operate/safe-deployment-practices), starting with internal accounts that tolerate risk and bugs, with about a day's bake in each. Facebook's website went to employees first, then 2% of production, then everyone. Slack [deploys to its own staff, then a 2% canary, then 10, 25, 50, 75 and 100%](https://slack.engineering/deploys-at-slack/).
 
-![Seven published ramp schedules, including Facebook's website (employees, 2%, 100% in a few hours) to Amazon (one box, first Region, more Regions, all Regions over four to five business days), Slack (its own staff, a 2% canary, then 10% to 100%) and Uber's payment authorization (shadow, employees, 0.25%, 1%, 5%, 100%).](figures/06-published-ramps.svg)
+![Seven published ramp schedules, including Facebook's website (employees, 2%, 100% in a few hours), Amazon (one box, first region, more regions, all regions over four to five business days), Slack (its own staff, a 2% canary, then 10% to 100%) and Uber's payment authorization (shadow, employees, 0.25%, 1%, 5%, 100%).](figures/06-published-ramps.svg)
 
 <details>
 <summary>Sources for the figure</summary>
@@ -293,9 +281,7 @@ A ring is a canary assigned to a defined population of users. Microsoft's guidan
 
 </details>
 
-A ramp applies the same progression to one behavior, using a flag, where a ring applies it to a build.
-
-The unit of exposure matters more than the percentages, as Square found when it moved payment records to a new service using random percentages of requests. Its engineer wrote afterwards that this had hidden a regression which only appeared for a particular combination of client software versions, and that rolling out in a way that was [stable per merchant](https://developer.squareup.com/blog/breaking-up-with-your-monorail/) would have confined it to a few.
+A ramp applies the same progression to one behavior, using a flag, where a ring applies it to a build. For a ramp, the unit of exposure matters more than the percentages, as Square found when it moved payment records to a new service using random percentages of requests. Its engineer wrote afterwards that this had hidden a regression which only appeared for a particular combination of client software versions, and that rolling out in a way that was [stable per merchant](https://developer.squareup.com/blog/breaking-up-with-your-monorail/) would have confined it to a few.
 
 For a firm whose clients are themselves businesses, the unit is the client, and a client has to agree to go first, which is a constraint a consumer website does not have. Stripe handles a related problem by [pinning each account to an API version](https://stripe.com/blog/api-versioning) and letting the account choose when to move.
 
@@ -305,9 +291,9 @@ How long to hold each step depends on how long the evidence takes to arrive. Mic
 
 An experiment gives a randomly chosen group the new behavior and measures the difference from everyone else.
 
-Experiments are run because careful people are poor at predicting which changes help. At Microsoft, [only about a third of well-designed experiments](https://exp-platform.com/Documents/ExP_DMCaseStudies.pdf) improved the metric they were built to improve. The same applies to re-implementations, which a sign-off meeting cannot show to behave like the old path. A later paper from the same group describes a re-implementation of an order pipeline at Amazon that was believed to be equivalent to the old one, [lost 2% of revenue in its A/B test, and shipped after five iterations](https://exp-platform.com/Documents/2013%20controlledExperimentsAtScale.pdf).
+Experiments are run because careful people are poor at predicting which changes help. At Microsoft, [only about a third of well-designed experiments](https://exp-platform.com/Documents/ExP_DMCaseStudies.pdf) improved the metric they were built to improve. Re-implementations are no exception, because a sign-off meeting cannot show that new code behaves like the old path. A later paper from the same group describes a re-implementation of an order pipeline at Amazon that was believed to be equivalent to the old one, [lost 2% of revenue in its A/B test, and shipped after five iterations](https://exp-platform.com/Documents/2013%20controlledExperimentsAtScale.pdf).
 
-Booking.com applies the practice most broadly. Its engineers write that ["every change... is wrapped in an experiment"](https://arxiv.org/abs/1710.08217), with more than a thousand running at once, and that anyone in the company may stop one that is doing harm.
+Booking.com applies the practice most broadly. Its engineers write that ["every change... is wrapped in an experiment"](https://arxiv.org/abs/1710.08217), with more than a thousand running at once.
 
 Financial firms publish less about experiments, and what they publish is mostly about interfaces, support flows and communications. Monzo describes [a set of launch tools](https://monzo.com/blog/2023/08/03/how-we-launch-new-products-at-monzo) that includes staff testing, an opt-in group, randomized experiments and staged rollouts, and says it ran an experiment on a change to a credit product's payment dates "to make sure it didn't lead to bad outcomes".
 
@@ -319,11 +305,11 @@ Experiments need enough traffic to detect a difference, and results that take we
 
 "Rollback" can mean switching traffic back to the old version, redeploying the kept build, or rebuilding the old source, and the third of these is unsafe under pressure.
 
-![Rollback methods: a traffic shift back to a previous version that is still running; a redeploy of the retained build, identified by its hash; and a rebuild from an earlier source revision. Rollback does not reverse data written, schema migrations, messages sent or payments made.](figures/09-three-rollbacks.svg)
+![Rollback methods: a traffic shift back to a previous version that is still running; a redeploy of the kept build, identified by its hash; and a rebuild from an earlier source revision. Rollback does not reverse data written, schema migrations, messages sent or payments made.](figures/09-three-rollbacks.svg)
 
-When traffic is switched back, the old version is still running and traffic is pointed at it again. Netflix was [deploying this way by 2012](https://netflixtechblog.com/asgard-web-based-cloud-management-and-deployment-2c9fc4e4d3a1), bringing up the new version beside the old, moving traffic across, and keeping the old one until the new one was trusted. The switch takes seconds to minutes, and it costs the capacity to run two versions at once.
+Switching traffic back requires the old version to still be running. Netflix was [deploying this way by 2012](https://netflixtechblog.com/asgard-web-based-cloud-management-and-deployment-2c9fc4e4d3a1), bringing up the new version beside the old, moving traffic across, and keeping the old one until the new one was trusted. The switch takes seconds to minutes, and it costs the capacity to run two versions at once.
 
-Redeploying the kept build means that the previous build is deployed again as it was. This depends on a rule from Jez Humble and David Farley's *Continuous Delivery*, which is to [build the binary once](https://www.informit.com/articles/article.aspx?p=1621865&seqNum=3) and deploy that same binary, identified by its hash, to every environment. One of their reasons was audit, since the rule proves that what was tested is what runs. It also means a rollback returns production to something that has already run there.
+Redeploying the kept build depends on a rule from Jez Humble and David Farley's *Continuous Delivery*, which is to [build the binary once](https://www.informit.com/articles/article.aspx?p=1621865&seqNum=3) and deploy that same binary, identified by its hash, to every environment. One of their reasons was audit, since the rule proves that what was tested is what runs. It also means a rollback returns production to something that has already run there.
 
 Rebuilding the old source means checking out an earlier revision and building it again. The result is the same as before only if the build is perfectly repeatable, and a team that has not verified this will learn of any difference during an incident.
 
@@ -341,7 +327,7 @@ Switching a flag off is a lighter reversal than any of these, and Facebook [pref
 
 The next step after rehearsing rollback is to have the pipeline perform it. Amazon's deployments roll back on alarms without anyone watching, and its engineers note that a rollback is often already under way by the time the on-call engineer has been paged. Monzo's rollbacks use the same application metrics that drive its alerts. Slack reports that [73% of its customer-facing incidents were triggered by its own changes](https://slack.engineering/deploy-safety/). By Slack's own figures, customer impact hours fell by 90% from their peak in early 2024 to January 2025, during a program in which automatic rollback was one of many parts.
 
-Automated gates produce false alarms, and Meta's paper on [its deployment system](https://www.usenix.org/conference/osdi23/presentation/grubic) reports that a human allowed the deployment to proceed after health checks had flagged it in 11.5% of deploy actions for regular services and 41.3% for large ones. A gate that raises false alarms that often will be overridden. Facebook's earlier configuration paper records an engineer overriding a correct canary rejection on the assumption that the tool was wrong.
+Automated gates produce false alarms, and Meta's paper on [its deployment system](https://www.usenix.org/conference/osdi23/presentation/grubic) reports that a human allowed the deployment to proceed after health checks had flagged it in 11.5% of deploy actions for regular services and 41.3% for large ones. At those rates overriding becomes habit, and Facebook's earlier configuration paper records an engineer overriding a correct canary rejection on the assumption that the tool was wrong.
 
 The order in which these capabilities are adopted matters as well. Slack built alerts with manual remediation first and automatic rollback second, and Monzo was already deploying more than a hundred times a day when it automated rollback.
 
@@ -353,7 +339,7 @@ The mechanics are the smaller part of the work, and most of what the published a
 
 Under this model the author's job no longer ends at the merge, as it does on a train. The author of a change decides what the flag guards and how the disabled path behaves, builds the shadow comparison, writes the ramp plan with its stop conditions, and deletes the flag when the ramp is done.
 
-This is more work per change, and it asks people to plan for being wrong. The existence of a tool does not produce the habit, which follows what code review asks about, what counts as done, and what is recognized at review time. Microsoft's experimentation team [wrote in 2009](https://exp-platform.com/Documents/ExP_DMCaseStudies.pdf), after three years of trying to spread a related habit, that most goals in the company were still about shipping, and doubted they had changed many people's objectives.
+This is more work per change, and it asks people to plan for being wrong. The existence of a tool does not produce the habit, which follows what code review asks about, what counts as done, and what is recognized in performance reviews. Microsoft's experimentation team [wrote in 2009](https://exp-platform.com/Documents/ExP_DMCaseStudies.pdf), after three years of trying to spread a related habit, that most goals in the company were still about shipping, and doubted they had changed many people's objectives.
 
 The mechanism should also be built by the engineers who use it. John Allspaw ran operations at Flickr, and when he left he wrote [a letter to the management above him](https://www.kitchensoap.com/2012/01/05/convincing-management-that-cooperation-and-collaboration-was-worth-it/) explaining how the site had stayed up while changing many times a day. He stated explicitly that the dark launches and flags were built by the developers and not by operations.
 
@@ -361,9 +347,7 @@ The mechanism should also be built by the engineers who use it. John Allspaw ran
 
 Werner Vogels stated the principle in 2006: ["You build it, you run it."](https://queue.acm.org/detail.cfm?id=1142065) The reasoning is that the people who feel a service's failures are the people who can fix their cause.
 
-Netflix's account is the most useful, because it records an intermediate model failing. For a period its developers could deploy but a release specialist remained. The developers often deferred to the specialist, and the specialists found it hard to make time to automate the job. Full ownership worked, but only with central tooling teams, training and spare capacity. [The post says](https://netflixtechblog.com/full-cycle-developers-at-netflix-a08c31f83249) that without those, "teams risk overload and burnout".
-
-Putting developers on call without dashboards they can read, access they can use, or a runbook written for them leads to attrition.
+Netflix's account is the most useful, because it records an intermediate model failing. For a period its developers could deploy but a release specialist remained. The developers often deferred to the specialist, and the specialists found it hard to make time to automate the job. Full ownership worked when it was backed by central tooling teams, training and spare capacity. [The post says](https://netflixtechblog.com/full-cycle-developers-at-netflix-a08c31f83249) that without those, "teams risk overload and burnout".
 
 ### Testers and release managers
 
@@ -375,23 +359,23 @@ Microsoft's Azure DevOps group merged its development and test organizations and
 
 Facebook, which is often said to have no QA, had a release engineering team with the power to refuse and revert changes, and kept a three-day soak for its iOS app, on employees, because an app on a phone cannot be recalled.
 
-The people who run the train today have the most knowledge of where faults occur. Their work moves to the comparison tooling, the pipeline and the review of ramp plans, and that should be communicated early.
+The people who run the train today have the most knowledge of where faults occur. Their work moves to the comparison tooling, the pipeline and the review of ramp plans, and they should be told so early.
 
 ### Approvers
 
 Flickr's operations team held a go or no-go decision on launches, alongside the other groups involved. Allspaw's letter describes what he did with it: "A significant part of my job was working towards saying 'go', not 'no-go'." Speed remained conditional on safety, and in his words, "When it wasn't safe, we slowed, and everyone was fine with that happening".
 
-A change board can work the same way. Its members keep the authority to refuse, and their job becomes making approval safe by approving ramp plans, setting stop conditions, and deciding which kinds of change are pre-authorized.
+A change board can work the same way. Its members keep the authority to refuse, and their work shifts to approving ramp plans, setting stop conditions, and deciding which kinds of change are pre-authorized.
 
 ### Rollback authority
 
-Whoever is on call needs the authority to switch a flag off or roll back a build without asking, and needs to be thanked for it afterwards. Google's guidance says nobody should be asked to justify a rollback as long as its record describes the problem. Booking.com's rule is that ["Everyone in the company must be able and feel empowered to stop harmful experiments of their own accord."](https://arxiv.org/abs/1710.08217)
+Whoever is on call needs the authority to switch a flag off or roll back a build without asking, and should be recognized for using it. Google's guidance says nobody should be asked to justify a rollback as long as its record describes the problem. Booking.com's rule is that ["Everyone in the company must be able and feel empowered to stop harmful experiments of their own accord."](https://arxiv.org/abs/1710.08217)
 
 A kill switch is a control only if the people on call can find and operate it. In November 2014 Microsoft's service had an outage of seven and a half hours caused by a change in the database service beneath it. Harry's [write-up](https://devblogs.microsoft.com/bharry/outage-on-monday-nov-24) says that once the change was identified, it took approximately 45 minutes to work out how to turn off the flag behind it, because of tooling problems and missing documentation.
 
 ### Responding to failure
 
-Every one of these programs eventually has a serious incident, and the response determines whether the program continues.
+The response to the first serious incident can decide whether the program continues.
 
 OANDA had deployed continuously for several years when a major failure, in the words of the paper that describes it, "cost the company a significant amount of money within seconds". Senior management's first reaction was to ask for more approvals and a separate, traditional testing team. The post-mortem found that the unit tests had caught the bug and that their failures had been ignored among false alarms. Additional approvers would have been approving a change whose own tests had already failed. The engineers argued instead for a renewed focus on automated testing, and prevailed.
 
@@ -405,15 +389,13 @@ The 2019 State of DevOps report found the same pattern across its survey: organi
 
 Published accounts of this transition describe it as taking years. On the morning Microsoft launched Visual Studio 2013, Harry's team switched on a batch of feature flags. The service became unresponsive at peak, and switching the flags off did not bring it back. Harry [wrote it up](https://devblogs.microsoft.com/bharry/a-rough-patch/) in detail. One lesson he drew was that the service ran as a single instance, so that, flags aside, "all customers are affected or none", and a flag could therefore not confine a fault to a subset of customers.
 
-One remedy was to deploy at weekends, which he called a mitigation rather than a fix. Another was a separate instance for accounts that volunteered to take every deployment first, and Harry said his own account would be on it. By 2017, by his own account, the change had taken about six years and was not finished. His judgment was that trying to do it all at once would have failed.
+One remedy was to deploy at weekends, which he called a mitigation rather than a fix. Another was [a separate instance for accounts that volunteered](https://devblogs.microsoft.com/bharry/visual-studio-online-update-feb-10/) to take every deployment first, and Harry said his own account would be on it. By 2017, by his own account, the change had taken about six years and was not finished. His judgment was that trying to do it all at once would have failed.
 
 LinkedIn took a different route and [stopped feature development](https://www.linkedin.com/blog/engineering/architecture/brief-history-scaling-linkedin) for a period in late 2011 to rebuild its tooling. Eight years later it wrote that its teams had [traditionally relied on a manual release process](https://engineering.linkedin.com/blog/2019/learnings-from-the-journey-to-continuous-deployment), and described moving key services from a few releases a week to several a day.
 
-Amazon's approach to skeptical teams is the most transferable. They were told to ["encode their current release process, manual steps and all, in a pipeline"](https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/), and then to automate one step at a time as their confidence grew, so that nothing was removed on the first day.
-
 ## Failure modes
 
-The published failures of this model come from adopting only part of it.
+Most of the published failures below come from adopting only part of the model, such as flags without removal, staged deployment without staged activation, or staging that some kinds of change bypass.
 
 ### Flag debt
 
@@ -421,19 +403,17 @@ Flags are cheap to add, but each one carries a continuing cost. Every flag that 
 
 A study of Chrome found its flags growing [from 263 to 1,040](https://users.encs.concordia.ca/~pcr/paper/Rahman2016MSR.pdf) over the releases it examined. Uber eventually [built a tool to remove stale flags](https://manu.sridharan.net/files/ICSE20-SEIP-Piranha.pdf) and deleted 1,381.
 
-A release flag is meant to be removed, along with the old code path, once it reaches 100%, and flag debt builds up when that last step is skipped. It is controlled by rules that tooling can enforce. Every flag is created with an owner and an expiry date. The build warns as that date approaches and fails once it has passed. Kill switches that are intended to be permanent are registered as permanent and are exempt from expiry. Each service has a limit on the number of live release flags, and a flag name is not reused for a different purpose.
+A release flag is meant to be removed, along with the old code path, once it reaches 100%, and flag debt builds up when that last step is skipped. Tooling can prevent it by giving every flag an owner and an expiry date, warning in the build as the date approaches and failing the build once it has passed, with kill switches meant to be permanent registered as such and exempt. A per-service limit on live release flags, and a rule that a flag name is never reused for a different purpose, keep the count down.
 
 ![The life of a release flag: created with an owner and an expiry date, ramped so that it is on for some clients and off for others, at 100%, then removed with its old path. The build passes, warns as the expiry date approaches, and fails once it has passed. While the flag is ramped, production runs both paths; after it reaches 100%, the off path is no longer exercised and switching it off is an untested change.](figures/17-flag-lifecycle.svg)
 
 ### A reused flag and an incomplete deployment
 
-Knight Capital is the standard cautionary example and is often described inaccurately.
-
 According to the SEC's order, Knight's new code reused a flag that had once activated an old function called Power Peg, which had not been used since 2003 and had been left in the code. The new code was deployed in stages over several days. A technician did not copy it to one of the eight servers, and no second person checked. Before the market opened on August 1, the system sent 97 automated emails referring to the problem, and nobody acted on them. When orders carrying the flag arrived, seven servers ran the new code and the eighth ran Power Peg. In about 45 minutes Knight executed 4 million trades in 154 stocks and ended up with positions that cost it more than $460 million. During the incident, the firm uninstalled the new code from the seven servers where it had been deployed correctly, and in the SEC's words, "This action worsened the problem."
 
 ![Knight Capital: eight servers, seven with new code and one with old code; a timeline from staged deployment beginning July 27 to activation everywhere at the market open on August 1; about 45 minutes, 4 million executions, over $460 million lost.](figures/10-knight-capital.svg)
 
-The case shows that a flag should not be reused, that dead code should be deleted, that a machine check should confirm, before any flag moves, that every node is running a build that contains the flagged code, and that a rollback should not be improvised. The controls the SEC said could have prevented the event were a second person checking the deployment, monitoring of the warning messages, and a clear rule for when to disconnect.
+Each step of the failure has a control under this model, which never reuses a flag name, deletes dead code, has a machine check confirm before any flag moves that every node runs a build containing the flagged code, and rolls back by a rehearsed procedure. The controls the SEC said could have prevented the event were a second person checking the deployment, monitoring of the warning messages, and a clear rule for when to disconnect.
 
 ### Dormant code activated everywhere at once
 
@@ -441,23 +421,17 @@ In June 2025 a Google Cloud outage came from code that had been rolled out regio
 
 ### Change types that bypass the ramp
 
-Configuration, flags, reference data and operator scripts are changes too, and any of them that can reach every system at once carries the same risk as an unstaged release. CrowdStrike staged the rollout of its software but not of the content files the software reads. Its [analysis of the July 2024 outage](https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf) concludes that each such file "should be deployed in a staged rollout". Cloudflare's 2019 outage came through a channel for firewall rules whose procedure, [in Cloudflare's words](https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/), "allowed a non-emergency rule change to go globally into production without a staged rollout". The same applies to the safety mechanisms themselves: the flag service, the configuration system and the rollback tooling are production systems that need their own staged rollout.
+Configuration, flags, reference data and operator scripts are changes too, and any of them that can reach every system at once carries the same risk as an unstaged release. CrowdStrike staged the rollout of its software but not of the content files the software reads. Its [analysis of the July 2024 outage](https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf) concludes that each such file "should be deployed in a staged rollout". Cloudflare's 2019 outage came through a channel for firewall rules whose procedure, [in Cloudflare's words](https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/), "allowed a non-emergency rule change to go globally into production without a staged rollout". The flag service, the configuration system and the rollback tooling are themselves production systems and need their own staged rollout.
 
 ### Single-event migration without rollback
 
-The opposite failure, a single large migration with no way back, remains the most expensive. TSB moved 5.2 million customers to a new platform over a single weekend in 2018, with testing cut short and no ability to roll back. It received 225,492 complaints and was fined £48.65 million by the FCA and the PRA together. The [FCA's final notice](https://www.fca.org.uk/publication/final-notices/tsb-bank-plc-2022.pdf) found that fuller testing of the bank's two-data-center configuration would likely have found the fault, so the case argues for better testing as well as for smaller steps.
+The opposite failure is a single large migration with no way back. TSB moved 5.2 million customers to a new platform over a single weekend in 2018, with testing cut short and no ability to roll back. It received 225,492 complaints and was fined £48.65 million by the FCA and the PRA together. The [FCA's final notice](https://www.fca.org.uk/publication/final-notices/tsb-bank-plc-2022.pdf) found that fuller testing of the bank's two-data-center configuration would likely have found the fault, so TSB's failure was one of testing as well as of batch size.
 
 ### Program-level failures
 
 The overall effort can also stall without any single incident.
 
-One cause is a pilot that never touches a money path. A team picks an internal reporting service because it is safe, declares success after two quarters, and has learned nothing about stored decisions, irrevocable payments or reconciliation.
-
-A second cause is that shadow comparisons accumulate unread and stages pass on elapsed time.
-
-A third is that the change board approves each ramp step as if it were a release, so that the ramp takes longer than the train did.
-
-Finally, speed can become the goal. Deployment frequency is a symptom of small, safe changes, and when it becomes a target it is inflated with trivial deployments. The 2017 State of DevOps survey found that its lowest-performing group had [sped up and reported more failures](https://dora.dev/research/2017/2017-state-of-devops-report.pdf).
+A pilot on an internal reporting service can be declared a success after two quarters without teaching anything about stored decisions, irrevocable payments or reconciliation. A change board can approve each ramp step as if it were a release, so that the ramp takes longer than the train did. Deployment frequency, once it becomes a target, is inflated with trivial deployments, and the 2017 State of DevOps survey found that its lowest-performing group had [sped up and reported more failures](https://dora.dev/research/2017/2017-state-of-devops-report.pdf).
 
 ## Data and models
 
@@ -809,7 +783,7 @@ If the soak proves to catch faults that nothing else would, and most of the thre
 
 ### Put the existing process in a pipeline
 
-Encode today's process in a pipeline, manual approvals included, as Amazon did. Doing so removes no control, produces the record that auditors ask for on every change, and shows where the waiting is.
+Encode today's process in a pipeline, manual approvals included, as Amazon told its skeptical teams to do, ["manual steps and all"](https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/), and automate one step at a time as confidence grows. Doing so removes no control, produces the record that auditors ask for on every change, and shows where the waiting is.
 
 ### Pick one service that moves money
 
