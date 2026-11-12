@@ -38,6 +38,14 @@ Every section, example, incident and regulatory citation in the body has to serv
 
 Accurate material that fails this test goes into an appendix or the research notes, not the body. Research findings are not added to the body merely because they are true and new. Per-jurisdiction regulatory detail and per-tool detail belong in appendices.
 
+## Figures
+
+- Use figures wherever a process, sequence, structure or comparison is easier to see than to read. Prefer a diagram over a paragraph of mechanics.
+- Place each figure immediately after the paragraph that introduces what it shows, inside the section it belongs to. After any edit that moves, cuts or reorders text, check every figure: is it still in the right place, does the paragraph before it still describe it, and does its section still discuss it?
+- The figure's title, labels and alt text must agree with the text around it: the same terms, the same numbers, the same stages. A figure must never show something the text has changed or removed.
+- Figure titles are plain descriptive labels, under the same rules as headings. Sources for data in a figure are stated in the figure or in the adjacent text.
+- Render each figure and look at it before committing: no overlapping or clipped text.
+
 ## Evidence rules
 
 - Every factual statement about a named organization, regulator, document, number or date must come from the research report or notes and carry an inline link to the primary source given there.
