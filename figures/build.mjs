@@ -241,7 +241,7 @@ function timeline() {
       ["2015", "Facebook paper: ship code disabled, ramp it with Gatekeeper, canary the configuration too."],
       ["2016", "Facebook and OANDA study continuous deployment, including at an FX trading platform."],
     ]],
-    ["Banks and regulators", [
+    ["Regulated industries", [
       ["2017", "Facebook's website moves to deploying continuously from the main branch."],
       ["2018", "Starling Bank releases to production up to five times a day. France's ACPR describes batched releases outside service hours."],
       ["2020", "Amazon documents its pipeline: one box, then waves, with bake times and automatic rollback."],
@@ -272,7 +272,7 @@ function timeline() {
     "timeline",
     h,
     "Twenty-five years of published practice",
-    "A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and banks and regulators from 2017 to 2025.",
+    "A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and regulated industries from 2017 to 2025.",
     "Published accounts, 2000 to 2025",
     "Dates are when an event happened or a practice was first documented.",
     [ln(spine, top + 22, spine, y - 30, { stroke: C.line, sw: 2 }), ...parts].join("\n"),
