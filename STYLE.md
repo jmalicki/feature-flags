@@ -1,6 +1,6 @@
 # Style guide for "Moving off the release train"
 
-The essay has two chapters: [essay.md](essay.md), the general argument, and [data-and-models.md](data-and-models.md), its application to data and models. These rules apply to both. Read at least one chapter's introduction and two full sections before writing, to match the register. Each chapter's structure section names both chapters and links to the other.
+The essay is a short book, *Moving off the release train*: [Chapter 1](essay.md), the general argument; [Chapter 2](data-and-models.md), its application to data and models; and [Appendices](appendices.md) holding reference material for both. These rules apply to all three. Read at least one chapter's introduction and two full sections before writing, to match the register. Each document carries the same navigation line naming all three, its structure section says how it relates to the others, and each ends with previous and next links. Reference material shared by both chapters goes in the appendices, not in a chapter.
 
 ## Register
 

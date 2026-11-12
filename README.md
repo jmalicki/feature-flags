@@ -1,16 +1,19 @@
 # Feature flags, continuous delivery, and the history of safer change
 
-The essay "Moving off the release train" is in two chapters:
+## Moving off the release train
 
-- [Chapter 1: Moving off the release train](essay.md), about 15,000 words: why teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts and fast rollback, the techniques and their limits, what changes for people, how these transitions fail, change control and audit, the evidence, and how to start.
-- [Chapter 2: Releasing data and model changes](data-and-models.md), about 10,000 words: how the same model applies to tables, event streams, feature stores and machine-learning models, where state persists after a rollback.
+A short book on why engineering teams should replace testing periods and scheduled releases with dark launches, feature flags, staged rollouts and fast rollback, and how to do it. It is written in the manner of an engineering blog and draws on published first-person accounts.
 
-Both are written in the manner of an engineering blog post and draw on published first-person accounts.
+### Contents
+
+1. [Chapter 1: The release train and its replacement](essay.md): what the release train costs, how the industry moved past it, the techniques and their limits, irreversible effects and outside parties, ownership and culture, failure modes, change control and audit, the evidence, and how to start.
+2. [Chapter 2: Data and models](data-and-models.md): how the same model applies to tables, event streams, feature stores and machine-learning models, where state persists after a rollback.
+3. [Appendices](appendices.md): A, regulation of software change; B, tool support for data changes.
 
 ## Files
 
 - [STYLE.md](STYLE.md): the style guide for the essay, including the sentence patterns that have been rejected, with the rejected sentences quoted.
-- [essay.md](essay.md) and [data-and-models.md](data-and-models.md): the two chapters. Earlier versions are in the Git history: a hedged history at commit `5facf36`, and a survey-style argument at commit `941fe30`.
+- [essay.md](essay.md), [data-and-models.md](data-and-models.md) and [appendices.md](appendices.md): the two chapters and the appendices. Earlier versions are in the Git history: a hedged history at commit `5facf36`, and a survey-style argument at commit `941fe30`.
 - [reviews/essay-v4/](reviews/essay-v4/): seven reviews of the fourth version (a consulting partner, a line editor, a benchmark against published professional writing, an engineering director, a forensic read for generated prose, a distinguished engineer, and a persuasion specialist). The current essay was rewritten against them.
 - [reviews/essay-v2/](reviews/essay-v2/): nine reviews of the second version from different vantage points (an engineering director, a head of technology risk, a principal engineer in payments, a prose editor, and others). Two of them, `exemplars.md` and `evidence.md`, were stopped early and may be incomplete.
 - [figures/](figures/): SVG figures used by both chapters and [figures/build.mjs](figures/build.mjs), which generates them. Run `node figures/build.mjs` to rebuild, or add `--check` to confirm the committed SVGs are current.
