@@ -38,6 +38,8 @@ Each was flagged by the commissioner verbatim.
 
 Every section, example, incident and regulatory citation in the body has to serve the thesis: that teams can deliver much faster while keeping safety by separating deployment from release and changing how they work. Material earns a place in the body only if it does one of the following.
 
+The essay is general: it argues how software engineering should change. Payments material is there only so that a payments engineer cannot dismiss the argument as not applying to them. It gives evidence that payments firms already work this way and answers each objection briefly. It is not a tutorial: no stage-by-stage procedures, holds or checklists. Evidence that applies to every industry, such as what regulators accept, goes in the general sections.
+
 - It answers an objection the reader will raise (for example, "the regulators will not allow this").
 - It changes how the model has to be built (for example, independent approval, flag changes counting as changes, rollback provisions).
 - It is evidence for or against the thesis that the argument relies on.
