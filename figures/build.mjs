@@ -1023,12 +1023,12 @@ function dataRollbackReach() {
     "data-rollback",
     470,
     "What a table rollback restores",
-    "A source table feeds a chain of ten derived tables, a feature computed from the last of them, and two models trained on that feature. A rollback, by moving an Iceberg snapshot pointer or by a Delta Lake restore, returns only the source table to its earlier version. The ten derived tables, the feature and the two models keep the contents built from the bad version until each is recomputed.",
+    "A source table feeds a chain of ten derived tables, a feature computed from the last of them, and two models trained on that feature. Rolling back the source table, by moving an Iceberg snapshot pointer back or by a Delta Lake restore, returns only that table to its earlier version. The ten derived tables, the feature and the two models still hold data built from the bad version until each is recomputed.",
     "What a table rollback restores",
-    "Rollback moves one table back. Everything built from the bad version keeps it.",
+    "Restoring the source table leaves everything built from the bad version unchanged.",
     [
       t(186, y - 18, "TEN DERIVED TABLES", { size: 13, fill: C.ink2, weight: 700 }),
-      stage(32, y, 128, h, "Source table", "restored", { accent: C.blue, tint: C.blueTint }),
+      stage(32, y, 128, h, "Source table", "rolled back", { accent: C.blue, tint: C.blueTint }),
       arrow(162, y + h / 2, 182, y + h / 2),
       ...Array.from({ length: 10 }, (_, i) =>
         [
@@ -1048,9 +1048,9 @@ function dataRollbackReach() {
       box(mx, y + 44, 106, 36, { fill: C.orangeTint, stroke: C.orange }),
       t(mx + 53, y + 68, "Model", { size: 15, weight: 700, anchor: "middle" }),
       `<path d="M ${tx(0)} ${y + h + 14} V ${y + h + 22} H ${mx + 106} V ${y + h + 14}" fill="none" stroke="${C.orange}" stroke-width="2"/>`,
-      t(tx(0), y + h + 46, "Keep the contents built from the bad version until each is recomputed", { size: 15, fill: C.ink }),
+      t(tx(0), y + h + 46, "Each still holds data built from the bad version until it is recomputed", { size: 15, fill: C.ink }),
       box(32, 360, 330, 76, { fill: C.panel }),
-      para(48, 386, "Rollback: Iceberg moves a snapshot pointer; Delta Lake restores an earlier version", 300, { size: 14, fill: C.ink }),
+      para(48, 386, "Rollback: Iceberg moves a snapshot pointer back, or Delta Lake restores an earlier version", 300, { size: 14, fill: C.ink }),
       arrow(96, 356, 96, y + h + 4, { stroke: C.blue, sw: 2.5 }),
     ].join("\n"),
     "",
@@ -1059,13 +1059,13 @@ function dataRollbackReach() {
 
 function twoCopies() {
   const steps = [
-    ["1. Expand", "Add the new column or table", [["written", "read", "authoritative"], "added, unused"], ""],
-    ["2. Keep both populated", "Trigger, dual writes or log replay", [["written", "read", "authoritative"], ["written"]], "may gate writes to the new copy, by flag or percentage"],
-    ["3. Backfill", "Historical rows, throttled", [["written", "read", "authoritative"], ["written"]], ""],
-    ["4. Compare reads", "Old result still returned", [["written", "read", "authoritative"], ["written", "compared"]], ""],
-    ["5. Switch reads", "By flag or percentage", [["written", "", "authoritative"], ["written", "read"]], "moves reads to the new copy"],
-    ["6. New copy authoritative", "Reverse sync keeps rollback possible", [["copied back"], ["written", "read", "authoritative"]], "chooses the authoritative store"],
-    ["7. Contract", "Old column deleted after enough releases", ["writes stop, then deleted", ["written", "read", "authoritative"]], ""],
+    ["1. Expand", "add the new column or table", [["written", "read", "authoritative"], "added, unused"], ""],
+    ["2. Keep both populated", "trigger, dual writes or log replay", [["written", "read", "authoritative"], ["written"]], "may gate writes to the new copy"],
+    ["3. Backfill", "copy historical rows, throttled", [["written", "read", "authoritative"], ["written"]], ""],
+    ["4. Compare reads", "the old result is still returned", [["written", "read", "authoritative"], ["written", "compared"]], ""],
+    ["5. Switch reads", "by flag or percentage", [["written", "", "authoritative"], ["written", "read"]], "moves reads to the new copy"],
+    ["6. Make new copy authoritative", "a reverse sync keeps rollback possible", [["copied back"], ["written", "read", "authoritative"]], "chooses the authoritative store"],
+    ["7. Contract", "delete the old copy after enough releases", ["writes stop, then deleted", ["written", "read", "authoritative"]], ""],
   ];
   const cols = { step: 32, old: 286, new: 552, flag: 818 };
   const slots = [
@@ -1092,14 +1092,14 @@ function twoCopies() {
     "two-copies",
     y0 + steps.length * rh + 60,
     "Two copies of a column or table",
-    "The seven steps for running two versions of a column or table, with the old and new copies side by side. Expand: the old copy is written, read and authoritative; the new copy is added and unused. Keep both populated: both are written, possibly gated by a flag or percentage. Backfill: historical rows are written to the new copy. Compare reads: the new copy is read for comparison while the old result is still returned. Switch reads: a flag or percentage moves reads to the new copy, while the old copy remains authoritative. New copy authoritative: the new copy is written, read and authoritative, a flag chooses the authoritative store, and changes are copied back to the old copy so rollback remains possible. Contract: writes to the old copy stop and it is deleted.",
+    "Seven steps for running two copies of a column or table, showing for each step which copy is written, read and authoritative. Expand: the old copy is written, read and authoritative; the new copy is added and unused. Keep both populated: both copies are written, and a flag may gate writes to the new copy. Backfill: historical rows are written to the new copy. Compare reads: the new copy is read for comparison while the old result is still returned. Switch reads: a flag or percentage moves reads to the new copy, while the old copy remains authoritative. Make the new copy authoritative: the new copy is written, read and authoritative, a flag chooses the authoritative store, and changes are copied back to the old copy so rollback remains possible. Contract: writes to the old copy stop, and it is deleted after enough releases.",
     "Two copies of a column or table",
-    "Which copy is written, read and authoritative at each step, and where the flag sits.",
+    "At each step, which copy is written, read and authoritative, and what the flag controls.",
     [
       label(cols.step, y0 - 14, "STEP"),
       label(cols.old, y0 - 14, "OLD COPY"),
       label(cols.new, y0 - 14, "NEW COPY"),
-      label(cols.flag, y0 - 14, "WHERE THE FLAG SITS"),
+      label(cols.flag, y0 - 14, "WHAT THE FLAG DOES"),
       ...steps.map(([name, sub, [o, n], flag], i) => {
         const y = y0 + i * rh;
         return [
@@ -1113,7 +1113,7 @@ function twoCopies() {
       }),
       ln(32, y0 + steps.length * rh, 968, y0 + steps.length * rh, { stroke: C.line, sw: 1 }),
     ].join("\n"),
-    "Dashed: read only for comparison (step 4), or kept in sync from the new copy (step 6).",
+    "A dashed outline marks a copy read only for comparison (step 4) or kept in sync from the new copy (step 6).",
   );
 }
 
@@ -1123,9 +1123,9 @@ function writeAuditPublish() {
     "wap",
     530,
     "Write, audit, publish for a chain of tables",
-    "Write, audit, publish for three tables in a chain. The v2 tables are written in a staging area that consumers cannot see, and checks run on each. A single commit then makes all the v2 tables visible together, and aborts if a final check fails. The v1 tables stay readable throughout, and consumers cut over from v1 to v2 one at a time, before the v1 deprecation date.",
+    "Write, audit, publish for a chain of three tables. The v2 tables are written in a staging area that consumers cannot see, and each is checked there. One commit then publishes all the v2 tables together, and aborts if a final check fails. The v1 tables stay readable throughout, and consumers cut over from v1 to v2 one at a time, before the v1 deprecation date. Publishing several tables in one commit follows Databricks documentation.",
     "Write, audit, publish for a chain of tables",
-    "The v2 tables are checked where no consumer can see them, then made visible at one commit point.",
+    "Each v2 table is written and checked in staging, then all are published in one commit.",
     [
       label(32, 128, "STAGING: NOT VISIBLE TO CONSUMERS"),
       box(32, 140, 570, 180, { fill: C.panel, stroke: C.ink2, dash: "5 4" }),
@@ -1137,9 +1137,9 @@ function writeAuditPublish() {
           chip(x + 10, 254, 140, "checks on table " + (i + 1), { fill: C.surface, stroke: C.blue }),
         ].join("\n"),
       ),
-      t(52, 306, "audit", { size: 13, fill: C.ink2, weight: 700 }),
+      t(52, 306, "Audit: each v2 table is checked before anything is published", { size: 13, fill: C.ink2 }),
       arrow(606, 230, 630, 230, { stroke: C.blue }),
-      stage(634, 140, 150, 180, "One commit", "all v2 tables become visible together; abort if a final check fails", { accent: C.blue, tint: C.blueTint }),
+      stage(634, 140, 150, 180, "Publish together", "one commit for all v2 tables; aborts if a final check fails", { accent: C.blue, tint: C.blueTint }),
       arrow(788, 230, 812, 230, { stroke: C.blue }),
       stage(816, 140, 152, 180, "Consumers", "cut over to v2 one at a time, before the v1 deprecation date", {}),
       label(32, 378, "V1 TABLES: READABLE THROUGHOUT"),
@@ -1148,7 +1148,7 @@ function writeAuditPublish() {
       arrow(892, 334, 892, 324, { stroke: C.muted }),
       t(560, 410, "consumers read v1 until they cut over", { size: 13, fill: C.ink2 }),
     ].join("\n"),
-    "Publishing several tables at one commit point rests on vendor documentation (Databricks).",
+    "Publishing several tables in one commit follows Databricks documentation for multi-table transactions.",
   );
 }
 
@@ -1157,23 +1157,23 @@ function streamRebuild() {
     "kreps",
     500,
     "Rebuilding a stream job's output",
-    "Kreps's procedure for changing a stream job. The log holds the retained data. Job v1 writes output table v1. A second instance, job v2, starts from the beginning of the retained data and writes output table v2. The application reads table v1 until job v2 has caught up, then switches to reading table v2. While both tables exist, pointing the application back at table v1 reverts the change. The old job is then stopped and the old table deleted.",
+    "Jay Kreps's 2014 procedure for changing the logic of a stream job. The log holds the retained data. Job v1, with the current logic, writes table v1. A second instance, job v2, runs the new logic from the beginning of the retained data and writes table v2. The application reads table v1 until job v2 has caught up, then switches to reading table v2. While both tables exist, pointing the application back at table v1 reverts the change. The old job is then stopped and the old table deleted.",
     "Rebuilding a stream job's output",
-    "Jay Kreps's 2014 procedure: a second job rebuilds from the log into a new table.",
+    "In Jay Kreps's 2014 procedure, a second job rebuilds the output from the log into a new table.",
     [
-      stage(32, 130, 160, 286, "Log", "retained data; a job can rebuild only from what it still holds", { accent: C.ink2, tint: C.panel }),
+      stage(32, 130, 160, 286, "Log", "retained data; a job can rebuild only from what the log still holds", { accent: C.ink2, tint: C.panel }),
       arrow(196, 180, 246, 180),
       stage(250, 140, 190, 80, "Job v1", "current logic"),
       arrow(444, 180, 490, 180),
       stage(494, 140, 170, 80, "Table v1", "", { accent: C.ink2, tint: C.panel }),
       arrow(196, 360, 246, 360, { stroke: C.blue }),
-      stage(250, 320, 190, 96, "Job v2", "starts from the beginning of the retained data", { accent: C.blue, tint: C.blueTint }),
+      stage(250, 320, 190, 96, "Job v2", "new logic, run from the beginning of the retained data", { accent: C.blue, tint: C.blueTint }),
       arrow(444, 360, 490, 360, { stroke: C.blue }),
       stage(494, 320, 170, 80, "Table v2", "", { accent: C.blue, tint: C.blueTint }),
       stage(798, 230, 170, 80, "Application", "reads one table at a time"),
       arrow(668, 186, 794, 250, { stroke: C.muted, dash: "5 4" }),
-      t(690, 172, "read before the switch;", { size: 13, fill: C.ink2 }),
-      t(690, 188, "pointing back here reverts", { size: 13, fill: C.ink2 }),
+      t(690, 172, "read until the switch;", { size: 13, fill: C.ink2 }),
+      t(690, 188, "pointing back here reverts the change", { size: 13, fill: C.ink2 }),
       arrow(668, 354, 794, 292, { stroke: C.blue, sw: 2.5 }),
       t(690, 370, "read once job v2", { size: 13, fill: C.ink2 }),
       t(690, 386, "has caught up", { size: 13, fill: C.ink2 }),
@@ -1191,16 +1191,16 @@ function featureHistory() {
     "feature-history",
     540,
     "Two routes to history for a v2 feature",
-    "Two routes to the history a v2 feature needs before a model can be trained on it. Backfill: history from an archive is recomputed in a batch backfill under the v2 logic with point-in-time joins, and an online-offline consistency check then measures the mismatch rate against values served online; this brings back a second code path. Logging: the feature is computed online and logged at serving time, and history accumulates; this is consistent by construction but costs calendar time, since a 90-day aggregate needs 90 days of history.",
+    "Two routes to the history a v2 feature needs before a model can be trained on it. Backfill: history from an archive is recomputed in a batch backfill under the v2 logic with point-in-time joins, and an online-offline consistency check then measures the mismatch rate against values served online; the backfill is a second code path. Logging: the v2 feature is materialized online with no model reading it, its values are logged at serving time, and history accumulates; training data then matches what was served, but no model can be trained until the history exists, and a 90-day aggregate needs 90 days of it.",
     "Two routes to history for a v2 feature",
     "A model cannot be trained on a v2 feature until the feature has history.",
     [
       label(32, 128, "BACKFILL"),
-      row(140, [["Archive", "history the stream no longer holds"], ["Batch backfill", "under the v2 logic, with point-in-time joins"], ["Consistency check", "online and offline values compared; mismatch rate reported"], ["Training data", "for models on v2"]], C.blue, C.blueTint),
-      para(32, 272, "A second code path. Offline and online values can disagree, so the gap is measured.", 936, { size: 14, fill: C.ink }),
+      row(140, [["Archive", "history the stream no longer holds"], ["Batch backfill", "under the v2 logic, with point-in-time joins"], ["Consistency check", "offline values compared with those served online; mismatch rate reported"], ["Training data", "for a model on v2"]], C.blue, C.blueTint),
+      para(32, 272, "The backfill is a second code path, so its values can differ from those served online, and the gap is measured.", 936, { size: 14, fill: C.ink }),
       label(32, 332, "LOGGING AT SERVING TIME"),
-      row(344, [["Online serving", "materialized online; no model reads it"], ["Log features", "at serving time"], ["History accumulates", "a 90-day aggregate needs 90 days"], ["Training data", "for models on v2"]], C.blue, C.blueTint),
-      para(32, 476, "Consistent by construction. Costs calendar time before any model can be trained.", 936, { size: 14, fill: C.ink }),
+      row(344, [["Online serving", "v2 materialized online; no model reads it yet"], ["Feature logging", "values logged at serving time"], ["Accumulated history", "a 90-day aggregate needs 90 days of logs"], ["Training data", "for a model on v2"]], C.blue, C.blueTint),
+      para(32, 476, "Training uses the values that were served, so there is no skew, but no model can be trained until the history has accumulated.", 936, { size: 14, fill: C.ink }),
     ].join("\n"),
     "",
   );
@@ -1208,19 +1208,19 @@ function featureHistory() {
 
 function threeArm() {
   const arms = [
-    ["Control", "model 1 only; baseline and safety net", [true, false], "Acts on model 1"],
-    ["Treatment 1", "both models computed", [true, true], "Acts on model 1"],
-    ["Treatment 2", "both models computed", [true, true], "Acts on model 2"],
+    ["Control", "model 1 only; baseline and safety net", [true, false], "Uses model 1"],
+    ["Treatment 1", "computes both models", [true, true], "Uses model 1"],
+    ["Treatment 2", "computes both models", [true, true], "Uses model 2"],
   ];
   const y0 = 140;
   const rh = 100;
   return frame(
     "three-arm",
     y0 + 3 * rh + 140,
-    "Booking.com's three-arm model comparison",
-    "Booking.com's design for comparing two models. The control arm computes only model 1, the current baseline, and acts on it; it is also the safety net. Treatment 1 and treatment 2 both compute model 1 and model 2, so they carry the same computational load and latency drops out as a confounder; treatment 1 acts on model 1 and treatment 2 acts on model 2. The analysis covers only the requests on which the two models disagree. Computing both models doubles inference and feature-fetching cost in the treatment arms.",
-    "Booking.com's three-arm model comparison",
-    "Both treatment arms compute both models, so load and latency are the same in each.",
+    "Booking.com's three-arm test of two models",
+    "Booking.com's design for comparing two models. The control arm computes only model 1, the current baseline, and uses its output; it is also the safety net. Treatment 1 and treatment 2 both compute model 1 and model 2, so they carry the same computational load and latency drops out as a confounder; treatment 1 uses the output of model 1 and treatment 2 the output of model 2. The analysis covers only the subjects for whom the two models disagree. Computing both models doubles inference and feature-fetching cost in the treatment arms.",
+    "Booking.com's three-arm test of two models",
+    "The control arm runs the current model; each treatment arm computes both models and uses one.",
     [
       ...arms.map(([name, sub, [m1, m2], act], i) => {
         const y = y0 + i * rh;
@@ -1238,7 +1238,7 @@ function threeArm() {
       para(872, y0 + rh + 24, "Same computational load in both arms", 96, { size: 13, fill: C.ink }),
       box(32, y0 + 3 * rh + 4, 936, 76, { fill: C.blueTint, stroke: C.blue }),
       t(52, y0 + 3 * rh + 34, "Analysis", { size: 16, weight: 700 }),
-      t(52, y0 + 3 * rh + 58, "Only the requests on which model 1 and model 2 disagree.", { size: 15, fill: C.ink }),
+      t(52, y0 + 3 * rh + 58, "Only the subjects for whom model 1 and model 2 disagree are compared.", { size: 15, fill: C.ink }),
     ].join("\n"),
     "Computing both models doubles inference and feature-fetching cost in the treatment arms.",
   );
