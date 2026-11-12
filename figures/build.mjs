@@ -567,7 +567,7 @@ function knight() {
     "knight",
     470,
     "Knight Capital deployed over five days and activated in one moment",
-    "Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from July 27, 2012 while its path stayed dormant, then activated on every server at the market open on 1 August, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.",
+    "Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from July 27, 2012 while its path stayed dormant, then activated on every server at the market open on August 1, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.",
     "Knight Capital, August 1, 2012",
     "Staged deployment, single activation. Source: the SEC's order.",
     [

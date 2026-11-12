@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-labelledby="knight-title knight-desc">
   <title id="knight-title">Knight Capital deployed over five days and activated in one moment</title>
-  <desc id="knight-desc">Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from July 27, 2012 while its path stayed dormant, then activated on every server at the market open on 1 August, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.</desc>
+  <desc id="knight-desc">Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from July 27, 2012 while its path stayed dormant, then activated on every server at the market open on August 1, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="470" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Knight Capital, August 1, 2012</text>
