@@ -564,6 +564,25 @@ Suppose a payments firm's `transactions` table stores each merchant's category a
 
 Model A is retrained on the old data over the same dates as model B, so that the experiment compares two versions of the data and not two training windows, which is how [Uber Eats](https://www.uber.com/blog/taming-ml-firehose/) compared an old table with a new one. The experiment is capped in size, because a challenger that lets more fraud through raises the firm's overall fraud rate, and a firm above its PSD2 reference rate loses the exemption from strong authentication for every customer, not only those in the treatment arm. Rollback stays cheap only while the v1 chain is still running, and even then it cannot undo the decisions model B made while it was live, so a payment it declined stays declined.
 
+<details>
+<summary>Sources for each step</summary>
+
+| Step | Documented by |
+| --- | --- |
+| 1. Make the source change additive | [Stripe](https://stripe.com/blog/online-migrations), [GitLab](https://docs.gitlab.com/development/database/avoiding_downtime_in_migrations/); event schemas: [Morling](https://www.morling.dev/blog/change-data-capture-breaks-encapsulation-does-it-though), [Yelp](https://engineeringblog.yelp.com/2016/08/more-than-just-a-schema-store.html) |
+| 2. Find every consumer of the ten tables | [LinkedIn](https://engineering.linkedin.com/blog/2021/evolving-linkedin-s-analytics-tech-stack), [Uber](https://www.uber.com/blog/ubers-journey-toward-better-data-culture-from-first-principles/), [Nubank](https://building.nubank.com/scaling-data-analytics-with-software-engineering-best-practices/) |
+| 3. Build v2 of each derived table | [LinkedIn](https://engineering.linkedin.com/blog/2017/11/dali-views--functions-as-a-service-for-big-data), [Airbnb](https://medium.com/airbnb-engineering/how-airbnb-achieved-metric-consistency-at-scale-f23cc53dea70), [dbt](https://docs.getdbt.com/docs/mesh/govern/model-versions) |
+| 4. Backfill the v2 history | [Airbnb](https://medium.com/airbnb-engineering/airbnb-metric-computation-with-minerva-part-2-9afe6695b486), [Beauchemin](https://maximebeauchemin.medium.com/functional-data-engineering-a-modern-paradigm-for-batch-data-processing-2327ec32c42a) |
+| 5. Audit each v2 table before publishing | [Netflix](https://www.slideshare.net/slideshow/whoops-the-numbers-are-wrong-scaling-data-quality-netflix/77278406), [Lyft](https://eng.lyft.com/from-big-data-to-better-data-ensuring-data-quality-with-verity-a996b49343f6), [Meta](https://engineering.fb.com/2026/05/12/data-infrastructure/migrating-data-ingestion-systems-at-meta-scale/); one commit for all ten tables: vendor documentation only ([Databricks](https://docs.databricks.com/aws/en/transactions/)) |
+| 6. Define the v2 feature | [Chronon](https://chronon.ai/authoring_features/GroupBy.html), [Stripe](https://stripe.com/blog/shepherd-how-stripe-adapted-chronon-to-scale-ml-feature-development); month-end hold is judgment |
+| 7. Train B, retrain A on the same dates | [Uber](https://www.uber.com/blog/taming-ml-firehose/), [Feast](https://feast.dev/blog/feature-view-versioning), [LinkedIn](https://www.linkedin.com/blog/engineering/machine-learning/scaling-machine-learning-productivity-at-linkedin) |
+| 8. Shadow model B | [Uber](https://www.uber.com/blog/continuous-integration-deployment-ml/), [Nubank](https://building.nu.com/de-risking-real-time-ml-projects-addressing-common-failure-modes/), [Adyen](https://www.adyen.com/knowledge-hub/the-ai-behind-uplift); two-week length is judgment |
+| 9. Run the experiment | [Booking.com](https://doi.org/10.1145/3292500.3330744); treatment cap is judgment |
+| 10. Ramp model B with A as fallback | [Uber](https://www.uber.com/blog/raising-the-bar-on-ml-model-deployment-safety/); promotion on matured labels is judgment |
+| 11. Retire the v1 chain | [Uber](https://content.hopsworks.ai/hubfs/Feature%20Store%20Summit%202022/FS%20Summit%2022%20-%20Uber.pdf), [DoorDash](https://www.infoq.com/presentations/fabricator-ml), [GitLab](https://docs.gitlab.com/development/database/avoiding_downtime_in_migrations/) |
+
+</details>
+
 ### Ownership of shared data
 
 Each of these procedures assumes that someone knows who reads a table and someone has the authority to change it. Google's Rules of ML asks teams to "Give feature columns owners and documentation." ([Rules of ML](https://developers.google.com/machine-learning/guides/rules-of-ml)).

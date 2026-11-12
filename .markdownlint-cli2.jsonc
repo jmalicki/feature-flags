@@ -4,7 +4,9 @@
     // Keep prose paragraphs and evidence URLs intact; the reader wraps them.
     "MD013": false,
     // Repeated subsection labels are valid under different parent headings.
-    "MD024": { "siblings_only": true }
+    "MD024": { "siblings_only": true },
+    // Allow collapsible source lists under worked examples.
+    "MD033": { "allowed_elements": ["details", "summary"] }
   },
   "globs": ["**/*.md"],
   "ignores": ["node_modules/**"]
