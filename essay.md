@@ -121,7 +121,9 @@ The findings come from a regulator examining regulated firms, and they show fail
 
 ## How the industry got here
 
-The practice grew out of two separate lines of work that met around 2008.
+The practice grew out of two separate lines of work that met around 2008, and the figure below shows the main published accounts in order.
+
+![A timeline of published accounts from 2000 to 2025: continuous integration and experimentation; dark launches, flags and frequent deployment from 2008 to 2011; scale, failures such as Knight Capital, and the first studies from 2012 to 2016; and banks and regulators from 2017 to 2025, ending with DORA.](figures/03-timeline.svg)
 
 ### Integration and experiments
 

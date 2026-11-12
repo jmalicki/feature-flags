@@ -236,18 +236,19 @@ function timeline() {
     ]],
     ["Scale, failures and the first studies", [
       ["2012", "Knight Capital: a reused flag and one stale server lose $460 million in 45 minutes."],
-      ["2013", "Netflix scores canaries automatically. Azure DevOps flips flags on launch day and goes down."],
-      ["2014", "Azure DevOps adds “ring 0”: its own staff take every release first."],
+      ["2013", "Netflix scores canaries automatically. Visual Studio Online goes down on a launch morning because of flags."],
+      ["2014", "Visual Studio Online builds a first ring of volunteer accounts that takes every deployment first."],
       ["2015", "Facebook paper: ship code disabled, ramp it with Gatekeeper, canary the configuration too."],
       ["2016", "Facebook and OANDA study continuous deployment, including at an FX trading platform."],
     ]],
-    ["Codified, and regulators take notice", [
-      ["2017", "Facebook's website moves to pushing continuously from the main branch."],
-      ["2019", "Uber shadows payment authorization without charging anyone twice."],
+    ["Banks and regulators", [
+      ["2017", "Facebook's website moves to deploying continuously from the main branch."],
+      ["2018", "Starling Bank releases to production up to five times a day. France's ACPR describes batched releases outside service hours."],
       ["2020", "Amazon documents its pipeline: one box, then waves, with bake times and automatic rollback."],
-      ["2021", "UK regulator's review of 23 firms: smaller, more frequent releases succeed more often."],
-      ["2022", "Monzo, a bank, rolls automated rollback out across 2,100 services."],
-      ["2024", "The US bank examiners' handbook describes canary and blue/green releases."],
+      ["2021", "The ACPR accepts automated change processes. The UK FCA's review of 23 firms: smaller, more frequent releases succeed more often."],
+      ["2022", "Monzo, a bank, deploys more than 100 times a day and rolls automated rollback out across 2,100 services."],
+      ["2024", "The US bank examiners' handbook mentions canary releases."],
+      ["2025", "DORA's change rules apply in the EU; its standards permit testing in production as an approved exception."],
     ]],
   ];
   let y = 118;
@@ -270,9 +271,9 @@ function timeline() {
   return frame(
     "timeline",
     h,
-    "Twenty-four years of published practice",
-    "A timeline from 2000 to 2024 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and codification with regulatory attention from 2017 to 2024.",
-    "What a fast follower inherits",
+    "Twenty-five years of published practice",
+    "A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and banks and regulators from 2017 to 2025.",
+    "Published accounts, 2000 to 2025",
     "Dates are when a practice was documented, not when it was invented.",
     [ln(spine, top + 22, spine, y - 30, { stroke: C.line, sw: 2 }), ...parts].join("\n"),
     "",
@@ -1306,6 +1307,7 @@ function workedLanes() {
 }
 
 const figures = {
+  "03-timeline.svg": timeline(),
   "00-release-train.svg": releaseTrain(),
   "06-published-ramps.svg": ramps(),
   "07-fca-findings.svg": fca(),

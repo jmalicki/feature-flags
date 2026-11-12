@@ -50,7 +50,8 @@ Accurate material that fails this test goes into an appendix or the research not
 - Place each figure immediately after the paragraph that contains its first reference. Never place it before that reference, and never in the middle of a paragraph. This follows the common rule in Chicago, APA and IEEE style: a figure goes as near as possible after its first mention.
 - An overview figure for a whole section may follow the section's opening paragraph, before the detail.
 - After any edit that moves, cuts or reorders text, check every figure: is it still immediately after its referring paragraph, does that paragraph still describe it, and does its section still discuss it?
-- The figure's title, labels and alt text must agree with the text around it: the same terms, the same numbers, the same stages. A figure must never show something the text has changed or removed.
+- The figure's title, labels and alt text must agree with the text around it: the same terms, the same numbers, the same stages. A figure must never contradict the text or show something the text has changed or removed.
+- A figure may carry sourced detail the text does not repeat, such as a timeline's extra events or a chart's extra data points, provided each item is sourced in the text, the figure or the research notes. Do not strip a figure down to only what the text says, and do not drop a good figure because the text around it was rewritten; restore it and update its labels instead.
 - Figure titles are plain descriptive labels, under the same rules as headings. Sources for data in a figure are stated in the figure or in the adjacent text.
 - Render each figure and look at it before committing: no overlapping or clipped text.
 
