@@ -278,6 +278,21 @@ A ring is a canary assigned to a defined population of users. Microsoft's guidan
 
 ![Seven published ramp schedules, including Facebook's website (employees, 2%, 100% in a few hours) to Amazon (one box, first Region, more Regions, all Regions over four to five business days), Slack (its own staff, a 2% canary, then 10% to 100%) and Uber's payment authorization (shadow, employees, 0.25%, 1%, 5%, 100%).](figures/06-published-ramps.svg)
 
+<details>
+<summary>Sources for the figure</summary>
+
+| Schedule | Source |
+| --- | --- |
+| Facebook website, 2017 | [Facebook](https://engineering.fb.com/2017/08/31/web/rapid-release-at-massive-scale/) |
+| Facebook Android app, 2016 | [Rossi and colleagues, FSE 2016](https://www.eecg.toronto.edu/~stumm/Papers/Rossi-FSE-16.pdf) |
+| Amazon services, 2020 | [Amazon Builders' Library](https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/) |
+| Azure DevOps | [Microsoft](https://learn.microsoft.com/en-us/devops/operate/safe-deployment-practices) |
+| Slack, 2020 | [Slack](https://slack.engineering/deploys-at-slack/) |
+| Uber payment authorization, 2019 | [Uber](https://www.uber.com/blog/migrating-functionality-between-production-systems) |
+| Uber ledger, 2020 | [Uber](https://www.uber.com/us/en/blog/money-scale-strong-data/) |
+
+</details>
+
 A ramp applies the same progression to one behavior, using a flag, where a ring applies it to a build.
 
 The unit of exposure matters more than the percentages, as Square found when it moved payment records to a new service using random percentages of requests. Its engineer wrote afterwards that this had hidden a regression which only appeared for a particular combination of client software versions, and that rolling out in a way that was [stable per merchant](https://developer.squareup.com/blog/breaking-up-with-your-monorail/) would have confined it to a few.
