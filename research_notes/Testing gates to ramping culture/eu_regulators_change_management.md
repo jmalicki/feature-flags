@@ -266,7 +266,7 @@ National texts converge on DORA's elements but differ in tone. Germany (BAIT/MaR
   - Under "Examples of this include": "The change management process is based on international standards and methods such as ITIL, Agile, Scrum"; "The impact analysis of a change takes into consideration a fall-back scenario if the change is unsuccessful"; "The institution has set up a Change Advisory Board (CAB) which makes decisions about changes in various disciplines such as business, IT and IT risk/IT security."
   - The CAB is listed as an example, not a required practice.
 - DNB 2023 Good Practice (controls 10.1-10.4) and DNB statements that DORA replaces the Good Practice: SNIPPET only; DNB's site returned "Access Denied" to direct download.
-- AFM: nothing found on change management or release practice.
+- AFM, "Changemanagement en het risico op overkreditering: Tien principes en zeven voorbeelden", 3 July 2024 (principles; indicative, not binding). Ten principles for IT change management at consumer and mortgage lenders, published after errors in automated credit checks that the AFM said were often traceable to changes in those systems. They expect four-eyes approval, testing before the change, monitoring of deviations directly after it, a fall-back plan, documentation and incident reporting to the AFM. This pass found nothing; the text was read in the later Dutch pass, and the detail, page locators and translations are in [dutch_regulators.md](dutch_regulators.md), section 5. — [AFM principles 2024](https://www.afm.nl/~/profmedia/files/rapporten/2024/changemanagement-overkreditering.pdf); [AFM news item](https://www.afm.nl/en/sector/actueel/2024/juli/changemanagement-kredietverstrekking)
 
 #### Switzerland: FINMA (non-EU)
 

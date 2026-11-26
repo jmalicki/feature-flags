@@ -348,7 +348,7 @@ No first-party post-mortem of a staged model rollout going wrong was found. The 
 ### Inferences
 
 - Where it stops working, in the reader's terms:
-  - Low-traffic or high-stakes decisions: power is too small and an exploration slice is too costly. Shadow plus offline or off-policy evaluation substitutes.
+  - Low-traffic or high-stakes decisions: power is too small and an exploration slice is too costly. Shadow and offline or off-policy evaluation are partial substitutes, each with a condition. Shadow shows what the model would have decided and cannot measure the outcome of a decision it did not make. Off-policy evaluation needs logs collected with randomization that cover the actions the new policy would take, and enough of them (Bottou et al. above). Where those conditions are not met, the release stays gated until suitable evidence has been collected.
   - Labels delayed for months: the ramp must be decided on proxies.
   - Credit decisions under model-risk regulation: validation precedes use, so the live slice is small and pre-approved.
   - Two models whose features need a new upstream pipeline: the pipeline must exist in production before the shadow stage. See the other file.

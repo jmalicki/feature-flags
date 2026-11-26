@@ -179,7 +179,7 @@ A changed feature needs history recomputed before any model can be trained on it
 
 ### Inferences
 
-- The practical sequence for a v2 feature is: define v2 → offline backfill (hours with a backfill engine; weeks if you must log and wait) → turn on online materialisation/streaming for v2 with no reader ("dark write") → compare logged online values with offline values → train model B on v2 history → shadow/A-B model B against model A → retire v1 when no model references it. Each step is documented by at least one source above, but no single source narrates the whole sequence end to end for one real feature.
+- The practical sequence for a v2 feature is: define v2 → offline backfill (hours with a backfill engine; weeks if you must log and wait) → turn on online materialisation/streaming for v2 with no model reading it ("dark write") → have a shadow client fetch v2 for a sample of keys, because Chronon's consistency job compares what the fetcher logged and the fetcher logs nothing for a feature that nobody requests → compare logged online values with offline values → train model B on v2 history → shadow/A-B model B against model A → retire v1 when no model references it. Each step except the shadow fetch is documented by at least one source above; the shadow fetch is my inference from how the fetcher logging works, and no single source narrates the whole sequence end to end for one real feature.
 - "How long old versions are kept" is governed by model references, not by a time policy: the old feature lives as long as any deployed model (including the rollback target) names it.
 
 ### Gaps
