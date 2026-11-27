@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="730" viewBox="0 0 1000 730" role="img" aria-labelledby="access-title access-desc">
+  <title id="access-title">Five levels of access control</title>
+  <desc id="access-desc">Five levels of access control, each adding to the one before. Level 1: single sign-on with a hardware security key that must be touched. Level 2: short-lived ssh certificates issued after sign-on. Level 3: one logged bastion as the only way in. Level 4: a device certificate checked along with the user. Level 5: full BeyondCorp, with a device inventory, computed trust tiers and authorization on every request. Levels 1 to 3 are the recommended start, level 4 is added where laptops are already managed, and level 5 is the far end of the range. No level answers code already running on the laptop.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="730" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Five levels of access control</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Each level adds to the one before. None answers code already running on the laptop.</text>
+    <rect x="32" y="228" width="178" height="392" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="46" y="258" font-size="13" fill="#8a8983" font-weight="700" text-anchor="start">Level 1</text>
+<text x="46" y="282" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Sign-on with a</text>
+<text x="46" y="304.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">hardware key</text>
+<text x="46" y="340.2" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ADDS</text>
+<text x="46" y="360.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Single sign-on and a</text>
+<text x="46" y="378.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">key that must be</text>
+<text x="46" y="396.59999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">touched</text>
+<text x="46" y="428.79999999999995" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
+<text x="46" y="448.79999999999995" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Phished passwords</text>
+<text x="46" y="466.99999999999994" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">and approved phone</text>
+<text x="46" y="485.19999999999993" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">prompts</text>
+<text x="46" y="517.4" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="46" y="537.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Google; New York's</text>
+<text x="46" y="555.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">financial regulator</text>
+<rect x="222" y="206" width="178" height="414" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="236" y="236" font-size="13" fill="#8a8983" font-weight="700" text-anchor="start">Level 2</text>
+<text x="236" y="260" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Short-lived ssh</text>
+<text x="236" y="282.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">certificates</text>
+<text x="236" y="318.2" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ADDS</text>
+<text x="236" y="338.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Issued after</text>
+<text x="236" y="356.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">sign-on, short-lived</text>
+<text x="236" y="388.6" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
+<text x="236" y="408.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Long-lived keys on</text>
+<text x="236" y="426.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">laptops</text>
+<text x="236" y="459" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="236" y="479" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Meta (production,</text>
+<text x="236" y="497.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">2016); Netflix</text>
+<rect x="412" y="184" width="178" height="436" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="426" y="214" font-size="13" fill="#8a8983" font-weight="700" text-anchor="start">Level 3</text>
+<text x="426" y="238" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">One logged</text>
+<text x="426" y="260.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">bastion</text>
+<text x="426" y="296.2" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ADDS</text>
+<text x="426" y="316.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The only way in to</text>
+<text x="426" y="334.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">every server</text>
+<text x="426" y="366.6" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
+<text x="426" y="386.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Unlogged connections</text>
+<text x="426" y="404.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">and side entrances</text>
+<text x="426" y="437" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="426" y="457" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Meta (production,</text>
+<text x="426" y="475.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">2016); US guidance</text>
+<rect x="602" y="162" width="178" height="458" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5"/>
+<text x="616" y="192" font-size="13" fill="#8a8983" font-weight="700" text-anchor="start">Level 4</text>
+<text x="616" y="216" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Device</text>
+<text x="616" y="238.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">certificate</text>
+<text x="616" y="274.2" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ADDS</text>
+<text x="616" y="294.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The laptop proves it</text>
+<text x="616" y="312.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">is a managed one</text>
+<text x="616" y="344.6" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
+<text x="616" y="364.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Sign-in from an</text>
+<text x="616" y="382.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">unknown machine</text>
+<text x="616" y="415" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="616" y="435" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Google</text>
+<rect x="792" y="140" width="178" height="480" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="806" y="170" font-size="13" fill="#8a8983" font-weight="700" text-anchor="start">Level 5</text>
+<text x="806" y="194" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Full BeyondCorp</text>
+<text x="806" y="230.1" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ADDS</text>
+<text x="806" y="250.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Inventory, computed</text>
+<text x="806" y="268.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">trust tiers, every</text>
+<text x="806" y="286.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">request authorized</text>
+<text x="806" y="318.7" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
+<text x="806" y="338.7" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Trust based on</text>
+<text x="806" y="356.9" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">network location;</text>
+<text x="806" y="375.09999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">unpatched devices</text>
+<text x="806" y="407.29999999999995" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="806" y="427.29999999999995" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Google alone</text>
+<line x1="32" y1="646" x2="590" y2="646" stroke="#2a78d6" stroke-width="3" stroke-linecap="round"/>
+<text x="32" y="670" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Recommended start</text>
+<line x1="602" y1="646" x2="780" y2="646" stroke="#52514e" stroke-width="3" stroke-linecap="round"/>
+<text x="602" y="670" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Where laptops are</text>
+<text x="602" y="689.5" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">already managed</text>
+<line x1="792" y1="646" x2="970" y2="646" stroke="#52514e" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 4"/>
+<text x="792" y="670" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">The far end of the range</text>
+    
+  </g>
+</svg>
