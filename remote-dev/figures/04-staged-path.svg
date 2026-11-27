@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="350" viewBox="0 0 1000 350" role="img" aria-labelledby="staged-path-title staged-path-desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380" role="img" aria-labelledby="staged-path-title staged-path-desc">
   <title id="staged-path-title">From one application to unattended agents</title>
-  <desc id="staged-path-desc">Record sign-ins and SSH connections from the first day of the pilot. Compare edit-to-test times and support hours with local development, and have a second engineer recover a checkout. Record agent tool calls. Give unattended agents their own machines and identities, and review their changes.</desc>
+  <desc id="staged-path-desc">Record sign-ins and SSH connections from the first day of the pilot. Compare edit-to-test times and support hours with local development, time a second engineer recovering an unpublished fix, and assign support for local-only work before choosing the application default. Record agent tool calls. Give unattended agents their own machines and identities, and review their changes.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
-    <rect x="0" y="0" width="1000" height="350" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <rect x="0" y="0" width="1000" height="380" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">From one application to unattended agents</text>
     <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">A proposed rollout for a team moving its first application to a development server.</text>
-    <rect x="32" y="114" width="284" height="205" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+    <rect x="32" y="114" width="284" height="240" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="46" y="144" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Pilot one application</text>
 <text x="46" y="170.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Volunteers ship an ordinary change</text>
 <text x="46" y="188.29999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">from a restricted Linux machine.</text>
 <text x="46" y="211.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Record sign-ins and SSH</text>
 <text x="46" y="229.7" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">connections from the first day.</text>
-<line x1="322" y1="216.5" x2="351" y2="216.5" stroke="#52514e" stroke-width="2" stroke-linecap="round"/><path d="M 343.8 213.0 L 351 216.5 L 343.8 220.0" fill="none" stroke="#52514e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="358" y="114" width="284" height="205" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="372" y="144" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Retire the local setup</text>
-<text x="372" y="170.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Compare edit-to-test times and</text>
-<text x="372" y="188.29999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">support hours with the local</text>
-<text x="372" y="206.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">setup.</text>
-<text x="372" y="229.7" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Retire it when the pilot delivers</text>
-<text x="372" y="247.89999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">the expected speed, support is</text>
-<text x="372" y="266.09999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">sustainable and a second engineer</text>
-<text x="372" y="284.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">has recovered a checkout.</text>
-<line x1="648" y1="216.5" x2="677" y2="216.5" stroke="#52514e" stroke-width="2" stroke-linecap="round"/><path d="M 669.8 213.0 L 677 216.5 L 669.8 220.0" fill="none" stroke="#52514e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="684" y="114" width="284" height="205" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<line x1="322" y1="234" x2="351" y2="234" stroke="#52514e" stroke-width="2" stroke-linecap="round"/><path d="M 343.8 230.5 L 351 234 L 343.8 237.5" fill="none" stroke="#52514e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="358" y="114" width="284" height="240" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="372" y="144" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Choose the application</text>
+<text x="372" y="166.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">default</text>
+<text x="372" y="192.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Compare edit-to-test times and</text>
+<text x="372" y="210.39999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">support hours with the local</text>
+<text x="372" y="228.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">setup.</text>
+<text x="372" y="251.79999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Time a second engineer recovering</text>
+<text x="372" y="270" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">an unpublished fix during an</text>
+<text x="372" y="288.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">outage.</text>
+<text x="372" y="311.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Name who will support work that</text>
+<text x="372" y="329.59999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">still needs a local checkout.</text>
+<line x1="648" y1="234" x2="677" y2="234" stroke="#52514e" stroke-width="2" stroke-linecap="round"/><path d="M 669.8 230.5 L 677 234 L 669.8 237.5" fill="none" stroke="#52514e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="684" y="114" width="284" height="240" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
 <text x="698" y="144" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Add agents if needed</text>
 <text x="698" y="170.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Start with an engineer present.</text>
 <text x="698" y="188.29999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Record which tools each agent job</text>

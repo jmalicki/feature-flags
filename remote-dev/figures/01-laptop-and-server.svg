@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="850" viewBox="0 0 1000 850" role="img" aria-labelledby="laptop-server-title laptop-server-desc">
   <title id="laptop-server-title">The laptop, the development server and its exits</title>
-  <desc id="laptop-server-desc">The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a broker, the model endpoint, the editor's downloads, the organization's own code host, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. Logs are kept off the server.</desc>
+  <desc id="laptop-server-desc">The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a service supplying fixtures and approved test datasets, the model endpoint, the editor's downloads, the organization's own code host, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. The engineer can inspect customer records in a separate interface under a temporary grant. Neither the workspace nor its agents can use that grant. Logs are kept off the server.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="850" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">The laptop, the development server and its exits</text>
@@ -33,6 +33,7 @@
 <text x="600" y="284.09999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Outbound traffic denied by default, enforced</text>
 <text x="600" y="302.29999999999995" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">outside the machine</text>
 <text x="32" y="352" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The ssh session and the editor's connection carry data in both directions.</text>
+<text x="32" y="373" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Customer records stay in a separate interface that only an engineer with a temporary grant can open.</text>
 <text x="32" y="404" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">THE SERVER'S EIGHT EXITS, EACH THROUGH A SERVICE THE ENGINEER DOES NOT ADMINISTER</text>
 <rect x="32" y="418" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="46" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Package proxy</text>
@@ -49,10 +50,9 @@
 <text x="520" y="492.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">wiki, tracker, chat and</text>
 <text x="520" y="510.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">code search</text>
 <rect x="743" y="418" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="757" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Broker</text>
-<text x="757" y="474.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Grants each identity</text>
-<text x="757" y="492.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">time-limited access to</text>
-<text x="757" y="510.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">sanitized data</text>
+<text x="757" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Development data</text>
+<text x="757" y="474.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Supplies fixtures and</text>
+<text x="757" y="492.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">approved test datasets</text>
 <rect x="32" y="548" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="46" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Model endpoint</text>
 <text x="46" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Through a proxy that holds</text>

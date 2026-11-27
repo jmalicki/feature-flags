@@ -7,6 +7,7 @@
 - [Machine sizes seen in public](#machine-sizes-seen-in-public)
 - [Channels out of a development server](#channels-out-of-a-development-server)
 - [Source access and personal data](#source-access-and-personal-data)
+- [Threats and remaining exposure](#threats-and-remaining-exposure)
 - [From a Google laptop to production](#from-a-google-laptop-to-production)
 - [Strength of the evidence by claim](#strength-of-the-evidence-by-claim)
 
@@ -61,9 +62,23 @@ An investigation needs to establish who could read the material, which account a
 | Does a Linux DLP product cover the actual session? | Fortra lists support for Linux servers. Netwrix says its clipboard monitor requires a desktop session and its notifier. An evaluation should exercise the shell, editor and client the team uses. [Fortra datasheet](https://static.fortra.com/digital-guardian/pdfs/datasheets/fta-dg-linux-ds.pdf#page=2) · [Netwrix policy documentation](https://docs.netwrix.com/docs/endpointprotector/admin/cap_module/cappolicies) |
 | Who can see the data before masking? | FINRA’s pipeline held original records in a controlled staging account. Development and QA accounts received the masked output. Access to staging, including the pipeline’s own identity, needs a separate review. [FINRA presentation](https://d1.awsstatic.com/events/reinvent/2019/How_FINRA_builds_serverless_data-masking_pipelines_across_accounts_SEC338.pdf) |
 | What if a performance test needs production-scale data? | GitLab runs database migration tests against a restricted, expiring thin clone and returns results to the merge request. A team adopting that approach has to control both direct database access and the values it publishes in test output. [GitLab operational guide](https://docs.gitlab.com/development/database/database_migration_pipeline/) · [Design alternatives](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/database_testing/#alternative-approaches) |
+| What happens to an exceptional copy after the work ends? | Times Software kept payroll data after delivering a feature. Its policy required deletion at sign-off, and nobody checked that it happened. Give each exceptional copy an owner who verifies deletion and records when any retained snapshots will expire. [Singapore privacy regulator’s decision, paragraphs 13–14](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Commissions-Decisions/Decision---Times-and-Others---18062020.pdf) |
 | What can investigators reconstruct? | GitHub Enterprise Cloud documents seven days of Git events through its audit API and export. A team that needs a longer window can stream events to its own storage. A clone event identifies the account and repository. Following the copy after that requires other evidence. [GitHub audit access](https://docs.github.com/en/enterprise-cloud%40latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/accessing-the-audit-log-for-your-enterprise) |
 
 The research notes give the circumstances of each incident, the source for each control and the limits of what the organization disclosed. [Data loss and insider access](research/data_loss_deep_dive.md)
+
+## Threats and remaining exposure
+
+Moving the checkout changes what a compromised machine can reach. An engineer's laptop still controls a live editor session. On a development server, a package can read files available to the account that runs its build. The expected protections below depend on where each permission is enforced.
+
+| Starting point | Protection in the proposed design | Remaining exposure |
+| --- | --- | --- |
+| Someone has the engineer's password | The sign-on service requires a hardware key before issuing a short-lived SSH certificate. The bastion checks the certificate when a connection opens. | Account recovery and alternate sign-in methods need equivalent protection. |
+| Malware runs on the laptop | The laptop can omit the persistent checkout. Production credentials stay off the development server. | A live session can display source, fetch files and make requests as the engineer. |
+| A dependency runs malicious code on the server | Network rules enforced outside the machine limit destinations even when an engineer has root. | The dependency may read the checkout, change a file that later goes to review, or leave changes on a persistent volume. |
+| An employee deliberately takes code | Repository permissions limit what the employee can read. Off-server records can help investigators reconstruct access. | Someone authorized to view a file can retain a copy. A connection record alone cannot establish which files left. |
+| A ticket steers an agent | The gateway limits tool calls and the publishing service controls the destination. | Proposed changes and model requests can still contain private material the agent could read. |
+| A shared service is compromised | Separate service credentials and independent logs limit the permissions and records any one service controls. | A compromised package proxy can distribute a bad dependency across the fleet. A compromised gateway can misuse the upstream credentials it holds. |
 
 ## From a Google laptop to production
 

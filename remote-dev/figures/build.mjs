@@ -84,7 +84,7 @@ function laptopAndServer() {
     ["Package proxy", "Fetches packages and public source itself"],
     ["Hosted search and fetch tool", "Retrieves public pages and logs queries"],
     ["Gateway", "Holds credentials for the wiki, tracker, chat and code search"],
-    ["Broker", "Grants each identity time-limited access to sanitized data"],
+    ["Development data", "Supplies fixtures and approved test datasets"],
     ["Model endpoint", "Through a proxy that holds the key"],
     ["Editor downloads", "Server component and approved extensions"],
     ["Own code host", "Pushes only to the organization's own host"],
@@ -108,7 +108,7 @@ function laptopAndServer() {
     "laptop-server",
     botY + 120,
     "The laptop, the development server and its exits",
-    "The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a broker, the model endpoint, the editor's downloads, the organization's own code host, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. Logs are kept off the server.",
+    "The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a service supplying fixtures and approved test datasets, the model endpoint, the editor's downloads, the organization's own code host, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. The engineer can inspect customer records in a separate interface under a temporary grant. Neither the workspace nor its agents can use that grant. Logs are kept off the server.",
     "The laptop, the development server and its exits",
     "An engineer can administer the server. Separate services control what it can reach.",
     [
@@ -120,6 +120,7 @@ function laptopAndServer() {
       arrow(582, top + 124, 556, top + 124, { stroke: C.ink2 }),
       card(586, top, 382, rowH, "Development server", ["Working checkout and toolchain", "Builds, tests, running services", "Attended agents", "Engineer has root", "Disk on a volume that outlives the machine", "Outbound traffic denied by default, enforced outside the machine"], { fill: C.blueTint, stroke: C.blue }),
       t(32, top + rowH + 26, "The ssh session and the editor's connection carry data in both directions.", { size: 14, fill: C.ink2 }),
+      t(32, top + rowH + 47, "Customer records stay in a separate interface that only an engineer with a temporary grant can open.", { size: 14, fill: C.ink2 }),
       t(32, exTop - 14, "THE SERVER'S EIGHT EXITS, EACH THROUGH A SERVICE THE ENGINEER DOES NOT ADMINISTER", { size: 13, fill: C.ink2, weight: 700 }),
       exitBoxes,
       arrow(pipeX, exBottom + 4, pipeX, botY - 34, { stroke: C.orange }),
@@ -188,12 +189,12 @@ function accessLevels() {
 function stagedPath() {
   const y = 114;
   const w = 284;
-  const h = 205;
+  const h = 240;
   return frame(
     "staged-path",
-    350,
+    380,
     "From one application to unattended agents",
-    "Record sign-ins and SSH connections from the first day of the pilot. Compare edit-to-test times and support hours with local development, and have a second engineer recover a checkout. Record agent tool calls. Give unattended agents their own machines and identities, and review their changes.",
+    "Record sign-ins and SSH connections from the first day of the pilot. Compare edit-to-test times and support hours with local development, time a second engineer recovering an unpublished fix, and assign support for local-only work before choosing the application default. Record agent tool calls. Give unattended agents their own machines and identities, and review their changes.",
     "From one application to unattended agents",
     "A proposed rollout for a team moving its first application to a development server.",
     [
@@ -202,9 +203,10 @@ function stagedPath() {
         "Record sign-ins and SSH connections from the first day.",
       ], { fill: C.blueTint, stroke: C.blue }),
       arrow(322, y + h / 2, 351, y + h / 2, { stroke: C.ink2 }),
-      card(358, y, w, h, "Retire the local setup", [
+      card(358, y, w, h, "Choose the application default", [
         "Compare edit-to-test times and support hours with the local setup.",
-        "Retire it when the pilot delivers the expected speed, support is sustainable and a second engineer has recovered a checkout.",
+        "Time a second engineer recovering an unpublished fix during an outage.",
+        "Name who will support work that still needs a local checkout.",
       ]),
       arrow(648, y + h / 2, 677, y + h / 2, { stroke: C.ink2 }),
       card(684, y, w, h, "Add agents if needed", [
