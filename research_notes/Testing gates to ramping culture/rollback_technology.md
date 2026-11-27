@@ -623,3 +623,14 @@ Serious implementers dissent from "image rollback makes change safe": Meta refus
 - No quantified cost (currency or percentage) of keeping N previous versions warm, beyond "twice as many resources" and Meta's 500K-machine example.
 - No documented case found of "false confidence" from image rollback causing an incident at a named large firm; McKinley's argument is reasoned, with a generic example.
 - Rollback authority, regulator back-out-plan text, Knight Capital and RBS 2012: deliberately not covered (sibling researcher).
+
+## Limits of rollback and work in flight (checked November 27, 2026)
+
+Read in downloaded page text.
+
+- Dan McKinley, "You Can't Have a Rollback Button": "You can roll back the SHA the webservers are running, but you can't roll back what they've inflicted on everything else in the system." "Otherwise, the remediation has to occur in the direction of the future." — [mcfunley.com](https://mcfunley.com/you-cant-have-a-rollback-button)
+- Microsoft, Compensating Transaction pattern: "Define clear points of no return and irreversible steps. In complex workflows, you can't safely or meaningfully undo some operations, such as external side effects or legally binding actions." — [Microsoft Learn](https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction)
+- Google CRE, against roll-forward as a habit: "We have seen this at Google any number of times, where a hastily deployed roll-forward fix either fails to fix the original problem, or indeed makes things worse." — [Google Cloud blog](https://cloud.google.com/blog/products/gcp/reliable-releases-and-rollbacks-cre-life-lessons/)
+- Temporal Worker Versioning: "For pinned Workflow Types, each execution runs entirely on the Worker Deployment Version where it started." "You can deploy new revisions of your Workflows freely while older versions drain." — [Temporal docs](https://docs.temporal.io/production-deployment/worker-deployments/worker-versioning). Explicit move: "Sometimes you'll need to manually move a set of pinned Workflows off of a version that has a bug to a version with the fix." — [roll out and pin](https://docs.temporal.io/production-deployment/worker-deployments/worker-versioning/roll-out-and-pin)
+- AWS: "we fully prepare ourselves for a rollback before every deployment."
+- Nothing found in LaunchDarkly's evaluating page, Unleash best practices or Fowler's feature-toggles article on a flag left on over a build that lacks its code. The Knight order (paras 13, 16, 27) is the one primary case. The essay's rule to switch such a flag off before a build rollback, and the suggestion to keep a copy of the newer build running for accepted work, are the author's proposals.

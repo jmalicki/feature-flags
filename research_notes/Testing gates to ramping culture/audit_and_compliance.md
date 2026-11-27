@@ -139,7 +139,7 @@ Across the texts I read (PCI DSS v4.0, FFIEC DA&M 2024, EBA 2019, DORA and its R
 
 ### Gaps
 
-- PCI DSS v3.2.1 text, PCI DSS v4.0.1, COBIT BAI06, COSO, ISO/IEC 27001:2022 A.8.32, the AICPA TSC document, the ITIL 4 practice guide, FCA SYSC, and the FFIEC AIO booklet were not read. No wording from them should be quoted from these notes.
+- PCI DSS v3.2.1 text, PCI DSS v4.0.1, COBIT BAI06, COSO, ISO/IEC 27001:2022 A.8.32, the AICPA TSC document, the ITIL 4 practice guide, FCA SYSC, and the FFIEC AIO booklet were not read. No wording from them should be quoted from these notes. COSO 2013 Principle 11, the AICPA TSC (CC8.1) and ISAE 3402 were read later in raw text; see `verification_round_2026_11.md`.
 - DORA RTS Article 17 was read through a fetch tool that paraphrased most points; quote it only after checking EUR-Lex.
 - No text says whether an automated gate may substitute for a human approver; that remains an assessor/supervisor judgement.
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="deploy-release-title deploy-release-desc">
+  <title id="deploy-release-title">Separating deployment from release</title>
+  <desc id="deploy-release-desc">Two arrangements. On a release train, half a week of changes is batched, held for three days of promotion and soak, and then deployed and released to every user at once, so every change waits for the most cautious one. With deployment and release separated, code is deployed every day with its new behavior off. One behavior is then released on its own, first to no one, then to a small group, then to everyone, while the other changes proceed without waiting for it.</desc>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="0" y="0" width="1000" height="620" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Separating deployment from release</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">On a train one act deploys and releases. Separated, each behavior is released on its own schedule.</text>
+    <text x="32" y="130" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">RELEASE TRAIN: DEPLOY AND RELEASE IN ONE ACT</text>
+<rect x="32" y="146" width="220" height="84" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="44" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Changes batched</text>
+<text x="44" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">half a week of changes</text>
+<line x1="256" y1="188" x2="284" y2="188" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 276.8 184.5 L 284 188 L 276.8 191.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="288" y="146" width="300" height="84" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="300" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Promotion and soak</text>
+<text x="300" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">three days, for every change on the</text>
+<text x="300" y="213" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">train</text>
+<line x1="592" y1="188" x2="620" y2="188" stroke="#8a8983" stroke-width="2" stroke-linecap="round"/><path d="M 612.8 184.5 L 620 188 L 612.8 191.5" fill="none" stroke="#8a8983" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="624" y="146" width="344" height="84" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5"/>
+<text x="636" y="172" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Deploy and release</text>
+<text x="636" y="194.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">every user at once</text>
+<text x="32" y="262" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">The caution a risky change deserves is applied to the whole train, and everything on the train waits for it.</text>
+<text x="32" y="324" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">DEPLOYED DAILY, RELEASED SEPARATELY</text>
+<text x="32" y="374" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Deploy</text>
+<text x="32" y="394" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">every day</text>
+<rect x="172" y="340" width="148" height="76" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="184" y="366" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 1</text>
+<text x="184" y="388.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed, new</text>
+<text x="184" y="407" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">behavior off</text>
+<rect x="332" y="340" width="148" height="76" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="344" y="366" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 2</text>
+<text x="344" y="388.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed, new</text>
+<text x="344" y="407" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">behavior off</text>
+<rect x="492" y="340" width="148" height="76" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="504" y="366" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 3</text>
+<text x="504" y="388.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed, new</text>
+<text x="504" y="407" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">behavior off</text>
+<rect x="652" y="340" width="148" height="76" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="664" y="366" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 4</text>
+<text x="664" y="388.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed, new</text>
+<text x="664" y="407" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">behavior off</text>
+<rect x="812" y="340" width="148" height="76" rx="8" fill="#fcfcfb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="824" y="366" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Day 5</text>
+<text x="824" y="388.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">deployed, new</text>
+<text x="824" y="407" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">behavior off</text>
+<text x="32" y="506" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Release</text>
+<text x="32" y="526" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">one behavior</text>
+<line x1="406" y1="420" x2="406" y2="468" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/><path d="M 409.5 460.8 L 406 468 L 402.5 460.8" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="332" y="472" width="190.66666666666666" height="60" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="344" y="498" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">No one</text>
+
+<line x1="526.6666666666666" y1="502" x2="550.6666666666666" y2="502" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 543.5 498.5 L 550.6666666666666 502 L 543.5 505.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="554.6666666666666" y="472" width="190.66666666666666" height="60" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="566.6666666666666" y="498" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Small group</text>
+
+<line x1="749.3333333333333" y1="502" x2="773.3333333333333" y2="502" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/><path d="M 766.1 498.5 L 773.3333333333333 502 L 766.1 505.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="777.3333333333333" y="472" width="190.66666666666666" height="60" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="789.3333333333333" y="498" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Everyone</text>
+
+
+<text x="332" y="566" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">The wait applies to the one behavior that needs watching. The changes deployed</text>
+<text x="332" y="585.5" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">on the other days proceed without waiting for it.</text>
+    
+  </g>
+</svg>
