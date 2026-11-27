@@ -869,7 +869,7 @@ function flagLifecycle() {
       t(510, by + 40, "warns as the date approaches", { size: 14, fill: C.ink2 }),
       hbar(768, by, 200, 18, C.orange),
       ln(764, by - 8, 764, by + 26, { stroke: C.ink, sw: 2 }),
-      t(774, by + 40, "owning team's merge check fails", { size: 14, fill: C.ink2 }),
+      t(968, by + 40, "owning team's merge check fails", { size: 14, fill: C.ink2, anchor: "end" }),
       t(764, by - 14, "expiry date", { size: 13, fill: C.ink, anchor: "middle" }),
       label(32, oy - 18, "THE OFF PATH"),
       ln(xs[1], oy + 9, xs[2] - 8, oy + 9, { stroke: C.blue, sw: 5 }),
