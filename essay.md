@@ -553,7 +553,7 @@ At the end of the trial, the following would be measured for the first service a
 - deployment frequency, reported only beside the change failure rate
 - the number of release flags past their expiry date
 
-The first service would be compared with its own baseline from the last question above, and the comparable services would show whether a difference came from the trial or from something that affected every service. On the train the two lead times are the same five days. The lead time to every user would be reported without being a stop condition, because the model lengthens it by design for some changes. The share of failed changes and the time to restore are measured as the [State of DevOps surveys](https://dora.dev/research/2019/dora-report/2019-dora-accelerate-state-of-devops-report.pdf) define them, so that the results can be compared with the surveys' published figures.
+The first service would be compared with its own baseline from the last question above, and the comparable services would show whether a difference came from the trial or from something that affected every service. On the train the two lead times are the same five days. The lead time to every user would be reported without being a stop condition, because the model lengthens it by design for some changes. The share of failed changes and the time to restore are measured as the [State of DevOps surveys](https://dora.dev/research/2019/dora-report/2019-dora-accelerate-state-of-devops-report.pdf) define them. The surveys' published figures are self-reported by respondents, so they offer only a rough comparison.
 
 ### A pipeline for the existing process
 
@@ -573,7 +573,7 @@ The trial would run under a change policy limited to this service, or in a monol
 
 ### Stop conditions
 
-The trial would stop on any irreversible harm traced to a ramp, such as money lost or data corrupted. It would also stop on any failed correctness check that is traced to a ramp and not explained within one checking cycle, which in payments is a reconciliation cycle. After two quarters it would stop if changes fail more often or take longer to restore than at the service's own baseline, by a margin fixed in the trial policy, or if the lead time to first exposure is no shorter. One service over two quarters yields too few failures to show a modest difference, so the comparison of failure rates would guard only against a large regression.
+The trial policy should name its stop conditions before the trial starts, because the response to a failure is hard to agree once the failure has happened. [Savor and colleagues](https://www.eecg.toronto.edu/~stumm/Papers/Savor-ICSE16.pdf) observed that after a major failure "organizations often tend to gravitate back to more traditional processes". Which conditions to name is for the organization and whoever owns its risk to decide. One example is irreversible harm traced to a ramp, such as money lost or data corrupted. Another is a failed correctness check that is traced to a ramp and not explained within one checking cycle, which in payments is a reconciliation cycle. A third is a result after two quarters in which changes fail more often or take longer to restore than at the service's own baseline, or reach production traffic no sooner. One service over two quarters yields too few failures to show a modest difference, so a comparison of failure rates would reveal only a large regression, and the owners of the policy would have to weigh it with the other measures.
 
 ### Cost
 
