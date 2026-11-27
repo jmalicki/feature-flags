@@ -1064,7 +1064,7 @@ function twoCopies() {
     ["3. Backfill", "copy historical rows, throttled", [["written", "read", "authoritative"], ["written"]], ""],
     ["4. Compare reads", "the old result is still returned", [["written", "read", "authoritative"], ["written", "compared"]], ""],
     ["5. Switch reads", "by flag or percentage", [["written", "", "authoritative"], ["written", "read"]], "moves reads to the new copy"],
-    ["6. Make new copy authoritative", "a reverse sync keeps rollback possible", [["copied back"], ["written", "read", "authoritative"]], "chooses the authoritative store"],
+    ["6. Make new copy authoritative", "a reverse sync keeps rollback possible", [["copied back"], ["written", "read", "authoritative"]], "a coordinated switch chooses the store"],
     ["7. Contract", "delete the old copy after enough releases", ["writes stop, then deleted", ["written", "read", "authoritative"]], ""],
   ];
   const cols = { step: 32, old: 286, new: 552, flag: 818 };
@@ -1092,14 +1092,14 @@ function twoCopies() {
     "two-copies",
     y0 + steps.length * rh + 60,
     "Two copies of a column or table",
-    "Seven steps for running two copies of a column or table, showing for each step which copy is written, read and authoritative. Expand: the old copy is written, read and authoritative; the new copy is added and unused. Keep both populated: both copies are written, and a flag may gate writes to the new copy. Backfill: historical rows are written to the new copy. Compare reads: the new copy is read for comparison while the old result is still returned. Switch reads: a flag or percentage moves reads to the new copy, while the old copy remains authoritative. Make the new copy authoritative: the new copy is written, read and authoritative, a flag chooses the authoritative store, and changes are copied back to the old copy so rollback remains possible. Contract: writes to the old copy stop, and it is deleted after enough releases.",
+    "Seven steps for running two copies of a column or table, showing for each step which copy is written, read and authoritative. Expand: the old copy is written, read and authoritative; the new copy is added and unused. Keep both populated: both copies are written, and a flag may gate writes to the new copy. Backfill: historical rows are written to the new copy. Compare reads: the new copy is read for comparison while the old result is still returned. Switch reads: a flag or percentage moves reads to the new copy, while the old copy remains authoritative. Make the new copy authoritative: the new copy is written, read and authoritative, a coordinated switch chooses the authoritative store, and changes are copied back to the old copy so rollback remains possible. Contract: writes to the old copy stop, and it is deleted after enough releases.",
     "Two copies of a column or table",
-    "At each step, which copy is written, read and authoritative, and what the flag controls.",
+    "At each step, which copy is written, read and authoritative, and what a flag or switch controls.",
     [
       label(cols.step, y0 - 14, "STEP"),
       label(cols.old, y0 - 14, "OLD COPY"),
       label(cols.new, y0 - 14, "NEW COPY"),
-      label(cols.flag, y0 - 14, "WHAT THE FLAG DOES"),
+      label(cols.flag, y0 - 14, "FLAG OR SWITCH"),
       ...steps.map(([name, sub, [o, n], flag], i) => {
         const y = y0 + i * rh;
         return [
@@ -1248,16 +1248,15 @@ function workedLanes() {
   const lanes = ["transactions table", "Ten derived tables", "Feature store", "Model A and baseline", "Model B"];
   // [name, detail, first lane, last lane, basis]; basis: "doc", "vendor" or "judgment".
   const steps = [
-    ["Migrate the source column", "new columns added, written with the old, and backfilled", 0, 0, "doc"],
-    ["Find who reads the ten tables", "lineage and usage logs; the owners review the change", 1, 1, "doc"],
+    ["Find who reads the tables", "transactions and the ten tables; the owners review the change", 0, 1, "doc"],
+    ["Migrate the source column", "new columns added, backfilled and made authoritative", 0, 0, "doc"],
     ["Build a v2 of each derived table", "alongside v1, under a versioned name", 1, 1, "doc"],
     ["Backfill the v2 tables", "month by month, in dependency order", 1, 1, "doc"],
     ["Check each v2 table, then publish", "compared with v1 on the columns that should not change", 1, 1, "vendor"],
     ["Add merchant_risk_30d_v2", "served online, unread until online and offline values agree", 2, 2, "judgment"],
     ["Train B and the baseline on the same dates", "baseline: model A's design and v1 features, retrained", 3, 4, "doc"],
     ["Shadow model B and the baseline", "both score live payments and act on none, for about two weeks", 3, 4, "judgment"],
-    ["Randomize a small share of blocks", "a random sample of blocked payments is let through", 3, 4, "judgment"],
-    ["Run the three-arm experiment", "capped; baseline alone in control; model A serves the rest", 3, 4, "judgment"],
+    ["Run the three-arm experiment", "capped; each arm lets a random share of its blocks through", 3, 4, "judgment"],
     ["Ramp up model B", "model A as the fallback; promote once fraud labels mature", 3, 4, "judgment"],
     ["Retire model A and the baseline, remove the old chain", "the models, v1 feature, v1 tables, then the old column", 0, 3, "doc"],
   ];
@@ -1280,7 +1279,7 @@ function workedLanes() {
     "worked-lanes",
     ly + 116,
     "Worked example from a source table to two models",
-    "A swimlane of the worked example's twelve steps, with lanes for the transactions table, the ten derived tables, the feature store, model A with the baseline model, and model B. The source column is migrated in the transactions table, including its backfill. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B and the baseline model are trained on the same dates and shadowed, a small random share of blocked payments is let through, the three-arm experiment runs with the baseline alone in control, and model B is ramped up with model A as the fallback. Finally model A and the baseline are retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, randomization, experiment and ramp steps include a hold or limit set by the author.",
+    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A with the baseline model, and model B. The team first finds who reads the transactions table and the ten derived tables. The source column is then migrated in the transactions table, up to the point where the new columns are authoritative. In the derived tables lane, the team builds and backfills a v2 of each table and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B and the baseline model are trained on the same dates and shadowed, the three-arm experiment runs with each arm letting a small random share of its blocks through, and model B is ramped up with model A as the fallback. Finally model A and the baseline are retired and the old chain is removed from the feature store, the derived tables and the transactions table, where the old column goes last. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.",
     "Worked example: from a source table to two models",
     "Each step sits under the part of the system it changes.",
     [
