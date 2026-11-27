@@ -990,7 +990,7 @@ function flagChangeClasses() {
     "flag-changes",
     560,
     "Change classes for a flag",
-    "How flag changes are classified. The code that introduces a flag goes through normal review and deployment. The ramp plan, with its stages, holds, population, caps and stop conditions, is approved once. Before each step, a machine check confirms that every node runs a build containing the flagged code. Each step within the plan is a standard change, executed under dual control and logged; a step outside the plan is a normal change. Switching the flag off and rolling back to the previous build are pre-authorized at any point: the on-call engineer acts without asking and the action is reviewed afterwards. The state of every flag on any given date can be produced as evidence.",
+    "How flag changes are classified. The code that introduces a flag goes through normal review and deployment. The ramp plan, with its stages, holds, population, caps and stop conditions, is approved once. Before each step, a machine check confirms that the step reaches only nodes running a build that contains the flagged code. Each step within the plan is a standard change, executed under dual control and logged; a step outside the plan is a normal change. Switching the flag off and rolling back to the previous build are pre-authorized at any point: the on-call engineer acts without asking and the action is reviewed afterwards. The state of every flag on any given date can be produced as evidence.",
     "Change classes for a flag",
     "Each kind of flag change, and the change class it is handled under.",
     [
@@ -1002,7 +1002,7 @@ function flagChangeClasses() {
       stage(816, y, 152, h, "Step outside the plan", "normal change", { accent: C.orange, tint: C.orangeTint }),
       `<path d="M ${steps[0]} ${y - 12} V ${y - 20} H ${steps[2] + sw} V ${y - 12}" fill="none" stroke="${C.blue}" stroke-width="1.5"/>`,
       t((steps[0] + steps[2] + sw) / 2, y - 28, "within the approved plan", { size: 13, fill: C.ink2, anchor: "middle" }),
-      t(432, 292, "Before each step, a machine check confirms that every node runs the flagged code.", { size: 13, fill: C.ink2 }),
+      t(432, 292, "A machine check confirms each step reaches only nodes with the flagged code.", { size: 13, fill: C.ink2 }),
       box(232, 310, 736, 80, { fill: C.blueTint, stroke: C.blue }),
       t(250, 340, "Switching the flag off, or rolling back to the previous build", { size: 16, weight: 700 }),
       t(250, 366, "Pre-authorized at any point. The on-call engineer acts without asking, and the action is reviewed afterwards.", { size: 14, fill: C.ink2 }),
