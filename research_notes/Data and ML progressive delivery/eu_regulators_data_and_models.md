@@ -580,11 +580,11 @@ GDPR (Regulation (EU) 2016/679), Articles 5(1)(e), 17 and 19. FULL-TEXT. Binding
 
 ### Inferences
 
-- The regulation does not mention snapshots, branches, clones, backups, shadow tables, event logs, feature logs or trained models. That an erasure has to reach every readable copy of a table (retained snapshots and clones, v1 and v2 tables, shadow tables, a retained event log, logged feature values) is the author's reading of Article 17(1); no regulator text read here states it. Chapter 2 marks it as the author's reading.
+- The regulation does not mention snapshots, branches, clones, backups, shadow tables, event logs, feature logs or trained models. That an erasure has to reach every readable copy of a table (retained snapshots and clones, v1 and v2 tables, shadow tables, a retained event log, logged feature values) is the author's reading of Article 17(1); no regulator text read here states it. Chapter 2 marks it in the sentence itself ("Read plainly, that obligation would reach every copy that can still be read").
 - A record-keeping obligation is the Article 17(3)(b) exception, so rollback retention, erasure and record-keeping have to be settled together for each table. This is also the author's reading.
 
 ### Gaps
 
 - No EDPB guideline, supervisory decision or case law on erasure from backups, table snapshots or trained models was searched for or read.
-- No engineering account of applying erasure to a second copy, a shadow table, a retained log or a trained model during a migration was searched for; the notes in this directory contain none. Chapter 2 says only that the sources behind it do not show how teams reconcile the three.
+- No engineering account of applying erasure to a second copy, a shadow table, a retained log or a trained model during a migration was searched for; the notes in this directory contain none. Chapter 2 says only that the regulation names none of these copies and does not say what should happen to a model already trained on erased rows.
 - No specific record-retention law (payments, anti-money-laundering, tax or accounting) was read; chapter 2 names none.

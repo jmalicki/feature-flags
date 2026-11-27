@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1076" viewBox="0 0 1000 1076" role="img" aria-labelledby="timeline-title timeline-desc">
-  <title id="timeline-title">Twenty-five years of published practice</title>
+  <title id="timeline-title">Published accounts, 2000 to 2025</title>
   <desc id="timeline-desc">A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and wider adoption, including regulated industries, from 2017 to 2025.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="1076" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>

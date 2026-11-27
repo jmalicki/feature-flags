@@ -271,7 +271,7 @@ function timeline() {
   return frame(
     "timeline",
     h,
-    "Twenty-five years of published practice",
+    "Published accounts, 2000 to 2025",
     "A timeline from 2000 to 2025 in four bands: foundations in continuous integration and experimentation; the vocabulary of dark launches, flags and frequent deployment appearing from 2008 to 2011; scale reports, failures and the first studies from 2012 to 2016; and wider adoption, including regulated industries, from 2017 to 2025.",
     "Published accounts, 2000 to 2025",
     "Dates are when an event happened or a practice was first documented.",
@@ -430,7 +430,7 @@ function ramps() {
   return frame(
     "ramps",
     y0 + rows.length * rowH + 40,
-    "Rollout stages that companies have published",
+    "Published rollout stages",
     "Seven published sets of rollout stages. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorization in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
     "Published rollout stages",
     "Stages as each company described them. Examples, not a ranking.",
@@ -473,7 +473,7 @@ function fca() {
   return frame(
     "fca",
     470,
-    "What the UK regulator found in its own firms' change data",
+    "FCA review of technology change",
     "Three panels of statistics from the Financial Conduct Authority's review of technology change. First: 1.6 percent of all changes failed, against 3.8 percent of major changes that had extra oversight. Second: change advisory boards approved over 90 percent of the major changes they reviewed. Third: change caused 17 percent of material incidents reported to the regulator and 24 percent of firms' own high-severity incidents.",
     "FCA review of technology change",
     "UK Financial Conduct Authority review of 23 firms and over a million changes made in 2019.",
@@ -489,7 +489,7 @@ function sixteenDays() {
   return frame(
     "sixteen",
     320,
-    "Amazon measured sixteen days from check-in to production, almost fourteen of them waiting",
+    "Amazon's pipeline before automation",
     "A single bar sixteen days long. About two days are work: about a day and a half writing code and under an hour building and deploying. Almost fourteen days are waiting for a person to start a build, perform a deployment or run a test.",
     "Amazon's pipeline before automation",
     "16 days on average from check-in to production, almost 14 of them waiting.",
@@ -566,7 +566,7 @@ function knight() {
   return frame(
     "knight",
     470,
-    "Knight Capital deployed over five days and activated in one moment",
+    "Knight Capital, August 1, 2012",
     "Eight servers: seven received the new code and one kept old code. A timeline shows the new code deployed in stages from July 27, 2012 while its path stayed dormant, then activated on every server at the market open on August 1, when a reused flag triggered the old code on the eighth server. The result was four million executions in 154 stocks in about 45 minutes and a loss of more than 460 million dollars.",
     "Knight Capital, August 1, 2012",
     "Staged deployment, single activation. Source: the SEC's order.",
@@ -990,7 +990,7 @@ function flagChangeClasses() {
     "flag-changes",
     560,
     "Change classes for a flag",
-    "How flag changes are classified. The code that introduces a flag goes through normal review and deployment. The ramp plan, with its stages, holds, population, caps and stop conditions, is approved once. Each step within the plan is a standard change, executed under dual control and logged; a step outside the plan is a normal change. Switching the flag off and rolling back to the previous build are pre-authorized at any point: the on-call engineer acts without asking and the action is reviewed afterwards. The state of every flag on any given date can be produced as evidence.",
+    "How flag changes are classified. The code that introduces a flag goes through normal review and deployment. The ramp plan, with its stages, holds, population, caps and stop conditions, is approved once. Before each step, a machine check confirms that every node runs a build containing the flagged code. Each step within the plan is a standard change, executed under dual control and logged; a step outside the plan is a normal change. Switching the flag off and rolling back to the previous build are pre-authorized at any point: the on-call engineer acts without asking and the action is reviewed afterwards. The state of every flag on any given date can be produced as evidence.",
     "Change classes for a flag",
     "Each kind of flag change, and the change class it is handled under.",
     [
@@ -1002,6 +1002,7 @@ function flagChangeClasses() {
       stage(816, y, 152, h, "Step outside the plan", "normal change", { accent: C.orange, tint: C.orangeTint }),
       `<path d="M ${steps[0]} ${y - 12} V ${y - 20} H ${steps[2] + sw} V ${y - 12}" fill="none" stroke="${C.blue}" stroke-width="1.5"/>`,
       t((steps[0] + steps[2] + sw) / 2, y - 28, "within the approved plan", { size: 13, fill: C.ink2, anchor: "middle" }),
+      t(432, 292, "Before each step, a machine check confirms that every node runs the flagged code.", { size: 13, fill: C.ink2 }),
       box(232, 310, 736, 80, { fill: C.blueTint, stroke: C.blue }),
       t(250, 340, "Switching the flag off, or rolling back to the previous build", { size: 16, weight: 700 }),
       t(250, 366, "Pre-authorized at any point. The on-call engineer acts without asking, and the action is reviewed afterwards.", { size: 14, fill: C.ink2 }),
@@ -1249,7 +1250,7 @@ function workedLanes() {
   // [name, detail, first lane, last lane, basis]; basis: "doc", "vendor" or "judgment".
   const steps = [
     ["Find who reads the tables", "transactions and the ten tables; the owners review the change", 0, 1, "doc"],
-    ["Migrate the source column", "new columns added, backfilled and made authoritative", 0, 0, "doc"],
+    ["Migrate the source column", "new columns added, backfilled and made authoritative", 0, 0, "judgment"],
     ["Build a v2 of each derived table", "alongside v1, under a versioned name", 1, 1, "doc"],
     ["Backfill the v2 tables", "month by month, in dependency order", 1, 1, "doc"],
     ["Check each v2 table, then publish", "compared with v1 on the columns that should not change", 1, 1, "vendor"],
@@ -1273,13 +1274,13 @@ function workedLanes() {
   const legend = [
     ["doc", "Published practice"],
     ["vendor", "Rests partly on vendor documentation"],
-    ["judgment", "Includes a hold or limit set by the author"],
+    ["judgment", "Includes a hold, limit or rule set by the author"],
   ];
   return frame(
     "worked-lanes",
     ly + 116,
     "Worked example from a source table to two models",
-    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A with the baseline model, and model B. The team first finds who reads the transactions table and the ten derived tables. The source column is then migrated in the transactions table, up to the point where the new columns are authoritative. In the derived tables lane, the team builds and backfills a v2 of each table and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B and the baseline model are trained on the same dates and shadowed, the three-arm experiment runs with each arm letting a small random share of its blocks through, and model B is ramped up with model A as the fallback. Finally model A and the baseline are retired and the old chain is removed from the feature store, the derived tables and the transactions table, where the old column goes last. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.",
+    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A with the baseline model, and model B. The team first finds who reads the transactions table and the ten derived tables. The source column is then migrated in the transactions table, up to the point where the new columns are authoritative. In the derived tables lane, the team builds and backfills a v2 of each table and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B and the baseline model are trained on the same dates and shadowed, the three-arm experiment runs with each arm letting a small random share of its blocks through, and model B is ramped up with model A as the fallback. Finally model A and the baseline are retired and the old chain is removed from the feature store, the derived tables and the transactions table, where the old column goes last. The migration, feature, shadow, experiment and ramp steps include a hold, limit or rule set by the author.",
     "Worked example: from a source table to two models",
     "Each step sits under the part of the system it changes.",
     [

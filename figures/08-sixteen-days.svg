@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="320" viewBox="0 0 1000 320" role="img" aria-labelledby="sixteen-title sixteen-desc">
-  <title id="sixteen-title">Amazon measured sixteen days from check-in to production, almost fourteen of them waiting</title>
+  <title id="sixteen-title">Amazon's pipeline before automation</title>
   <desc id="sixteen-desc">A single bar sixteen days long. About two days are work: about a day and a half writing code and under an hour building and deploying. Almost fourteen days are waiting for a person to start a build, perform a deployment or run a test.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="320" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
