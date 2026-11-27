@@ -87,8 +87,10 @@ None of these requires a soak period, a release train or fixed release windows.
   - "By using workflow.GetVersion, you can mark points in your code where changes occur, ensuring that future calls will return a specific version number."
   - "If a new workflow is rescheduled to an old worker, it will be blocked or even fail" (during rollouts and especially rollbacks); a customer "needed to identify all problematic workflows, terminate them if they did not fail automatically, and restart them. These steps resulted in a significant on-call burden, leading to possible SLO violations and incidents."
   - The fix separated "code changes from the activation of the new version".
-- Temporal, Go SDK versioning documentation, read November 11, 2026. RAW. <https://docs.temporal.io/develop/go/versioning>
+- Temporal, Go SDK versioning documentation, read November 11, 2026, and again November 26, 2026 at the URL the book links. RAW (curl, HTML stripped to text). <https://docs.temporal.io/develop/go/workflows/versioning>
   - "A Patch defines a logical branch in a Workflow for a specific change, similar to a feature flag. It applies a code change to new Workflow Executions while avoiding disruptive changes to in-progress Workflow Executions."
+  - "When workflow.GetVersion() is run for the new Workflow Execution, it records a marker in the Event History so that all future calls to GetVersion for this change ID [...] on this Workflow Execution will always return the given version number".
+  - The earlier note gave the URL as `/develop/go/versioning`; the page read on November 26 is `/develop/go/workflows/versioning`, which is the one in essay.md.
 
 ### Big-bang cut-over outside banking
 
@@ -182,3 +184,44 @@ FCA PS25/12, "Changes to the safeguarding regime for payments and e-money firms"
 - 15.8.60R: the institution "must inform the FCA in writing without delay if" any of the following applies: (1) its records are "materially out of date, inaccurate or invalid"; (2) it fails to do an internal reconciliation; (3) it "will be unable to, or materially fails to, pay any shortfall"; (4) and (5) external reconciliation failures; (6) "at any time in the preceding 12 months, the amount of relevant funds safeguarded was materially different from the total aggregate amount of relevant funds the safeguarding institution was required to safeguard".
 
 What this means for the book: a fault on a new money path that misstates customer balances would make the safeguarding requirement wrong. CASS 15 gives the institution until the end of the same day to cover a shortfall, and requires notice to the FCA in the listed cases. This is the author's inference; the text does not mention software changes. The trial's stop condition, which allows a break one reconciliation cycle to be explained, therefore suffices for stopping the trial. It does not change the safeguarding deadline. I read the CASS 15 text in the PS25/12 instrument, not on the Handbook website, which is rendered client-side and returned an empty shell to curl.
+
+## Review fixes, checked November 26, 2026
+
+Method: I fetched each PDF with curl from the URL given and read it with pdftotext -layout. All quotes below are verbatim from those texts.
+
+### ISAE 3402
+
+IAASB, International Standard on Assurance Engagements 3402, "Assurance Reports on Controls at a Service Organization". RAW, read in two editions:
+
+- 2023-2024 IAASB Handbook, Volume 3, <https://ifacweb.blob.core.windows.net/publicfiles/2024-08/IAASB-2023-2024-Handbook-Volume-3.pdf>, linked from the handbook page the book cites, <https://www.iaasb.org/publications/2023-2024-handbook-international-quality-management-auditing-review-other-assurance-and-related>. ISAE 3402 begins on handbook page 136.
+- The standard as first issued, in the 2010 handbook, via the Wayback Machine copy of <https://www.ifac.org/system/files/downloads/b014-2010-iaasb-handbook-isae-3402.pdf> (capture of January 23, 2021). The live ifac.org URLs for this file returned 404.
+
+The wording and paragraph numbers below are the same in both editions.
+
+- Para. 16, lead-in: "In assessing the suitability of the criteria to evaluate the service organization's description of its system, the service auditor shall determine if the criteria encompass, at a minimum:". Para. 16(b): "In the case of a type 2 report, whether the description includes relevant details of changes to the service organization's system during the period covered by the description."
+- Para. A24: "in the case of a type 2 report, specific inquiries about changes in controls that were implemented during the period. Changes that are significant to user entities or their auditors are included in the description of the service organization's system."
+- Para. A30: "To be useful to user auditors, a type 2 report ordinarily covers a minimum period of six months. If the period is less than six months, the service auditor may consider it appropriate to describe the reasons for the shorter period in the service auditor's assurance report. Circumstances that may result in a report covering a period of less than six months include when (a) the service auditor is engaged close to the date by which the report on controls is to be issued; (b) the service organization (or a particular system or application) has been in operation for less than six months; or (c) significant changes have been made to the controls and it is not practicable either to wait six months before issuing a report or to issue a report covering the system both before and after the changes."
+- Appendix 1, example assertion for a type 2 report: the description "(ii) Includes relevant details of changes to the service organization's system during the period [date] to [date]."
+
+What this means for the book: the two quotations in the ISAE 3402 row of appendices.md and their paragraph numbers (16(b), A30) are correct. Paragraph 16(b) is a minimum criterion the service auditor checks the description against, so the row now says "the criteria for a type 2 description include whether it gives", and A30(c) is conditional on waiting being impracticable, which the row now states. "A policy rewritten partway through a period would appear in the next report as a change" (essay.md, "What auditors test") is the author's inference from 16(b) and A24. The AICPA's SOC 1 standard (AT-C section 320) was not read; the row quotes ISAE 3402 only.
+
+### 2017 State of DevOps Report
+
+Forsgren, Humble, Kim, Brown, Kersten (Puppet + DORA), 2017 State of DevOps Report. RAW. <https://dora.dev/research/2017/2017-state-of-devops-report.pdf>. Page numbers are the printed ones in the footer.
+
+- p. 6, key findings: "The gap between high and low performers narrowed for throughput measures, as low performers reported improved deployment frequency and lead time for changes, compared to last year. However, the low performers reported slower recovery times and higher failure rates. We think that pressure to deploy faster and more often causes lower performers to pay insufficient attention to building in quality."
+- p. 21: "When compared to the 2016 results, the gap between high and low performers narrowed for throughput (deployment frequency and change lead time), and widened for stability (mean time to recover and change failure rate). We speculate that this is due to low-performing teams working to increase speed, but not investing enough in building quality into the process. The result is larger failures, and more time to restore service."
+- p. 22: low performers "went from shipping between once per month and once every six months in 2016, to shipping between once per week and once per month in 2017."
+- p. 23, Table 2: low performers' change failure rate "31-45%" and mean time to recover "Between one day and one week". p. 25: "MTTR worsened for low performers, compared to last year" and "change failure rates worsened for low performers, compared to last year."
+- The explanation is the authors' conjecture ("We think", "We speculate"), and the survey compares each year's respondents; it does not follow the same teams.
+- Not found in the report: any statement that deployment frequency is gamed or inflated with trivial deployments. That claim still rests only on the secondary commentary noted in `management_arguments.md` (snippet only), so essay.md now says frequency "can be inflated" and gives it no source.
+
+### AICPA Trust Services Criteria edition
+
+The book links the "2017 Trust Services Criteria with revised points of focus 2022". The CC8.1 wording and points of focus above were read in the 2017 criteria as updated in 2020. On November 26, 2026 the linked AICPA page returned an HTML download page to curl and the 2022 PDF was not obtained, so the quoted points of focus are not confirmed in the linked edition. The warning in `audit_and_compliance.md` that the AICPA document was not read predates the RAW read recorded above.
+
+### Scope changes made without a new source
+
+- "A scheme certifies only the gateway" was narrowed to the TIPS, Pay.UK Faster Payments and Bacs documents listed under "Payment schemes and market infrastructure"; card schemes' rules were not examined.
+- Adyen is now described as separating activation from deployment while also using release branches, per the Adyen entry above.
+- The partner-interface sequence, the single-instance gateway failover, the side-by-side run of mandatory controls, the operator move of in-flight work, the effective-date and client-sandbox rows, the pre-production hold for unflaggable upgrades on shared state, the ramp-unit rule, the period-end replay and the criteria for a service leaving the train have no source and are marked in the text as proposals.

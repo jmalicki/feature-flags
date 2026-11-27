@@ -53,6 +53,6 @@
 <rect x="32" y="414" width="936" height="64" rx="8" fill="#f3f2ee" stroke="none" stroke-width="1.5"/>
 <text x="50" y="442" font-size="16" fill="#0b0b0b" font-weight="700" text-anchor="start">Evidence</text>
 <text x="50" y="464" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The state of every flag on any given date can be produced.</text>
-    <text x="32" y="538" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Raising every step as a normal change with three days' notice makes the ramp slower than the train.</text>
+    <text x="32" y="538" font-size="14" fill="#8a8983" font-weight="400" text-anchor="start">Raising every step as a normal change can make the ramp slower than the train.</text>
   </g>
 </svg>

@@ -568,3 +568,23 @@ ACPR (2020), on AML models: validation "needs to be performed much more frequent
 
 - EBA Q&A texts were not read in full. The EBA Opinion on SCA implementation (June 2018) and any EBA statement specifically on changing TRA models were not found.
 - The PSD3 / Payment Services Regulation (PSR) negotiations, including any revised fraud-monitoring or TRA provisions, and the adoption status of the political agreement, were not checked in this run. Do not assume the RTS text above has been superseded or not.
+
+## Addition checked November 26, 2026: GDPR erasure and storage limitation
+
+GDPR (Regulation (EU) 2016/679), Articles 5(1)(e), 17 and 19. FULL-TEXT. Binding. Read on November 26, 2026 while applying a review of chapter 2: the EUR-Lex HTML was downloaded with curl, converted to text and searched; no summarizing tool was used. Quotations are exact. Source: [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679).
+
+- Article 17(1): the data subject has the right "to obtain from the controller the erasure of personal data concerning him or her without undue delay and the controller shall have the obligation to erase personal data without undue delay where one of the following grounds applies". The grounds (a) to (f) include that the data "are no longer necessary in relation to the purposes for which they were collected or otherwise processed", withdrawal of consent with no other legal ground, a successful objection, and unlawful processing.
+- Article 17(3): paragraphs 1 and 2 "shall not apply to the extent that processing is necessary" for, among others, "(b) for compliance with a legal obligation which requires processing by Union or Member State law to which the controller is subject" and "(e) for the establishment, exercise or defence of legal claims".
+- Article 5(1)(e), storage limitation: personal data shall be "kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed".
+- Article 19: the controller "shall communicate any rectification or erasure of personal data or restriction of processing" to "each recipient to whom the personal data have been disclosed, unless this proves impossible or involves disproportionate effort".
+
+### Inferences
+
+- The regulation does not mention snapshots, branches, clones, backups, shadow tables, event logs, feature logs or trained models. That an erasure has to reach every readable copy of a table (retained snapshots and clones, v1 and v2 tables, shadow tables, a retained event log, logged feature values) is the author's reading of Article 17(1); no regulator text read here states it. Chapter 2 marks it as the author's reading.
+- A record-keeping obligation is the Article 17(3)(b) exception, so rollback retention, erasure and record-keeping have to be settled together for each table. This is also the author's reading.
+
+### Gaps
+
+- No EDPB guideline, supervisory decision or case law on erasure from backups, table snapshots or trained models was searched for or read.
+- No engineering account of applying erasure to a second copy, a shadow table, a retained log or a trained model during a migration was searched for; the notes in this directory contain none. Chapter 2 says only that the sources behind it do not show how teams reconcile the three.
+- No specific record-retention law (payments, anti-money-laundering, tax or accounting) was read; chapter 2 names none.

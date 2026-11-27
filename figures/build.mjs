@@ -430,8 +430,8 @@ function ramps() {
   return frame(
     "ramps",
     y0 + rows.length * rowH + 40,
-    "Ramp stages that companies have published",
-    "Seven published ramp schedules. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorization in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
+    "Rollout stages that companies have published",
+    "Seven published sets of rollout stages. Facebook's website in 2017: employees, two percent, one hundred percent in a few hours. Facebook's Android app in 2016: twenty, fifty, one hundred percent over three days. Amazon in 2020: one box, first Region, more Regions, all Regions over four to five business days with bake times. Azure DevOps: five tiers of about twenty-four hours. Slack in 2020: its own staff, a two percent canary, then ten, twenty-five, fifty, seventy-five and one hundred percent. Uber payment authorization in 2019: shadow, employees, a quarter of a percent, one percent, five percent, one hundred percent per payment method. Uber's ledger in 2020: one to one hundred percent within each country, starting with a country with few users.",
     "Published rollout stages",
     "Stages as each company described them. Examples, not a ranking.",
     body,
@@ -490,7 +490,7 @@ function sixteenDays() {
     "sixteen",
     320,
     "Amazon measured sixteen days from check-in to production, almost fourteen of them waiting",
-    "A single bar sixteen days long. The remaining two days or so are building, deploying and testing. Almost fourteen days are waiting for a person to start the next step.",
+    "A single bar sixteen days long. About two days are work: about a day and a half writing code and under an hour building and deploying. Almost fourteen days are waiting for a person to start a build, perform a deployment or run a test.",
     "Amazon's pipeline before automation",
     "16 days on average from check-in to production, almost 14 of them waiting.",
     [
@@ -498,7 +498,7 @@ function sixteenDays() {
       hbar(x0 + 2 * unit, y, 14 * unit, 24, C.orange),
       ...Array.from({ length: 17 }, (_, d) => ln(x0 + d * unit, y + 30, x0 + d * unit, y + 36, { stroke: C.line, sw: 1.5 })),
       t(x0, y - 36, "About 2 days of work", { size: 17, weight: 700 }),
-      t(x0, y - 14, "writing the code, then under an hour to build and deploy", { size: 15, fill: C.ink2 }),
+      t(x0, y - 14, "about a day and a half writing code, and under an hour to build and deploy", { size: 15, fill: C.ink2 }),
       t(x0 + 2 * unit, y + 62, "Almost 14 days of waiting", { size: 17, weight: 700 }),
       t(x0 + 2 * unit, y + 84, "for someone to start the build, run the deployment, or run the tests", { size: 15, fill: C.ink2 }),
     ].join("\n"),
@@ -855,21 +855,21 @@ function flagLifecycle() {
     "lifecycle",
     560,
     "The life of a release flag",
-    "A release flag is created with an owner and an expiry date, ramped so that it is on for some users and off for others, reaches 100 percent, and is removed together with the old path. The build passes until the expiry date approaches, warns as it approaches, and fails once it has passed. While the flag is ramped, production runs both paths. From the day the flag reaches everyone, the off path is no longer exercised, and switching it off is an untested change.",
+    "A release flag is created with an owner and an expiry date, ramped so that it is on for some users and off for others, reaches 100 percent, and is removed together with the old path. The build passes until the expiry date approaches and warns as it approaches; once the date has passed, the owning team's merge check fails. While the flag is ramped, production runs both paths. From the day the flag reaches everyone, the off path is no longer exercised, and switching it off is an untested change.",
     "The life of a release flag",
-    "Rules the build can enforce, and what happens to the off path after 100%.",
+    "Rules that tooling can enforce, and what happens to the off path after 100%.",
     [
       ...names.map(([a, b], i) =>
         [stage(xs[i], y, w, 84, a, b, { accent: i === 3 ? C.ink2 : C.blue, tint: i === 3 ? C.panel : C.blueTint }), i < 3 ? arrow(xs[i] + w + 4, y + 42, xs[i + 1] - 4, y + 42, { stroke: C.blue }) : ""].join("\n"),
       ),
-      label(32, by - 18, "THE BUILD, AGAINST THE FLAG'S EXPIRY DATE"),
+      label(32, by - 18, "BUILD AND MERGE CHECKS, AGAINST THE FLAG'S EXPIRY DATE"),
       hbar(32, by, 468, 18, C.blueTint),
       t(40, by + 40, "passes", { size: 14, fill: C.ink2 }),
       hbar(504, by, 256, 18, C.orangeTint),
       t(510, by + 40, "warns as the date approaches", { size: 14, fill: C.ink2 }),
       hbar(768, by, 200, 18, C.orange),
       ln(764, by - 8, 764, by + 26, { stroke: C.ink, sw: 2 }),
-      t(774, by + 40, "fails once it has passed", { size: 14, fill: C.ink2 }),
+      t(774, by + 40, "owning team's merge check fails", { size: 14, fill: C.ink2 }),
       t(764, by - 14, "expiry date", { size: 13, fill: C.ink, anchor: "middle" }),
       label(32, oy - 18, "THE OFF PATH"),
       ln(xs[1], oy + 9, xs[2] - 8, oy + 9, { stroke: C.blue, sw: 5 }),
@@ -1009,7 +1009,7 @@ function flagChangeClasses() {
       t(50, 442, "Evidence", { size: 16, weight: 700 }),
       t(50, 464, "The state of every flag on any given date can be produced.", { size: 14, fill: C.ink2 }),
     ].join("\n"),
-    "Raising every step as a normal change with three days' notice makes the ramp slower than the train.",
+    "Raising every step as a normal change can make the ramp slower than the train.",
   );
 }
 
@@ -1023,7 +1023,7 @@ function dataRollbackReach() {
     "data-rollback",
     470,
     "What a table rollback restores",
-    "A source table feeds a chain of ten derived tables, a feature computed from the last of them, and two models trained on that feature. Rolling back the source table, by moving an Iceberg snapshot pointer back or by a Delta Lake restore, returns only that table to its earlier version. The ten derived tables, the feature and the two models still hold data built from the bad version until each is recomputed.",
+    "A source table feeds a chain of ten derived tables, a feature computed from the last of them, and the models trained on that feature. Rolling back the source table, by moving an Iceberg snapshot pointer back or by a Delta Lake restore, returns only that table to its earlier version. The ten derived tables, the feature and the models still hold data built from the bad version until each is recomputed.",
     "What a table rollback restores",
     "Restoring the source table leaves everything built from the bad version unchanged.",
     [
@@ -1245,20 +1245,21 @@ function threeArm() {
 }
 
 function workedLanes() {
-  const lanes = ["transactions table", "Ten derived tables", "Feature store", "Model A", "Model B"];
+  const lanes = ["transactions table", "Ten derived tables", "Feature store", "Model A and baseline", "Model B"];
   // [name, detail, first lane, last lane, basis]; basis: "doc", "vendor" or "judgment".
   const steps = [
-    ["Add the new columns", "merchant_id and merchant_category_v2, beside the old column", 0, 0, "doc"],
+    ["Migrate the source column", "new columns added, written with the old, and backfilled", 0, 0, "doc"],
     ["Find who reads the ten tables", "lineage and usage logs; the owners review the change", 1, 1, "doc"],
     ["Build a v2 of each derived table", "alongside v1, under a versioned name", 1, 1, "doc"],
     ["Backfill the v2 tables", "month by month, in dependency order", 1, 1, "doc"],
     ["Check each v2 table, then publish", "compared with v1 on the columns that should not change", 1, 1, "vendor"],
     ["Add merchant_risk_30d_v2", "served online, unread until online and offline values agree", 2, 2, "judgment"],
-    ["Train B, and retrain A on the same dates", "each model pinned to its own features", 3, 4, "doc"],
-    ["Shadow model B and retrained A", "both score live payments and act on none, for about two weeks", 3, 4, "judgment"],
-    ["Run the three-arm experiment", "model A alone in control; size capped", 3, 4, "judgment"],
+    ["Train B and the baseline on the same dates", "baseline: model A's design and v1 features, retrained", 3, 4, "doc"],
+    ["Shadow model B and the baseline", "both score live payments and act on none, for about two weeks", 3, 4, "judgment"],
+    ["Randomize a small share of blocks", "a random sample of blocked payments is let through", 3, 4, "judgment"],
+    ["Run the three-arm experiment", "capped; baseline alone in control; model A serves the rest", 3, 4, "judgment"],
     ["Ramp up model B", "model A as the fallback; promote once fraud labels mature", 3, 4, "judgment"],
-    ["Retire model A, remove the old chain", "model A, v1 feature, v1 tables, then the old column", 0, 3, "doc"],
+    ["Retire model A and the baseline, remove the old chain", "the models, v1 feature, v1 tables, then the old column", 0, 3, "doc"],
   ];
   const lx = 488;
   const lw = 96;
@@ -1279,7 +1280,7 @@ function workedLanes() {
     "worked-lanes",
     ly + 116,
     "Worked example from a source table to two models",
-    "A swimlane of the worked example's eleven steps, with lanes for the transactions table, the ten derived tables, the feature store, model A and model B. The new columns are added to the transactions table. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B is trained and model A retrained on the same dates, model B and the retrained model A are shadowed, the three-arm experiment runs, and model B is ramped up with model A as the fallback. Finally model A is retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, experiment and ramp steps include a hold or limit set by the author.",
+    "A swimlane of the worked example's twelve steps, with lanes for the transactions table, the ten derived tables, the feature store, model A with the baseline model, and model B. The source column is migrated in the transactions table, including its backfill. In the derived tables lane, the team finds who reads the ten tables, builds and backfills a v2 of each, and checks each before publishing; publishing all ten together rests partly on vendor documentation. The v2 feature is added to the feature store with no model reading it. Model B and the baseline model are trained on the same dates and shadowed, a small random share of blocked payments is let through, the three-arm experiment runs with the baseline alone in control, and model B is ramped up with model A as the fallback. Finally model A and the baseline are retired and the old chain is removed from the feature store, the derived tables and the transactions table. The feature, shadow, randomization, experiment and ramp steps include a hold or limit set by the author.",
     "Worked example: from a source table to two models",
     "Each step sits under the part of the system it changes.",
     [
