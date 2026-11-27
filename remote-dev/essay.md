@@ -1,6 +1,6 @@
 # Moving development off the laptop
 
-When Taylor Fausak went home from Famigo, he could close his terminal at the office and pick up the same four windows at home. One showed the Django server's output. In another he had Vim open on the code. He could switch to the third to see which unit test had failed, or to the fourth to commit a fix. All four lived on his development machine at Amazon EC2. He described his setup in 2011 in a post about using GNU Screen. [Fausak's account](https://taylor.fausak.me/2011/10/27/be-productive-use-screen/)
+On their first day at Facebook in 2012, engineers in bootcamp met their mentor and set up a development server for the web codebase. In a talk about keeping development fast, David Mortenson showed his own screen. A terminal on his Mac had a PHP file open on his dev server. Beside it, a browser showed his Facebook profile as served by that same machine. When he wanted to run the unit tests, he had a shell there too. [Mortenson’s QCon slides, pp. 12, 19 and 31](https://qconsf.com/sf2012/dl/qcon-sanfran-2012/slides/DavidMortenson_BuildingForABillionUsersFromSiliconValleyMOVEDTOBALLROOMBC.pdf#page=19)
 
 For teams building server software, I would put each engineer's working copy, build tools and running services on a Linux development server. The engineer can keep a familiar editor on the laptop and connect over SSH. A coding agent can then work on its own copy under the same test conditions. Giving it a shell also means deciding which source it may read, where it may send a file and whether a failing test could put customer data in its output.
 
@@ -12,7 +12,7 @@ For teams building server software, I would put each engineer's working copy, bu
 
 ## Working copies and editors
 
-At Unoh in 2006, each developer had a working copy on a shared server and a separate address for their running version of the site. Masato Bito preferred Vim. A colleague who wanted a desktop editor could open the same server files through a Samba share. Committing a change to Subversion updated a separate site where a tester could try it. [Bito on team development](https://unoh.github.io/2006/08/23/post_38.html) · [Naoya Nakazawa on Unoh's use of Subversion](https://thinkit.co.jp/free/article/0611/2/3/index.html)
+Daniel Roseman described his setup at Google in a 2012 post about a small annoyance. He did almost all his development in Vim on a machine he reached over SSH. Its terminal windows appeared as tabs on his Mac, and he could disconnect and come back to them later. What still took some work was copying a line from Vim into a Mac application. The file lived on the development machine. The selected text needed to reach the Mac’s clipboard. [Roseman’s notes on editing in Vim](https://blog.roseman.org.uk/2012/02/04/improving-vim-terminal-development-environment/)
 
 Last.fm gave each web developer a hosted virtual machine built from a common image. In 2010, when disk corruption took out David Singleton's machine, he got a replacement, pulled the source again and restarted Apache. He was back at work in under an hour. The uncommitted code and a few shell scripts he had kept on the old machine were gone. A team that promises engineers a machine they can replace needs a place to save unfinished work. [Singleton's account](https://dsingleton.co.uk/blog/virtualised-development-environments/)
 
