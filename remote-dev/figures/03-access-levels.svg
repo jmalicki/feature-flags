@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="730" viewBox="0 0 1000 730" role="img" aria-labelledby="access-title access-desc">
   <title id="access-title">Five levels of access control</title>
-  <desc id="access-desc">Five levels of access control, each adding to the one before. Level 1: single sign-on with a hardware security key that must be touched. Level 2: short-lived ssh certificates issued after sign-on. Level 3: one logged bastion as the only way in. Level 4: a device certificate checked along with the user. Level 5: full BeyondCorp, with a device inventory, computed trust tiers and authorization on every request. Levels 1 to 3 are the recommended start, level 4 is added where laptops are already managed, and level 5 is the far end of the range. No level answers code already running on the laptop.</desc>
+  <desc id="access-desc">Five levels of access control, each adding to the one before. Level 1: single sign-on with a hardware security key that must be touched. Level 2: short-lived ssh certificates issued after sign-on. Level 3: one logged bastion as the only way in. Level 4: a device certificate checked along with the user. Level 5: full BeyondCorp, with a device inventory, computed trust tiers and authorization on every request. Levels 1 to 3 are the recommended start, level 4 is added where laptops are already managed, and level 5 is the far end of the range. Code running on the laptop can still use an open session.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="730" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">Five levels of access control</text>
-    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Each level adds to the one before. None answers code already running on the laptop.</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Each level adds a check. Code running on the laptop can still use an open session.</text>
     <rect x="32" y="228" width="178" height="392" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="46" y="258" font-size="13" fill="#8a8983" font-weight="700" text-anchor="start">Level 1</text>
 <text x="46" y="282" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Sign-on with a</text>
@@ -18,7 +18,7 @@
 <text x="46" y="448.79999999999995" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Phished passwords</text>
 <text x="46" y="466.99999999999994" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">and approved phone</text>
 <text x="46" y="485.19999999999993" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">prompts</text>
-<text x="46" y="517.4" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="46" y="517.4" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">SOURCE</text>
 <text x="46" y="537.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Google; New York's</text>
 <text x="46" y="555.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">financial regulator</text>
 <rect x="222" y="206" width="178" height="414" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
@@ -31,7 +31,7 @@
 <text x="236" y="388.6" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
 <text x="236" y="408.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Long-lived keys on</text>
 <text x="236" y="426.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">laptops</text>
-<text x="236" y="459" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="236" y="459" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">SOURCE</text>
 <text x="236" y="479" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Meta (production,</text>
 <text x="236" y="497.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">2016); Netflix</text>
 <rect x="412" y="184" width="178" height="436" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
@@ -44,7 +44,7 @@
 <text x="426" y="366.6" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
 <text x="426" y="386.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Unlogged connections</text>
 <text x="426" y="404.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">and side entrances</text>
-<text x="426" y="437" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="426" y="437" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">SOURCE</text>
 <text x="426" y="457" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Meta (production,</text>
 <text x="426" y="475.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">2016); US guidance</text>
 <rect x="602" y="162" width="178" height="458" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5"/>
@@ -57,7 +57,7 @@
 <text x="616" y="344.6" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">ANSWERS</text>
 <text x="616" y="364.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Sign-in from an</text>
 <text x="616" y="382.8" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">unknown machine</text>
-<text x="616" y="415" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
+<text x="616" y="415" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">SOURCE</text>
 <text x="616" y="435" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Google</text>
 <rect x="792" y="140" width="178" height="480" rx="8" fill="#f3f2ee" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
 <text x="806" y="170" font-size="13" fill="#8a8983" font-weight="700" text-anchor="start">Level 5</text>
@@ -70,8 +70,8 @@
 <text x="806" y="338.7" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Trust based on</text>
 <text x="806" y="356.9" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">network location;</text>
 <text x="806" y="375.09999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">unpatched devices</text>
-<text x="806" y="407.29999999999995" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">PUBLISHED BY</text>
-<text x="806" y="427.29999999999995" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Google alone</text>
+<text x="806" y="407.29999999999995" font-size="12" fill="#8a8983" font-weight="700" text-anchor="start">SOURCE</text>
+<text x="806" y="427.29999999999995" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Google</text>
 <line x1="32" y1="646" x2="590" y2="646" stroke="#2a78d6" stroke-width="3" stroke-linecap="round"/>
 <text x="32" y="670" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Recommended start</text>
 <line x1="602" y1="646" x2="780" y2="646" stroke="#52514e" stroke-width="3" stroke-linecap="round"/>
