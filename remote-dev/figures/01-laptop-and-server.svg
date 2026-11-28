@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="850" viewBox="0 0 1000 850" role="img" aria-labelledby="laptop-server-title laptop-server-desc">
   <title id="laptop-server-title">The laptop, the development server and its exits</title>
-  <desc id="laptop-server-desc">The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the only checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a broker, the model endpoint, the editor's downloads, the organization's own code host, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. Logs are kept off the server.</desc>
+  <desc id="laptop-server-desc">The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a service supplying fixtures and approved test datasets, the model endpoint, the editor's downloads, a code host that restricts pushes to approved repositories, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. The engineer can inspect customer records in a separate interface under a temporary grant. Neither the workspace nor its agents can use that grant. Logs are kept off the server.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="850" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">The laptop, the development server and its exits</text>
-    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">The engineer has root on the server; the boundary around it does the restricting.</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">An engineer can administer the server. Separate services control what it can reach.</text>
     <rect x="32" y="112" width="250" height="214" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
 <text x="46" y="142" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Laptop</text>
 <text x="46" y="168.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Editor window</text>
@@ -25,7 +25,7 @@
 <line x1="582" y1="236" x2="556" y2="236" stroke="#52514e" stroke-width="2" stroke-linecap="round"/><path d="M 563.2 239.5 L 556 236 L 563.2 232.5" fill="none" stroke="#52514e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="586" y="112" width="382" height="214" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="600" y="142" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Development server</text>
-<text x="600" y="168.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The only checkout, and the toolchain</text>
+<text x="600" y="168.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Working checkout and toolchain</text>
 <text x="600" y="191.29999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Builds, tests, running services</text>
 <text x="600" y="214.49999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Attended agents</text>
 <text x="600" y="237.69999999999996" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Engineer has root</text>
@@ -33,6 +33,7 @@
 <text x="600" y="284.09999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Outbound traffic denied by default, enforced</text>
 <text x="600" y="302.29999999999995" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">outside the machine</text>
 <text x="32" y="352" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The ssh session and the editor's connection carry data in both directions.</text>
+<text x="32" y="373" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Customer records stay in a separate interface that only an engineer with a temporary grant can open.</text>
 <text x="32" y="404" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">THE SERVER'S EIGHT EXITS, EACH THROUGH A SERVICE THE ENGINEER DOES NOT ADMINISTER</text>
 <rect x="32" y="418" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="46" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Package proxy</text>
@@ -41,18 +42,17 @@
 <rect x="269" y="418" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="283" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Hosted search and</text>
 <text x="283" y="470.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">fetch tool</text>
-<text x="283" y="496.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Public pages for agents;</text>
-<text x="283" y="514.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">queries logged</text>
+<text x="283" y="496.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Retrieves public pages and</text>
+<text x="283" y="514.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">logs queries</text>
 <rect x="506" y="418" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="520" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Gateway</text>
-<text x="520" y="474.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Wiki, tracker, chat, code</text>
-<text x="520" y="492.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">search; holds the</text>
-<text x="520" y="510.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">credentials</text>
+<text x="520" y="474.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Holds credentials for the</text>
+<text x="520" y="492.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">wiki, tracker, chat and</text>
+<text x="520" y="510.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">code search</text>
 <rect x="743" y="418" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="757" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Broker</text>
-<text x="757" y="474.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Read-only, sanitized</text>
-<text x="757" y="492.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">replica; a login each;</text>
-<text x="757" y="510.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">grants expire</text>
+<text x="757" y="448" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Development data</text>
+<text x="757" y="474.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Supplies fixtures and</text>
+<text x="757" y="492.3" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">approved test datasets</text>
 <rect x="32" y="548" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="46" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Model endpoint</text>
 <text x="46" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Through a proxy that holds</text>
@@ -62,9 +62,10 @@
 <text x="283" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Server component and</text>
 <text x="283" y="622.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">approved extensions</text>
 <rect x="506" y="548" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="520" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Own code host</text>
-<text x="520" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Pushes only to the</text>
-<text x="520" y="622.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">organization's own host</text>
+<text x="520" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Approved repositories</text>
+<text x="520" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Only authorized</text>
+<text x="520" y="622.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">repositories may receive a</text>
+<text x="520" y="640.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">push</text>
 <rect x="743" y="548" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="757" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Build and deployment</text>
 <text x="757" y="600.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">pipeline</text>
@@ -84,8 +85,8 @@
 <text x="664" y="716" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">REACHED ONLY THROUGH THE PIPELINE</text>
 <rect x="664" y="730" width="304" height="96" rx="8" fill="#fdece5" stroke="#eb6834" stroke-width="1.5" stroke-dasharray="5 4"/>
 <text x="678" y="760" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Production</text>
-<text x="678" y="786.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">By a reviewed change; no production</text>
-<text x="678" y="804.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">credentials on the server</text>
+<text x="678" y="786.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">The pipeline deploys reviewed changes</text>
+<text x="678" y="804.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">with its own credentials</text>
     
   </g>
 </svg>

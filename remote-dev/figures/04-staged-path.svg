@@ -1,77 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="967.1" viewBox="0 0 1000 967.1" role="img" aria-labelledby="staged-path-title staged-path-desc">
-  <title id="staged-path-title">A staged path to development servers, in three phases</title>
-  <desc id="staged-path-desc">A staged path in three columns, one for each phase, with the public account behind each step. Phase one, which one engineer can run: one application that runs on one machine (Slack; Instacart, by its builder); a hosted product or plain virtual machines with a maintained image (Slack and Instacart built; Discord bought); ssh behind single sign-on with a hardware key (Google); outbound traffic denied, a package proxy, and no production credentials or real personal data (DZ BANK, co-written with its vendor; DekaBank, a vendor case study; Stripe); volunteers first, then the default for that application (Slack, Discord, GitHub); a stop outside working hours (Instacart, by its builder); a date for the end of local development on that application (Discord, for backend work). Phase two: short-lived ssh certificates and one logged bastion (Meta for production in 2016; Netflix; US guidance); a gateway for internal tools (Uber, Stripe, Cloudflare); attended agents on the engineer's own server (five engineers; Jane Street, location unstated); a hosted search and fetch tool (vendor documentation only). Phase three: a broker for data (GitLab; Envoy); unattended agents on their own servers with their own identities (Stripe's devboxes; LinkedIn's identities; Ramp's sandboxes); pools of pre-warmed machines (Slack, Stripe, GitHub, LinkedIn). Slack formed a team of two in early 2021, released a prototype in August 2021 and had over 90% of its engineers switched by the end of January 2022.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380" role="img" aria-labelledby="staged-path-title staged-path-desc">
+  <title id="staged-path-title">From one application to unattended agents</title>
+  <desc id="staged-path-desc">Record sign-ins and SSH connections from the first day of the pilot. Compare edit-to-test times and support hours with local development, time a second engineer recovering an unpublished fix, and assign support for local-only work before choosing the application default. Record agent tool calls. Give unattended agents their own machines and identities, and review their changes.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
-    <rect x="0" y="0" width="1000" height="967.1" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
-    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">A staged path to development servers</text>
-    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">Three phases; each step names a public account of an organization taking it.</text>
-    <text x="32" y="116" font-size="13" fill="#2a78d6" font-weight="700" text-anchor="start">PHASE ONE</text>
-<text x="32" y="138" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">One engineer can run it</text>
-<rect x="32" y="156" width="300" height="87.9" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="46" y="182" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">One application that runs on one</text>
-<text x="46" y="201.5" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">machine</text>
-<text x="46" y="225" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Slack; Instacart (its builder)</text>
-<rect x="32" y="253.9" width="300" height="104.80000000000001" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="46" y="279.9" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">A hosted product or plain virtual</text>
-<text x="46" y="299.4" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">machines, with a maintained image</text>
-<text x="46" y="322.9" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Slack and Instacart built; Discord</text>
-<text x="46" y="339.79999999999995" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">bought</text>
-<rect x="32" y="368.70000000000005" width="300" height="87.9" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="46" y="394.70000000000005" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">ssh behind single sign-on with a</text>
-<text x="46" y="414.20000000000005" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">hardware key</text>
-<text x="46" y="437.70000000000005" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Google</text>
-<rect x="32" y="466.6" width="300" height="124.30000000000001" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="46" y="492.6" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Outbound traffic denied; a package</text>
-<text x="46" y="512.1" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">proxy; no production credentials</text>
-<text x="46" y="531.6" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">or real personal data</text>
-<text x="46" y="555.1" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">DZ BANK (co-written with its vendor);</text>
-<text x="46" y="572" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">DekaBank (vendor case study); Stripe</text>
-<rect x="32" y="600.9000000000001" width="300" height="87.9" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="46" y="626.9000000000001" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Volunteers first, then the default</text>
-<text x="46" y="646.4000000000001" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">for that application</text>
-<text x="46" y="669.9000000000001" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Slack, Discord, GitHub</text>
-<rect x="32" y="698.8000000000001" width="300" height="68.4" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="46" y="724.8000000000001" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">A stop outside working hours</text>
-<text x="46" y="748.3000000000001" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Instacart (its builder)</text>
-<rect x="32" y="777.2" width="300" height="87.9" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="46" y="803.2" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">A date for the end of local</text>
-<text x="46" y="822.7" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">development on that application</text>
-<text x="46" y="846.2" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Discord (backend work)</text>
-<text x="350" y="116" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">PHASE TWO</text>
-<text x="350" y="138" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Needs more than one engineer</text>
-<rect x="350" y="156" width="300" height="104.80000000000001" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="364" y="182" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Short-lived ssh certificates and</text>
-<text x="364" y="201.5" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">one logged bastion</text>
-<text x="364" y="225" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Meta (production, 2016); Netflix; US</text>
-<text x="364" y="241.9" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">guidance</text>
-<rect x="350" y="270.8" width="300" height="68.4" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="364" y="296.8" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">A gateway for internal tools</text>
-<text x="364" y="320.3" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Uber, Stripe, Cloudflare</text>
-<rect x="350" y="349.20000000000005" width="300" height="104.80000000000001" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="364" y="375.20000000000005" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Attended agents on the engineer's</text>
-<text x="364" y="394.70000000000005" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">own server</text>
-<text x="364" y="418.20000000000005" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Five engineers; Jane Street (location</text>
-<text x="364" y="435.1" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">unstated)</text>
-<rect x="350" y="464.00000000000006" width="300" height="68.4" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="364" y="490.00000000000006" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">A hosted search and fetch tool</text>
-<text x="364" y="513.5" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Vendor documentation only</text>
-<text x="668" y="116" font-size="13" fill="#52514e" font-weight="700" text-anchor="start">PHASE THREE</text>
-<text x="668" y="138" font-size="15" fill="#52514e" font-weight="400" text-anchor="start">Data, and unattended agents</text>
-<rect x="668" y="156" width="300" height="68.4" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="682" y="182" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">A broker for data</text>
-<text x="682" y="205.5" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">GitLab; Envoy</text>
-<rect x="668" y="234.4" width="300" height="104.80000000000001" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="682" y="260.4" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Unattended agents on their own</text>
-<text x="682" y="279.9" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">servers, with their own identities</text>
-<text x="682" y="303.4" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Stripe's devboxes; LinkedIn's</text>
-<text x="682" y="320.29999999999995" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">identities; Ramp's sandboxes</text>
-<rect x="668" y="349.20000000000005" width="300" height="68.4" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
-<text x="682" y="375.20000000000005" font-size="15" fill="#0b0b0b" font-weight="700" text-anchor="start">Pools of pre-warmed machines</text>
-<text x="682" y="398.70000000000005" font-size="13" fill="#52514e" font-weight="400" text-anchor="start">Slack, Stripe, GitHub, LinkedIn</text>
-<line x1="32" y1="889.1" x2="968" y2="889.1" stroke="#8a8983" stroke-width="1.5" stroke-linecap="round"/>
-<text x="32" y="913.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Slack: a team of two formed in early 2021, a prototype in August 2021, over 90% of its engineers by the end of January 2022.</text>
-<text x="32" y="935.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">No single company describes all of these steps in this order.</text>
+    <rect x="0" y="0" width="1000" height="380" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
+    <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">From one application to unattended agents</text>
+    <text x="32" y="76" font-size="17" fill="#52514e" font-weight="400" text-anchor="start">A proposed rollout for a team moving its first application to a development server.</text>
+    <rect x="32" y="114" width="284" height="240" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="46" y="144" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Pilot one application</text>
+<text x="46" y="170.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Volunteers ship an ordinary change</text>
+<text x="46" y="188.29999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">from a restricted Linux machine.</text>
+<text x="46" y="211.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Record sign-ins and SSH</text>
+<text x="46" y="229.7" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">connections from the first day.</text>
+<line x1="322" y1="234" x2="351" y2="234" stroke="#52514e" stroke-width="2" stroke-linecap="round"/><path d="M 343.8 230.5 L 351 234 L 343.8 237.5" fill="none" stroke="#52514e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="358" y="114" width="284" height="240" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="372" y="144" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Choose the application</text>
+<text x="372" y="166.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">default</text>
+<text x="372" y="192.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Compare edit-to-test times and</text>
+<text x="372" y="210.39999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">support hours with the local</text>
+<text x="372" y="228.6" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">setup.</text>
+<text x="372" y="251.79999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Time a second engineer recovering</text>
+<text x="372" y="270" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">an unpublished fix during an</text>
+<text x="372" y="288.2" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">outage.</text>
+<text x="372" y="311.4" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Name who will support work that</text>
+<text x="372" y="329.59999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">still needs a local checkout.</text>
+<line x1="648" y1="234" x2="677" y2="234" stroke="#52514e" stroke-width="2" stroke-linecap="round"/><path d="M 669.8 230.5 L 677 234 L 669.8 237.5" fill="none" stroke="#52514e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="684" y="114" width="284" height="240" rx="8" fill="#fcfcfb" stroke="#d9d8d2" stroke-width="1.5"/>
+<text x="698" y="144" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Add agents if needed</text>
+<text x="698" y="170.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Start with an engineer present.</text>
+<text x="698" y="188.29999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Record which tools each agent job</text>
+<text x="698" y="206.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">calls.</text>
+<text x="698" y="229.7" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Give an unattended agent its own</text>
+<text x="698" y="247.89999999999998" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">machine and identity. Have a</text>
+<text x="698" y="266.09999999999997" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">person review its changes.</text>
     
   </g>
 </svg>

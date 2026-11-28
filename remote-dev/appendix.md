@@ -2,18 +2,18 @@
 
 *Reference tables for [Moving development off the laptop](essay.md).*
 
-## Structure of the appendix
+## Contents
 
-*Moving development off the laptop:* [Essay](essay.md) · [Appendix](appendix.md)
-
-- [Machine sizes seen in public](#machine-sizes-seen-in-public) lists each report of a development machine's size behind the benchmark in the essay.
-- [Channels out of a development server](#channels-out-of-a-development-server) lists each way data can leave a Linux server reached by ssh, and what narrows it.
-- [From a Google laptop to production](#from-a-google-laptop-to-production) follows one engineer's request through BeyondCorp, step by step, with the source for each step.
-- [Strength of the evidence by claim](#strength-of-the-evidence-by-claim) says how the evidence is graded and grades each claim the essay makes.
+- [Machine sizes seen in public](#machine-sizes-seen-in-public)
+- [Channels out of a development server](#channels-out-of-a-development-server)
+- [Source access and personal data](#source-access-and-personal-data)
+- [Threats and remaining exposure](#threats-and-remaining-exposure)
+- [From a Google laptop to production](#from-a-google-laptop-to-production)
+- [Strength of the evidence by claim](#strength-of-the-evidence-by-claim)
 
 ## Machine sizes seen in public
 
-No company publishes a default machine size. Each row is either a company's chosen example or a machine whose owner pasted its details into a public bug report or repository. The rows for Amazon come from public reports that name an Amazon development desktop; none states an employer. Those from 2026 are from heavy users of coding agents and overstate the typical size, and the GPU rows come from contributors to machine-learning frameworks.
+Slack gives the size of the instance it upgraded. Uber gives an upper limit. A bug report can establish what one person was running when a build failed. None of these sources gives a distribution of machine sizes across a company. The Amazon entries identify development desktops from the reports themselves. The 2026 agent workloads and specialist GPU machines are especially poor guides to what an engineer would receive on joining.
 
 | Company | Machine | Cores, memory, disk | Date | Basis |
 | --- | --- | --- | --- | --- |
@@ -36,37 +36,53 @@ No company publishes a default machine size. Each row is either a company's chos
 | Instacart | Remote machine | 64 GB needed for the largest applications | 2023 | [The system's builder](https://news.ycombinator.com/item?id=37938537) |
 | Woovi | One shared server for 10 developers | 96 CPUs, 512 GB | 2025 | [Company post](https://dev.to/woovi/remote-development-at-woovi-25mj) |
 
-Size is rationed in different ways. Google's 2018 paper says instances should have caps ["to prevent users from gratuitously creating high-specification/high-cost devices"](https://storage.googleapis.com/gweb-research2023-media/pubtools/4484.pdf). A commenter wrote of Amazon in 2018 that a very large instance type would bring a question from management, and a report from an Amazon development desktop in 2026 says ["I can request bigger instances"](https://github.com/kirodotdev/KiroCrew/issues/40267). No company publishes a cap or an approval step. Agents add load: one report describes [60 to 100 live agent sessions on a single development desktop](https://github.com/kirodotdev/KiroCrew/issues/31349).
+Google’s virtual-desktop team recommended spending caps on instance sizes. One Amazon development-desktop user reported being able to request a larger instance. Neither source gives the approval threshold. [Google paper](https://storage.googleapis.com/gweb-research2023-media/pubtools/4484.pdf) · [Developer report](https://github.com/kirodotdev/KiroCrew/issues/40267)
 
 ## Channels out of a development server
 
-The first five rows can be closed or narrowed at the server's network boundary. The next six are exits the design keeps open on purpose, each through a service the engineer does not administer. The last four cannot be closed while an engineer has a shell and an editor, and are covered by limiting what each person can read and by logs kept off the server.
+The network policy belongs outside a machine on which an engineer has root. That policy can decide which services the machine may contact. Each permitted service still needs a rule for what an engineer or agent may send through it.
 
-| Channel | Control | What still leaks | Source |
-| --- | --- | --- | --- |
-| Web requests | Outbound traffic denied by default, with a proxy that allows named hosts | Any allowed host that accepts writes | [Claude Code sandbox documentation](https://code.claude.com/docs/en/sandboxing); an open-source example of such a proxy is [Stripe's](https://github.com/stripe/smokescreen), which Stripe describes for production traffic |
-| DNS | Names resolved only by an internal resolver or by the proxy | Data encoded in looked-up names, if the resolver forwards them | [A 2025 disclosure](https://embracethered.com/blog/posts/2025/claude-code-exfiltration-via-dns-requests/) |
-| Other protocols | A firewall or network namespace that denies them, enforced outside the machine where the user has root | Nothing while the default holds | [Claude Code sandbox documentation](https://code.claude.com/docs/en/sandboxing) |
-| `git push` to an outside account | Pushes allowed only to the organization's own code host. Where that host is a shared public service, the proxy intercepts traffic to it and adds GitHub's enterprise header, and ssh to the host is blocked because the header does not cover it | Anonymous reads of public repositories | [GitHub documentation](https://docs.github.com/en/enterprise-cloud@latest/admin/configuring-settings/hardening-security-for-your-enterprise/restricting-access-to-githubcom-using-a-corporate-proxy) |
-| Publishing a package | The package proxy accepts no uploads to public registries | Publishing to a registry that is allowed | The author's inference |
-| The package proxy | It fetches from public registries itself and serves the result | Requests for package names of the requester's choosing; a malicious package reaches every server | [DZ BANK, co-written with its vendor](https://cloud.google.com/blog/products/application-modernization/dz-bank-improves-developer-productivity-with-cloud-workstations) |
-| The hosted search and fetch tool | Runs outside the server; searches an index or fetches only known addresses; queries logged | The wording of a query and the choice of page | [OpenAI documentation](https://learn.chatgpt.com/docs/web-search.md); [OpenAI on link safety](https://openai.com/index/ai-agent-link-safety/) |
-| The gateway's tools that write | Each tool authorized separately and disabled until enabled | Tracker comments and chat posts that others, or outside systems, read | [Uber](https://www.uber.com/blog/designing-mcp-gateway/) |
-| The model endpoint | A proxy the organization runs that holds the key; contract terms | Anything the agent can read | [Anthropic](https://www.anthropic.com/engineering/how-we-contain-claude); [Claude Code documentation](https://code.claude.com/docs/en/claude-code-on-the-web); [Cloudflare](https://blog.cloudflare.com/internal-ai-engineering-stack/) |
-| The editor's downloads | The server component downloaded by the laptop and transferred; extensions installed from approved files | A malicious extension runs beside the code | [VS Code documentation](https://code.visualstudio.com/docs/remote/faq) |
-| An agent's pull request, and the pipeline behind it | Review by a person before the pipeline uses deployment credentials | Anything the agent read and chose to write | [A 2025 demonstration](https://invariantlabs.ai/blog/mcp-github-vulnerability) |
-| ssh port forwards and tunnels | `DisableForwarding` in the ssh server | The manual says this adds nothing while the user has a shell | [sshd_config](https://man.openbsd.org/sshd_config) |
-| Copying files to the laptop over ssh | None; connections can be logged | Anything the user can read | [sshd_config](https://man.openbsd.org/sshd_config) |
-| The editor's connection | None known to the author | File contents reach the laptop by design | [VS Code documentation](https://code.visualstudio.com/docs/remote/faq) |
-| The screen | None over ssh | Anything displayed | |
+| Connection | Proposed control | Remaining exposure |
+| --- | --- | --- |
+| Internet and DNS | Route web traffic through an allowlisted proxy and name lookups through a controlled resolver. Deny other outbound connections. | An approved host can receive uploads. The resolver can forward a caller’s query. [Stripe’s production proxy](https://github.com/stripe/smokescreen) |
+| Source host | Restrict pushes to approved repositories. Check each supported transport when the enterprise shares its hosting provider with personal accounts. | A hostname alone identifies the provider. The repository and account determine who receives a push. [GitHub corporate proxy documentation](https://docs.github.com/en/enterprise-cloud@latest/admin/configuring-settings/hardening-security-for-your-enterprise/restricting-access-to-githubcom-using-a-corporate-proxy) |
+| Dependencies and editor extensions | Fetch packages through a mirror and install approved editor components. | The mirror handles requested package names. Dependencies and extensions can execute beside the checkout. [DZ BANK and its vendor](https://cloud.google.com/blog/products/application-modernization/dz-bank-improves-developer-productivity-with-cloud-workstations) · [VS Code remote FAQ](https://code.visualstudio.com/docs/remote/faq) |
+| Web search and model calls | Run search outside the workspace and route model calls to an approved provider. Limit the files available when building a prompt. | A search provider receives the query. A model provider receives whatever code or tool output is included in the request. [OpenAI on link safety](https://openai.com/index/ai-agent-link-safety/) · [Guardsquare engineering account](https://www.guardsquare.com/blog/llms-for-software-development) |
+| Internal tools and pull requests | Authorize write operations separately. Give the publishing service its own credential and require review before privileged CI jobs run. | Readers of a posted comment or a proposed patch can see its contents. Spotify’s agent can prepare a change while its service controls publication. [Uber’s tool gateway](https://www.uber.com/blog/designing-mcp-gateway/) · [Spotify’s agent workflow](https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3) |
+| Interactive shell and editor | Scope repository reads to the work. Use a managed client when the task requires transfer or clipboard restrictions. | The engineer can see the code being edited. An SSH login record establishes a connection and gives no inventory of the text the engineer saw or saved. [OpenSSH server manual](https://man.openbsd.org/sshd_config) · [VS Code remote FAQ](https://code.visualstudio.com/docs/remote/faq) |
 
-GitHub reports that scanning at push time ["stops about 30% of newly detected secrets before they enter repository history"](https://github.blog/news-insights/product-news/secret-protection-must-scale-with-software/), which gives the size of what such a control leaves. Products that inspect data on the machine itself may not cover Linux servers: [one large vendor's documentation](https://docs.netskope.com/en/netskope-client-supported-os-and-platform) lists that feature for Windows and macOS.
+## Source access and personal data
 
-Two facts about the editor bear on a closed server. Microsoft's documentation says the server component of VS Code ["is not intended or licensed for use by other clients"](https://code.visualstudio.com/docs/remote/faq), and [one editor derived from VS Code](https://docs.windsurf.com/windsurf/advanced) says it ships its own ssh support for that reason. The same Microsoft page lists the hosts from which the component is downloaded, by the server first and by the laptop if the server cannot reach them, and the hosts that serve extensions.
+An investigation needs to establish who could read the material, which account accessed it, and where a copy went. Different systems hold those records.
+
+| Operational question | Evidence and consequence for a development environment |
+| --- | --- |
+| What happens when someone leaves? | CrowdSec ended a departing developer’s infrastructure access and kept repository access open for handover. The company attributed the subsequent copying of private repositories to account compromise. A handover needs a named owner and an expiry at the code host as well as the development host. [CrowdSec postmortem](https://www.crowdsec.net/blog/tanstack-supply-chain-attack-analysis) |
+| Who handles a data loss prevention (DLP) alert? | Symantec describes an initial configuration that generated roughly 10,000 DLP events a day for six people. That count covered its DLP program broadly. Before relying on an alert, assign someone to investigate it and test the volume against the time they have. [Symantec’s account of using its own product, pp. 2–4](https://docs.broadcom.com/doc/customerone-source-code-security-the-symantec-way-en) |
+| Does a Linux DLP product cover the actual session? | Fortra lists support for Linux servers. Netwrix says its clipboard monitor requires a desktop session and its notifier. An evaluation should exercise the shell, editor and client the team uses. [Fortra datasheet](https://static.fortra.com/digital-guardian/pdfs/datasheets/fta-dg-linux-ds.pdf#page=2) · [Netwrix policy documentation](https://docs.netwrix.com/docs/endpointprotector/admin/cap_module/cappolicies) |
+| Who can see the data before masking? | FINRA’s pipeline held original records in a controlled staging account. Development and QA accounts received the masked output. Access to staging, including the pipeline’s own identity, needs a separate review. [FINRA presentation](https://d1.awsstatic.com/events/reinvent/2019/How_FINRA_builds_serverless_data-masking_pipelines_across_accounts_SEC338.pdf) |
+| What if a performance test needs production-scale data? | GitLab runs database migration tests against a restricted, expiring thin clone and returns results to the merge request. A team adopting that approach has to control both direct database access and the values it publishes in test output. [GitLab operational guide](https://docs.gitlab.com/development/database/database_migration_pipeline/) · [Design alternatives](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/database_testing/#alternative-approaches) |
+| What happens to an exceptional copy after the work ends? | Times Software kept payroll data after delivering a feature. Its policy required deletion at sign-off, and nobody checked that it happened. Give each exceptional copy an owner who verifies deletion and records when any retained snapshots will expire. [Singapore privacy regulator’s decision, paragraphs 13–14](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Commissions-Decisions/Decision---Times-and-Others---18062020.pdf) |
+| What can investigators reconstruct? | GitHub Enterprise Cloud documents seven days of Git events through its audit API and export. A team that needs a longer window can stream events to its own storage. A clone event identifies the account and repository. Following the copy after that requires other evidence. [GitHub audit access](https://docs.github.com/en/enterprise-cloud%40latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/accessing-the-audit-log-for-your-enterprise) |
+
+The research notes give the circumstances of each incident, the source for each control and the limits of what the organization disclosed. [Data loss and insider access](research/data_loss_deep_dive.md)
+
+## Threats and remaining exposure
+
+Moving the checkout changes what a compromised machine can reach. An engineer's laptop still controls a live editor session. On a development server, a package can read files available to the account that runs its build. The expected protections below depend on where each permission is enforced.
+
+| Starting point | Protection in the proposed design | Remaining exposure |
+| --- | --- | --- |
+| Someone has the engineer's password | The sign-on service requires a hardware key before issuing a short-lived SSH certificate. The bastion checks the certificate when a connection opens. | Account recovery and alternate sign-in methods need equivalent protection. |
+| Malware runs on the laptop | The laptop can omit the persistent checkout. Production credentials stay off the development server. | A live session can display source, fetch files and make requests as the engineer. |
+| A dependency runs malicious code on the server | Network rules enforced outside the machine limit destinations even when an engineer has root. | The dependency may read the checkout, change a file that later goes to review, or leave changes on a persistent volume. |
+| An employee deliberately takes code | Repository permissions limit what the employee can read. Off-server records can help investigators reconstruct access. | Someone authorized to view a file can retain a copy. A connection record alone cannot establish which files left. |
+| A ticket steers an agent | The gateway limits tool calls and the publishing service controls the destination. | Proposed changes and model requests can still contain private material the agent could read. |
+| A shared service is compromised | Separate service credentials and independent logs limit the permissions and records any one service controls. | A compromised package proxy can distribute a bad dependency across the fleet. A compromised gateway can misuse the upstream credentials it holds. |
 
 ## From a Google laptop to production
 
-The steps below are assembled from Google's published papers and book, with two steps that rest on engineers' public comments. How the ssh certificate and the production credential are issued has no public source.
+Google documented device inventory, access decisions and production controls in separate publications. The table joins them to show where authority changes. The exact credential handoff between a development machine and production is unpublished in these accounts.
 
 | Step | What happens | Source |
 | --- | --- | --- |
@@ -77,39 +93,22 @@ The steps below are assembled from Google's published papers and book, with two 
 | 5 | Every later request is authorized again, by user, group, device and tier. The proxy removes the user's credential before passing the request on. | [2014 paper](https://www.usenix.org/system/files/login/articles/login_dec14_02_ward.pdf); [access proxy paper](https://www.usenix.org/system/files/login/articles/login_winter16_05_cittadini.pdf) |
 | 6 | ssh to the development machine goes through the same proxy, wrapped in WebSockets by a local helper. | [Access proxy paper](https://www.usenix.org/system/files/login/articles/login_winter16_05_cittadini.pdf) |
 | 7 | The development machine is itself an inventoried device with its own certificate, obtained at first boot. | [2018 article](https://queue.acm.org/detail.cfm?id=3264508) |
-| 8 | The engineer works in a shell or a remote editor. The source tree stays on the server side. | Engineers' public comments, [for example](https://news.ycombinator.com/item?id=33112061) |
+| 8 | The engineer works in a shell or a remote editor. The working copy lives on the development machine. | Engineers' public comments, [for example](https://news.ycombinator.com/item?id=33112061) |
 | 9 | Production credentials come from a separate step and expire. | [Two](https://news.ycombinator.com/item?id=46541516) [commenters](https://news.ycombinator.com/item?id=47529568) |
 | 10 | A production command goes to a proxy that checks policy, may require a second person, runs the command and records it. Most staff have no shell on production machines. | [Google's security book, chapter 3](https://google.github.io/building-secure-and-reliable-systems/raw/ch03.html); [production services page](https://docs.cloud.google.com/docs/security/production-services-protection) |
 | 11 | Emergency access is available from specific locations, with keys kept offline and sessions recorded. | [Production services page](https://docs.cloud.google.com/docs/security/production-services-protection); [chapter 5](https://google.github.io/building-secure-and-reliable-systems/raw/ch05.html) |
 
-Google's book names a weakness of step 10: the people who approve each other's commands ["use the same centrally managed workstations."](https://google.github.io/building-secure-and-reliable-systems/raw/ch05.html)
+Google points out that two-person approval still has a shared dependency. Both approvers use centrally managed workstations. [Google’s security book, chapter 5](https://google.github.io/building-secure-and-reliable-systems/raw/ch05.html)
 
 ## Strength of the evidence by claim
 
-A claim is graded strong when companies state it in their own posts, papers or talks, or when a regulator or a court filing does. It is graded moderate when it rests on several independent individuals, on bug reports that show a machine's configuration, or on companies' own measurements. It is graded weak when it rests on one or two voices, on vendors' material, or on research demonstrations. Employers named in public forums are self-declared. A complaint in a court filing is an allegation.
-
-| Claim | Strength | Rests on |
+| Question | What the evidence supports | What remains open |
 | --- | --- | --- |
-| Leading companies develop on remote Linux machines | Strong | Nine companies' own posts and talks; five more by individuals, vendors or press. Several of the posts are two to five years old |
-| The editor runs on the laptop and attaches over ssh | Strong | Meta, Stripe, Slack, Uber, LinkedIn, Discord; GitHub's main path is its own remote editor, with ssh for terminal editors |
-| The checkout belongs on the server; syncing from the laptop fails | Strong | Stripe's and Slack's accounts of giving it up; eleven engineers on Google's rule. Four companies still synced when last described |
-| Unattended agents run on remote machines of their own | Moderate | Stripe, LinkedIn, Ramp, Airbnb |
-| Attended agents run on the engineer's development server | Weak to moderate | Five engineers; Jane Street, which does not say where the machine sits; one Google engineer. Cloudflare, Block and Dashlane run agents on the engineer's own machine |
-| A separate identity for agents | Weak | LinkedIn, and a Microsoft pilot |
-| Agents reach internal tools through tool servers | Strong | Eight engineers; Uber, Stripe and Cloudflare publish a gateway or central server; Block's tool servers run on the engineer's machine |
-| Production data is reached through a broker, or kept out | Moderate to strong | Stripe, Google, GitLab, Monzo, Meta, LinkedIn, Envoy |
-| Real personal data stays out of development | Moderate to strong | A regulator's decision, [an EU standard for financial entities](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401774), Imperva's post-mortem |
-| Hardware keys and short-lived certificates answer phishing and stolen keys | Strong | [Google](https://docs.cloud.google.com/docs/security/infrastructure/design), with [a spokesperson's 2018 statement](https://krebsonsecurity.com/2018/07/google-security-keys-neutralized-employee-phishing/); Meta; [Netflix](https://github.com/Netflix/bless); a regulator's report; [US guidance on a jump host](https://www.cisa.gov/sites/default/files/publications/ESF_SECURING_THE_SOFTWARE_SUPPLY_CHAIN_DEVELOPERS.PDF) |
-| No access control answers code already running on the laptop | Strong | CircleCI's report; a former Google security engineer; the Security Alliance |
-| Engineers have root on these machines | Moderate | Individuals and bug reports at Google, Amazon, Stripe and Instacart, with one dissent at Google; no company states a policy |
-| Typical machine sizes | Moderate | Company posts and public reports, skewed toward heavy users |
-| Remote development is faster | Moderate | Companies' own measurements, mostly from 2021 and 2022 |
-| A development server is safer than a laptop | Argued; not measured | How the published attacks worked; advice from Microsoft and the Security Alliance. No source shows a breach that a server prevented, and no breached company responded by moving development |
-| The design against each attacker | The author's analysis | The mechanisms and incidents cited in the essay; no published test |
-| A transition can follow a known path | Moderate | Slack, Discord, Instacart, GitHub, each for some stages |
-| One engineer can run phase one | Weak | Four small-scale accounts; every pooled platform with a known team had more |
-| An agent can read the public web safely | Weak | Vendor documentation and security research; no company's own account |
-| A sandbox can contain an agent on a machine where the engineer has root | Weak | One company's account that it works; two reports of sandboxes breaking |
-| Cost per engineer | Arithmetic only | One hosted product's list price and one vendor's model; no operator publishes a figure |
+| How long have engineers worked this way? | Day-one instructions, troubleshooting posts, personal blogs and conference slides place everyday editing, builds or tests on development hosts during 2005–2015. Some identify only one engineer or one stage of a build. [Historical accounts and their scope](research/history_deep_dive.md) | How prevalent each arrangement was. The same period includes local checkouts, synchronized trees and local builds. |
+| Where do the checkout and editor belong? | Stripe and Slack describe why they gave up synchronizing laptop checkouts. Other teams used synchronization successfully enough to keep it when they wrote about it. [Workflow evidence](research/ledger_a_server.md) | Whether remote editing meets the latency, offline or hardware needs of a particular team. |
+| Will a development server make the team faster? | Company accounts document gains for particular repositories, machine sizes and tasks. [Performance and machine reports](research/ledger_a_server.md) | A typical speedup, machine size or monthly bill. The first pilot can measure the team’s own edit and test cycle. |
+| Does the move reduce theft or disclosure? | Incidents identify actual losses of code and personal data. Operating accounts document repository permissions, de-identification, controls on exports and independent logging. [Incident and control catalog](research/data_loss_deep_dive.md) | The change in loss rate attributable to moving the checkout. Endpoint controls, data permissions and operations differ across deployments. |
+| Whose authority does an agent use? | LinkedIn describes giving an agent its own identity. Postman records the developer, agent and run for brokered API calls. Spotify gives a service the credential to publish an agent’s proposed changes. [Identity evidence](research/ledger_b_access_data_agents.md) · [Postman’s broker](https://blog.postman.com/how-postman-governs-ai-agent-access-to-42-production-systems/) · [Spotify’s publisher](https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3) | A tool log alone leaves open how the caller proved its identity. A separate publisher controls only actions that go through it. |
+| What can one platform engineer operate? | Small teams describe running persistent development machines. Larger deployments document the work of pooling hosts, maintaining images and responding to outages. [Staffing and operations accounts](research/ledger_c_failures_staffing_transition.md) | Whether one person can cover a particular team’s support hours, recovery targets and security monitoring. |
 
-Some links point to copies because the original refuses automated readers or was read that way. The sentence from Google's 2016 paper is quoted from a third party's page that reproduces it. Verizon's 2024 report is linked at a copy hosted by an industry association. The New York regulator's report, the Federal Trade Commission's press release and the 2018 article on Google's virtual desktops were read from archived copies of the pages linked. The statements by Binance, Facebook and Meta are paraphrased, apart from single words, because those pages were read through a reader service.
+[Return to the essay](essay.md)
