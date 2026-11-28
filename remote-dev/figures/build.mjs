@@ -87,7 +87,7 @@ function laptopAndServer() {
     ["Development data", "Supplies fixtures and approved test datasets"],
     ["Model endpoint", "Through a proxy that holds the key"],
     ["Editor downloads", "Server component and approved extensions"],
-    ["Own code host", "Pushes only to the organization's own host"],
+    ["Approved repositories", "Only authorized repositories may receive a push"],
     ["Build and deployment pipeline", "The only route to production"],
   ];
   const ew = 225;
@@ -108,7 +108,7 @@ function laptopAndServer() {
     "laptop-server",
     botY + 120,
     "The laptop, the development server and its exits",
-    "The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a service supplying fixtures and approved test datasets, the model endpoint, the editor's downloads, the organization's own code host, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. The engineer can inspect customer records in a separate interface under a temporary grant. Neither the workspace nor its agents can use that grant. Logs are kept off the server.",
+    "The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a service supplying fixtures and approved test datasets, the model endpoint, the editor's downloads, a code host that restricts pushes to approved repositories, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. The engineer can inspect customer records in a separate interface under a temporary grant. Neither the workspace nor its agents can use that grant. Logs are kept off the server.",
     "The laptop, the development server and its exits",
     "An engineer can administer the server. Separate services control what it can reach.",
     [

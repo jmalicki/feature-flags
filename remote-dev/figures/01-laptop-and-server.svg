@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="850" viewBox="0 0 1000 850" role="img" aria-labelledby="laptop-server-title laptop-server-desc">
   <title id="laptop-server-title">The laptop, the development server and its exits</title>
-  <desc id="laptop-server-desc">The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a service supplying fixtures and approved test datasets, the model endpoint, the editor's downloads, the organization's own code host, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. The engineer can inspect customer records in a separate interface under a temporary grant. Neither the workspace nor its agents can use that grant. Logs are kept off the server.</desc>
+  <desc id="laptop-server-desc">The laptop holds an editor window, a browser and an ssh client, with no checkout and no long-lived credentials. It connects through single sign-on with a hardware key, a short-lived ssh certificate and one logged bastion to the development server, and the ssh session and the editor's connection run in both directions. The server holds the working checkout, the toolchain, running services and attended agents, and the engineer has root. The server has eight exits: a package proxy, a hosted search and fetch tool, a gateway, a service supplying fixtures and approved test datasets, the model endpoint, the editor's downloads, a code host that restricts pushes to approved repositories, and the build and deployment pipeline. Production is reached only by a reviewed change through the pipeline. The open internet is not reachable from the server. The engineer can inspect customer records in a separate interface under a temporary grant. Neither the workspace nor its agents can use that grant. Logs are kept off the server.</desc>
   <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
     <rect x="0" y="0" width="1000" height="850" rx="0" fill="#fcfcfb" stroke="none" stroke-width="1.5"/>
     <text x="32" y="46" font-size="26" fill="#0b0b0b" font-weight="700" text-anchor="start">The laptop, the development server and its exits</text>
@@ -62,9 +62,10 @@
 <text x="283" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Server component and</text>
 <text x="283" y="622.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">approved extensions</text>
 <rect x="506" y="548" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
-<text x="520" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Own code host</text>
-<text x="520" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Pushes only to the</text>
-<text x="520" y="622.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">organization's own host</text>
+<text x="520" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Approved repositories</text>
+<text x="520" y="604.1" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">Only authorized</text>
+<text x="520" y="622.3000000000001" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">repositories may receive a</text>
+<text x="520" y="640.5" font-size="14" fill="#52514e" font-weight="400" text-anchor="start">push</text>
 <rect x="743" y="548" width="225" height="118" rx="8" fill="#e6f0fb" stroke="#2a78d6" stroke-width="1.5"/>
 <text x="757" y="578" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">Build and deployment</text>
 <text x="757" y="600.1" font-size="17" fill="#0b0b0b" font-weight="700" text-anchor="start">pipeline</text>
